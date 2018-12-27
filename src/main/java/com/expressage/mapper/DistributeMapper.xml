@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.expressage.mapper.DistributeMapper" >
+  <resultMap id="BaseResultMap" type="com.expressage.pojo.Distribute" >
+    <id column="did" property="did" jdbcType="INTEGER" />
+    <result column="oid" property="oid" jdbcType="INTEGER" />
+    <result column="eid" property="eid" jdbcType="INTEGER" />
+    <result column="dtime" property="dtime" jdbcType="TIMESTAMP" />
+    <result column="ftime" property="ftime" jdbcType="TIMESTAMP" />
+    <result column="status" property="status" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    did, oid, eid, dtime, ftime, status
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from distribute
+    where did = #{did,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from distribute
+    where did = #{did,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.expressage.pojo.Distribute" >
+    insert into distribute (did, oid, eid, 
+      dtime, ftime, status
+      )
+    values (#{did,jdbcType=INTEGER}, #{oid,jdbcType=INTEGER}, #{eid,jdbcType=INTEGER}, 
+      #{dtime,jdbcType=TIMESTAMP}, #{ftime,jdbcType=TIMESTAMP}, #{status,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.expressage.pojo.Distribute" >
+    insert into distribute
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="did != null" >
+        did,
+      </if>
+      <if test="oid != null" >
+        oid,
+      </if>
+      <if test="eid != null" >
+        eid,
+      </if>
+      <if test="dtime != null" >
+        dtime,
+      </if>
+      <if test="ftime != null" >
+        ftime,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="did != null" >
+        #{did,jdbcType=INTEGER},
+      </if>
+      <if test="oid != null" >
+        #{oid,jdbcType=INTEGER},
+      </if>
+      <if test="eid != null" >
+        #{eid,jdbcType=INTEGER},
+      </if>
+      <if test="dtime != null" >
+        #{dtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="ftime != null" >
+        #{ftime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.expressage.pojo.Distribute" >
+    update distribute
+    <set >
+      <if test="oid != null" >
+        oid = #{oid,jdbcType=INTEGER},
+      </if>
+      <if test="eid != null" >
+        eid = #{eid,jdbcType=INTEGER},
+      </if>
+      <if test="dtime != null" >
+        dtime = #{dtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="ftime != null" >
+        ftime = #{ftime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where did = #{did,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.expressage.pojo.Distribute" >
+    update distribute
+    set oid = #{oid,jdbcType=INTEGER},
+      eid = #{eid,jdbcType=INTEGER},
+      dtime = #{dtime,jdbcType=TIMESTAMP},
+      ftime = #{ftime,jdbcType=TIMESTAMP},
+      status = #{status,jdbcType=VARCHAR}
+    where did = #{did,jdbcType=INTEGER}
+  </update>
+</mapper>

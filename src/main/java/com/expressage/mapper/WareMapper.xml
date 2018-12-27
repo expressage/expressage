@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.expressage.mapper.WareMapper" >
+  <resultMap id="BaseResultMap" type="com.expressage.pojo.Ware" >
+    <id column="ware_id" property="wareId" jdbcType="INTEGER" />
+    <result column="address" property="address" jdbcType="VARCHAR" />
+    <result column="acreage" property="acreage" jdbcType="DOUBLE" />
+    <result column="eid" property="eid" jdbcType="INTEGER" />
+    <result column="transfer_id" property="transferId" jdbcType="INTEGER" />
+    <result column="status" property="status" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ware_id, address, acreage, eid, transfer_id, status
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from ware
+    where ware_id = #{wareId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from ware
+    where ware_id = #{wareId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.expressage.pojo.Ware" >
+    insert into ware (ware_id, address, acreage, 
+      eid, transfer_id, status
+      )
+    values (#{wareId,jdbcType=INTEGER}, #{address,jdbcType=VARCHAR}, #{acreage,jdbcType=DOUBLE}, 
+      #{eid,jdbcType=INTEGER}, #{transferId,jdbcType=INTEGER}, #{status,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.expressage.pojo.Ware" >
+    insert into ware
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="wareId != null" >
+        ware_id,
+      </if>
+      <if test="address != null" >
+        address,
+      </if>
+      <if test="acreage != null" >
+        acreage,
+      </if>
+      <if test="eid != null" >
+        eid,
+      </if>
+      <if test="transferId != null" >
+        transfer_id,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="wareId != null" >
+        #{wareId,jdbcType=INTEGER},
+      </if>
+      <if test="address != null" >
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="acreage != null" >
+        #{acreage,jdbcType=DOUBLE},
+      </if>
+      <if test="eid != null" >
+        #{eid,jdbcType=INTEGER},
+      </if>
+      <if test="transferId != null" >
+        #{transferId,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.expressage.pojo.Ware" >
+    update ware
+    <set >
+      <if test="address != null" >
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="acreage != null" >
+        acreage = #{acreage,jdbcType=DOUBLE},
+      </if>
+      <if test="eid != null" >
+        eid = #{eid,jdbcType=INTEGER},
+      </if>
+      <if test="transferId != null" >
+        transfer_id = #{transferId,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ware_id = #{wareId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.expressage.pojo.Ware" >
+    update ware
+    set address = #{address,jdbcType=VARCHAR},
+      acreage = #{acreage,jdbcType=DOUBLE},
+      eid = #{eid,jdbcType=INTEGER},
+      transfer_id = #{transferId,jdbcType=INTEGER},
+      status = #{status,jdbcType=VARCHAR}
+    where ware_id = #{wareId,jdbcType=INTEGER}
+  </update>
+</mapper>

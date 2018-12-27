@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.expressage.mapper.GoodsInformationMapper" >
+  <resultMap id="BaseResultMap" type="com.expressage.pojo.GoodsInformation" >
+    <id column="xid" property="xid" jdbcType="INTEGER" />
+    <result column="revertCode" property="revertcode" jdbcType="VARCHAR" />
+    <result column="eid" property="eid" jdbcType="INTEGER" />
+    <result column="checkGoodsRecord" property="checkgoodsrecord" jdbcType="VARCHAR" />
+    <result column="consignee" property="consignee" jdbcType="VARCHAR" />
+    <result column="consigneeDate" property="consigneedate" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    xid, revertCode, eid, checkGoodsRecord, consignee, consigneeDate
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from goods_information
+    where xid = #{xid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from goods_information
+    where xid = #{xid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.expressage.pojo.GoodsInformation" >
+    insert into goods_information (xid, revertCode, eid, 
+      checkGoodsRecord, consignee, consigneeDate
+      )
+    values (#{xid,jdbcType=INTEGER}, #{revertcode,jdbcType=VARCHAR}, #{eid,jdbcType=INTEGER}, 
+      #{checkgoodsrecord,jdbcType=VARCHAR}, #{consignee,jdbcType=VARCHAR}, #{consigneedate,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.expressage.pojo.GoodsInformation" >
+    insert into goods_information
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="xid != null" >
+        xid,
+      </if>
+      <if test="revertcode != null" >
+        revertCode,
+      </if>
+      <if test="eid != null" >
+        eid,
+      </if>
+      <if test="checkgoodsrecord != null" >
+        checkGoodsRecord,
+      </if>
+      <if test="consignee != null" >
+        consignee,
+      </if>
+      <if test="consigneedate != null" >
+        consigneeDate,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="xid != null" >
+        #{xid,jdbcType=INTEGER},
+      </if>
+      <if test="revertcode != null" >
+        #{revertcode,jdbcType=VARCHAR},
+      </if>
+      <if test="eid != null" >
+        #{eid,jdbcType=INTEGER},
+      </if>
+      <if test="checkgoodsrecord != null" >
+        #{checkgoodsrecord,jdbcType=VARCHAR},
+      </if>
+      <if test="consignee != null" >
+        #{consignee,jdbcType=VARCHAR},
+      </if>
+      <if test="consigneedate != null" >
+        #{consigneedate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.expressage.pojo.GoodsInformation" >
+    update goods_information
+    <set >
+      <if test="revertcode != null" >
+        revertCode = #{revertcode,jdbcType=VARCHAR},
+      </if>
+      <if test="eid != null" >
+        eid = #{eid,jdbcType=INTEGER},
+      </if>
+      <if test="checkgoodsrecord != null" >
+        checkGoodsRecord = #{checkgoodsrecord,jdbcType=VARCHAR},
+      </if>
+      <if test="consignee != null" >
+        consignee = #{consignee,jdbcType=VARCHAR},
+      </if>
+      <if test="consigneedate != null" >
+        consigneeDate = #{consigneedate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where xid = #{xid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.expressage.pojo.GoodsInformation" >
+    update goods_information
+    set revertCode = #{revertcode,jdbcType=VARCHAR},
+      eid = #{eid,jdbcType=INTEGER},
+      checkGoodsRecord = #{checkgoodsrecord,jdbcType=VARCHAR},
+      consignee = #{consignee,jdbcType=VARCHAR},
+      consigneeDate = #{consigneedate,jdbcType=TIMESTAMP}
+    where xid = #{xid,jdbcType=INTEGER}
+  </update>
+</mapper>

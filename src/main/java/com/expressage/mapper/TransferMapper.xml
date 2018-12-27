@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.expressage.mapper.TransferMapper" >
+  <resultMap id="BaseResultMap" type="com.expressage.pojo.Transfer" >
+    <id column="transfer_id" property="transferId" jdbcType="INTEGER" />
+    <result column="eid" property="eid" jdbcType="INTEGER" />
+    <result column="transfer_name" property="transferName" jdbcType="VARCHAR" />
+    <result column="level" property="level" jdbcType="INTEGER" />
+    <result column="pid" property="pid" jdbcType="INTEGER" />
+    <result column="address" property="address" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    transfer_id, eid, transfer_name, level, pid, address
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from transfer
+    where transfer_id = #{transferId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from transfer
+    where transfer_id = #{transferId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.expressage.pojo.Transfer" >
+    insert into transfer (transfer_id, eid, transfer_name, 
+      level, pid, address
+      )
+    values (#{transferId,jdbcType=INTEGER}, #{eid,jdbcType=INTEGER}, #{transferName,jdbcType=VARCHAR}, 
+      #{level,jdbcType=INTEGER}, #{pid,jdbcType=INTEGER}, #{address,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.expressage.pojo.Transfer" >
+    insert into transfer
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="transferId != null" >
+        transfer_id,
+      </if>
+      <if test="eid != null" >
+        eid,
+      </if>
+      <if test="transferName != null" >
+        transfer_name,
+      </if>
+      <if test="level != null" >
+        level,
+      </if>
+      <if test="pid != null" >
+        pid,
+      </if>
+      <if test="address != null" >
+        address,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="transferId != null" >
+        #{transferId,jdbcType=INTEGER},
+      </if>
+      <if test="eid != null" >
+        #{eid,jdbcType=INTEGER},
+      </if>
+      <if test="transferName != null" >
+        #{transferName,jdbcType=VARCHAR},
+      </if>
+      <if test="level != null" >
+        #{level,jdbcType=INTEGER},
+      </if>
+      <if test="pid != null" >
+        #{pid,jdbcType=INTEGER},
+      </if>
+      <if test="address != null" >
+        #{address,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.expressage.pojo.Transfer" >
+    update transfer
+    <set >
+      <if test="eid != null" >
+        eid = #{eid,jdbcType=INTEGER},
+      </if>
+      <if test="transferName != null" >
+        transfer_name = #{transferName,jdbcType=VARCHAR},
+      </if>
+      <if test="level != null" >
+        level = #{level,jdbcType=INTEGER},
+      </if>
+      <if test="pid != null" >
+        pid = #{pid,jdbcType=INTEGER},
+      </if>
+      <if test="address != null" >
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where transfer_id = #{transferId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.expressage.pojo.Transfer" >
+    update transfer
+    set eid = #{eid,jdbcType=INTEGER},
+      transfer_name = #{transferName,jdbcType=VARCHAR},
+      level = #{level,jdbcType=INTEGER},
+      pid = #{pid,jdbcType=INTEGER},
+      address = #{address,jdbcType=VARCHAR}
+    where transfer_id = #{transferId,jdbcType=INTEGER}
+  </update>
+</mapper>

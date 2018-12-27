@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.expressage.mapper.CarTypeMapper" >
+  <resultMap id="BaseResultMap" type="com.expressage.pojo.CarType" >
+    <id column="ctid" property="ctid" jdbcType="INTEGER" />
+    <result column="car_type" property="carType" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ctid, car_type
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from car_type
+    where ctid = #{ctid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from car_type
+    where ctid = #{ctid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.expressage.pojo.CarType" >
+    insert into car_type (ctid, car_type)
+    values (#{ctid,jdbcType=INTEGER}, #{carType,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.expressage.pojo.CarType" >
+    insert into car_type
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="ctid != null" >
+        ctid,
+      </if>
+      <if test="carType != null" >
+        car_type,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="ctid != null" >
+        #{ctid,jdbcType=INTEGER},
+      </if>
+      <if test="carType != null" >
+        #{carType,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.expressage.pojo.CarType" >
+    update car_type
+    <set >
+      <if test="carType != null" >
+        car_type = #{carType,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ctid = #{ctid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.expressage.pojo.CarType" >
+    update car_type
+    set car_type = #{carType,jdbcType=VARCHAR}
+    where ctid = #{ctid,jdbcType=INTEGER}
+  </update>
+</mapper>

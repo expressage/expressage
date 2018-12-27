@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.expressage.mapper.OrderMapper" >
+  <resultMap id="BaseResultMap" type="com.expressage.pojo.Order" >
+    <id column="oid" property="oid" jdbcType="INTEGER" />
+    <result column="orderNo" property="orderno" jdbcType="VARCHAR" />
+    <result column="uid" property="uid" jdbcType="INTEGER" />
+    <result column="maddress" property="maddress" jdbcType="INTEGER" />
+    <result column="raddress" property="raddress" jdbcType="INTEGER" />
+    <result column="order_time" property="orderTime" jdbcType="TIMESTAMP" />
+    <result column="appointmentTime" property="appointmenttime" jdbcType="TIMESTAMP" />
+    <result column="type_Name" property="typeName" jdbcType="VARCHAR" />
+    <result column="weight" property="weight" jdbcType="DOUBLE" />
+    <result column="rprice" property="rprice" jdbcType="INTEGER" />
+    <result column="eprice" property="eprice" jdbcType="INTEGER" />
+    <result column="total" property="total" jdbcType="INTEGER" />
+    <result column="pay_type" property="payType" jdbcType="INTEGER" />
+    <result column="rpay" property="rpay" jdbcType="INTEGER" />
+    <result column="status" property="status" jdbcType="VARCHAR" />
+    <result column="remarks" property="remarks" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    oid, orderNo, uid, maddress, raddress, order_time, appointmentTime, type_Name, weight, 
+    rprice, eprice, total, pay_type, rpay, status, remarks
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from order
+    where oid = #{oid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from order
+    where oid = #{oid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.expressage.pojo.Order" >
+    insert into order (oid, orderNo, uid, 
+      maddress, raddress, order_time, 
+      appointmentTime, type_Name, weight, 
+      rprice, eprice, total, 
+      pay_type, rpay, status, 
+      remarks)
+    values (#{oid,jdbcType=INTEGER}, #{orderno,jdbcType=VARCHAR}, #{uid,jdbcType=INTEGER}, 
+      #{maddress,jdbcType=INTEGER}, #{raddress,jdbcType=INTEGER}, #{orderTime,jdbcType=TIMESTAMP}, 
+      #{appointmenttime,jdbcType=TIMESTAMP}, #{typeName,jdbcType=VARCHAR}, #{weight,jdbcType=DOUBLE}, 
+      #{rprice,jdbcType=INTEGER}, #{eprice,jdbcType=INTEGER}, #{total,jdbcType=INTEGER}, 
+      #{payType,jdbcType=INTEGER}, #{rpay,jdbcType=INTEGER}, #{status,jdbcType=VARCHAR}, 
+      #{remarks,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.expressage.pojo.Order" >
+    insert into order
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="oid != null" >
+        oid,
+      </if>
+      <if test="orderno != null" >
+        orderNo,
+      </if>
+      <if test="uid != null" >
+        uid,
+      </if>
+      <if test="maddress != null" >
+        maddress,
+      </if>
+      <if test="raddress != null" >
+        raddress,
+      </if>
+      <if test="orderTime != null" >
+        order_time,
+      </if>
+      <if test="appointmenttime != null" >
+        appointmentTime,
+      </if>
+      <if test="typeName != null" >
+        type_Name,
+      </if>
+      <if test="weight != null" >
+        weight,
+      </if>
+      <if test="rprice != null" >
+        rprice,
+      </if>
+      <if test="eprice != null" >
+        eprice,
+      </if>
+      <if test="total != null" >
+        total,
+      </if>
+      <if test="payType != null" >
+        pay_type,
+      </if>
+      <if test="rpay != null" >
+        rpay,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="remarks != null" >
+        remarks,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="oid != null" >
+        #{oid,jdbcType=INTEGER},
+      </if>
+      <if test="orderno != null" >
+        #{orderno,jdbcType=VARCHAR},
+      </if>
+      <if test="uid != null" >
+        #{uid,jdbcType=INTEGER},
+      </if>
+      <if test="maddress != null" >
+        #{maddress,jdbcType=INTEGER},
+      </if>
+      <if test="raddress != null" >
+        #{raddress,jdbcType=INTEGER},
+      </if>
+      <if test="orderTime != null" >
+        #{orderTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="appointmenttime != null" >
+        #{appointmenttime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="typeName != null" >
+        #{typeName,jdbcType=VARCHAR},
+      </if>
+      <if test="weight != null" >
+        #{weight,jdbcType=DOUBLE},
+      </if>
+      <if test="rprice != null" >
+        #{rprice,jdbcType=INTEGER},
+      </if>
+      <if test="eprice != null" >
+        #{eprice,jdbcType=INTEGER},
+      </if>
+      <if test="total != null" >
+        #{total,jdbcType=INTEGER},
+      </if>
+      <if test="payType != null" >
+        #{payType,jdbcType=INTEGER},
+      </if>
+      <if test="rpay != null" >
+        #{rpay,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="remarks != null" >
+        #{remarks,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.expressage.pojo.Order" >
+    update order
+    <set >
+      <if test="orderno != null" >
+        orderNo = #{orderno,jdbcType=VARCHAR},
+      </if>
+      <if test="uid != null" >
+        uid = #{uid,jdbcType=INTEGER},
+      </if>
+      <if test="maddress != null" >
+        maddress = #{maddress,jdbcType=INTEGER},
+      </if>
+      <if test="raddress != null" >
+        raddress = #{raddress,jdbcType=INTEGER},
+      </if>
+      <if test="orderTime != null" >
+        order_time = #{orderTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="appointmenttime != null" >
+        appointmentTime = #{appointmenttime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="typeName != null" >
+        type_Name = #{typeName,jdbcType=VARCHAR},
+      </if>
+      <if test="weight != null" >
+        weight = #{weight,jdbcType=DOUBLE},
+      </if>
+      <if test="rprice != null" >
+        rprice = #{rprice,jdbcType=INTEGER},
+      </if>
+      <if test="eprice != null" >
+        eprice = #{eprice,jdbcType=INTEGER},
+      </if>
+      <if test="total != null" >
+        total = #{total,jdbcType=INTEGER},
+      </if>
+      <if test="payType != null" >
+        pay_type = #{payType,jdbcType=INTEGER},
+      </if>
+      <if test="rpay != null" >
+        rpay = #{rpay,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="remarks != null" >
+        remarks = #{remarks,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where oid = #{oid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.expressage.pojo.Order" >
+    update order
+    set orderNo = #{orderno,jdbcType=VARCHAR},
+      uid = #{uid,jdbcType=INTEGER},
+      maddress = #{maddress,jdbcType=INTEGER},
+      raddress = #{raddress,jdbcType=INTEGER},
+      order_time = #{orderTime,jdbcType=TIMESTAMP},
+      appointmentTime = #{appointmenttime,jdbcType=TIMESTAMP},
+      type_Name = #{typeName,jdbcType=VARCHAR},
+      weight = #{weight,jdbcType=DOUBLE},
+      rprice = #{rprice,jdbcType=INTEGER},
+      eprice = #{eprice,jdbcType=INTEGER},
+      total = #{total,jdbcType=INTEGER},
+      pay_type = #{payType,jdbcType=INTEGER},
+      rpay = #{rpay,jdbcType=INTEGER},
+      status = #{status,jdbcType=VARCHAR},
+      remarks = #{remarks,jdbcType=VARCHAR}
+    where oid = #{oid,jdbcType=INTEGER}
+  </update>
+</mapper>

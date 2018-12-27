@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.expressage.mapper.CustomerreceiptMapper" >
+  <resultMap id="BaseResultMap" type="com.expressage.pojo.Customerreceipt" >
+    <id column="kid" property="kid" jdbcType="INTEGER" />
+    <result column="orderNo" property="orderno" jdbcType="VARCHAR" />
+    <result column="maddress" property="maddress" jdbcType="INTEGER" />
+    <result column="raddress" property="raddress" jdbcType="INTEGER" />
+    <result column="checkGoodsRecord" property="checkgoodsrecord" jdbcType="VARCHAR" />
+    <result column="consignee" property="consignee" jdbcType="VARCHAR" />
+    <result column="consigneeDate" property="consigneedate" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    kid, orderNo, maddress, raddress, checkGoodsRecord, consignee, consigneeDate
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from customerreceipt
+    where kid = #{kid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from customerreceipt
+    where kid = #{kid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.expressage.pojo.Customerreceipt" >
+    insert into customerreceipt (kid, orderNo, maddress, 
+      raddress, checkGoodsRecord, consignee, 
+      consigneeDate)
+    values (#{kid,jdbcType=INTEGER}, #{orderno,jdbcType=VARCHAR}, #{maddress,jdbcType=INTEGER}, 
+      #{raddress,jdbcType=INTEGER}, #{checkgoodsrecord,jdbcType=VARCHAR}, #{consignee,jdbcType=VARCHAR}, 
+      #{consigneedate,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.expressage.pojo.Customerreceipt" >
+    insert into customerreceipt
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="kid != null" >
+        kid,
+      </if>
+      <if test="orderno != null" >
+        orderNo,
+      </if>
+      <if test="maddress != null" >
+        maddress,
+      </if>
+      <if test="raddress != null" >
+        raddress,
+      </if>
+      <if test="checkgoodsrecord != null" >
+        checkGoodsRecord,
+      </if>
+      <if test="consignee != null" >
+        consignee,
+      </if>
+      <if test="consigneedate != null" >
+        consigneeDate,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="kid != null" >
+        #{kid,jdbcType=INTEGER},
+      </if>
+      <if test="orderno != null" >
+        #{orderno,jdbcType=VARCHAR},
+      </if>
+      <if test="maddress != null" >
+        #{maddress,jdbcType=INTEGER},
+      </if>
+      <if test="raddress != null" >
+        #{raddress,jdbcType=INTEGER},
+      </if>
+      <if test="checkgoodsrecord != null" >
+        #{checkgoodsrecord,jdbcType=VARCHAR},
+      </if>
+      <if test="consignee != null" >
+        #{consignee,jdbcType=VARCHAR},
+      </if>
+      <if test="consigneedate != null" >
+        #{consigneedate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.expressage.pojo.Customerreceipt" >
+    update customerreceipt
+    <set >
+      <if test="orderno != null" >
+        orderNo = #{orderno,jdbcType=VARCHAR},
+      </if>
+      <if test="maddress != null" >
+        maddress = #{maddress,jdbcType=INTEGER},
+      </if>
+      <if test="raddress != null" >
+        raddress = #{raddress,jdbcType=INTEGER},
+      </if>
+      <if test="checkgoodsrecord != null" >
+        checkGoodsRecord = #{checkgoodsrecord,jdbcType=VARCHAR},
+      </if>
+      <if test="consignee != null" >
+        consignee = #{consignee,jdbcType=VARCHAR},
+      </if>
+      <if test="consigneedate != null" >
+        consigneeDate = #{consigneedate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where kid = #{kid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.expressage.pojo.Customerreceipt" >
+    update customerreceipt
+    set orderNo = #{orderno,jdbcType=VARCHAR},
+      maddress = #{maddress,jdbcType=INTEGER},
+      raddress = #{raddress,jdbcType=INTEGER},
+      checkGoodsRecord = #{checkgoodsrecord,jdbcType=VARCHAR},
+      consignee = #{consignee,jdbcType=VARCHAR},
+      consigneeDate = #{consigneedate,jdbcType=TIMESTAMP}
+    where kid = #{kid,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.expressage.mapper.RoleMapper" >
+  <resultMap id="BaseResultMap" type="com.expressage.pojo.Role" >
+    <result column="rid" property="rid" jdbcType="INTEGER" />
+    <result column="rname" property="rname" jdbcType="VARCHAR" />
+  </resultMap>
+  <insert id="insert" parameterType="com.expressage.pojo.Role" >
+    insert into role (rid, rname)
+    values (#{rid,jdbcType=INTEGER}, #{rname,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.expressage.pojo.Role" >
+    insert into role
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="rid != null" >
+        rid,
+      </if>
+      <if test="rname != null" >
+        rname,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="rid != null" >
+        #{rid,jdbcType=INTEGER},
+      </if>
+      <if test="rname != null" >
+        #{rname,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+</mapper>
