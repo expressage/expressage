@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.expressage.mapper.DepartMapper" >
+  <resultMap id="BaseResultMap" type="com.expressage.pojo.Depart" >
+    <id column="depart_id" property="departId" jdbcType="INTEGER" />
+    <result column="cid" property="cid" jdbcType="INTEGER" />
+    <result column="saddress" property="saddress" jdbcType="VARCHAR" />
+    <result column="stime" property="stime" jdbcType="TIMESTAMP" />
+    <result column="eaddress" property="eaddress" jdbcType="VARCHAR" />
+    <result column="etime" property="etime" jdbcType="TIMESTAMP" />
+    <result column="time" property="time" jdbcType="TIMESTAMP" />
+    <result column="eid" property="eid" jdbcType="INTEGER" />
+    <result column="astatus" property="astatus" jdbcType="VARCHAR" />
+    <result column="dstatus" property="dstatus" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    depart_id, cid, saddress, stime, eaddress, etime, time, eid, astatus, dstatus
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from depart
+    where depart_id = #{departId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from depart
+    where depart_id = #{departId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.expressage.pojo.Depart" >
+    insert into depart (depart_id, cid, saddress, 
+      stime, eaddress, etime, 
+      time, eid, astatus, 
+      dstatus)
+    values (#{departId,jdbcType=INTEGER}, #{cid,jdbcType=INTEGER}, #{saddress,jdbcType=VARCHAR}, 
+      #{stime,jdbcType=TIMESTAMP}, #{eaddress,jdbcType=VARCHAR}, #{etime,jdbcType=TIMESTAMP}, 
+      #{time,jdbcType=TIMESTAMP}, #{eid,jdbcType=INTEGER}, #{astatus,jdbcType=VARCHAR}, 
+      #{dstatus,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.expressage.pojo.Depart" >
+    insert into depart
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="departId != null" >
+        depart_id,
+      </if>
+      <if test="cid != null" >
+        cid,
+      </if>
+      <if test="saddress != null" >
+        saddress,
+      </if>
+      <if test="stime != null" >
+        stime,
+      </if>
+      <if test="eaddress != null" >
+        eaddress,
+      </if>
+      <if test="etime != null" >
+        etime,
+      </if>
+      <if test="time != null" >
+        time,
+      </if>
+      <if test="eid != null" >
+        eid,
+      </if>
+      <if test="astatus != null" >
+        astatus,
+      </if>
+      <if test="dstatus != null" >
+        dstatus,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="departId != null" >
+        #{departId,jdbcType=INTEGER},
+      </if>
+      <if test="cid != null" >
+        #{cid,jdbcType=INTEGER},
+      </if>
+      <if test="saddress != null" >
+        #{saddress,jdbcType=VARCHAR},
+      </if>
+      <if test="stime != null" >
+        #{stime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="eaddress != null" >
+        #{eaddress,jdbcType=VARCHAR},
+      </if>
+      <if test="etime != null" >
+        #{etime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="time != null" >
+        #{time,jdbcType=TIMESTAMP},
+      </if>
+      <if test="eid != null" >
+        #{eid,jdbcType=INTEGER},
+      </if>
+      <if test="astatus != null" >
+        #{astatus,jdbcType=VARCHAR},
+      </if>
+      <if test="dstatus != null" >
+        #{dstatus,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.expressage.pojo.Depart" >
+    update depart
+    <set >
+      <if test="cid != null" >
+        cid = #{cid,jdbcType=INTEGER},
+      </if>
+      <if test="saddress != null" >
+        saddress = #{saddress,jdbcType=VARCHAR},
+      </if>
+      <if test="stime != null" >
+        stime = #{stime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="eaddress != null" >
+        eaddress = #{eaddress,jdbcType=VARCHAR},
+      </if>
+      <if test="etime != null" >
+        etime = #{etime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="time != null" >
+        time = #{time,jdbcType=TIMESTAMP},
+      </if>
+      <if test="eid != null" >
+        eid = #{eid,jdbcType=INTEGER},
+      </if>
+      <if test="astatus != null" >
+        astatus = #{astatus,jdbcType=VARCHAR},
+      </if>
+      <if test="dstatus != null" >
+        dstatus = #{dstatus,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where depart_id = #{departId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.expressage.pojo.Depart" >
+    update depart
+    set cid = #{cid,jdbcType=INTEGER},
+      saddress = #{saddress,jdbcType=VARCHAR},
+      stime = #{stime,jdbcType=TIMESTAMP},
+      eaddress = #{eaddress,jdbcType=VARCHAR},
+      etime = #{etime,jdbcType=TIMESTAMP},
+      time = #{time,jdbcType=TIMESTAMP},
+      eid = #{eid,jdbcType=INTEGER},
+      astatus = #{astatus,jdbcType=VARCHAR},
+      dstatus = #{dstatus,jdbcType=VARCHAR}
+    where depart_id = #{departId,jdbcType=INTEGER}
+  </update>
+</mapper>

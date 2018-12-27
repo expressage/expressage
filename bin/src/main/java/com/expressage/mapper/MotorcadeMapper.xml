@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.expressage.mapper.MotorcadeMapper" >
+  <resultMap id="BaseResultMap" type="com.expressage.pojo.Motorcade" >
+    <id column="motorcade_id" property="motorcadeId" jdbcType="INTEGER" />
+    <result column="route_id" property="routeId" jdbcType="INTEGER" />
+    <result column="mname" property="mname" jdbcType="VARCHAR" />
+    <result column="eid" property="eid" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    motorcade_id, route_id, mname, eid
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from motorcade
+    where motorcade_id = #{motorcadeId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from motorcade
+    where motorcade_id = #{motorcadeId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.expressage.pojo.Motorcade" >
+    insert into motorcade (motorcade_id, route_id, mname, 
+      eid)
+    values (#{motorcadeId,jdbcType=INTEGER}, #{routeId,jdbcType=INTEGER}, #{mname,jdbcType=VARCHAR}, 
+      #{eid,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.expressage.pojo.Motorcade" >
+    insert into motorcade
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="motorcadeId != null" >
+        motorcade_id,
+      </if>
+      <if test="routeId != null" >
+        route_id,
+      </if>
+      <if test="mname != null" >
+        mname,
+      </if>
+      <if test="eid != null" >
+        eid,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="motorcadeId != null" >
+        #{motorcadeId,jdbcType=INTEGER},
+      </if>
+      <if test="routeId != null" >
+        #{routeId,jdbcType=INTEGER},
+      </if>
+      <if test="mname != null" >
+        #{mname,jdbcType=VARCHAR},
+      </if>
+      <if test="eid != null" >
+        #{eid,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.expressage.pojo.Motorcade" >
+    update motorcade
+    <set >
+      <if test="routeId != null" >
+        route_id = #{routeId,jdbcType=INTEGER},
+      </if>
+      <if test="mname != null" >
+        mname = #{mname,jdbcType=VARCHAR},
+      </if>
+      <if test="eid != null" >
+        eid = #{eid,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where motorcade_id = #{motorcadeId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.expressage.pojo.Motorcade" >
+    update motorcade
+    set route_id = #{routeId,jdbcType=INTEGER},
+      mname = #{mname,jdbcType=VARCHAR},
+      eid = #{eid,jdbcType=VARCHAR}
+    where motorcade_id = #{motorcadeId,jdbcType=INTEGER}
+  </update>
+</mapper>

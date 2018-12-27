@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.expressage.mapper.MotorcadeDispatchMapper" >
+  <resultMap id="BaseResultMap" type="com.expressage.pojo.MotorcadeDispatch" >
+    <id column="motorcade_dispatch_id" property="motorcadeDispatchId" jdbcType="INTEGER" />
+    <result column="motorcade_id" property="motorcadeId" jdbcType="INTEGER" />
+    <result column="car_id" property="carId" jdbcType="INTEGER" />
+    <result column="route_id" property="routeId" jdbcType="INTEGER" />
+    <result column="eid" property="eid" jdbcType="INTEGER" />
+    <result column="stime" property="stime" jdbcType="TIMESTAMP" />
+    <result column="etime" property="etime" jdbcType="TIMESTAMP" />
+    <result column="status" property="status" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    motorcade_dispatch_id, motorcade_id, car_id, route_id, eid, stime, etime, status
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from motorcade_dispatch
+    where motorcade_dispatch_id = #{motorcadeDispatchId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from motorcade_dispatch
+    where motorcade_dispatch_id = #{motorcadeDispatchId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.expressage.pojo.MotorcadeDispatch" >
+    insert into motorcade_dispatch (motorcade_dispatch_id, motorcade_id, 
+      car_id, route_id, eid, 
+      stime, etime, status
+      )
+    values (#{motorcadeDispatchId,jdbcType=INTEGER}, #{motorcadeId,jdbcType=INTEGER}, 
+      #{carId,jdbcType=INTEGER}, #{routeId,jdbcType=INTEGER}, #{eid,jdbcType=INTEGER}, 
+      #{stime,jdbcType=TIMESTAMP}, #{etime,jdbcType=TIMESTAMP}, #{status,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.expressage.pojo.MotorcadeDispatch" >
+    insert into motorcade_dispatch
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="motorcadeDispatchId != null" >
+        motorcade_dispatch_id,
+      </if>
+      <if test="motorcadeId != null" >
+        motorcade_id,
+      </if>
+      <if test="carId != null" >
+        car_id,
+      </if>
+      <if test="routeId != null" >
+        route_id,
+      </if>
+      <if test="eid != null" >
+        eid,
+      </if>
+      <if test="stime != null" >
+        stime,
+      </if>
+      <if test="etime != null" >
+        etime,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="motorcadeDispatchId != null" >
+        #{motorcadeDispatchId,jdbcType=INTEGER},
+      </if>
+      <if test="motorcadeId != null" >
+        #{motorcadeId,jdbcType=INTEGER},
+      </if>
+      <if test="carId != null" >
+        #{carId,jdbcType=INTEGER},
+      </if>
+      <if test="routeId != null" >
+        #{routeId,jdbcType=INTEGER},
+      </if>
+      <if test="eid != null" >
+        #{eid,jdbcType=INTEGER},
+      </if>
+      <if test="stime != null" >
+        #{stime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="etime != null" >
+        #{etime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.expressage.pojo.MotorcadeDispatch" >
+    update motorcade_dispatch
+    <set >
+      <if test="motorcadeId != null" >
+        motorcade_id = #{motorcadeId,jdbcType=INTEGER},
+      </if>
+      <if test="carId != null" >
+        car_id = #{carId,jdbcType=INTEGER},
+      </if>
+      <if test="routeId != null" >
+        route_id = #{routeId,jdbcType=INTEGER},
+      </if>
+      <if test="eid != null" >
+        eid = #{eid,jdbcType=INTEGER},
+      </if>
+      <if test="stime != null" >
+        stime = #{stime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="etime != null" >
+        etime = #{etime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where motorcade_dispatch_id = #{motorcadeDispatchId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.expressage.pojo.MotorcadeDispatch" >
+    update motorcade_dispatch
+    set motorcade_id = #{motorcadeId,jdbcType=INTEGER},
+      car_id = #{carId,jdbcType=INTEGER},
+      route_id = #{routeId,jdbcType=INTEGER},
+      eid = #{eid,jdbcType=INTEGER},
+      stime = #{stime,jdbcType=TIMESTAMP},
+      etime = #{etime,jdbcType=TIMESTAMP},
+      status = #{status,jdbcType=VARCHAR}
+    where motorcade_dispatch_id = #{motorcadeDispatchId,jdbcType=INTEGER}
+  </update>
+</mapper>

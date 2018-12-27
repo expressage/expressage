@@ -1,0 +1,225 @@
+
+<html>
+  <head>
+  <title>订单操作</title>
+    <meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
+    <meta http-equiv="description" content="this is my page">
+    <meta http-equiv="content-type" content="text/html; charset=gbk">    
+	
+<link href="../Css/TestDate.css" rel="stylesheet">
+<link href="../Css/calendar-blue.css" rel="stylesheet">
+
+<link rel="stylesheet" type="text/css" href="../css/demo.css">
+		
+
+<script src="../Js/Calendar.js"></script>
+<script language=JavaScript src="../js/colorChange.js"></script> 
+<script language="javascript" type="text/javascript">
+
+function queren(){
+			url="QueRen.html"
+			window.location.assign(url);
+		}
+		
+function chkall(input1,input2){
+    var objForm = document.forms[input1];
+    var objLen = objForm.length;
+ 
+	var aFlag = input2.checked;//获取“主复选框”的选中状态
+ 
+    for (var i = 0; i < objLen; i++){
+		if (objForm.elements[i].type == "checkbox"){
+			if (objForm.elements[i].checked){
+				objForm.elements[i].checked = false;
+			}else{
+				objForm.elements[i].checked = true;
+			}
+			
+		}
+    }
+ 
+	//input2.checked = aFlag;//再将复选框的值赋回
+}
+
+</script>
+        
+		<link href="../Css/TestDate.css" rel="stylesheet">
+		<link href="../Css/calendar-blue.css" rel="stylesheet">
+		<link rel="stylesheet" type="text/css" href="../css/demo.css">
+<style type="text/css">
+<!--
+body {
+	margin-left: 3px;
+	margin-top: 0px;
+	margin-right: 3px;
+	margin-bottom: 0px;
+}
+.STYLE6 {color: #000000; font-size: 12; }
+.STYLE10 {color: #000000; font-size: 12px; }
+.STYLE19 {
+	color: #344b50;
+	font-size: 12px;
+}
+.STYLE21 {
+	font-size: 12px;
+	color: #3b6375;
+}
+.STYLE22 {
+	font-size: 12px;
+	color: #295568;
+}
+.STYLE23 {color: #344b50; font-size: 12px; font-weight: bold; }
+-->
+</style>
+</head>
+
+<body onkeypress="keyEnter()">
+<font color="#800000">
+	<div align="left"><span class="STYLE10">&nbsp;当前位置:<a href="diaoduRenWuChaXun.html">调拨单查询</a></span>
+	</div></font><br>
+ <form><div align="left"><span class="STYLE10">请输入查询方式：</span></div>
+ 	 <table width="95%" align="left" border="1"  class="default">
+		<tr bordercolor="#FFFFFF" bgcolor="#DEEBF7">
+	  	 <td width="6%" height="34" align="left"class="STYLE19"><div align="center"><span class="STYLE10">调拨单号:</span></td>
+  	 	  <td width="11%" align="left"><input type="text" name="Input" value="" /></td>
+	  	 <td  width="9%" align="left"class="STYLE19"><div align="center"><span class="STYLE10">调拨单日期：</span></td>
+		 <td width="14%" align="left" ><input name="txtDate" type="text" maxlength="10" id="txtAwardDate" class="textbox" /><A onClick="return showCalendar('txtDate', 'y-mm-dd');" href="#"><img src="../images/Button.gif" id="IMG2" align="absMiddle" border="0" /></A>
+		 </td>
+     	<td width="6%" align="left" class="STYLE19"><div align="center"><span class="STYLE10">客户名</span></td>
+  	 	  <td width="13%" align="left"><input type="text" name="Input" value="" /></td>
+	  	 <td width="11%" align="left" class="STYLE19"><div align="center"><span class="STYLE10">调拨单单状态</span></td>
+     	 <td width="16%" align="left">
+		 <select ><option  value="--请选择--">&nbsp;--&nbsp;请选择&nbsp;--&nbsp;</option>
+		 		 <option  value="全部">已分配</option> 
+				 <option  value="已分配">已分配</option>
+				 <option  value="已发货">已发货</option>
+				 <option  value="已收款">已收款</option>
+		 		 <option  value="已结算">已结算</option>
+		 </select></td>
+		 <td width="14%"  align="center"><input name="submit" type="button" class="button"  value="查询" /></td>
+       </tr>
+	
+  	    
+</table>
+ <p>&nbsp;</p>
+ <p>&nbsp;</p>
+ <p><br>
+ </p>
+ <form id="form1" name="form1" method="post" action="">
+<br /><td>
+<table width="95%" class="default" onMouseOver="changeto()"  onmouseout="changeback()">
+      <tr>
+        <td height="20"  bgcolor="d3eaef" class="STYLE6"><div align="center"><strong><span class="STYLE10">调拨单单号</span></strong></div></td>
+        <td height="20"  bgcolor="d3eaef" class="STYLE19"><div align="center"><strong><span class="STYLE10">客户名</span></strong></div></td>
+        <td height="20" bgcolor="d3eaef" class="STYLE19"><div align="center"><strong><span class="STYLE10">调拨单日期</span></strong></div></td>
+        <td height="20" bgcolor="d3eaef" class="STYLE19"><div align="center"><strong><span class="STYLE10">产品名</span></strong></div></td>
+        <td height="20"  bgcolor="d3eaef" class="STYLE19"><div align="center"><strong><span class="STYLE10">调拨单状态</span></strong></div></td>
+		<td width="20%" bgcolor="#D3EAEF"class="STYLE23"><div align="center"><span class="STYLE10">配货地址</span></td>
+        <td width="15%" height="20"  bgcolor="d3eaef"><div align="center" class="STYLE21"><span class="STYLE10">&nbsp;</span></div></td>
+      </tr>
+      <tr class="rowAlternateA">
+        <td height="20" bgcolor="#FFFFFF" class="STYLE19"><div align="center">123456</div></td>
+        <td height="20" bgcolor="#FFFFFF" class="STYLE19"><div align="center">许云龙</div></td>
+        <td height="20" bgcolor="#FFFFFF" class="STYLE19"><div align="center">2011-4-1</div></td>
+        <td height="20" bgcolor="#FFFFFF" class="STYLE19"><div align="center">鞋垫</div></td>
+        <td height="20" bgcolor="#FFFFFF" class="STYLE19"><div align="center">已分配</div></td>
+		<td bgcolor="#FFFFFF"class="STYLE19"><div align="center"><span class="STYLE10">沈阳市东软实训基地A9楼</span></td>
+        <td height="20" bgcolor="#FFFFFF"class="STYLE19"><div align="center"><span class="STYLE10">
+		<A  href="renwudanNeiBucaozuo.html">详细信息</A></span></div></td>
+      </tr >
+      <tr class="rowAlternateB">
+        <td height="20" bgcolor="#FFFFFF" class="STYLE19"><div align="center">123456</div></td>
+        <td height="20" bgcolor="#FFFFFF" class="STYLE19"><div align="center">许云龙</div></td>
+        <td height="20" bgcolor="#FFFFFF" class="STYLE19"><div align="center">2011-4-1</div></td>
+        <td height="20" bgcolor="#FFFFFF" class="STYLE19"><div align="center">鞋垫</div></td>
+        <td height="20" bgcolor="#FFFFFF" class="STYLE19"><div align="center">已分配</div></td>
+		<td bgcolor="#FFFFFF"class="STYLE19"><div align="center"><span class="STYLE10">沈阳市东软实训基地A9楼</span></td>
+        <td height="20" bgcolor="#FFFFFF"class="STYLE19"><div align="center"><span class="STYLE10">
+		<A  href="renwudanNeiBucaozuo.html">详细信息</A></span></div></td>
+      </tr>
+      <tr class="rowAlternateA">
+        
+       <td height="20" bgcolor="#FFFFFF" class="STYLE19"><div align="center">123456</div></td>
+        <td height="20" bgcolor="#FFFFFF" class="STYLE19"><div align="center">许云龙</div></td>
+        <td height="20" bgcolor="#FFFFFF" class="STYLE19"><div align="center">2011-4-1</div></td>
+        <td height="20" bgcolor="#FFFFFF" class="STYLE19"><div align="center">鞋垫</div></td>
+        <td height="20" bgcolor="#FFFFFF" class="STYLE19"><div align="center">已分配</div></td>
+		<td bgcolor="#FFFFFF"class="STYLE19"><div align="center"><span class="STYLE10">沈阳市东软实训基地A9楼</span></td>
+        <td height="20" bgcolor="#FFFFFF"class="STYLE19"><div align="center"><span class="STYLE10">
+		<A  href="renwudanNeiBucaozuo.html">详细信息</A></span></div></td>
+      </tr>
+      <tr class="rowAlternateB">
+        
+       <td height="20" bgcolor="#FFFFFF" class="STYLE19"><div align="center">123456</div></td>
+        <td height="20" bgcolor="#FFFFFF" class="STYLE19"><div align="center">许云龙</div></td>
+        <td height="20" bgcolor="#FFFFFF" class="STYLE19"><div align="center">2011-4-1</div></td>
+        <td height="20" bgcolor="#FFFFFF" class="STYLE19"><div align="center">鞋垫</div></td>
+        <td height="20" bgcolor="#FFFFFF" class="STYLE19"><div align="center">已分配</div></td>
+		<td bgcolor="#FFFFFF"class="STYLE19"><div align="center"><span class="STYLE10">沈阳市东软实训基地A9楼</span></td>
+        <td height="20" bgcolor="#FFFFFF"class="STYLE19"><div align="center"><span class="STYLE10">
+		<A  href="renwudanNeiBucaozuo.html">详细信息</A></span></div></td>
+      </tr>
+      <tr class="rowAlternateA">
+        
+        <td height="20" bgcolor="#FFFFFF" class="STYLE19"><div align="center">123456</div></td>
+        <td height="20" bgcolor="#FFFFFF" class="STYLE19"><div align="center">许云龙</div></td>
+        <td height="20" bgcolor="#FFFFFF" class="STYLE19"><div align="center">2011-4-1</div></td>
+        <td height="20" bgcolor="#FFFFFF" class="STYLE19"><div align="center">鞋垫</div></td>
+        <td height="20" bgcolor="#FFFFFF" class="STYLE19"><div align="center">已分配</div></td>
+		<td bgcolor="#FFFFFF"class="STYLE19"><div align="center"><span class="STYLE10">沈阳市东软实训基地A9楼</span></td>
+        <td height="20" bgcolor="#FFFFFF"class="STYLE19"><div align="center"><span class="STYLE10">
+		<A  href="renwudanNeiBucaozuo.html">详细信息</A></span></div></td>
+      </tr>
+      <tr class="rowAlternateB">
+        
+        <td height="20" bgcolor="#FFFFFF" class="STYLE19"><div align="center">123456</div></td>
+        <td height="20" bgcolor="#FFFFFF" class="STYLE19"><div align="center">许云龙</div></td>
+        <td height="20" bgcolor="#FFFFFF" class="STYLE19"><div align="center">2011-4-1</div></td>
+        <td height="20" bgcolor="#FFFFFF" class="STYLE19"><div align="center">鞋垫</div></td>
+        <td height="20" bgcolor="#FFFFFF" class="STYLE19"><div align="center">已分配</div></td>
+		<td bgcolor="#FFFFFF"class="STYLE19"><div align="center"><span class="STYLE10">沈阳市东软实训基地A9楼</span></td>
+        <td height="20" bgcolor="#FFFFFF"class="STYLE19"><div align="center"><span class="STYLE10">
+		<A  href="renwudanNeiBucaozuo.html">详细信息</A></span></div></td>
+      </tr>
+      <tr class="rowAlternateA">
+        
+        <td height="20" bgcolor="#FFFFFF" class="STYLE19"><div align="center">123456</div></td>
+        <td height="20" bgcolor="#FFFFFF" class="STYLE19"><div align="center">许云龙</div></td>
+        <td height="20" bgcolor="#FFFFFF" class="STYLE19"><div align="center">2011-4-1</div></td>
+        <td height="20" bgcolor="#FFFFFF" class="STYLE19"><div align="center">鞋垫</div></td>
+        <td height="20" bgcolor="#FFFFFF" class="STYLE19"><div align="center">已分配</div></td>
+		<td bgcolor="#FFFFFF"class="STYLE19"><div align="center"><span class="STYLE10">沈阳市东软实训基地A9楼</span></td>
+        <td height="20" bgcolor="#FFFFFF"class="STYLE19"><div align="center"><span class="STYLE10">
+		<A  href="renwudanNeiBucaozuo.html">详细信息</A></span></div></td>
+      </tr>
+      <tr class="rowAlternateB">
+        
+        <td height="20" bgcolor="#FFFFFF" class="STYLE19"><div align="center">123456</div></td>
+        <td height="20" bgcolor="#FFFFFF" class="STYLE19"><div align="center">许云龙</div></td>
+        <td height="20" bgcolor="#FFFFFF" class="STYLE19"><div align="center">2011-4-1</div></td>
+        <td height="20" bgcolor="#FFFFFF" class="STYLE19"><div align="center">鞋垫</div></td>
+        <td height="20" bgcolor="#FFFFFF" class="STYLE19"><div align="center">已分配</div></td>
+		<td bgcolor="#FFFFFF"class="STYLE19"><div align="center"><span class="STYLE10">沈阳市东软实训基地A9楼</span></td>
+        <td height="20" bgcolor="#FFFFFF"class="STYLE19"><div align="center"><span class="STYLE10">
+		<A  href="renwudanNeiBucaozuo.html">详细信息</A></span></div></td>
+      </tr>
+    </table></td>
+  </tr></form>
+  <br />
+  <tr>
+  <td height="30">
+  <table width="95%" border="0" cellspacing="0" cellpadding="0">
+    <tr>
+      <td width="595" height="96"><div align="left"><span class="STYLE22">&nbsp;&nbsp;&nbsp;&nbsp;共有<strong> 243</strong> 条记录，当前第<strong> 1</strong> 页，共 <strong>10</strong> 页</span></div></td>  
+      <td width="52">&nbsp;</td>
+          <td width="536" align=right nowrap>&lt;&lt;首页&nbsp;&lt;上一页&nbsp;|&nbsp;<A 
+            href="javascript:nextPageClicked();">下一页</A>&gt;&nbsp;<A 
+            href="javascript:lastPageClicked();">尾页</A>&gt;&gt;&nbsp;&nbsp;第
+        <INPUT 
+            id=bottomCurPage 
+            onkeydown="if(event.keyCode == '13') return bottomCurPageChanged()" 
+            onkeyup="this.value=this.value.replace(/[\D]/g,'');" size=2 
+value=1>页<INPUT onClick="return bottomCurPageChanged()" type=button value=go></td>
+</table>
+</body>
+</html>

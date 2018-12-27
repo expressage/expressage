@@ -1,0 +1,92 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>修改客户信息</title>
+<script language=JavaScript src="../js/colorChange.js"></script>
+</head>
+
+<link rel="stylesheet" href="../css/demo.css" type="text/css">
+<body>
+<form name="customerModify" action="" method="post">
+<!-- <input type="hidden" name="act" value="add"> -->
+
+<br />
+<font color="#800000">&nbsp;&nbsp;&nbsp;当前位置:</font> <a href="javascript:window.history.back();">客户管理</a> &gt; 
+修改客户信息 
+<br />
+<br />
+<br />
+
+<table width="60%" border=0 align="center">
+	<tr>
+		<td width="100%">
+			<font color=#FF0000>注:标有 * 的项必填&nbsp;</font>
+		</td>
+	</tr>
+</table>
+
+<table align="center" class="default" width="60%" onMouseOver="changeto()"  onmouseout="changeback()" >
+	<tr class="title">
+		<td align="center">&nbsp;</td>
+	    <td align="left"><b>客户信息管理</b></td>
+	</tr>
+	<tr class="rowAlternateA">
+	   <td width="40%"  align="right">客户编号：</td>
+	   <td width="60%" ><input type="text" name="customerNo" value="10000000" readonly="readonly"><font color=#FF0000>*</font></td>
+	</tr>
+	<tr class="rowAlternateB">
+	   <td width="40%" align="right">客户姓名：</td>
+	   <td width="60%"><input type="text" name="customerName" value="谢文东"><font color=#FF0000>*</font></td>
+	</tr>
+	<tr class="rowAlternateA">
+	   <td width="40%" align="right">身份证编号：</td>
+	   <td width="60%" align="left"><input type="text" name="customerIdCard" value="210106197902232326"><font color=#FF0000>*</font></td>
+	</tr>
+	<tr class="rowAlternateB">
+	   <td width="40%" align="right">工作单位：</td>
+	   <td width="60%" ><input type="text" name="customerNo" value="NEUSOFT" ></td>
+	</tr>
+	<tr class="rowAlternateA">
+	   <td width="40%" align="right">座机：</td>
+	   <td width="60%"><input type="text" name="customerName" value="024-83665597"> </td>
+	</tr>
+	<tr class="rowAlternateB">
+	   <td width="40%" align="right">移动电话：</td>
+	   <td width="60%" align="left"><input type="text"  name="customerIdCard" value="13998837281" ><font color=#FF0000>*</font></td>
+	</tr>
+	<tr class="rowAlternateA">
+	   <td width="40%" align="right">联系地址：</td>
+	   <td width="60%" ><input type="text" name="customerNo" value="沈阳市浑南新区"><font color=#FF0000>*</font></td>
+	</tr>
+	<tr class="rowAlternateB">
+	   <td width="40%" align="right">邮编：</td>
+	   <td width="60%"><input type="text" name="customerName" value="110179"></td>
+	</tr>
+	<tr class="rowAlternateA">
+	   <td width="40%" align="right">电子邮件：</td>
+	   <td width="60%"><input type="text" name="customerIdCard" value="XXX@neusoft.com"></td>
+	</tr>
+	<tr class="rowAlternateB">
+		<td colspan="6"  align="center">
+			<input type=button class="button"  value="修改" onClick="onSubmit()">
+			<input type=reset class="button"  value=" 重新填写 ">
+			<input type=button class="button"  value=" 返回 " onClick="go_back()">		</td>
+	</tr>
+</table>
+
+</FORM>
+</body>
+</html>
+<script>
+	function onSubmit(){
+		var url = "customerSearch.html" ;
+		window.location.assign( url );
+	}
+	
+	function go_back(){
+		//var url = "customerListToOrder.html" ;
+		var url = "javascript:window.history.back()" ;
+		window.location.assign( url );
+	}
+</script>

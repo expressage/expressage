@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.expressage.mapper.RouteMapper" >
+  <resultMap id="BaseResultMap" type="com.expressage.pojo.Route" >
+    <id column="route_id" property="routeId" jdbcType="INTEGER" />
+    <result column="spoint" property="spoint" jdbcType="VARCHAR" />
+    <result column="epoint" property="epoint" jdbcType="VARCHAR" />
+    <result column="mileage" property="mileage" jdbcType="DOUBLE" />
+    <result column="estimatedtime" property="estimatedtime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    route_id, spoint, epoint, mileage, estimatedtime
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from route
+    where route_id = #{routeId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from route
+    where route_id = #{routeId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.expressage.pojo.Route" >
+    insert into route (route_id, spoint, epoint, 
+      mileage, estimatedtime)
+    values (#{routeId,jdbcType=INTEGER}, #{spoint,jdbcType=VARCHAR}, #{epoint,jdbcType=VARCHAR}, 
+      #{mileage,jdbcType=DOUBLE}, #{estimatedtime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.expressage.pojo.Route" >
+    insert into route
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="routeId != null" >
+        route_id,
+      </if>
+      <if test="spoint != null" >
+        spoint,
+      </if>
+      <if test="epoint != null" >
+        epoint,
+      </if>
+      <if test="mileage != null" >
+        mileage,
+      </if>
+      <if test="estimatedtime != null" >
+        estimatedtime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="routeId != null" >
+        #{routeId,jdbcType=INTEGER},
+      </if>
+      <if test="spoint != null" >
+        #{spoint,jdbcType=VARCHAR},
+      </if>
+      <if test="epoint != null" >
+        #{epoint,jdbcType=VARCHAR},
+      </if>
+      <if test="mileage != null" >
+        #{mileage,jdbcType=DOUBLE},
+      </if>
+      <if test="estimatedtime != null" >
+        #{estimatedtime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.expressage.pojo.Route" >
+    update route
+    <set >
+      <if test="spoint != null" >
+        spoint = #{spoint,jdbcType=VARCHAR},
+      </if>
+      <if test="epoint != null" >
+        epoint = #{epoint,jdbcType=VARCHAR},
+      </if>
+      <if test="mileage != null" >
+        mileage = #{mileage,jdbcType=DOUBLE},
+      </if>
+      <if test="estimatedtime != null" >
+        estimatedtime = #{estimatedtime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where route_id = #{routeId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.expressage.pojo.Route" >
+    update route
+    set spoint = #{spoint,jdbcType=VARCHAR},
+      epoint = #{epoint,jdbcType=VARCHAR},
+      mileage = #{mileage,jdbcType=DOUBLE},
+      estimatedtime = #{estimatedtime,jdbcType=TIMESTAMP}
+    where route_id = #{routeId,jdbcType=INTEGER}
+  </update>
+</mapper>

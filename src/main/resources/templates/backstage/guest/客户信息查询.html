@@ -1,0 +1,160 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>客户查询</title>
+<script language=JavaScript src="../js/colorChange.js"></script>
+<style type="text/css">
+<!--
+.STYLE2 {font-size: 12px}
+.STYLE5 {color: #000000}
+-->
+</style>
+</head>
+<script language=JavaScript src="../js/script.js"></script>
+<link rel="stylesheet" href="../css/demo.css" type="text/css">
+<body>
+<br>
+<font color="#800000">&nbsp;&nbsp;&nbsp;当前位置:</font> 客户管理<br>
+<br>
+<br>
+<br>
+<table width="90%" align="center">
+<tr>
+		<td><span class="STYLE5">定位客户</span></td>
+        <td><div align="right"><a href="用户注册.html"></a><a href="用户注册.html"><span class="STYLE2">新建客户</span></a></div></td>
+  </tr>
+</table>
+<form id="customerSearch" action="" method="post">
+<table width="90%" align="center" class="search" onMouseOver="changeto()"  onmouseout="changeback()" >
+	<tr>
+	   <td width="15%"></td>
+	   <td nowrap align="right">身份证号:</td>
+	   <td nowrap><input type="text" name="idCard"></td>
+	   <td nowrap align="right">姓名:</td>
+	   <td nowrap><input type="text" name="custmerName"></td>
+	   <td nowrap align="right">电话号码:</td>
+	   <td nowrap><input type="text" name="custmerTel" /></td>
+	   <td nowrap><input type="submit" class="button" value="查询" /></td>
+	   <td width="15%"></td>
+	</tr>
+</table>
+</form>
+
+<br />
+<br />
+<br />
+<form id="customerList">
+  <table class="default" width="90%" align="center" onMouseOver="changeto()"  onmouseout="changeback()">
+	<tr class="title">
+	  <td width="5%"><div align="center">
+	    <input type="checkbox" name="selectAll" value="0" onClick="checkAll(selectAll, customerIDs);">
+      </div></td>
+		<td width="8%">客户编号</td>
+		<td width="7%">客户姓名</td>
+		<td width="9%">工作单位</td>
+		<td width="13%">座机</td>
+		<td width="13%">移动电话</td>
+		<td width="20%">身份证号</td>
+		<td colspan="3">&nbsp;</td>
+	</tr>
+	<tr class="rowAlternateA">
+		<td><div align="center">
+		  <input type="checkbox" name="customerIDs" value="10000" onClick="checkA(selectAll, customerIDs, this);">
+		  </div></td>
+		<td>1</td>
+		<td>谢文东</td>
+		<td>东软</td>
+		<td>024-82323297</td>
+		<td>13998233281</td>
+		<td>210106197902232326</td>
+		<td width="8%"><a href="客户详细信息.html">详细信息</a></td>
+		<td width="12%"><a href="客户信息修改.html">修改客户信息</a></td>
+		<td width="5%"><a href="javascript:confirmDel();">删除</a></td>
+	</tr>
+	<tr class="rowAlternateB">
+		<td><div align="center">
+		  <input type="checkbox" name="customerIDs" value="20000" onClick="checkA(selectAll, customerIDs, this);">
+		  </div></td>
+		<td>2</td>
+		<td>唐寅</td>
+		<td>sk</td>
+		<td>024-83343434</td>
+		<td>13093434221</td>
+		<td>240106197902232326</td>
+		<td><a href="客户详细信息.html">详细信息</a></td>
+		<td><a href="客户信息修改.html">修改客户信息</a></td>
+		<td><a href="javascript:confirmDel();">删除</a></td>
+	</tr>
+	<tr class="rowAlternateA">
+		<td><div align="center">
+		  <input type="checkbox" name="customerIDs" value="20000" onClick="checkA(selectAll, customerIDs, this);">
+		  </div></td>	
+		<td>3</td>
+		<td>jack</td>
+		<td>sk2</td>
+		<td>010-83343497</td>
+		<td>13098343422</td>
+		<td>240106197902232326</td>
+		<td><a href="客户详细信息.html">详细信息</a></td>
+		<td><a href="客户信息修改.html">修改客户信息</a></td>
+		<td><a href="javascript:confirmDel();">删除</a></td>
+	</tr>
+	<tr class="rowAlternateB">
+		<td><div align="center">
+		  <input type="checkbox" name="customerIDs" value="20000" onClick="checkA(selectAll, customerIDs, this);">
+		  </div></td>			          
+		  <td>4</td>
+		<td>sawyer</td>
+		<td>sk3</td>
+		<td>0901-8334397</td>
+		<td>13093434222</td>
+		<td>240106197902232326</td>
+		<td><a href="客户详细信息.html">详细信息</a></td>
+		<td><a href="客户信息修改.html">修改客户信息</a></td>
+		<td><a href="javascript:confirmDel();">删除</a></td>
+	</tr>
+</table>
+<table class="pagination" cellSpacing=0 cellPadding=4 width="90%" align="center">
+	<tbody>
+        <tr>
+          <td width="12%" nowrap>每页显示
+			  <select onchange=bottomPageSizeChanged(); name=bottomPageSizeselect>
+				<option value=5 selected>5</option>
+				<option value=10>10</option>
+			  </select>条
+		  </td>
+          <td width="54%">&nbsp;</td>
+          <td width="34%" align=right nowrap><div align="right">&lt;&lt;首页&nbsp;&lt;上一页&nbsp;|&nbsp;<A 
+            href="javascript:nextPageClicked();">下一页</A>&gt;&nbsp;<A 
+            href="javascript:lastPageClicked();">尾页</A>&gt;&gt;&nbsp;&nbsp;第
+            <input 
+            id=bottomCurPage 
+            onkeydown="if(event.keyCode == '13') return bottomCurPageChanged()" 
+            onkeyup="this.value=this.value.replace(/[\D]/g,'');" size=2 
+ 
+value=1>
+            页 
+            <input type=button class="button" onClick="return bottomCurPageChanged() " value=   go   >
+          </div></td></tr></tbody></table>
+
+<table width="90%" align="center">
+	<tr>
+		<td height=13 colspan="6"  align="left"><input name="button" type="button" class="button" onclick="confirmDelSelected()"  value=" 批量删除  " /></td>
+	</tr>
+</table>
+</form>
+</body>
+</html>
+<script> 
+function confirmDel(){
+	confirm("确认删除该客户?")
+}
+function confirmDelSelected(){
+	if(checkSelectByHint(customerList.customerIDs,"复选框未定义","请选择要删除的客户记录")==0)
+	{
+		confirm("确定删除？");
+	}
+}
+</script>
+

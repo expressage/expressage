@@ -1,0 +1,188 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gbk" />
+<link href="../css/TestDate.css" rel="stylesheet">
+<link href="../css/calendar-blue.css" rel="stylesheet">
+<meta name="GENERATOR" Content="Microsoft Visual Studio .NET 7.1">
+<meta name="CODE_LANGUAGE" Content="C#">
+
+<link rel="stylesheet" type="text/css" href="../css/demo.css" />
+<title>配送员界面</title>
+<script src="../js/Calendar.js"></script>
+<script language="javascript" type="text/javascript">
+var  highlightcolor='#d5f4fe';
+var  clickcolor='#51b2f6';
+function  changeto(){
+source=event.srcElement;
+if  (source.tagName=="TR"||source.tagName=="TABLE")
+return;
+while(source.tagName!="TD")
+source=source.parentElement;
+source=source.parentElement;
+cs  =  source.children;
+if  (cs[1].style.backgroundColor!=highlightcolor&&source.id!="nc"&&cs[1].style.backgroundColor!=clickcolor)
+for(i=0;i<cs.length;i++){
+	cs[i].style.backgroundColor=highlightcolor;
+}
+}
+
+function  changeback(){
+if  (event.fromElement.contains(event.toElement)||source.contains(event.toElement)||source.id=="nc")
+return
+if  (event.toElement!=source&&cs[1].style.backgroundColor!=clickcolor)
+//source.style.backgroundColor=originalcolor
+for(i=0;i<cs.length;i++){
+	cs[i].style.backgroundColor="";
+}
+}
+
+function  clickto(){
+source=event.srcElement;
+if  (source.tagName=="TR"||source.tagName=="TABLE")
+return;
+while(source.tagName!="TD")
+source=source.parentElement;
+source=source.parentElement;
+cs  =  source.children;
+//alert(cs.length);
+if  (cs[1].style.backgroundColor!=clickcolor&&source.id!="nc")
+for(i=0;i<cs.length;i++){
+	cs[i].style.backgroundColor=clickcolor;
+}
+else
+for(i=0;i<cs.length;i++){
+	cs[i].style.backgroundColor="";
+}
+}
+
+</script>
+</head>
+
+<body>
+<div>
+<font color="#800000">&nbsp;&nbsp;&nbsp;当前位置:</font>
+签收单列表</span></div>
+<br />
+<div>
+<form name="queryRequisition" action="" method="post">
+<table width="80%" align="center" class="search"  border="0">
+<tr>
+      <td align="right">任务单下发日期</td>
+	   <td><input name="txtDate" type="text" maxlength="10" class="textbox" />
+    	<A onClick="return showCalendar('txtDate', 'y-mm-dd');" href="#"><img src="../images/Button.gif" id="IMG2" align="absMiddle" border="0"  /></A>
+	  </td>
+      <td align="center"><INPUT type="submit" class="button"  value="查询"></td>
+
+</tr>
+</table>
+</form>
+ 
+</div>
+<br />
+<br />
+<br />
+<div>
+<table class="pagination" cellSpacing=0 cellPadding=4 width="80%" align="center" >
+	<tr>
+        <td nowrap>共476页,4751条记录</td>
+        <td width="99%">&nbsp;</td>
+        <td nowrap align=right><a href="">&lt;&lt;首页</a><a href="">&nbsp;&lt;上一页</a>&nbsp;|&nbsp;<A 
+            href="javascript:nextPageClicked();">下一页</A>&gt;&nbsp;<A 
+            href="javascript:lastPageClicked();">尾页</A>&gt;&gt;&nbsp;&nbsp;第
+			<INPUT id=topCurPage onKeyDown="if(event.keyCode == '13') return topCurPageChanged();" 
+			onkeyup="this.value=this.value.replace(/[\D]/g,'');" size=2 value=1>页
+			<INPUT type=button class="button" onClick="return topCurPageChanged()" value=go>
+		</td>
+	</tr>
+</table>
+
+  <table width="80%" border="0" align="center" class="default" onMouseOver="changeto()"  onmouseout="changeback()">
+	<tr class="title">
+      <td>签收单号</td>
+      <td>任务单号</td>
+      <td>订单号</td>
+      <td>商品名</td>
+      <td>商品代号</td>
+      <td>商品数量</td>
+      <td>任务单下发时间</td>
+      <td>任务类型</td>
+      <td>任务状态</td>
+	  <td>详细信息</td>
+
+
+    </tr>
+          <tr class="rowAlternateA">
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td><a href="resign_info.html">详细信息</a></td>
+          </tr>
+          <tr class="rowAlternateB">
+
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td><a href="resign_info.html">详细信息</a></td>
+          </tr>
+           <tr class="rowAlternateA">
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td><a href="resign_info.html">详细信息</a></td>
+          </tr>
+          <tr class="rowAlternateB">
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td><a href="resign_info.html">详细信息</a></td>
+          </tr>
+    </table>
+
+
+
+ <table class=pagination cellSpacing=0 cellPadding=4 width="80%" border=0 align="center">
+	<tbody>
+        <tr>
+          <td nowrap>每页显示<SELECT onchange=bottomPageSizeChanged(); 
+            name=bottomPageSizeSelect><OPTION value=10 
+              selected>10</OPTION><OPTION value=20>20</OPTION><OPTION 
+              value=50>50</OPTION><OPTION value=100>100</OPTION></SELECT>条</td>
+          <td width="99%">&nbsp;</td>
+          <td nowrap align=right><a href="">&lt;&lt;首页</a><a href="">&nbsp;&lt;上一页</a>&nbsp;|&nbsp;<A 
+            href="javascript:nextPageClicked();">下一页</A>&gt;&nbsp;<A 
+            href="javascript:lastPageClicked();">尾页</A>&gt;&gt;&nbsp;&nbsp;第
+			<INPUT id=topCurPage onKeyDown="if(event.keyCode == '13') return topCurPageChanged();" 
+			onkeyup="this.value=this.value.replace(/[\D]/g,'');" size=2 value=1>页
+			<INPUT type=button class="button" onClick="return topCurPageChanged()" value=go>
+		</td></tr></tbody></table>
+	<tr>
+	</tr>
+</table>
+
+  </div>
+</body>
+</html>

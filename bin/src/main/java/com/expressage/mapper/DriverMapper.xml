@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.expressage.mapper.DriverMapper" >
+  <resultMap id="BaseResultMap" type="com.expressage.pojo.Driver" >
+    <id column="driver_id" property="driverId" jdbcType="INTEGER" />
+    <result column="driver_name" property="driverName" jdbcType="VARCHAR" />
+    <result column="eid" property="eid" jdbcType="INTEGER" />
+    <result column="car_type" property="carType" jdbcType="INTEGER" />
+    <result column="dcard" property="dcard" jdbcType="VARCHAR" />
+    <result column="dyears" property="dyears" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    driver_id, driver_name, eid, car_type, dcard, dyears
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from driver
+    where driver_id = #{driverId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from driver
+    where driver_id = #{driverId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.expressage.pojo.Driver" >
+    insert into driver (driver_id, driver_name, eid, 
+      car_type, dcard, dyears
+      )
+    values (#{driverId,jdbcType=INTEGER}, #{driverName,jdbcType=VARCHAR}, #{eid,jdbcType=INTEGER}, 
+      #{carType,jdbcType=INTEGER}, #{dcard,jdbcType=VARCHAR}, #{dyears,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.expressage.pojo.Driver" >
+    insert into driver
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="driverId != null" >
+        driver_id,
+      </if>
+      <if test="driverName != null" >
+        driver_name,
+      </if>
+      <if test="eid != null" >
+        eid,
+      </if>
+      <if test="carType != null" >
+        car_type,
+      </if>
+      <if test="dcard != null" >
+        dcard,
+      </if>
+      <if test="dyears != null" >
+        dyears,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="driverId != null" >
+        #{driverId,jdbcType=INTEGER},
+      </if>
+      <if test="driverName != null" >
+        #{driverName,jdbcType=VARCHAR},
+      </if>
+      <if test="eid != null" >
+        #{eid,jdbcType=INTEGER},
+      </if>
+      <if test="carType != null" >
+        #{carType,jdbcType=INTEGER},
+      </if>
+      <if test="dcard != null" >
+        #{dcard,jdbcType=VARCHAR},
+      </if>
+      <if test="dyears != null" >
+        #{dyears,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.expressage.pojo.Driver" >
+    update driver
+    <set >
+      <if test="driverName != null" >
+        driver_name = #{driverName,jdbcType=VARCHAR},
+      </if>
+      <if test="eid != null" >
+        eid = #{eid,jdbcType=INTEGER},
+      </if>
+      <if test="carType != null" >
+        car_type = #{carType,jdbcType=INTEGER},
+      </if>
+      <if test="dcard != null" >
+        dcard = #{dcard,jdbcType=VARCHAR},
+      </if>
+      <if test="dyears != null" >
+        dyears = #{dyears,jdbcType=INTEGER},
+      </if>
+    </set>
+    where driver_id = #{driverId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.expressage.pojo.Driver" >
+    update driver
+    set driver_name = #{driverName,jdbcType=VARCHAR},
+      eid = #{eid,jdbcType=INTEGER},
+      car_type = #{carType,jdbcType=INTEGER},
+      dcard = #{dcard,jdbcType=VARCHAR},
+      dyears = #{dyears,jdbcType=INTEGER}
+    where driver_id = #{driverId,jdbcType=INTEGER}
+  </update>
+</mapper>

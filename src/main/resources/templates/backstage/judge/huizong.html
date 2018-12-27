@@ -1,0 +1,163 @@
+<html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=gbk" />
+<title>订单操作</title>
+<script src="../Js/Calendar.js"></script>
+<script language=JavaScript src="../js/colorChange.js"></script>
+<script language="javascript" type="text/javascript"> 
+function queren(){
+			url="QueRen.html"
+			window.location.assign(url);
+		}
+		
+function jiesuan(){
+	alert("结算操作成功！");
+}
+		
+function chkall(input1,input2){
+    var objForm = document.forms[input1];
+    var objLen = objForm.length;
+ 
+	var aFlag = input2.checked;//获取“主复选框”的选中状态
+ 
+    for (var i = 0; i < objLen; i++){
+		if (objForm.elements[i].type == "checkbox"){
+			if (objForm.elements[i].checked){
+				objForm.elements[i].checked = false;
+			}else{
+				objForm.elements[i].checked = true;
+			}
+			
+		}
+    }
+ 
+	//input2.checked = aFlag;//再将复选框的值赋回
+}
+
+</script>
+        
+		<link href="../Css/TestDate.css" rel="stylesheet">
+		<link href="../Css/calendar-blue.css" rel="stylesheet">
+		<link rel="stylesheet" type="text/css" href="../css/demo.css">
+<style type="text/css">
+<!--
+body {
+	margin-left: 3px;
+	margin-top: 0px;
+	margin-right: 3px;
+	margin-bottom: 0px;
+}
+.STYLE1 {
+	color: #e1e2e3;
+	font-size: 12px;
+}
+.STYLE6 {color: #000000; font-size: 12; }
+.STYLE10 {color: #000000; font-size: 12px; }
+.STYLE19 {
+	color: #344b50;
+	font-size: 12px;
+}
+.STYLE21 {
+	font-size: 12px;
+	color: #3b6375;
+}
+.STYLE22 {
+	font-size: 12px;
+	color: #295568;
+}
+-->
+</style>
+</head>
+
+<body onkeypress="keyEnter()">
+<font color="#800000">
+	<div align="left"><span class="STYLE10">&nbsp;当前位置:<a href="fenzhanjiesuan.html">分账结算</a>><a href="huizong.html">金额汇总</a></span>
+	</div></font><br>
+     <form id="form1" name="form1" method="post" action="">
+<br />
+<td><p>&nbsp;</p>
+  <table width="99%" height="202" onMouseOver="changeto()"  onmouseout="changeback()" class="default">
+      <tr bgcolor="#DEEBF7" class="title">
+        <td ><div align="center"><span class="STYLE10">签收单号</span></div></td>
+        <td ><div align="center"><span class="STYLE10">结账日期</span></div></td>
+        <td ><div align="center"><span class="STYLE10">结账金额</span></div></td>
+        <td ><div align="center"><span class="STYLE10">结账分站</span></div></td>
+		<td>&nbsp;</td>
+      </tr>
+      <tr class="rowAlternateA">
+        <td ><div align="center">123456</div></td>
+        <td ><div align="center">2011-4-1</div></td>
+        <td ><div align="center">2011</div></td>
+        <td ><div align="center">1</div></td>
+		<td ><div align="center"><a href="#" onClick="jiesuan()">结算</a></div></td>
+      </tr>
+      <tr class="rowAlternateB">
+        <td ><div align="center">123456</div></td>
+        <td ><div align="center">2011-4-1</div></td>
+        <td ><div align="center">2011</div></td>
+        <td ><div align="center">1</div></td>
+		<td ><div align="center"><a href="javascript:jiesuan()">结算</a></div></td>
+      </tr>
+      <tr class="rowAlternateA">
+        <td ><div align="center">123456</div></td>
+        <td ><div align="center">2011-4-1</div></td>
+        <td ><div align="center">2011</div></td>
+        <td ><div align="center">1</div></td>
+		<td ><div align="center"><a href="javascript:jiesuan()">结算</a></div></td>
+      </tr>
+      <tr class="rowAlternateB">
+        <td ><div align="center">123456</div></td>
+        <td ><div align="center">2011-4-1</div></td>
+        <td ><div align="center">2011</div></td>
+        <td ><div align="center">1</div></td>
+		<td ><div align="center"><a href="javascript:jiesuan()">结算</a></div></td>
+      </tr>
+      <tr class="rowAlternateA">
+        <td ><div align="center">123456</div></td>
+        <td ><div align="center">2011-4-1</div></td>
+        <td ><div align="center">2011</div></td>
+        <td ><div align="center">1</div></td>
+		<td ><div align="center"><a href="javascript:jiesuan()">结算</a></div></td>
+      </tr>
+      <tr class="rowAlternateB">
+        <td ><div align="center">123456</div></td>
+        <td ><div align="center">2011-4-1</div></td>
+        <td ><div align="center">2011</div></td>
+        <td ><div align="center">1</div></td>
+		<td ><div align="center"><a href="javascript:jiesuan()">结算</a></div></td>
+      </tr>
+      <tr class="rowAlternateA">
+        <td ><div align="center">123456</div></td>
+        <td ><div align="center">2011-4-1</div></td>
+        <td ><div align="center">2011</div></td>
+        <td ><div align="center">1</div></td>
+		<td ><div align="center"><a href="javascript:jiesuan()">结算</a></div></td>
+      </tr>
+      <tr class="rowAlternateB">
+        <td ><div align="center">123456</div></td>
+        <td ><div align="center">2011-4-1</div></td>
+        <td ><div align="center">2011</div></td>
+        <td ><p>&nbsp;</p>
+        <div align="center">1</div></td>
+		<td ><div align="center"><a href="javascript:jiesuan()">结算</a></div></td>
+      </tr>
+    </table></td>
+  </tr></form>
+  <br />
+  <tr>
+    <td height="30"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+      <tr>
+        <td width="318"><div align="left"><span class="STYLE22">&nbsp;&nbsp;&nbsp;&nbsp;共有<strong> 243</strong> 条记录，当前第<strong> 1</strong> 页，共 <strong>10</strong> 页</span></div></td>
+        <td width="343">
+        <td width="51">&nbsp;</td>
+          <td width="293" align=right nowrap>&lt;&lt;首页&nbsp;&lt;上一页&nbsp;|&nbsp;<A 
+            href="javascript:nextPageClicked();">下一页</A>&gt;&nbsp;<A 
+            href="javascript:lastPageClicked();">尾页</A>&gt;&gt;&nbsp;&nbsp;第
+        <INPUT 
+            id=bottomCurPage 
+            onkeydown="if(event.keyCode == '13') return bottomCurPageChanged()" 
+            onkeyup="this.value=this.value.replace(/[\D]/g,'');" size=2 
+value=1>页<INPUT onClick="return bottomCurPageChanged()" type=button value=go></td>
+  </tr>
+</table>
+</body>
+</html>

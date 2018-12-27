@@ -1,0 +1,124 @@
+
+<head>
+<title>打印购货入库调拨单</title>
+<META http-equiv=Content-Language content=zh-cn>
+<META http-equiv=Content-Type content="text/html; charset=gb2312">
+<META content="MSHTML 5.50.4134.600" name=GENERATOR>
+
+    <meta name="GENERATOR" Content="Microsoft Visual Studio .NET 7.1">
+	<meta name="CODE_LANGUAGE" Content="C#">		
+	<script src="../Js/Calendar.js"></script>
+	<link href="../Css/TestDate.css" rel="stylesheet">
+	<link href="../Css/calendar-blue.css" rel="stylesheet">
+    <link rel="stylesheet" href="../css/demo.css" type="text/css" />
+
+<script language="JavaScript" src="../js/script.js"></script>
+<script language="javascript" src="../js/colorChange.js"></script>
+<script language="javascript">
+	function dayin(){
+		url="DaYin.html"
+		window.location.assign(url);
+	} 
+	function go_back(){
+		url="JinHuo.html"
+		window.location.assign(url);
+	} 
+	function da(){
+		alert("成功打印购货入库调拨单");
+	}
+</script>
+
+</head>
+
+<body>
+  <form name="form1" method="post" action=""><br>
+  <font color="#800000">&nbsp;当前位置:</font><a href="JinHuo.html">&nbsp;进货管理</a>  &gt;
+   <a href="QueRen.html"> &nbsp;确认页面</a> &gt; &nbsp;购货单打印<br><br><br><br>
+	<table width="70%" align="center">
+     <tr>
+		<td width="58%">购货入库调拨单列表如下:</td>
+	</tr>
+	<tr>
+		<td  colspan="2" align="center"><font size="3"><b>购货入库调拨单</b></font></td>
+	</tr>
+	<tr>
+		<td align="left">购货单号:&nbsp;8888</td>
+		<td width="42%" align="right">日期:&nbsp;
+		<input type="hidden" name="__VIEWSTATE" value="dDwxODc5OTI0MDAwOzs+q/bk2mKy2luFYlVdxBgSOAYBUfE=" />
+ 		<input name="txtDate" type="text" maxlength="10" id="txtAwardDate" class="textbox" />
+    	<A onClick="return showCalendar('txtDate', 'y-mm-dd');" href="#"><img src="../images/Button.gif" id="IMG2" align="absMiddle" border="0" /></A>
+	  </td>
+	</tr>
+    </table>
+   <table width="70%" align="center" class="default" onMouseOver="changeto()"  onmouseout="changeback()">
+
+	<tr class="title">
+		<td width="11%">商品编号</td>
+		<td width="13%">商品名称</td>
+		<td width="12%">计量单位</td>
+		<td width="14%">现有库存量</td>
+		<td width="14%">预警库存量</td>
+		<td width="13%">缺货数量</td>	
+		<td width="12%">进货数量</td>
+		<td width="11%">备注</td>
+	</tr>
+	<tr class="rowAlternateA">
+		<td>100000</td>
+		<td>衬衫</td>
+		<td>件</td>
+		<td>30</td>
+		<td>50</td>
+		<td>20</td>
+		<td>20</td>
+		<td>&nbsp;</td>
+	</tr>
+	<tr class="rowAlternateB">
+		<td>100000</td>
+		<td>衬衫</td>
+		<td>件</td>
+		<td>30</td>
+		<td>50</td>
+		<td>20</td>
+		<td>0</td>
+		<td>&nbsp;</td>
+	</tr>
+	<tr class="rowAlternateA">
+		<td>100000</td>
+		<td>衬衫</td>
+		<td>件</td>
+		<td>30</td>
+		<td>50</td>
+		<td>20</td>
+		<td>0</td>
+		<td>&nbsp;</td>
+	</tr>
+	<tr class="rowAlternateB">
+		<td>100000</td>
+		<td>衬衫</td>
+		<td>件</td>
+		<td>30</td>
+		<td>50</td>
+		<td>20</td>
+		<td>0</td>
+		<td>&nbsp;</td>
+	</tr>
+</table><br><br> 
+<table align="center" width="70%">
+	<tr> 
+		<td align="right" colspan="2">是否打印购货入库调拨单</td>
+	</tr>
+</table><br>
+<table align="center" width="70%">
+	<tr>
+	  <td height="40" align="right"><INPUT type="button"  class="button" value="不打印，返回 " onClick="go_back();"></td>
+	</tr>
+	<tr>
+	  <td height=35  align="right"><INPUT type="button"  class="button" value=" 打 印 " onClick="da()"></td>
+	</tr>
+</table>
+
+
+</form>
+</body>
+</html>
+

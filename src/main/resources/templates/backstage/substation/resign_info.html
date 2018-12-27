@@ -1,0 +1,110 @@
+<html:html><head>
+
+	<title>分站任务分配</title>
+	<script language=JavaScript src="../js/script.js"></script>
+	<script language=JavaScript src="../js/colorChange.js"></script>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<link rel="stylesheet" type="text/css" href="../css/demo.css" />
+<title>签收单详细信息</title>
+
+<script>
+function go_back(){
+	window.history.back();
+}
+function printf(){
+alert("打印签收单");
+go_back();
+}
+</script>
+</head>
+
+<body bgcolor="#F3F6F9">
+<div>
+<font color="#800000">&nbsp;&nbsp;&nbsp;当前位置:</font>
+<a href="javascript:window.history.back();">签收单列表</a>  &gt; 
+查看签收单信息</span></div>
+<br />
+<br />
+<br />
+	
+	<table width="30%" border="0" align="center">
+      <tr>
+        <td width="34%" align="right" bgcolor="#deebf7">任务单编号：</td>
+        <td width="66%" ><input type="text" name="missionNo" readonly="readonly" />
+        <font color=#FF0000>*</font> </td>
+      </tr>
+      <tr>
+        <td bgcolor="#deebf7" align="right">订单编号：</td>
+        <td colspan="2"><input type="text" name="taskNo" readonly="readonly" />
+            <font color=#FF0000>*</font> </td>
+      </tr>
+      <tr>
+        <td bgcolor="#deebf7" align="right">客户姓名：</td>
+        <td bgcolor=""><input type="text" name="customerName" readonly="readonly" />
+            <font color=#FF0000>*</font> </td>
+      </tr>
+      <tr>
+        <td bgcolor="#deebf7" align="right">客户地址：</td>
+        <td align="left"><input type="text" name="customerAddress" readonly="readonly" />
+            <font color=#FF0000>*</font></td>
+      </tr>
+      <tr>
+        <td bgcolor="#deebf7" align="right">客户联系方式：</td>
+        <td align="left"><input type="text" name="customerPhoneNum" readonly="readonly" />
+            <font color=#FF0000>*</font></td>
+      </tr>
+      <tr>
+        <td bgcolor="#deebf7" align="right">任务单下发日期：</td>
+        <td ><input type="text" name="missionDate" readonly="readonly" /></td>
+      </tr>
+      <tr>
+        <td bgcolor="#deebf7" align="right">要求完成日期：</td>
+        <td colspan="2" ><input type="text" name="deadline" readonly="readonly" /></td>
+      </tr>
+      <tr>
+        <td bgcolor="#deebf7" align="right">产品名称：</td>
+        <td  ><input type="text" name="prodName" readonly="readonly" /></td>
+      </tr>
+      <tr>
+        <td bgcolor="#deebf7" align="right">产品编号：</td>
+        <td  ><input type="text" name="prodNum" readonly="readonly" /></td>
+      </tr>
+      <tr>
+        <td bgcolor="#deebf7" align="right">产品数量：</td>
+        <td ><input type="text" name="prodAccount" readonly="readonly" /></td>
+      </tr>
+      <tr>
+        <td bgcolor="#deebf7" align="right">产品单价：</td>
+        <td ><input type="text" name="prodPrice" readonly="readonly" /></td>
+      </tr>
+      <tr>
+        <td bgcolor="#deebf7" align="right">计量单位：</td>
+        <td ><input type="text" name="unit" readonly="readonly" /></td>
+      </tr>
+      <tr>
+        <td bgcolor="#deebf7" align="right">交易金额：</td>
+        <td><input type="text" name="money"  readonly="readonly" />
+        </td>
+      </tr>
+      <tr>
+        <td bgcolor="#deebf7" align="right">任务类型：</td>
+        <td align="left"><input type="text"  name="taskKind" readonly="readonly" />
+            <font color=#FF0000>*</font></td>
+      </tr>
+      <tr>
+        <td bgcolor="#deebf7" align="right">任务状态：</td>
+        <td ><input type="text" name="taskStatus"readonly="readonly" />
+            <font color=#FF0000>*</font></td>
+      </tr>
+
+      <tr>
+        <td colspan="2" align="center">
+		<input type="submit" class="button" onClick="printf()" value="打印" />
+		&nbsp;
+		<input type="button" class="button" onClick="go_back()" value="返回" />
+		</td>
+	</tr>
+    </table>
+
+</body>
+</html>

@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.expressage.mapper.CarMapper" >
+  <resultMap id="BaseResultMap" type="com.expressage.pojo.Car" >
+    <id column="car_id" property="carId" jdbcType="INTEGER" />
+    <result column="car_name" property="carName" jdbcType="VARCHAR" />
+    <result column="car_no" property="carNo" jdbcType="VARCHAR" />
+    <result column="car_type" property="carType" jdbcType="INTEGER" />
+    <result column="cvolume" property="cvolume" jdbcType="DOUBLE" />
+    <result column="cweight" property="cweight" jdbcType="DOUBLE" />
+    <result column="cheight" property="cheight" jdbcType="DOUBLE" />
+    <result column="cwidth" property="cwidth" jdbcType="DOUBLE" />
+    <result column="clength" property="clength" jdbcType="DOUBLE" />
+    <result column="insurance" property="insurance" jdbcType="VARCHAR" />
+    <result column="operation" property="operation" jdbcType="VARCHAR" />
+    <result column="travel" property="travel" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    car_id, car_name, car_no, car_type, cvolume, cweight, cheight, cwidth, clength, insurance, 
+    operation, travel, status
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from car
+    where car_id = #{carId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from car
+    where car_id = #{carId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.expressage.pojo.Car" >
+    insert into car (car_id, car_name, car_no, 
+      car_type, cvolume, cweight, 
+      cheight, cwidth, clength, 
+      insurance, operation, travel, 
+      status)
+    values (#{carId,jdbcType=INTEGER}, #{carName,jdbcType=VARCHAR}, #{carNo,jdbcType=VARCHAR}, 
+      #{carType,jdbcType=INTEGER}, #{cvolume,jdbcType=DOUBLE}, #{cweight,jdbcType=DOUBLE}, 
+      #{cheight,jdbcType=DOUBLE}, #{cwidth,jdbcType=DOUBLE}, #{clength,jdbcType=DOUBLE}, 
+      #{insurance,jdbcType=VARCHAR}, #{operation,jdbcType=VARCHAR}, #{travel,jdbcType=VARCHAR}, 
+      #{status,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.expressage.pojo.Car" >
+    insert into car
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="carId != null" >
+        car_id,
+      </if>
+      <if test="carName != null" >
+        car_name,
+      </if>
+      <if test="carNo != null" >
+        car_no,
+      </if>
+      <if test="carType != null" >
+        car_type,
+      </if>
+      <if test="cvolume != null" >
+        cvolume,
+      </if>
+      <if test="cweight != null" >
+        cweight,
+      </if>
+      <if test="cheight != null" >
+        cheight,
+      </if>
+      <if test="cwidth != null" >
+        cwidth,
+      </if>
+      <if test="clength != null" >
+        clength,
+      </if>
+      <if test="insurance != null" >
+        insurance,
+      </if>
+      <if test="operation != null" >
+        operation,
+      </if>
+      <if test="travel != null" >
+        travel,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="carId != null" >
+        #{carId,jdbcType=INTEGER},
+      </if>
+      <if test="carName != null" >
+        #{carName,jdbcType=VARCHAR},
+      </if>
+      <if test="carNo != null" >
+        #{carNo,jdbcType=VARCHAR},
+      </if>
+      <if test="carType != null" >
+        #{carType,jdbcType=INTEGER},
+      </if>
+      <if test="cvolume != null" >
+        #{cvolume,jdbcType=DOUBLE},
+      </if>
+      <if test="cweight != null" >
+        #{cweight,jdbcType=DOUBLE},
+      </if>
+      <if test="cheight != null" >
+        #{cheight,jdbcType=DOUBLE},
+      </if>
+      <if test="cwidth != null" >
+        #{cwidth,jdbcType=DOUBLE},
+      </if>
+      <if test="clength != null" >
+        #{clength,jdbcType=DOUBLE},
+      </if>
+      <if test="insurance != null" >
+        #{insurance,jdbcType=VARCHAR},
+      </if>
+      <if test="operation != null" >
+        #{operation,jdbcType=VARCHAR},
+      </if>
+      <if test="travel != null" >
+        #{travel,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.expressage.pojo.Car" >
+    update car
+    <set >
+      <if test="carName != null" >
+        car_name = #{carName,jdbcType=VARCHAR},
+      </if>
+      <if test="carNo != null" >
+        car_no = #{carNo,jdbcType=VARCHAR},
+      </if>
+      <if test="carType != null" >
+        car_type = #{carType,jdbcType=INTEGER},
+      </if>
+      <if test="cvolume != null" >
+        cvolume = #{cvolume,jdbcType=DOUBLE},
+      </if>
+      <if test="cweight != null" >
+        cweight = #{cweight,jdbcType=DOUBLE},
+      </if>
+      <if test="cheight != null" >
+        cheight = #{cheight,jdbcType=DOUBLE},
+      </if>
+      <if test="cwidth != null" >
+        cwidth = #{cwidth,jdbcType=DOUBLE},
+      </if>
+      <if test="clength != null" >
+        clength = #{clength,jdbcType=DOUBLE},
+      </if>
+      <if test="insurance != null" >
+        insurance = #{insurance,jdbcType=VARCHAR},
+      </if>
+      <if test="operation != null" >
+        operation = #{operation,jdbcType=VARCHAR},
+      </if>
+      <if test="travel != null" >
+        travel = #{travel,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where car_id = #{carId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.expressage.pojo.Car" >
+    update car
+    set car_name = #{carName,jdbcType=VARCHAR},
+      car_no = #{carNo,jdbcType=VARCHAR},
+      car_type = #{carType,jdbcType=INTEGER},
+      cvolume = #{cvolume,jdbcType=DOUBLE},
+      cweight = #{cweight,jdbcType=DOUBLE},
+      cheight = #{cheight,jdbcType=DOUBLE},
+      cwidth = #{cwidth,jdbcType=DOUBLE},
+      clength = #{clength,jdbcType=DOUBLE},
+      insurance = #{insurance,jdbcType=VARCHAR},
+      operation = #{operation,jdbcType=VARCHAR},
+      travel = #{travel,jdbcType=VARCHAR},
+      status = #{status,jdbcType=VARCHAR}
+    where car_id = #{carId,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.expressage.mapper.OutInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.expressage.pojo.OutInfo" >
+    <id column="oiid" property="oiid" jdbcType="INTEGER" />
+    <result column="otid" property="otid" jdbcType="INTEGER" />
+    <result column="money" property="money" jdbcType="DOUBLE" />
+    <result column="time" property="time" jdbcType="TIMESTAMP" />
+    <result column="eid" property="eid" jdbcType="INTEGER" />
+    <result column="status" property="status" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    oiid, otid, money, time, eid, status
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from out_info
+    where oiid = #{oiid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from out_info
+    where oiid = #{oiid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.expressage.pojo.OutInfo" >
+    insert into out_info (oiid, otid, money, 
+      time, eid, status
+      )
+    values (#{oiid,jdbcType=INTEGER}, #{otid,jdbcType=INTEGER}, #{money,jdbcType=DOUBLE}, 
+      #{time,jdbcType=TIMESTAMP}, #{eid,jdbcType=INTEGER}, #{status,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.expressage.pojo.OutInfo" >
+    insert into out_info
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="oiid != null" >
+        oiid,
+      </if>
+      <if test="otid != null" >
+        otid,
+      </if>
+      <if test="money != null" >
+        money,
+      </if>
+      <if test="time != null" >
+        time,
+      </if>
+      <if test="eid != null" >
+        eid,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="oiid != null" >
+        #{oiid,jdbcType=INTEGER},
+      </if>
+      <if test="otid != null" >
+        #{otid,jdbcType=INTEGER},
+      </if>
+      <if test="money != null" >
+        #{money,jdbcType=DOUBLE},
+      </if>
+      <if test="time != null" >
+        #{time,jdbcType=TIMESTAMP},
+      </if>
+      <if test="eid != null" >
+        #{eid,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.expressage.pojo.OutInfo" >
+    update out_info
+    <set >
+      <if test="otid != null" >
+        otid = #{otid,jdbcType=INTEGER},
+      </if>
+      <if test="money != null" >
+        money = #{money,jdbcType=DOUBLE},
+      </if>
+      <if test="time != null" >
+        time = #{time,jdbcType=TIMESTAMP},
+      </if>
+      <if test="eid != null" >
+        eid = #{eid,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where oiid = #{oiid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.expressage.pojo.OutInfo" >
+    update out_info
+    set otid = #{otid,jdbcType=INTEGER},
+      money = #{money,jdbcType=DOUBLE},
+      time = #{time,jdbcType=TIMESTAMP},
+      eid = #{eid,jdbcType=INTEGER},
+      status = #{status,jdbcType=VARCHAR}
+    where oiid = #{oiid,jdbcType=INTEGER}
+  </update>
+</mapper>

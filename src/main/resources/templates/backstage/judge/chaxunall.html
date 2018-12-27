@@ -1,0 +1,87 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>查询表单</title>
+
+<link rel="stylesheet" href="../css/demo.css" type="text/css">
+<script type="text/javascript" src="../JS/date.js"></script>
+<script type="text/javascript">
+	function tiaozhuan(){
+		var u = document.form2.select.value;
+		 if(u==1)
+		 {
+		   var url ="quehuodan.html";
+			window.location.assign(url);
+		 }
+		 if(u==2)
+		 {
+		   var url ="chagouhuodan.html";
+			window.location.assign(url);
+		 }
+		  if(u==3)
+		 {
+		   var url ="tuihuodanliebiao.html";
+			window.location.assign(url);
+		 }
+		 if(u==4)
+		 {
+		   var url ="yanhuodanchaxun.html";
+			window.location.assign(url);
+		 }
+		 if(u==5)
+		 {
+		   var url ="caiwuchaxun.html";
+			window.location.assign(url);
+		 }
+		 if(u==6)
+		 {
+		   var url ="renwudan.html";
+			window.location.assign(url);
+		 }
+		 if(u==7)
+		 {
+		   var url ="diaobodanchaxun.html";
+			window.location.assign(url);
+		 }
+		
+	}
+</script>
+
+</head>
+<body>
+<br>
+<font color="#800000">&nbsp;&nbsp;&nbsp;当前位置:</font>
+决策<br>
+<br>
+<br>
+<br>
+<form name="form2" method="post">
+  <br />
+  <table width="36%" class="default" align="center" border="1">
+
+    <tr  class="title">
+      <td width="33%" height="29"  align="right">查询表单：</td>
+      <td width="30%" ><div align="center">
+        <select name="select">
+          <option value="1">缺货单</option>
+          <option value="2">购货单</option>
+          <option value="3">退货单</option>
+          <option value="4">验货单</option>
+          
+          
+          <option value="5">财务</option>
+          
+          <option value="6">配送任务单</option>
+          <option value="7">货物调拨单</option>
+        </select>
+      </div></td>
+    
+    
+      <td width="37%" height="60" colspan="2"  align="center"><input name="yes" type="button" class="button" onclick="tiaozhuan()"  value=" 确定 " />&nbsp;&nbsp;
+</td>
+    </tr>
+  </table>
+</form>
+</body>
+</html>

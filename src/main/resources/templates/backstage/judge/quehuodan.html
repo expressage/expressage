@@ -1,0 +1,88 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>客户信息</title></head>
+<link rel="stylesheet" href="../css/demo.css" type="text/css">
+
+<body>
+<form name="customerDetails" action="" method="post">
+<!-- <input type="hidden" name="act" value="add"> -->
+<script language=JavaScript src="../js/colorChange.js"></script>
+
+<br />
+<font color="#800000">&nbsp;&nbsp;&nbsp;当前位置:</font>
+<a href="javascript:window.history.back();">查询表单</a>  &gt;缺货单<br />
+<br />
+<br />
+<table class="pagination" cellSpacing=0 cellPadding=4 width="90%" align="center">
+	<tr>
+        <td nowrap>共3页,23条记录</td>
+        <td width="99%">&nbsp;</td>
+        <td nowrap align=right>&lt;&lt;首页&nbsp;&lt;上一页&nbsp;|&nbsp;<A 
+            href="javascript:nextPageClicked();">下一页</A>&gt;&nbsp;<A 
+            href="javascript:lastPageClicked();">尾页</A>&gt;&gt;&nbsp;&nbsp;第
+			<input id=topCurPage onKeyDown="if(event.keyCode == '13') return topCurPageChanged()" 
+			onkeyup="this.value=this.value.replace(/[\D]/g,'');" size=2 value=1>页
+			<input onClick="return topCurPageChanged()" type=button value=go>
+		</td>
+	</tr>
+</table>
+
+<table width="90%" align="center" class="default"onMouseOver="changeto()"  onmouseout="changeback()">
+	<tr class="title">
+		<td width="14%">缺货单号</td>
+		<td width="14%">缺货商品</td>
+		<td width="15%">商品编号</td>
+		<td width="14%">可分配量</td>
+		<td width="11%">需购量</td>
+		<td width="17%">需购时间</td>
+		<td colspan="2"><div align="center">是否订货</div></td>
+	</tr>
+	<tr class="rowAlternateA">
+		<td>100000</td>
+		<td>张志翔</td>
+		<td>NEUSOFT</td>
+		<td>20</td>
+		<td>100</td>
+		<td>2055-03-03</td>
+		<td width="7%"><div align="center"><a href="#" onclick="accept()">是</a></div></td>
+	    <td width="8%"><div align="center"><a href="#" onclick="deny()">否</a></div></td>
+	</tr>
+</table>
+</form>
+<table class="pagination" cellSpacing=0 cellPadding=4 width="90%" align="center">
+	<tbody>
+        <tr>
+          <td height="33" nowrap>每页显示
+			  <select onchange=bottomPageSizeChanged(); name=bottomPageSizeselect>
+				<option value=5 selected>5</option>
+				<option value=10>10</option>
+			  </select>条
+		  </td>
+          <td width="99%"><a href="订单信息录入.html"></a></td>
+          <td nowrap align=right>&lt;&lt;首页&nbsp;&lt;上一页&nbsp;|&nbsp;<A 
+            href="javascript:nextPageClicked();">下一页</A>&gt;&nbsp;<A 
+            href="javascript:lastPageClicked();">尾页</A>&gt;&gt;&nbsp;&nbsp;第<input 
+            id=bottomCurPage 
+            onkeydown="if(event.keyCode == '13') return bottomCurPageChanged()" 
+            onkeyup="this.value=this.value.replace(/[\D]/g,'');" size=2 
+ 
+value=1>页<input onClick="return bottomCurPageChanged()" type=button value=go></td></tr></tbody></table>
+
+<div align="center"><input type="button" class="button" value="返回" onClick="go_back()">
+</div>
+</body>
+</html>
+<script>
+	function go_back(){
+		var url = "chaxunall.html";
+		window.location.assign( url );
+	}
+function accept(){
+alert("同意进货");
+}
+function deny(){
+alert("拒绝进货");
+}
+</script>

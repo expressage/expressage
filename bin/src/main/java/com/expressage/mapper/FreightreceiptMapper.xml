@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.expressage.mapper.FreightreceiptMapper" >
+  <resultMap id="BaseResultMap" type="com.expressage.pojo.Freightreceipt" >
+    <id column="hid" property="hid" jdbcType="INTEGER" />
+    <result column="receiptCode" property="receiptcode" jdbcType="VARCHAR" />
+    <result column="loadStation" property="loadstation" jdbcType="VARCHAR" />
+    <result column="StartCarryDate" property="startcarrydate" jdbcType="TIMESTAMP" />
+    <result column="DealStation" property="dealstation" jdbcType="VARCHAR" />
+    <result column="ArriveDate" property="arrivedate" jdbcType="TIMESTAMP" />
+    <result column="did" property="did" jdbcType="INTEGER" />
+    <result column="billState" property="billstate" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    hid, receiptCode, loadStation, StartCarryDate, DealStation, ArriveDate, did, billState
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from freightreceipt
+    where hid = #{hid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from freightreceipt
+    where hid = #{hid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.expressage.pojo.Freightreceipt" >
+    insert into freightreceipt (hid, receiptCode, loadStation, 
+      StartCarryDate, DealStation, ArriveDate, 
+      did, billState)
+    values (#{hid,jdbcType=INTEGER}, #{receiptcode,jdbcType=VARCHAR}, #{loadstation,jdbcType=VARCHAR}, 
+      #{startcarrydate,jdbcType=TIMESTAMP}, #{dealstation,jdbcType=VARCHAR}, #{arrivedate,jdbcType=TIMESTAMP}, 
+      #{did,jdbcType=INTEGER}, #{billstate,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.expressage.pojo.Freightreceipt" >
+    insert into freightreceipt
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="hid != null" >
+        hid,
+      </if>
+      <if test="receiptcode != null" >
+        receiptCode,
+      </if>
+      <if test="loadstation != null" >
+        loadStation,
+      </if>
+      <if test="startcarrydate != null" >
+        StartCarryDate,
+      </if>
+      <if test="dealstation != null" >
+        DealStation,
+      </if>
+      <if test="arrivedate != null" >
+        ArriveDate,
+      </if>
+      <if test="did != null" >
+        did,
+      </if>
+      <if test="billstate != null" >
+        billState,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="hid != null" >
+        #{hid,jdbcType=INTEGER},
+      </if>
+      <if test="receiptcode != null" >
+        #{receiptcode,jdbcType=VARCHAR},
+      </if>
+      <if test="loadstation != null" >
+        #{loadstation,jdbcType=VARCHAR},
+      </if>
+      <if test="startcarrydate != null" >
+        #{startcarrydate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="dealstation != null" >
+        #{dealstation,jdbcType=VARCHAR},
+      </if>
+      <if test="arrivedate != null" >
+        #{arrivedate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="did != null" >
+        #{did,jdbcType=INTEGER},
+      </if>
+      <if test="billstate != null" >
+        #{billstate,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.expressage.pojo.Freightreceipt" >
+    update freightreceipt
+    <set >
+      <if test="receiptcode != null" >
+        receiptCode = #{receiptcode,jdbcType=VARCHAR},
+      </if>
+      <if test="loadstation != null" >
+        loadStation = #{loadstation,jdbcType=VARCHAR},
+      </if>
+      <if test="startcarrydate != null" >
+        StartCarryDate = #{startcarrydate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="dealstation != null" >
+        DealStation = #{dealstation,jdbcType=VARCHAR},
+      </if>
+      <if test="arrivedate != null" >
+        ArriveDate = #{arrivedate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="did != null" >
+        did = #{did,jdbcType=INTEGER},
+      </if>
+      <if test="billstate != null" >
+        billState = #{billstate,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where hid = #{hid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.expressage.pojo.Freightreceipt" >
+    update freightreceipt
+    set receiptCode = #{receiptcode,jdbcType=VARCHAR},
+      loadStation = #{loadstation,jdbcType=VARCHAR},
+      StartCarryDate = #{startcarrydate,jdbcType=TIMESTAMP},
+      DealStation = #{dealstation,jdbcType=VARCHAR},
+      ArriveDate = #{arrivedate,jdbcType=TIMESTAMP},
+      did = #{did,jdbcType=INTEGER},
+      billState = #{billstate,jdbcType=VARCHAR}
+    where hid = #{hid,jdbcType=INTEGER}
+  </update>
+</mapper>

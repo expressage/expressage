@@ -1,0 +1,112 @@
+<html>
+<head>
+<title>登记新商品</title>
+<META http-equiv=Content-Language content=zh-cn>
+<META http-equiv=Content-Type content="text/html; charset=gb2312">
+<META content="MSHTML 5.50.4134.600" name=GENERATOR>
+
+<link rel="stylesheet" href="../css/demo.css" type="text/css" />
+
+<script language="javascript" src="../js/colorChange.js"></script>
+<script language="JavaScript" src="../js/script.js"></script>
+
+<script> 
+	function onSubmit(){
+	    alert("新商品登记成功");
+		var url = "ShangPin.html" ;
+		window.location.assign( url );
+	}
+	
+	function go_back(){
+		var url = "ShangPin.html" ;
+		window.location.assign( url );
+	}
+</script>	
+
+
+</HEAD>
+ 
+<body >
+	<form name="form1" action="" method="post" >
+	<input type="hidden" name="act" value="add">
+	<br>
+	<font color="#800000">&nbsp;当前位置:</font><a href="ShangPin.html">商品管理</a>  &gt; 商品登记信息<br><br>
+	<br>
+	<table width="55%" border=0 align="center">
+		<tr>
+			<td width="100%">
+				<font color=#FF0000>注:标有 * 的项必填&nbsp;</font>
+			</td>
+		</tr>
+	</table>
+	
+	<table width="56%" align="center"  onMouseOver="changeto()"  onmouseout="changeback()" class="default">
+	
+		<tr class="title">
+			<td  align="center">&nbsp;</td>
+		    <td  align="left"><font size="3"><b>商品登记信息</b></font></td>
+		</tr>
+		<tr class="rowAlternateB">
+		   <td width="42%" height="30" align="right">商品编号：</td>
+	       <td width="58%" align="left"><INPUT type="text" name="goodsId" value=""><font color=#FF0000>*</font> 已存在的话给出提示</td>
+		</tr>
+		
+		<tr class="rowAlternateA">
+		   <td width="42%" height="30" align="right">商品名称：</td>
+	      <td width="58%" ><INPUT type="text" name="goodsName" value="" ><font color=#FF0000>*</font></td>
+      </tr>
+	  
+		<tr class="rowAlternateB">
+		   <td width="42%" height="30" align="right">计量单位：</td>
+	      <td width="58%"><INPUT type="text" name="goodsUnit" value="">	<font color=#FF0000>*</font></td>
+      </tr>
+	  
+		<tr class="rowAlternateA">
+		   <td width="42%" height="30" align="right">原&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;价：</td>
+	      <td width="58%" align="left"><INPUT type="text"  name="goodsPriPrice" value="" ><font color=#FF0000>*</font></td>
+		</tr>
+		
+		<tr class="rowAlternateB">
+		   <td width="42%" height="27" align="right">成&nbsp;本&nbsp;价：</td>
+	      <td width="58%"><INPUT type="text" name="goodspriCost" value=""><font color=#FF0000>*</font></td>
+      </tr>
+	  
+		<tr class="rowAlternateA">
+		   <td width="42%" height="26" align="right">厂&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;商：</td>
+	      <td width="58%"><INPUT type="text" name="manufacturer" value=""><font color=#FF0000>*</font></td>
+		</tr>
+		
+		<tr class="rowAlternateB">
+		   <td width="42%" height="30" align="right">可否退货：</td>
+		   <td width="58%" ><select name="goodsReturn">
+								<option  value="">可以</option>
+								<option  value="">不可以</option>
+		  </select><font color=#FF0000>*</font></td>
+		</tr>
+		
+		<tr class="rowAlternateA">
+		   <td width="42%" height="31" align="right">可否换货：</td>
+		   <td width="58%"><select name="goodsExchange">
+								<option  value="">可以</option>
+								<option  value="">不可以</option>
+		  </select><font color=#FF0000>*</font></td>
+		</tr>
+		
+		<tr class="rowAlternateB">
+		   <td width="42%" height="27" align="right">备&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;注：</td>
+	      <td width="58%"><INPUT type="text" name="goodsRemarks" value=""></td>
+		</tr>
+		
+		<tr height="30" class="rowAlternateA">
+			<td height="39" colspan="2"  align="center">
+				<INPUT type="button" class="button"  value=" 保 存 " onClick="onSubmit()">&nbsp;&nbsp;
+				<INPUT type="reset" class="button"  value=" 重新填写 " name=B2>&nbsp;&nbsp;
+				<INPUT type="button" class="button"  value=" 返 回 " onClick="go_back()">		  </td>
+		</tr>
+	</table>
+	成功添加完成之后，要刷新商品列表
+	</FORM>
+	
+ 
+</body>
+</html>

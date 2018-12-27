@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.expressage.mapper.BusinessStatisticsMapper" >
+  <resultMap id="BaseResultMap" type="com.expressage.pojo.BusinessStatistics" >
+    <result column="PickupStation" property="pickupstation" jdbcType="VARCHAR" />
+    <result column="Receivingaddress" property="receivingaddress" jdbcType="VARCHAR" />
+    <result column="Amountreceivable" property="amountreceivable" jdbcType="INTEGER" />
+    <result column="Amountreceived" property="amountreceived" jdbcType="INTEGER" />
+    <result column="receivable" property="receivable" jdbcType="INTEGER" />
+    <result column="received" property="received" jdbcType="INTEGER" />
+    <result column="Remaining" property="remaining" jdbcType="INTEGER" />
+  </resultMap>
+  <insert id="insert" parameterType="com.expressage.pojo.BusinessStatistics" >
+    insert into business_statistics (PickupStation, Receivingaddress, 
+      Amountreceivable, Amountreceived, receivable, 
+      received, Remaining)
+    values (#{pickupstation,jdbcType=VARCHAR}, #{receivingaddress,jdbcType=VARCHAR}, 
+      #{amountreceivable,jdbcType=INTEGER}, #{amountreceived,jdbcType=INTEGER}, #{receivable,jdbcType=INTEGER}, 
+      #{received,jdbcType=INTEGER}, #{remaining,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.expressage.pojo.BusinessStatistics" >
+    insert into business_statistics
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="pickupstation != null" >
+        PickupStation,
+      </if>
+      <if test="receivingaddress != null" >
+        Receivingaddress,
+      </if>
+      <if test="amountreceivable != null" >
+        Amountreceivable,
+      </if>
+      <if test="amountreceived != null" >
+        Amountreceived,
+      </if>
+      <if test="receivable != null" >
+        receivable,
+      </if>
+      <if test="received != null" >
+        received,
+      </if>
+      <if test="remaining != null" >
+        Remaining,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="pickupstation != null" >
+        #{pickupstation,jdbcType=VARCHAR},
+      </if>
+      <if test="receivingaddress != null" >
+        #{receivingaddress,jdbcType=VARCHAR},
+      </if>
+      <if test="amountreceivable != null" >
+        #{amountreceivable,jdbcType=INTEGER},
+      </if>
+      <if test="amountreceived != null" >
+        #{amountreceived,jdbcType=INTEGER},
+      </if>
+      <if test="receivable != null" >
+        #{receivable,jdbcType=INTEGER},
+      </if>
+      <if test="received != null" >
+        #{received,jdbcType=INTEGER},
+      </if>
+      <if test="remaining != null" >
+        #{remaining,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+</mapper>

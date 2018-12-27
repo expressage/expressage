@@ -1,0 +1,184 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>分站结算</title>
+<style type="text/css">
+<!--
+body {
+	margin-left: 3px;
+	margin-top: 0px;
+	margin-right: 3px;
+	margin-bottom: 0px;
+	background-color: #F3F6F9;
+}
+
+.STYLE1 {
+	color: #e1e2e3;
+	font-size: 12px;
+}
+.STYLE6 {color: #000000; font-size: 12; }
+.STYLE10 {color: #000000; font-size: 12px; }
+.STYLE19 {
+	color: #344b50;
+	font-size: 12px;
+}
+.STYLE21 {
+	font-size: 12px;
+	color: #3b6375;
+}
+.STYLE22 {
+	font-size: 12px;
+	color: #295568;
+}
+-->
+</style>
+<script language=JavaScript src="../js/colorChange.js"></script>
+<link rel="stylesheet" type="text/css" href="../css/demo.css">
+<script language="javascript" type="text/javascript"> 
+function chkall(input1,input2){
+    var objForm = document.forms[input1];
+    var objLen = objForm.length;
+ 
+	var aFlag = input2.checked;//获取“主复选框”的选中状态
+ 
+    for (var i = 0; i < objLen; i++){
+		if (objForm.elements[i].type == "checkbox"){
+			if (objForm.elements[i].checked){
+				objForm.elements[i].checked = false;
+			}else{
+				objForm.elements[i].checked = true;
+			}
+			
+		}
+    }
+	//input2.checked = aFlag;//再将复选框的值赋回
+}
+ function hunzong(){
+ 	//alert("您确定要汇总以上金额吗？");
+			 url="huizong.html" ;
+			window.location.assign(url);
+ }
+var  highlightcolor='#d5f4fe';
+var  clickcolor='#51b2f6';
+function go_back(){
+	window.history.back();
+}
+</script>
+
+</head>
+
+<body>
+<div>
+<span class="STYLE19"><font color="#800000">&nbsp;&nbsp;&nbsp;当前位置:</font>分站结算</span></div>
+<div>
+<form action="resign_result.html">
+<table border="0" align="right" cellpadding="0" cellspacing="0">
+    <tr>
+      <td width="48" bgcolor="d3eaef" class="STYLE6" ><div align="center"><span class="STYLE10">任务单号</span></div></td>
+      <td width="168"><input type="text" name="missionNum"  onfocus="this.select()" /></td>
+      <td colspan="2" align="center"><input type="submit" value="查询" /> </td>
+	  <td width="98">&nbsp;</td>
+    </tr>
+</table><br />
+</form>
+</div>
+<br />
+<div></div>
+  <div>
+ <form id="form1" name="form1" method="post" action="">
+  <table width="82%"  onMouseOver="changeto()"  onmouseout="changeback()" align="center"  class="default">
+	<tr class="title">
+	<td width="7%" height="20" align="center" valign="middle"  >
+      <input name="checkAll" type="checkbox" id="checkAll" value="checkbox" onClick="chkall('form1',this)"></span></td>
+      <td align="center" valign="middle">签收单号</td>
+      <td align="center" valign="middle">任务单号</td>
+      <td align="center" valign="middle">订单号</td>
+      <td align="center" valign="middle">商品名</td>
+      <td align="center" valign="middle">商品代号</td>
+      <td align="center" valign="middle">商品数量</td>
+      <td align="center" valign="middle" >订单状态</td>
+      <td align="center" valign="middle" >任务单状态</td>
+      <td align="center" valign="middle">客户名</td>
+      <td align="center" valign="middle" >签收单状态</td>
+      <td align="center" valign="middle">金额</td>
+      <td align="center" valign="middle" >收款与否</td>
+    </tr>
+          <tr class="rowAlternateA">
+		  <td height="20"><div align="center">
+          <input type="checkbox" name="checkbox2" id="checkbox2" />
+        </div></td>
+            <td height="20" ></td>
+            <td height="20" bgcolor="#FFFFFF" class="STYLE19"><div align="center"></div></td>
+            <td height="20" bgcolor="#FFFFFF" class="STYLE19"><div align="center"></div></td>
+            <td height="20" bgcolor="#FFFFFF" class="STYLE19"><div align="center"></div></td>
+            <td height="20" bgcolor="#FFFFFF" class="STYLE19"><div align="center"></div></td>
+            <td height="20" bgcolor="#FFFFFF"><div align="center" class="STYLE21"></div></td>
+            <td height="20" bgcolor="#FFFFFF"><div align="center" class="STYLE21"></div></td>
+            <td height="20" bgcolor="#FFFFFF"><div align="center" class="STYLE21"></div></td>
+            <td height="20" bgcolor="#FFFFFF"><div align="center" class="STYLE21"></div></td>
+			<td bgcolor="#FFFFFF" align="center">&nbsp;</td>
+        	<td bgcolor="#FFFFFF"><div align="center" class="STYLE21"></div></td>
+        	<td bgcolor="#FFFFFF" align="center">&nbsp;</td>
+   	</tr>
+          	<tr class="rowAlternateB">
+			<td height="20"><div align="center">
+          <input type="checkbox" name="checkbox2" id="checkbox2" />
+        </div></td>
+            <td height="20" bgcolor="#FFFFFF" class="STYLE6"><div align="center"><span class="STYLE19"></span></div></td>
+            <td height="20" bgcolor="#FFFFFF" class="STYLE19"><div align="center"></div></td>
+            <td height="20" bgcolor="#FFFFFF" class="STYLE19"><div align="center"></div></td>
+            <td height="20" bgcolor="#FFFFFF" class="STYLE19"><div align="center"></div></td>
+            <td height="20" bgcolor="#FFFFFF" class="STYLE19"><div align="center"></div></td>
+            <td height="20" bgcolor="#FFFFFF"><div align="center" class="STYLE21"></div></td>
+            <td height="20" bgcolor="#FFFFFF"><div align="center" class="STYLE21"></div></td>
+            <td height="20" bgcolor="#FFFFFF"><div align="center" class="STYLE21"></div></td>
+            <td height="20" bgcolor="#FFFFFF"><div align="center" class="STYLE21"></div></td>
+			<td bgcolor="#FFFFFF" align="center">&nbsp;</td>
+        	<td bgcolor="#FFFFFF"><div align="center" class="STYLE21"></div></td>
+        	<td bgcolor="#FFFFFF" align="center">&nbsp;</td>
+          </tr>
+           <tr class="rowAlternateA">
+		   <td height="20"><div align="center">
+          <input type="checkbox" name="checkbox2" id="checkbox2" />
+        </div></td>
+            <td height="20" bgcolor="#FFFFFF" class="STYLE6"><div align="center"><span class="STYLE19"></span></div></td>
+            <td height="20" bgcolor="#FFFFFF" class="STYLE19"><div align="center"></div></td>
+            <td height="20" bgcolor="#FFFFFF" class="STYLE19"><div align="center"></div></td>
+            <td height="20" bgcolor="#FFFFFF" class="STYLE19"><div align="center"></div></td>
+            <td height="20" bgcolor="#FFFFFF" class="STYLE19"><div align="center"></div></td>
+            <td height="20" bgcolor="#FFFFFF"><div align="center" class="STYLE21"></div></td>
+            <td height="20" bgcolor="#FFFFFF"><div align="center" class="STYLE21"></div></td>
+            <td height="20" bgcolor="#FFFFFF"><div align="center" class="STYLE21"></div></td>
+            <td height="20" bgcolor="#FFFFFF"><div align="center" class="STYLE21"></div></td>
+			<td bgcolor="#FFFFFF" align="center">&nbsp;</td>
+        	<td bgcolor="#FFFFFF"><div align="center" class="STYLE21"></div></td>
+        	<td bgcolor="#FFFFFF" align="center">&nbsp;</td>
+          </tr>
+    </table>
+	</form>
+  </div>
+<div>
+    <br />
+  <table align="center" width="80%" border="0" cellpadding="0"  cellspacing="0">
+      <tr>
+      <td width="69%">&nbsp;</td>
+
+      <td align="right">
+      
+        <div align="center">
+          <input name="queding" type="button" class="button" onclick="hunzong()" value="金额汇总"  />
+		  
+        </div></td>
+      <td align="center">
+      <input type="button" class="button" onclick="go_back()" value="返回" />
+      </td>
+    </tr>
+    <tr>
+    
+    </tr>
+  </table>
+  <div align="center"></div>
+</div>
+</body>
+</html>

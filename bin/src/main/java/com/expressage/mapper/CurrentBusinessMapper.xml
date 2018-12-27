@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.expressage.mapper.CurrentBusinessMapper" >
+  <resultMap id="BaseResultMap" type="com.expressage.pojo.CurrentBusiness" >
+    <result column="SendCustomer" property="sendcustomer" jdbcType="VARCHAR" />
+    <result column="orderNo" property="orderno" jdbcType="VARCHAR" />
+    <result column="SendGoodsAddr" property="sendgoodsaddr" jdbcType="VARCHAR" />
+    <result column="ReceiveGoodsAddr" property="receivegoodsaddr" jdbcType="VARCHAR" />
+    <result column="Carriage" property="carriage" jdbcType="INTEGER" />
+    <result column="BillMoney" property="billmoney" jdbcType="INTEGER" />
+    <result column="Receivable" property="receivable" jdbcType="INTEGER" />
+    <result column="Received" property="received" jdbcType="INTEGER" />
+    <result column="SendGoodsDate" property="sendgoodsdate" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <insert id="insert" parameterType="com.expressage.pojo.CurrentBusiness" >
+    insert into current_business (SendCustomer, orderNo, SendGoodsAddr, 
+      ReceiveGoodsAddr, Carriage, BillMoney, 
+      Receivable, Received, SendGoodsDate
+      )
+    values (#{sendcustomer,jdbcType=VARCHAR}, #{orderno,jdbcType=VARCHAR}, #{sendgoodsaddr,jdbcType=VARCHAR}, 
+      #{receivegoodsaddr,jdbcType=VARCHAR}, #{carriage,jdbcType=INTEGER}, #{billmoney,jdbcType=INTEGER}, 
+      #{receivable,jdbcType=INTEGER}, #{received,jdbcType=INTEGER}, #{sendgoodsdate,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.expressage.pojo.CurrentBusiness" >
+    insert into current_business
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="sendcustomer != null" >
+        SendCustomer,
+      </if>
+      <if test="orderno != null" >
+        orderNo,
+      </if>
+      <if test="sendgoodsaddr != null" >
+        SendGoodsAddr,
+      </if>
+      <if test="receivegoodsaddr != null" >
+        ReceiveGoodsAddr,
+      </if>
+      <if test="carriage != null" >
+        Carriage,
+      </if>
+      <if test="billmoney != null" >
+        BillMoney,
+      </if>
+      <if test="receivable != null" >
+        Receivable,
+      </if>
+      <if test="received != null" >
+        Received,
+      </if>
+      <if test="sendgoodsdate != null" >
+        SendGoodsDate,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="sendcustomer != null" >
+        #{sendcustomer,jdbcType=VARCHAR},
+      </if>
+      <if test="orderno != null" >
+        #{orderno,jdbcType=VARCHAR},
+      </if>
+      <if test="sendgoodsaddr != null" >
+        #{sendgoodsaddr,jdbcType=VARCHAR},
+      </if>
+      <if test="receivegoodsaddr != null" >
+        #{receivegoodsaddr,jdbcType=VARCHAR},
+      </if>
+      <if test="carriage != null" >
+        #{carriage,jdbcType=INTEGER},
+      </if>
+      <if test="billmoney != null" >
+        #{billmoney,jdbcType=INTEGER},
+      </if>
+      <if test="receivable != null" >
+        #{receivable,jdbcType=INTEGER},
+      </if>
+      <if test="received != null" >
+        #{received,jdbcType=INTEGER},
+      </if>
+      <if test="sendgoodsdate != null" >
+        #{sendgoodsdate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+</mapper>

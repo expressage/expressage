@@ -1,0 +1,117 @@
+<html>
+<head>
+<title></title>
+<META http-equiv=Content-Language content=zh-cn>
+<META http-equiv=Content-Type content="text/html; charset=gb2312">
+<META content="MSHTML 5.50.4134.600" name=GENERATOR></HEAD>
+<link href="../Css/TestDate.css" rel="stylesheet">
+<link href="../Css/calendar-blue.css" rel="stylesheet">
+<link rel="stylesheet" href="../css/demo.css" type="text/css">
+<script language=JavaScript src="../js/colorChange.js"></script>
+<script src="../Js/Calendar.js"></script>
+<body>
+<form name="form1" action="" method="post">
+<p>
+  <input type="hidden" name="act" value="add">
+  
+  <font color="#800000">&nbsp;&nbsp;&nbsp;当前位置:</font>
+  <a href="selectBranchRoomOut.html">任务单列表</a> &gt; 
+  分站库房领货 <br>
+  <br>
+ 
+<br>
+</p>
+<table width="90%" border=0 align="center">
+	<tr>
+		<td width="100%">
+			<font color=#FF0000>注:标有 * 的项必填&nbsp;</font>
+		</td>
+	</tr>
+</table>
+<table width="90%" class="default" align="center"  border="1">
+
+	<tr height="30" class="title">
+		<td align="center" colspan="4"><b>分站库房领货信息</b></td>
+	</tr>
+	<tr >
+	  <td height="31" align="right">任务单号：</td>
+	  <td>101</td>
+	  <td align="right">要求完成日期：</td>
+	  <td >2008年9月10日</td>
+    </tr>
+	<tr> 
+	   <td width="15%" align="right">领货人：</td>
+	   <td width="15%"><label>
+	     <input type="text" name="textfield">
+	     <font color=#FF0000>* </font></label></td>
+	   <td width="15%" align="right">领货日期：:</td>
+	  <td width="22%"><input type="hidden" name="__VIEWSTATE" value="dDwxODc5OTI0MDAwOzs+q/bk2mKy2luFYlVdxBgSOAYBUfE=" />
+<input name="txtDate" type="text" maxlength="10" id="txtAwardDate" class="textbox" /><font color=#FF0000>* </font>
+			<A onClick="return showCalendar('txtDate', 'y-mm-dd');" href="#"><img src="../images/Button.gif" id="IMG2" align="absMiddle" border="0" /></A>
+</td>
+	</tr>
+</table>
+<div align="center">
+  <p>&nbsp;</p>
+  <p>商品信息  </p>
+  <p>&nbsp;</p>
+</div>
+<table width="90%" class="default" align="center" onMouseOver="changeto()"  onmouseout="changeback()"  >
+	<tr class="title">
+	  <td width="18%">商品代码</td>
+		<td width="19%">商品名称</td>
+		<td width="31%">计量单位</td>
+		<td width="32%">领货数量</td>
+	</tr>
+	<tr class="rowAlternateA">
+	  <td>1</td>
+		<td>牙膏</td>
+		<td>支</td>
+		<td>2</td>
+	</tr>
+	<tr class="rowAlternateB">
+	  <td>1</td>
+		<td>牙膏</td>
+		<td>支</td>
+		<td>2</td>
+	</tr>
+	<tr class="rowAlternateA">
+	  <td>1</td>
+		<td>牙膏</td>
+		<td>支</td>
+		<td>2</td>
+	</tr>
+	<tr class="rowAlternateB">
+	  <td>1</td>
+		<td>牙膏</td>
+		<td>支</td>
+		<td>2</td>
+	</tr>
+</table>
+<br>
+<table width="286"  align="center">
+	<tr>
+		<td width="268" height=13 colspan="6"  align="center">
+			<INPUT type=button class="button"  value=" 领货 " onClick="RoomOut();">&nbsp;&nbsp;
+			<INPUT type=button class="button"  value=" 返回 " onClick="go_back();">&nbsp;&nbsp;
+			<INPUT type=reset class="button"  value=" 清除 " name=B2>
+	  </td>
+	</tr>
+</table>
+
+</FORM>
+</body>
+</html>
+<script>
+	function RoomOut(){
+		window.alert("成功领货！");
+		var url = "selectBranchRoomOut.html" ;
+		window.location.assign( url );
+	}
+	
+	function go_back(){
+		var url = "selectBranchRoomOut.html" ;
+		window.location.assign( url );
+	}
+
+</script>

@@ -1,0 +1,116 @@
+<html>
+<head>
+<title>分站库房入库查询</title>
+
+<META http-equiv=Content-Type content="text/html; charset=gb2312">
+</head>
+
+<link rel="stylesheet" href="../css/demo.css" type="text/css">
+<script language=JavaScript src="../js/script.js"></script>
+<script language=JavaScript src="../js/colorChange.js"></script>
+<body>
+
+<p><font color="#800000">&nbsp;&nbsp;&nbsp;当前位置:</font>验货单查询<br>
+  <br>
+  <br>
+</p>
+<form name="form1" action="selectBranchRoom_In.html" method="post">
+<table width="90%" align="center" class="search" border="0" >
+	<tr>
+	  <td width="22%" align="right">&nbsp;</td>
+	   <td width="10%" align="right">验货单号:</td>
+	   <td width="27%"><input type="text" name="" value=""></td>
+	   <td width="14%" align="right"><INPUT name="submit" type="submit" class="button"  value="查询"></td>
+	   <td width="27%" align="right">&nbsp;</td>
+	</tr>
+</table>
+</form>
+
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<table class="pagination" cellSpacing=0 cellPadding=4 width="90%" align="center" >
+	<tr>
+        <td nowrap>共476页,4751条记录</td>
+        <td width="99%">&nbsp;</td>
+        <td nowrap align=right>&lt;&lt;首页&nbsp;&lt;上一页&nbsp;|&nbsp;<A 
+            href="javascript:nextPageClicked();">下一页</A>&gt;&nbsp;<A 
+            href="javascript:lastPageClicked();">尾页</A>&gt;&gt;&nbsp;&nbsp;第
+			<INPUT id=topCurPage onKeyDown="if(event.keyCode == '13') return topCurPageChanged()" 
+			onkeyup="this.value=this.value.replace(/[\D]/g,'');" size=2 value=1>页
+			<INPUT onClick="return topCurPageChanged()" type=button value=go>
+		</td>
+	</tr>
+</table>
+<table width="90%" border="0" align="center" class="default" onMouseOver="changeto()"  onmouseout="changeback()">
+	<tr class="title">
+		<td width="14%">验货单号</td>
+		<td width="14%">分发日期</td>
+		<td width="14%">商品代号</td>
+		<td width="14%">商品名称</td>
+		<td width="14%">入库数量</td>
+		<td width="15%">实际入库数量</td>
+		<td width="15%">备注</td>
+	</tr>
+	<tr class="rowAlternateA">
+		<td>0001</td>
+		<td>2010.6.10</td>
+		<td></td>
+		<td></td>
+		<td></td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr class="rowAlternateB">
+		<td>0001</td>
+		<td>2010.6.10</td>
+		<td></td>
+		<td></td>
+		<td></td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr class="rowAlternateA">
+		<td>0001</td>
+		<td>2010.6.10</td>
+		<td></td>
+		<td></td>
+		<td></td>
+		<td></td>
+		<td></td>
+	</tr>
+	<tr class="rowAlternateB">
+		<td>0001</td>
+		<td>2010.6.10</td>
+		<td></td>
+		<td></td>
+		<td></td>
+		<td></td>
+		<td></td>
+</table>
+<table class=pagination cellSpacing=0 cellPadding=4 width="90%" border=0 align="center">
+	<tbody>
+        <tr>
+          <td nowrap>每页显示<SELECT onchange=bottomPageSizeChanged(); 
+            name=bottomPageSizeSelect><OPTION value=10 
+              selected>10</OPTION><OPTION value=20>20</OPTION><OPTION 
+              value=50>50</OPTION><OPTION value=100>100</OPTION></SELECT>条</td>
+          <td width="99%">&nbsp;</td>
+          <td nowrap align=right>&lt;&lt;首页&nbsp;&lt;上一页&nbsp;|&nbsp;<A 
+            href="javascript:nextPageClicked();">下一页</A>&gt;&nbsp;<A 
+            href="javascript:lastPageClicked();">尾页</A>&gt;&gt;&nbsp;&nbsp;第<INPUT 
+            id=bottomCurPage 
+            onkeydown="if(event.keyCode == '13') return bottomCurPageChanged()" 
+            onkeyup="this.value=this.value.replace(/[\D]/g,'');" size=2 
+value=1>页<INPUT onClick="return bottomCurPageChanged()" type=button value=go></td></tr></tbody></table>
+
+<div align="center"><input type="button" class="button" value="返回" onClick="go_back()">
+</div>
+</body>
+</html>
+
+<script>
+	function go_back(){
+		var url = "chaxunall.html";
+		window.location.assign( url );
+	}
+</script>

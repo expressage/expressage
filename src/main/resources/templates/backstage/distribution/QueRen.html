@@ -1,0 +1,106 @@
+<head>
+<title>进货确认页面</title>
+<META http-equiv=Content-Language content=zh-cn>
+<META http-equiv=Content-Type content="text/html; charset=gb2312">
+<META content="MSHTML 5.50.4134.600" name=GENERATOR>
+
+    <meta name="GENERATOR" Content="Microsoft Visual Studio .NET 7.1">
+	<meta name="CODE_LANGUAGE" Content="C#">		
+	<script src="../Js/Calendar.js"></script>
+	<link href="../Css/TestDate.css" rel="stylesheet">
+	<link href="../Css/calendar-blue.css" rel="stylesheet">
+	<link rel="stylesheet" href="../css/demo.css" type="text/css">
+
+<link rel="stylesheet" href="../css/demo.css" type="text/css" />
+
+<script language="javascript" src="../js/colorChange.js"></script>
+<script language="javascript">
+	function shengcheng(){
+		alert("成功生成购货入库调货单");
+		url="DaYin.html"
+		window.location.assign(url);
+	}
+	function hui(){
+		url="JinHuo.html"
+		window.location.assign(url);
+	}
+</script>
+
+</head>
+
+<body>
+  <form name="form1" method="post" action=""><br>
+  <font color="#800000">&nbsp;当前位置:</font><a href="JinHuo.html">&nbsp;进货管理</a> &gt;&nbsp;进货页面<br><br><br><br>
+<table width="80%" align="center" class="search">
+	<tr>
+	   <td width="70%" align="right">进货时间:&nbsp;</td>
+      <td width="30%" height=13 >
+		<input type="hidden" name="__VIEWSTATE" value="dDwxODc5OTI0MDAwOzs+q/bk2mKy2luFYlVdxBgSOAYBUfE=" />
+ 		<input name="txtDate" type="text" maxlength="10" id="txtAwardDate" class="textbox" />
+    	<A onClick="return showCalendar('txtDate', 'y-mm-dd');" href="#">
+		<img src="../images/Button.gif" id="IMG2" align="absMiddle" border="0" /></A>
+	  </td>
+	</tr> 
+</table>
+<br><br>
+<table align="center" width="80%">
+    <tr><td align="left"><font size="3">请确认想要进货的商品信息</font></td></tr>
+</table>
+
+<table class="default" width="80%" align="center" onMouseOver="changeto()"  onmouseout="changeback()">
+	<tr class="title">
+		<td width="12%">商品编号</td>
+		<td width="13%">商品名称</td>
+		<td width="13%">计量单位</td>
+		<td width="15%">现有库存量</td>
+		<td width="14%">预警库存量</td>
+		<td width="14%">缺货数量</td>	
+		<td width="19%">进货数量</td>
+	</tr>
+	<tr class="rowAlternateA">
+		<td>100000</td>
+		<td>衬衫</td>
+		<td>件</td>
+		<td>30</td>
+		<td>50</td>
+		<td>20</td>
+		<td><input type="text" width="18%"></td>
+	</tr>
+	<tr class="rowAlternateB">
+		<td>100000</td>
+		<td>衬衫</td>
+		<td>件</td>
+		<td>30</td>
+		<td>50</td>
+		<td>20</td>
+		<td><input type="text"  width="18%"></td>
+	</tr>
+	<tr class="rowAlternateA">
+		<td>100000</td>
+		<td>衬衫</td>
+		<td>件</td>
+		<td>30</td>
+		<td>50</td>
+		<td>20</td>
+		<td><input type="text"  width="18%"></td>
+	</tr>
+	<tr class="rowAlternateB">
+		<td>100000</td>
+		<td>衬衫</td>
+		<td>件</td>
+		<td>30</td>
+		<td>50</td>
+		<td>20</td>
+		<td><input type="text"  width="18%"></td>
+	</tr>
+</table><br><br> 
+<table width="80%" align="center">
+      <td width="90%" align="right">
+	  <input type="button" class="button"  value=" 进 货 " onClick="shengcheng()"></td>
+	 <td width="10%" height=13 align="right">
+		<INPUT type=button class="button"  value=" 返 回 " onClick="hui();" align="right">
+	 </td>
+</table>
+</form>
+</body>
+</html>
