@@ -19,8 +19,8 @@ public class BillController {
 		return "backstage/bill";
 	}
     
-	@RequestMapping("/query1")
-	public String query1(Model model) {
+	@RequestMapping("/query2")
+	public String query2(Model model) {
 		return "backstage/bill";
 	}
 }
