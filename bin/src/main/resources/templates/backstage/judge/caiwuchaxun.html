@@ -1,0 +1,191 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" href="../css/demo.css" type="text/css">
+<title>财务查询</title>
+
+<script>
+var  highlightcolor='#d5f4fe';
+var  clickcolor='#51b2f6';
+function go_back(){
+		var url = "chaxunall.html";
+		window.location.assign( url );
+}
+function  changeto(){
+source=event.srcElement;
+if  (source.tagName=="TR"||source.tagName=="TABLE")
+return;
+while(source.tagName!="TD")
+source=source.parentElement;
+source=source.parentElement;
+cs  =  source.children;
+//alert(cs.length);
+if  (cs[1].style.backgroundColor!=highlightcolor&&source.id!="nc"&&cs[1].style.backgroundColor!=clickcolor)
+for(i=0;i<cs.length;i++){
+	cs[i].style.backgroundColor=highlightcolor;
+}
+}
+
+function  changeback(){
+if  (event.fromElement.contains(event.toElement)||source.contains(event.toElement)||source.id=="nc")
+return
+if  (event.toElement!=source&&cs[1].style.backgroundColor!=clickcolor)
+//source.style.backgroundColor=originalcolor
+for(i=0;i<cs.length;i++){
+	cs[i].style.backgroundColor="";
+}
+}
+
+function  clickto(){
+source=event.srcElement;
+if  (source.tagName=="TR"||source.tagName=="TABLE")
+return;
+while(source.tagName!="TD")
+source=source.parentElement;
+source=source.parentElement;
+cs  =  source.children;
+//alert(cs.length);
+if  (cs[1].style.backgroundColor!=clickcolor&&source.id!="nc")
+for(i=0;i<cs.length;i++){
+	cs[i].style.backgroundColor=clickcolor;
+}
+else
+for(i=0;i<cs.length;i++){
+	cs[i].style.backgroundColor="";
+}
+}
+</script>
+
+</head>
+
+<body>
+<div>
+<font color="#800000">&nbsp;&nbsp;&nbsp;当前位置</font>&gt;财务查询</div>
+<br/>
+<br/>
+<div>
+<form name="form1" action="" method="post">
+<table width="90%" align="center" class="search" border="0" >
+	<tr>
+	  <td width="22%" align="right">&nbsp;</td>
+	   <td width="10%" align="right">签收单号:</td>
+	   <td width="27%"><input type="text" name="" value=""></td>
+	   <td width="14%" align="right"><INPUT name="submit" type="submit" class="button"  value="查询"></td>
+	   <td width="27%" align="right">&nbsp;</td>
+	</tr>
+</table>
+</form>
+</div>
+<br />
+  <table class="pagination" cellspacing="0" cellpadding="4" width="90%" align="center">
+    <tr>
+      <td width="13%" nowrap="nowrap">共476页,4751条记录</td>
+      <td width="47%">&nbsp;</td>
+      <td width="40%" align="right" nowrap="nowrap">&lt;&lt;首页&nbsp;&lt;上一页&nbsp;|&nbsp;<a 
+            href="javascript:nextPageClicked();">下一页</a>&gt;&nbsp;<a 
+            href="javascript:lastPageClicked();">尾页</a>&gt;&gt;&nbsp;&nbsp;第
+        <input name="Input" id="topCurPage" onkeydown="if(event.keyCode == '13') return topCurPageChanged()" 
+			onkeyup="this.value=this.value.replace(/[\D]/g,'');" value="1" size="2" />
+        页
+        <input name="button" type="button" onclick="return topCurPageChanged()" value="go" />
+      </td>
+    </tr>
+  </table>
+  <div>
+  <table class="default" width="90%" align="center"onMouseOver="changeto()"  onmouseout="changeback()">
+    <tr class="title">
+      <td width="9%">签收单号</td>
+      <td width="9%">任务单号</td>
+      <td width="7%">订单号</td>
+      <td width="7%">商品名</td>
+      <td width="9%">商品代号</td>
+      <td width="9%">商品数量</td>
+      <td width="9%">订单状态</td>
+      <td width="11%">任务单状态</td>
+      <td width="7%">客户名</td>
+      <td width="11%">签收单状态</td>
+      <td width="5%">金额</td>
+      <td width="7%">收款与否</td>
+    </tr>
+          <tr class="rowAlternateA">
+            <td></td>
+            <td></td>           
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+			<td></td>
+		   	</tr>
+          	 <tr class="rowAlternateB">
+            <td></td>
+            <td></td>           
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+			<td></td>
+          </tr>
+          <tr class="rowAlternateA">
+            <td></td>
+            <td></td>           
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+			<td></td>
+		   	</tr>
+          	 <tr class="rowAlternateB">
+            <td></td>
+            <td></td>           
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+			<td></td>
+          </tr>
+    </table>
+  </div>
+  <table class=pagination cellSpacing=0 cellPadding=4 width="90%" border=0 align="center">
+	<tbody>
+        <tr>
+          <td nowrap>每页显示<SELECT onchange=bottomPageSizeChanged(); 
+            name=bottomPageSizeSelect><OPTION value=10 
+              selected>10</OPTION><OPTION value=20>20</OPTION><OPTION 
+              value=50>50</OPTION><OPTION value=100>100</OPTION></SELECT>条</td>
+          <td width="99%">&nbsp;</td>
+          <td nowrap align=right>&lt;&lt;首页&nbsp;&lt;上一页&nbsp;|&nbsp;<A 
+            href="javascript:nextPageClicked();">下一页</A>&gt;&nbsp;<A 
+            href="javascript:lastPageClicked();">尾页</A>&gt;&gt;&nbsp;&nbsp;第<INPUT 
+            id=bottomCurPage 
+            onkeydown="if(event.keyCode == '13') return bottomCurPageChanged()" 
+            onkeyup="this.value=this.value.replace(/[\D]/g,'');" size=2 
+value=1>页<INPUT onClick="return bottomCurPageChanged()" type=button value=go></td></tr></tbody></table>
+<div>
+    <br />
+ <div align="center"><input type="button" class="button" value="返回" onClick="go_back()">
+</div>
+  <div align="center"></div>
+</div>
+</body>
+</html>

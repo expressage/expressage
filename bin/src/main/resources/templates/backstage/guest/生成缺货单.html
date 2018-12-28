@@ -1,0 +1,60 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>客户查询</title>
+<script language=JavaScript src="../js/colorChange.js"></script>
+</head>
+<link rel="stylesheet" href="../css/demo.css" type="text/css">
+<body>
+<br />
+<font color="#800000">&nbsp;&nbsp;&nbsp;</font><font color="#800000">当前位置:</font> 生成缺货单   
+<br />
+<br />
+<br />
+<table width="90%" align="center" class="default" onMouseOver="changeto()"  onmouseout="changeback()">
+	<tr class="title">
+		<td>缺货单号</td>
+		<td>缺货商品</td>
+		<td>商品编号</td>
+		<td>库存量</td>
+		<td>需购个数</td>
+		<td>需购时间</td>
+	</tr>
+	<tr class="rowAlternateA">
+		<td>100000</td>
+		<td>ipad</td>
+		<td>250</td>
+		<td>20</td>
+		<td>100</td>
+		<td>2055-03-03</td>
+	</tr>
+</table>
+<table width="90%" border="1" align="center" cellPadding=4 cellSpacing=0 bordercolor="#ECE9D8" class="pagination">
+	<tbody>
+        <tr>
+          <td width="5%" nowrap><a href="订单信息录入.html">
+            <input name="button" type="button" class="button" onclick="return bottomCurPageChanged()" value="生成缺货单" />
+          </a></td>
+          <td width="90%">&nbsp;</td>
+          <td width="5%" align=right nowrap><a href="订单信息录入.html">
+            <input name="button2" type="button" class="button" onclick="go_back()" value="返回" />
+          </a></td>
+        </tr></tbody></table>
+<br />
+</body>
+</html>
+<script> 
+	function addCustomer(){
+		url="addCustomer.html"
+		window.location.assign(url);
+	}
+	function go_back(){
+		window.history.back();	
+	}
+	
+function onSubmit(){
+		url="noResult.html"
+		window.location.assign(url);
+	}
+</script>

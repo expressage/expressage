@@ -1,0 +1,113 @@
+<html>
+<head>
+<title>修改商品信息</title>
+<META http-equiv=Content-Language content=zh-cn>
+<META http-equiv=Content-Type content="text/html; charset=gb2312">
+<META content="MSHTML 5.50.4134.600" name=GENERATOR>
+
+<link rel="stylesheet" href="../css/demo.css" type="text/css" />
+
+<script language="javascript" src="../js/colorChange.js"></script>
+<script language="JavaScript" src="../js/script.js"></script>
+<script> 
+	function onSubmit(){
+	    alert("成功修改商品信息");
+		var url = "ShangPin.html" ;
+		window.location.assign( url );
+	}
+	
+	function go_back(){
+		var url = "ShangPin.html" ;
+		window.location.assign( url );
+	}
+	
+	/* function chengGong(){
+	 	if(dengLu()&&passWord()&&mima()&&Mnian()&&Myue()&&Mri()&&haoMa()&&youBian()&&email()&&qq()&&guHua()&&shouJi()){
+			alert("恭喜，注册成功！");
+			return true;
+		}else
+		 	alert("对不起，注册失败，请重新注册！");
+			return false;
+	 } 
+    */
+	
+</script>
+
+</HEAD>
+ 
+<body >
+	<form name="form1" action="" method="post" >
+	<input type="hidden" name="act" value="add">
+	
+	<font color="#800000">&nbsp;当前位置:</font><a href="ShangPin.html">商品管理</a>  &gt; 修改商品信息<br><br>
+	<br>
+	
+	<table width="55%" height="49" border=0 align="center">
+		<tr>
+			<td width="50%" height="37" align="left"><font size="3"><b>请输入要修改的商品信息：</b></font></td>
+			<td width="50%" align="right"><font color=#FF0000>注:标有 * 的项必填&nbsp;</font></td>
+		</tr>
+	</table>
+	
+	<table width="56%" align="center"  onMouseOver="changeto()"  onmouseout="changeback()" class="default">
+		<tr class="rowAlternateA">
+		   <td width="37%" height="30" align="right">商品编号：&nbsp;</td>
+	       <td width="63%" align="left">
+		  <INPUT type="text" name="goodsId" value="222"><font color=#FF0000>*</font></td>
+	  </tr>
+		<tr class="rowAlternateB">
+		   <td width="37%" height="30" align="right">商品名称：&nbsp;</td>
+	      <td width="63%" >
+		  <INPUT type="text" name="goodsName" value="衬衫" ><font color=#FF0000>*</font></td>
+      </tr>
+		<tr class="rowAlternateA">
+		   <td width="37%" height="30" align="right">计量单位：&nbsp;</td>
+	      <td width="63%">
+		  <INPUT type="text" name="goodsUnit" value="件">	<font color=#FF0000>*</font></td>
+      </tr>
+		<tr class="rowAlternateB">
+		   <td width="37%" height="30" align="right">原&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;价：&nbsp;</td>
+	      <td width="63%" align="left">
+		  <INPUT type="text"  name="goodsPriPrice" value="2000" ><font color=#FF0000>*</font></td>
+	  </tr>
+		<tr class="rowAlternateA">
+		   <td width="37%" height="27" align="right">成&nbsp;本&nbsp;价：&nbsp;</td>
+	      <td width="63%">
+		  <INPUT type="text" name="goodspriCost" value="50"><font color=#FF0000>*</font></td>
+      </tr>
+		<tr class="rowAlternateB">
+		   <td width="37%" height="26" align="right">厂&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;商：&nbsp;</td>
+	      <td width="63%">
+		  <INPUT type="text" name="manufacturer" value="Neusoft"><font color=#FF0000>*</font></td>
+	  </tr>
+		<tr class="rowAlternateA">
+		   <td width="37%" height="30" align="right">可否退货：&nbsp;</td>
+		   <td width="63%" ><select name="goodsReturn">
+								<option  value="">可以</option>
+								<option  value="">不可以</option>
+		  </select><font color=#FF0000>*</font></td>
+	  </tr>
+		<tr class="rowAlternateB">
+		   <td width="37%" height="31" align="right">可否换货：&nbsp;</td>
+		   <td width="63%"><select name="goodsExchange">
+								<option  value="">可以</option>
+								<option  value="">不可以</option>
+		  </select><font color=#FF0000>*</font></td>
+	  </tr>
+		<tr class="rowAlternateA">
+		   <td width="37%" height="27" align="right">备&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;注：&nbsp;</td>
+	      <td width="63%"><INPUT type="text" name="goodsRemarks" value=""></td>
+	  </tr>
+		<tr class="rowAlternateB" height="30">
+			<td height="39"  align="right">
+				<INPUT type="button" class="button"  value=" 保 存 " onClick="onSubmit()">&nbsp;&nbsp;</td>
+	        <td height="39"  align="left"><input type="reset" class="button"  value=" 重新填写 " name=B2>&nbsp;
+            <input name="button" type="button" class="button" onClick="go_back()"  value=" 返 回 "></td>
+	  </tr>
+	</table>
+	</FORM>
+	修改完商品信息之后，要刷新列表
+ 
+</body>
+</html>
+

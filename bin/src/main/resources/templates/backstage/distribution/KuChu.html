@@ -1,0 +1,137 @@
+ 
+<html:html><head>
+
+<title>库房储备管理</title>
+<META http-equiv=Content-Language content=zh-cn>
+<META http-equiv=Content-Type content="text/html; charset=gb2312">
+<META content="MSHTML 5.50.4134.600" name=GENERATOR>
+<link rel="stylesheet" type="text/css" href="../css/demo.css" />
+
+ <script language="javascript" src="../js/colorChange.js"></script>
+<script language="JavaScript" src="../js/script.js"></script>
+<script> 
+	function cancel(){
+		url="KuFang.html"
+		window.location.assign(url);
+	}
+	function GoodsSet(){
+	alert("保存成功");
+		url="KuFang.html"
+		window.location.assign(url);
+	}
+	
+</script></head>
+<body>
+<form name="form1">
+ 
+<font color="#800000">&nbsp;当前位置:</font>
+<a href="KuFang.html">库房管理</a>  &gt;库房储备管理<br><br><br><br>
+<table width="80%" align="center" class="search" >
+	<tr>
+	   <td align="right" width="94%">商品名称:&nbsp;
+      <input type="text" name="telephone"></td>
+	   <td width="6%" align="right">
+	   <INPUT type="button" class="button"  value=" 查 询 " onClick="form1.submit();"></td>
+	</tr>
+</table><br><br>
+
+<table class="pagination" cellSpacing=0 cellPadding=4 width="80%" align="center">
+	<tr>
+        <td nowrap>库房名称：中心库房/分站库房</td>
+	</tr>
+</table><br>
+<table align="center" width="80%">
+	<tr>
+		<td nowrap>共200页,3999条记录</td>
+	</tr>
+</table>
+ 
+<table class="default"  width="80%" align="center" onMouseOver="changeto()"  onmouseout="changeback()">
+	<tr class="title">
+		<td width="8%">商品编号</td>
+		<td width="8%">商品名称</td>
+		<td width="8%">计量单位</td>
+		<td width="9%">原价</td>
+		<td width="8%">成本价</td>
+		<td width="11%">厂商</td>
+		<td width="10%">可否退货</td>
+		<td width="10%">可否换货</td>
+		<td width="15%">预警值</td>
+		<td width="13%">最高值</td>
+	</tr>
+	<tr class="rowAlternateA">
+		<td>100000</td>
+		<td>背心</td>
+		<td>件</td>
+		<td>2000</td>
+		<td>50</td>
+		<td>Neusoft</td>
+		<td>可以</td>
+		<td>可以</td>
+		<td><input type="text" value="" width="10%"/></td>
+		<td><input type="text" value="" width="10%"/></td>
+	</tr>
+	<tr class="rowAlternateB">
+		<td>100000</td>
+		<td>背心</td>
+		<td>件</td>
+		<td>2000</td>
+		<td>50</td>
+		<td>Neusoft</td>
+		<td>可以</td>
+		<td>可以</td>
+		<td><input type="text" value="" width="10%"/></td>
+		<td><input type="text" value="" width="10%"/></td>
+	</tr>
+	<tr class="rowAlternateA">
+		<td>100000</td>
+		<td>背心</td>
+		<td>件</td>
+		<td>2000</td>
+		<td>50</td>
+		<td>Neusoft</td>
+		<td>可以</td>
+		<td>可以</td>
+		<td><input type="text" value="" width="10%"/></td>
+		<td><input type="text" value="" width="10%"/></td>
+	</tr>
+	<tr class="rowAlternateB">
+		<td>100000</td>
+		<td>背心</td>
+		<td>件</td>
+		<td>2000</td>
+		<td>50</td>
+		<td>Neusoft</td>
+		<td>可以</td>
+		<td>可以</td>
+		<td><input type="text" value="" width="10%"/></td>
+		<td><input type="text" value="" width="10%"/></td>
+	</tr>
+</table>
+<table class=pagination cellSpacing=0 cellPadding=4  width="80%" border=0 align="center">
+	<tbody>
+        <tr>
+          <td width="14%" nowrap>每页显示
+          <SELECT onchange=bottomPageSizeChanged();  name=bottomPageSizeSelect>
+		  <OPTION value=10  selected>10</OPTION><OPTION value=20>20</OPTION>
+		  <OPTION value=50>50</OPTION><OPTION value=100>100</OPTION></SELECT>条</td>
+          <td width="49%">&nbsp;</td>
+          <td width="37%" align=right nowrap>&lt;&lt;首页&nbsp;&lt;上一页&nbsp;|&nbsp;
+		  <A  href="javascript:nextPageClicked();">下一页</A>&gt;&nbsp;
+		  <A  href="javascript:lastPageClicked();">尾页</A>&gt;&gt;&nbsp;&nbsp;第
+		  <INPUT id=bottomCurPage  onkeydown="if(event.keyCode == '13') return bottomCurPageChanged()" 
+           onkeyup="this.value=this.value.replace(/[\D]/g,'');" size=2 value=1>页
+		  <INPUT onClick="return bottomCurPageChanged()" type=button value=go></td></tr></tbody></table><br>
+<table align="center" width="80%">
+	<tr>
+		<td height=13 colspan="6" align="right">
+		<INPUT type="button" class="button"  value=" 保 存 " onClick="GoodsSet();">&nbsp;
+		<INPUT type="button" class="button"  value=" 取 消 " onClick="cancel();">
+		</td>
+	</tr>
+</table>
+</form>
+</body>
+</html>
+
+

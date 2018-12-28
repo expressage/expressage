@@ -1,0 +1,139 @@
+<html>
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>商品管理</title>
+<META http-equiv=Content-Language content=zh-cn>
+<META http-equiv=Content-Type content="text/html; charset=gb2312">
+<META content="MSHTML 5.50.4134.600" name=GENERATOR>
+<link rel="stylesheet" type="text/css" href="../Css/demo.css" />
+
+<script language="javascript" src="../js/colorChange.js"></script>
+<script language="JavaScript" src="../js/script.js"></script>
+<script> 
+		function add(){
+			url="addGood.html"
+			window.location.assign(url);
+		}
+		function shanchu(){
+			var isDelete = confirm("确定要删除该商品吗？");
+			if(isDelete){
+				
+			}else{
+				
+			}
+		}
+		
+</script>
+
+</head>
+
+<body>
+
+<form name="form1" method="post" action="" id="form1">
+ <br>
+<font  color="#800000">&nbsp;当前位置:</font>&nbsp;商品管理<br><br><br><br>
+<table width="80%" align="center" class="search">
+	<tr>
+	   <td width="38%">相关商品信息</td>
+	   <td width="38%" align="right">商品名称:&nbsp;</td>
+      <td width="19%"><input type="text" name="goodName"></td>
+      <td width="5%" align="right">
+	  <input name="submit" type="button" class="button"  value=" 查 询 " onClick="form1.submit();"></td>
+	</tr> 
+</table>
+<br><br>
+ 
+<table class="pagination" cellSpacing=0 cellPadding=4 width="80%" align="center">
+	<tr>
+        <td nowrap height="18">共200页,3999条记录</td>
+        <td width="90%">&nbsp;</td>
+	</tr>
+</table>
+ 
+<table class="default" width="80%" align="center" onMouseOver="changeto()"  onmouseout="changeback()">
+	<tr class="title">
+		<td width="10%">商品编号</td>
+		<td width="10%">商品名称</td>
+		<td width="10%">计量单位</td>
+		<td width="12%">原价</td>
+		<td width="10%">成本价</td>
+		<td width="12%">厂商</td>
+	    <td width="12%">可否退货</td>
+		<td width="11%">可否换货</td>
+		<td width="13%">操作</td>
+	</tr>
+	<tr class="rowAlternateA">
+		<td>100000</td>
+		<td>衬衫</td>
+		<td>件</td>
+		<td>2000</td>
+		<td>50</td>
+		<td>Neusoft</td>
+ 		<td>可以</td>
+		<td>可以</td>
+		<td ><a href="goodUpdate.html">修改</a>&nbsp;&nbsp;&nbsp;&nbsp;<a onClick="shanchu();" href="ShangPin.html">删除</a></td>
+	</tr>
+	<tr class="rowAlternateB">
+		<td>100000</td>
+		<td>衬衫</td>
+		<td>件</td>
+		<td>2000</td>
+		<td>50</td>
+		<td>Neusoft</td>
+ 		<td>可以</td>
+		<td>可以</td>
+		<td ><a href="goodUpdate.html">修改</a>&nbsp;&nbsp;&nbsp;&nbsp;<a onClick="shanchu();" href="ShangPin.html">删除</a></td>
+	</tr>
+	<tr class="rowAlternateA">
+		<td>100000</td>
+		<td>衬衫</td>
+		<td>件</td>
+		<td>2000</td>
+		<td>50</td>
+		<td>Neusoft</td>
+ 		<td>可以</td>
+		<td>可以</td>
+		<td ><a href="goodUpdate.html">修改</a>&nbsp;&nbsp;&nbsp;&nbsp;<a onClick="shanchu();" href="ShangPin.html">删除</a></td>
+	</tr>
+	<tr class="rowAlternateB">
+		<td>100000</td>
+		<td>衬衫</td>
+		<td>件</td>
+		<td>2000</td>
+		<td>50</td>
+		<td>Neusoft</td>
+ 		<td>可以</td>
+		<td>可以</td>
+		<td ><a href="goodUpdate.html">修改</a>&nbsp;&nbsp;&nbsp;&nbsp;<a onClick="shanchu();" href="ShangPin.html">删除</a></td>
+	</tr>
+</table>
+<table class="pagination" cellSpacing=0 cellPadding=4 width="80%" border=0 align="center">
+	<tbody>
+        <tr>
+          <td nowrap>每页显示<SELECT onchange=bottomPageSizeChanged();  name=bottomPageSizeSelect>
+		  <OPTION value=10  selected>10</OPTION>
+		  <OPTION value=20>20</OPTION>
+		  <OPTION value=50>50</OPTION>
+		  <OPTION value=100>100</OPTION></SELECT>条</td>
+          <td width="99%">&nbsp;</td>
+          <td nowrap align=right>&lt;&lt;首页&nbsp;&lt;上一页&nbsp;|&nbsp;
+		  <A  href="javascript:nextPageClicked();">下一页</A>&gt;&nbsp;
+		  <A  href="javascript:lastPageClicked();">尾页</A>&gt;&gt;&nbsp;&nbsp;第
+		  <INPUT  id=bottomCurPage  onkeydown="if(event.keyCode == '13') return bottomCurPageChanged()"   
+			onkeyup="this.value=this.value.replace(/[\D]/g,'');" size=2  value=1>页
+			<INPUT onClick="return bottomCurPageChanged()" type=button value=go>
+		</td>
+	  </tr>
+	</tbody>
+</table><br><br>
+ 
+<table align="center" width="80%">
+	<tr>
+	<td  align="right"  height="13"><INPUT type="button"   value=" 登记新商品 " class="button" onClick="add();" align="right">
+	</tr>
+</table>
+</form>
+
+</body>
+</html>

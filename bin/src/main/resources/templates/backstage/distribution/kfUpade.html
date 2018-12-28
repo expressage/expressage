@@ -1,0 +1,77 @@
+
+<html>
+<head>
+<title>修改库房信息</title>
+<META http-equiv=Content-Language content=zh-cn>
+<META http-equiv=Content-Type content="text/html; charset=gb2312">
+<META content="MSHTML 5.50.4134.600" name=GENERATOR>
+<link rel="stylesheet" href="../css/demo.css" type="text/css">
+
+<script language="JavaScript" src="../js/script.js"></script>
+<script language="javascript" src="../js/colorChange.js"></script>
+<script> 
+	function go_back(){
+		var url = "KuFang.html" ;
+		window.location.assign( url );
+	}
+	
+		function save(){
+		alert("保存成功");
+		var url = "KuFang.html" ;
+		window.location.assign( url );
+	}
+</script>
+</HEAD>
+<body>
+ 
+ 
+ 
+<font color="#800000">&nbsp;当前位置:</font>
+<a href="KuFang.html">库房管理</a>  &gt;
+修改库房信息
+<br><br><br><br>
+<form name="form1" action="" method="post">
+<table width="55%" border=0 align="center">
+		<tr>
+			<td width="100%">
+				<font color=#FF0000>注:标有 * 的项必填&nbsp;</font>
+			</td>
+		</tr>
+</table>
+
+  <table width="56%" align="center"  onMouseOver="changeto()"  onmouseout="changeback()" class="default">
+	<tr class="title" height="30">
+		<td height="31" colspan="6" align="center"><font size="3"><b>修改库房信息</b></td>
+	</tr>
+	<tr class="rowAlternateA">
+	   <td width="44%" height="28"  align="right">库房名称:&nbsp;</td>
+      <td width="56%" >
+	  <INPUT type="text" name="" value="分站库房1" ><font color=#FF0000>*</font></td>
+	</tr>
+	<tr class="rowAlternateB">
+	   <td width="44%" height="29" align="right">库房地址:&nbsp;</td>
+      <td width="56%" ><INPUT type="text" name="" value="中心大楼A3" ><font color=#FF0000>*</font></td>
+	</tr>
+	<tr class="rowAlternateA">
+	   <td width="44%" height="29" align="right">库管员:&nbsp;</td>
+      <td width="56%" ><INPUT type="text" name="" value="小白"><font color=#FF0000>*</font></td>
+	</tr>
+	<tr class="rowAlternateB">
+	   <td width="44%" height="30" align="right">库房级别:&nbsp;</td>
+	   <td width="56%" ><select>
+	   <option value="">中心</option>
+	   <option value="">分站</option>
+      </select><font color=#FF0000>*</font></td>
+    </tr>
+	<tr height="30">
+		<td height="38"  align="right">&nbsp;&nbsp;
+	  <input name="button" type="button" class="button" onClick="save();"  value=" 保 存 ">&nbsp;&nbsp;</td>
+	    <td height="38"  align="left"><input name="reset" type="reset" class="button"  value=" 重新填写 ">&nbsp;
+        <input name="button2" type="button" class="button" onClick="go_back();"  value=" 返 回 "></td>
+	</tr>
+</table>
+</FORM>
+修改完库房信息后，要更新库房信息列表， 中心库房存在的话，不可改成中心库房
+</body>
+</html>
+

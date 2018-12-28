@@ -1,0 +1,76 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>查询购货单</title>
+<style type="text/css">
+<!--
+.STYLE1 {color: #0044DD}
+-->
+</style>
+</head>
+
+<link rel="stylesheet" href="../css/demo.css" type="text/css">
+<script type="text/javascript" src="../JS/date.js"></script>
+<script language=JavaScript src="../js/colorChange.js"></script>
+
+<body>
+<br>
+<font color="#800000">&nbsp;&nbsp;&nbsp;当前位置:</font>添加用户<br>
+<br>
+<br>
+<br>
+<form id="taskAssignSearch" method="post">
+  <br />
+  <br />
+  <table class="default" width="77%" align="center" onMouseOver="changeto()"  onmouseout="changeback()">
+    <tr class="title">
+      <td width="17%"><div align="center">ID</div></td>
+      <td width="20%"><div align="center">用户名</div></td>
+      <td width="19%"><div align="center">密码</div></td>
+      <td width="20%"><div align="center">确认密码</div></td>
+      <td width="24%"><div align="center">权限</div></td>
+    </tr>
+    <tr class="rowAlternateA">
+      <td>
+        <input type="text" name="id" value="" readonly="true" />
+      </td>
+      <td><div align="center">
+        <input type="text" name="id2" value="" />
+      </div></td>
+      <td><div align="center">
+        <input type="text" name="id3" value="" />
+      </div></td>
+      <td><div align="center">
+        <input type="text" name="id4" value="" />
+      </div></td>
+      <td><div align="right"><a href="订单信息.html">
+        <select name="select">
+          <option>决策者</option>
+          <option>配送员</option>
+          <option>客服人员</option>
+          <option>分站管理员</option>
+          <option>用户管理员</option>
+          <option>调度中心管理员</option>
+          <option>配送中心管理员</option>
+          <option>中心库房管理员</option>
+          <option>分站库房管理员</option>
+          <option>财务中心管理员</option>
+        </select>
+      </a></div></td>
+    </tr>
+  </table>
+  <p align="center">&nbsp;</p>
+  <p align="center">
+    <input name="提交" type="submit" class="button" onclick="form1_onSubmit()"  value="添加" />
+     <input name="button" type="button" class="button" onclick="go_back()"  value=" 返回 " />
+  </p>
+</form>
+</body>
+</html>
+<script>
+function check(){
+	alert("任务状态不符合要求，不可以分配任务	");
+	return false;
+}
+</script>

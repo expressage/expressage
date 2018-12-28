@@ -1,0 +1,190 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>客户查询</title>
+<script language=JavaScript src="../js/colorChange.js"></script>
+<style type="text/css">
+<!--
+.STYLE1 {color: #F2F8FF}
+.STYLE2 {color: #0044DD}
+-->
+</style>
+</head>
+<script language=JavaScript src="../js/script.js"></script>
+<link rel="stylesheet" href="../css/demo.css" type="text/css">
+<body>
+<br>
+<font color="#800000">&nbsp;&nbsp;&nbsp;当前位置:</font> 退货<br>
+<br>
+
+<br>
+<br>
+<div align="center">
+	<div style="width:90%"align="right"></div>
+</div>
+<form id="customerSearch" action="" method="post">
+<table width="90%" align="center" class="search"  onMouseOver="changeto()"  onmouseout="changeback()">
+	<tr>
+	   <td width="15%"></td>
+	   <td nowrap align="right">身份证号:</td>
+	   <td nowrap><input type="text" name="idCard"></td>
+	   <td nowrap align="right">姓名:</td>
+	   <td nowrap><input type="text" name="custmerName"></td>
+	   <td nowrap align="right">电话号码:</td>
+	   <td nowrap><input type="text" name="custmerTel" /></td>
+	   <td nowrap><input type="submit" class="button" value="查询" /></td>
+	   <td width="15%"></td>
+	</tr>
+</table>
+<p>&nbsp;</p>
+</form>
+<table align="center" width="90%" class="default" onMouseOver="changeto()"  onmouseout="changeback()" >
+	<tr class="title">
+		<td align="center">&nbsp;</td>
+	    <td align="center">&nbsp;</td>
+	    <td align="center">&nbsp;</td>
+	    <td align="left"><b>客户信息</b></td>
+	    <td align="center">&nbsp;</td>
+	    <td align="center">&nbsp;</td>
+	</tr>
+	<tr class="rowAlternateA">
+	   <td width="15%"  align="right">客户编号：</td>
+	   <td width="15%" ><input type="text" name="customerId" value="10000000" readonly></td>
+	   <td width="15%" align="right">客户姓名：</td>
+	   <td width="15%"><input type="text" name="customerName" value="谢文东"></td>
+	   <td width="15%" align="right">身份证编号：</td>
+	   <td width="25%" align="left"><input type="text" name="idCard" value="210106197902232326"></td>
+	</tr>
+	<tr class="rowAlternateB">
+	   <td width="15%" align="right">工作单位：</td>
+	   <td width="15%" ><input type="text" name="workPlace" value="东软" ></td>
+	   <td width="15%" align="right">座机：</td>
+	   <td width="15%"><input type="text" name="customerPhone" value="024-83665597"> </td>
+	   <td width="15%" align="right">移动电话：</td>
+	   <td width="25%" align="left"><input type="text"  name="customerTel" value="13998837281" ></td>
+	</tr>
+	<tr class="rowAlternateA">
+	   <td width="15%" align="right">联系地址：</td>
+	   <td width="15%" ><input type="text" name="customerAdd" value="沈阳市浑南新区"></td>
+	   <td width="15%" align="right">邮编：</td>
+	   <td width="15%"><input type="text" name="customerPost" value="110179"></td>
+	   <td width="15%" align="right">电子邮件：</td>
+	   <td width="25%"><input type="text" name="customerEmail" value="XXX@neusoft.com"></td>
+	</tr>
+</table>
+<p align="center">&nbsp;</p>
+<table class="pagination" cellSpacing=0 cellPadding=4 width="90%" align="center">
+	<tr>
+        <td nowrap>共476页,4751条记录</td>
+		<td width="99%"></td>
+        <td nowrap align=right>&lt;&lt;首页&nbsp;&lt;上一页&nbsp;|&nbsp;<A 
+            href="javascript:nextPageClicked();">下一页</A>&gt;&nbsp;<A 
+            href="javascript:lastPageClicked();">尾页</A>&gt;&gt;&nbsp;&nbsp;第
+			<input id=topCurPage onKeyDown="if(event.keyCode == '13') return topCurPageChanged()" 
+			onkeyup="this.value=this.value.replace(/[\D]/g,'');" size=2 value=1 />页
+			<input type=button class="button" onClick="return topCurPageChanged()" value=go />		</td>
+	</tr>
+</table>
+<table width="90%" class="default" align="center"  onMouseOver="changeto()"  onmouseout="changeback()">
+	<tr class="title">
+		<td width="13%">订单号</td>
+		<td width="15%">商品名称</td>
+		<td width="12%">数量</td>
+		<td width="13%">单价</td>
+		<td width="13%">总额</td>
+		<td width="16%">订单状态</td>
+		<td width="18%">操作</td>
+	</tr>
+	<tr class="rowAlternateA">
+		<td>100001</td>
+		<td>飞利浦电吹风</td>
+		<td>1</td>
+		<td>233</td>
+		<td>233</td>
+		<td>已完成</td>
+		<td><span class="STYLE2"><a href="生成退货单.html">退货</a></span></td>
+	</tr>
+	<tr class="rowAlternateB">
+		<td>100003</td>
+		<td>熊猫盼盼</td>
+		<td>2</td>
+		<td>23.5</td>
+		<td>47</td>
+		<td>已调度</td>
+		<td><span class="STYLE2"><a href="生成退货单.html">退货</a></span></td>
+	</tr>
+	<tr class="rowAlternateA">
+		<td>100005</td>
+		<td>飞利浦电吹风</td>
+		<td>1</td>
+		<td>233</td>
+		<td>233</td>
+		<td>中心库房出库</td>
+		<td><span class="STYLE2"><a href="生成退货单.html">退货</a></span></td>
+	</tr>
+	<tr class="rowAlternateB">
+		<td>100004</td>
+		<td>飞利浦电吹风</td>
+		<td>1</td>
+		<td>233</td>
+		<td>233</td>
+		<td>配送站到货</td>
+		<td><span class="STYLE2"><a href="生成退货单.html">退货</a></span></td>
+	</tr>
+</table>
+<table class=pagination cellSpacing=0 cellPadding=4 width="90%" border=0 align="center">
+	<tbody>
+        <tr>
+          <td nowrap>每页显示
+		  	<select onchange=bottomPageSizeChanged(); name=bottomPageSizeselect>
+				<option value=10 selected>10</option>
+				<option value=20>20</option>
+				<option value=50>50</option>
+				<option value=100>100</option>
+			</select>条
+		  </td>
+          <td width="99%">&nbsp;</td>
+          <td nowrap align=right>&lt;&lt;首页&nbsp;&lt;上一页&nbsp;|&nbsp;<A 
+            href="javascript:nextPageClicked();">下一页</A>&gt;&nbsp;<A 
+            href="javascript:lastPageClicked();">尾页</A>&gt;&gt;&nbsp;&nbsp;第<input 
+            id=bottomCurPage 
+            onkeydown="if(event.keyCode == '13') return bottomCurPageChanged()" 
+            onkeyup="this.value=this.value.replace(/[\D]/g,'');" size=2 
+value=1 />页<input type=button class="button" onClick="return bottomCurPageChanged()" value=go />
+		  </td>
+	  </tr>
+	</tbody>
+</table>
+ 
+<table width="90%" align="center">
+	<tr align="left" height="30">
+		<td height="30"><input type="button" class="button" onclick="go_back()" value=" 返回 " /></td>
+	</tr>
+</table>
+
+<blockquote>
+  <p>		<br />
+    <br />
+    <br />
+  </p>
+</blockquote>
+</body>
+</html>
+<script> 
+function confirmDel(){
+	confirm("确认删除该客户?")
+}
+function confirmDelSelected(){
+	if(checkSelectByHint(customerList.customerIDs,"复选框未定义","请选择要删除的客户记录")==0)
+	{
+		confirm("确定删除？");
+	}
+}
+function go_back(){
+		//var url = "customerListToOrder.html" ;
+		var url = "javascript:window.history.back()" ;
+		window.location.assign( url );
+	}
+</script>
+

@@ -1,0 +1,105 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>购货单详细信息</title>
+<script language=JavaScript src="../js/colorChange.js"></script>
+<script language=JavaScript src="../js/script.js"></script>
+
+<link rel="stylesheet" href="../css/demo.css" type="text/css">
+<script  language="javascript"src="../Js/Calendar.js"></script>
+
+</head>
+
+ 
+<body >
+<form name="newOrder" action="" method="post">
+<!-- <input type="hidden" name="act" value="add"> -->
+<br>
+<font color="#800000">&nbsp;&nbsp;&nbsp;当前位置:</font>
+<a href="javascript:window.history.back();">购货单查询</a>  &gt;购货单详细信息
+<br>
+<br>
+<br>
+
+ 
+<table align="center" width="90%" class="default" onMouseOver="changeto()"  onmouseout="changeback()">
+ 
+	<tr class="title">
+		<td align="center">&nbsp;</td>
+	    <td align="center">&nbsp;</td>
+	    <td align="center">&nbsp;</td>
+	    <td align="left">购货单信息</td>
+	    <td align="center">&nbsp;</td>
+	    <td align="center">&nbsp;</td>
+	</tr>
+	<tr class="rowAlternateA"> 
+	   <td width="15%" align="right">订单号：</td>
+	   <td width="15%" >100000</td>
+	   <td width="15%" align="right">订单类型：</td>
+	   <td width="15%">董华</td>
+	   <td width="15%" align="right">订单状态：</td>
+	   <td width="25%" >2100000000000</td>
+	</tr>
+	<tr class="rowAlternateB">
+	   <td width="15%" align="right">商品名称：</td>
+	   <td width="15%" ><select name="select">
+         <option value="">佳洁士草本精华</option>
+         <option value="">高露洁草本精华</option>
+         <option value="">黑人牙膏</option>
+       </select></td>
+	   <td width="15%" align="right">商品数量</td>
+	   <td width="15%"><input type="text" name="customerNo2" value="3" readonly="readonly" /></td>
+	   <td width="15%" align="right">商品说明：</td>
+	   <td width="25%" ><input type="text" name="customerName2" value="无" readonly="readonly" /></td>
+	</tr>
+	<tr class="rowAlternateA">
+	   <td width="15%" align="right">计量单位：</td>
+	   <td width="15%" ><input type="text" name="customerName3" value="个" readonly="readonly" /></td>
+	   <td width="15%" align="right">单价：</td>
+	   <td width="15%"><input type="text" name="customerName" value="200000" readonly="readonly" /></td>
+	   <td width="15%" align="right">总额：</td>
+	   <td width="25%" ><input type="text" name="customerNo" value="600000" readonly="readonly" /></td>
+	</tr>
+	<tr class="rowAlternateB">
+	   <td width="15%" align="right">客户姓名：</td>
+	   <td width="15%" ><input type="text" name="customerNo" value="华仔" readonly="readonly" /></td>
+	   <td width="15%" align="right">客户电话：</td>
+	   <td width="15%"><input type="text" name="customerName" value="12345678901" readonly="readonly"/></td>
+	   <td width="15%" align="right">客户邮编：</td>
+	   <td width="25%" ><input type="text" name="customerIdCard" value="1234556"readonly="readonly" /></td>
+	</tr>
+	<tr class="rowAlternateA">
+	   <td width="15%" align="right">客户地址：</td>
+	   <td><input type="text"  name="customerIdCard" value="沈阳市浑南新区" readonly="readonly" /> </td>
+	   <td align="right">开始日期</td>
+      <td><input name="txtDate" type="text" class="textbox" id="txtAwardDate" value="1234-12-12" maxlength="10" readonly="readonly"/>
+		   <A onclick="return showCalendar('txtDate', 'y-mm-dd');" href="#"></A></td>
+	   <td align="right">要求结束日期</td>
+	   <td><input type="text" name="customerIdCard3" value="2055-03-23" readonly="readonly"/></td>
+	</tr>
+	<tr>
+<td colspan="6" align="center">
+	<input name="button2" type="button" class="button" onclick="go_back()" value="返回" /></td>
+
+	</tr>
+</table>
+</form>
+</body>
+</html>
+<script> 
+	function onSubmit(){
+		var url = "orderTotal.html" ;
+		window.location.assign( url );
+	}
+	
+	function go_back(){
+		//var url = "customerListToOrder.html" ;
+		var url = "javascript:window.history.back()" ;
+		window.location.assign( url );
+	}
+	
+
+	
+</script>
+

@@ -1,0 +1,31 @@
+/* CSS Document */
+
+<!--
+div,ul,li,p,h1,h2{ margin:0; padding:0; border:0; background:#FAFAFA; font-family:Arial, Helvetica, sans-serif,"ËÎÌו"}
+body{ text-align:left; font-size:12px}
+li{ list-style:none}
+.rolinList{ width:150px; height:auto; margin:20px auto 0 auto; text-align:left}
+.rolinList li{margin-bottom:1px;border:1px solid #DADADA}
+.rolinList li h2{ height:40px;  background:#fff; font-size:14px; line-height:40px; padding-left:20px; color:#333; cursor:pointer}
+.content{background:#fff;  background:#FAFAFA}
+.content p{ margin:12px}
+.tableClass{width:100%;}
+.tableClass tr td
+{
+    border:0;
+	width:100%;
+}
+.dashedHr{
+	BORDER-BOTTOM-STYLE: dotted; BORDER-LEFT-STYLE: dotted; BORDER-RIGHT-STYLE: dotted; BORDER-TOP-STYLE: dotted ;
+	border-color:#999999; width:100%
+}
+
+A:link {color: blue; text-decoration:none} /* specificity = 1,1 */ 
+A:active {color: red; text-decoration:none} /* specificity = 1,1 */ 
+A:hover {color:#999999; text-decoration:none} /* specificity = 1,1 */ 
+A:visited {color: purple; text-decoration:none} /* specificity = 1,1 */ 
+
+
+
+
+-->

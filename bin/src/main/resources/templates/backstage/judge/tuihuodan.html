@@ -1,0 +1,91 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>退货单查询</title>
+</head>
+
+<link rel="stylesheet" href="../css/demo.css" type="text/css"> 
+<body>
+<form name="newOrder" action="" method="post">
+<!-- <input type="hidden" name="act" value="add"> -->
+<script language=JavaScript src="../js/colorChange.js"></script>
+<br>
+<font color="#800000">&nbsp;&nbsp;&nbsp;当前位置:</font>退货单<br>
+<br>
+<br>
+ 
+<table width="90%" border=0 align="center">
+	<tr>
+		<td width="100%">&nbsp;</td>
+	</tr>
+</table>
+ 
+<table width="90%" height="204" border="1" align="center"  bordercolor="#9966CC" class="default"onMouseOver="changeto()"  onmouseout="changeback()">
+ 
+	<tr height="30" class="title">
+		<td align="center" colspan="6" ><b>退货信息录入</b></td>
+	</tr>
+	<tr> 
+	   <td width="16%" height="27" align="right">退货单号：</td>
+	   <td width="13%" >100000</td>
+	   <td width="15%" align="right">退货原因：</td>
+	   <td width="15%">&nbsp;</td>
+	   <td width="14%" align="right">退货单状态：</td>
+	   <td width="27%" >2100000000000</td>
+	</tr>
+	<tr>
+	   <td width="16%" height="28" align="right">商品名称：</td>
+	   <td width="13%" >&nbsp;</td>
+	   <td width="15%" align="right">商品数量</td>
+	   <td width="15%">&nbsp;</td>
+	   <td width="14%" align="right">商品说明：</td>
+	   <td width="27%" >&nbsp;</td>
+	</tr>
+	<tr>
+	   <td width="16%" height="26" align="right">计量单位：</td>
+	   <td width="13%" >&nbsp;</td>
+	   <td width="15%" align="right">单价：</td>
+	   <td width="15%">&nbsp;</td>
+	   <td width="14%" align="right">总额：</td>
+	   <td width="27%" >&nbsp;</td>
+	</tr>
+	<tr>
+	   <td width="16%" height="26" align="right">客户姓名：</td>
+	   <td width="13%" >&nbsp;</td>
+	   <td width="15%" align="right">客户电话：</td>
+	   <td width="15%">&nbsp;</td>
+	   <td width="14%" align="right">客户邮编：</td>
+	   <td width="27%" >&nbsp;</td>
+	</tr>
+	<tr>
+	   <td width="16%" height="25" align="right">客户地址：</td>
+      <td>&nbsp;</td>
+	   <td><div align="right">开始日期</div></td>
+	   <td>&nbsp;</td>
+	   <td> <div align="right">要求结束日期</div></td>
+	   <td>&nbsp;</td>
+	</tr>
+	<tr height=30>
+		<td colspan="6"  align="center"><label></label>
+		  <input name="button" type=button class="button" onclick="go_back();"  value=" 返回 " /></td>
+	</tr>
+</table>
+</form>
+</body>
+</html>
+<script> 
+	function onSubmit(){
+		var url = "orderTotal.html" ;
+		window.location.assign( url );
+	}
+	
+	function go_back(){
+		//var url = "customerListToOrder.html" ;
+		var url = "javascript:window.history.back()" ;
+		window.location.assign( url );
+	}
+	
+	
+	
+</script>

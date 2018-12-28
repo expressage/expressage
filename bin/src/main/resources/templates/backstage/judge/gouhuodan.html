@@ -1,0 +1,115 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<link rel="stylesheet" href="../css/demo.css" type="text/css">
+<title>查询购货单</title>
+
+</head>
+
+
+<script type="text/javascript" src="../JS/date.js"></script>
+<script language=JavaScript src="../js/colorChange.js"></script>
+<body>
+<br>
+<font color="#800000">&nbsp;&nbsp;&nbsp;当前位置:</font>查询购货单<br>
+<br>
+<br>
+<br>
+<form id="taskAssignSearch" method="post">
+  <br />
+  <br />
+  <table class="pagination" cellspacing="0" cellpadding="4" width="89%" align="center">
+    <tr>
+      <td width="13%" nowrap="nowrap">共476页,4751条记录</td>
+      <td width="47%">&nbsp;</td>
+      <td width="40%" align="right" nowrap="nowrap">&lt;&lt;首页&nbsp;&lt;上一页&nbsp;|&nbsp;<a 
+            href="javascript:nextPageClicked();">下一页</a>&gt;&nbsp;<a 
+            href="javascript:lastPageClicked();">尾页</a>&gt;&gt;&nbsp;&nbsp;第
+        <input name="Input" id="topCurPage" onkeydown="if(event.keyCode == '13') return topCurPageChanged()" 
+			onkeyup="this.value=this.value.replace(/[\D]/g,'');" value="1" size="2" />
+        页
+        <input name="button" type="button" onclick="return topCurPageChanged()" value="go" />
+      </td>
+    </tr>
+  </table>
+  <table class="default" width="89%" align="center"onMouseOver="changeto()"  onmouseout="changeback()">
+    <tr class="title">
+      <td width="10%">订单号</td>
+      <td width="10%">客户编号</td>
+      <td width="9%">客户姓名</td>
+      <td width="13%">电话</td>
+      <td width="11%">商品名称</td>
+      <td width="7%">商品数量</td>
+      <td width="8%">订单类型</td>
+      <td width="10%">订单状态</td>
+      <td width="11%">操作</td>
+    </tr>
+    <tr class="rowAlternateA">
+      <td>100000</td>
+      <td>100000</td>
+      <td>谢文东</td>
+      <td>024-83665597</td>
+      <td>牙膏</td>
+      <td>1</td>
+      <td>新订</td>
+      <td>未分配</td>
+      <td><a href="gouhuoxiangxi.html">详细信息</a><a href="#" onclick="pay()">|付款订货</a></td>
+    </tr>
+    <tr class="rowAlternateB">
+      <td>100000</td>
+      <td>100000</td>
+      <td>谢文东</td>
+      <td>024-83665597</td>
+      <td>牙膏</td>
+      <td>1</td>
+      <td>新订</td>
+      <td>未分配</td>
+      <td><a href="gouhuoxiangxi.html">详细信息</a><a href="#" onclick="pay()">|付款订货</a></td>
+    </tr>
+    <tr class="rowAlternateA">
+      <td>100000</td>
+      <td>100000</td>
+      <td>谢文东</td>
+      <td>024-83665597</td>
+      <td>牙膏</td>
+      <td>1</td>
+      <td>新订</td>
+      <td>未分配</td>
+      <td><a href="gouhuoxiangxi.html">详细信息</a><a href="#" onclick="pay()">|付款订货</a></td>
+    </tr>
+    <tr class="rowAlternateB">
+      <td>100000</td>
+      <td>100000</td>
+      <td>谢文东</td>
+      <td>024-83665597</td>
+      <td>牙膏</td>
+      <td>1</td>
+      <td>新订</td>
+      <td>未分配</td>
+      <td><a href="gouhuoxiangxi.html">详细信息</a><a href="#" onclick="pay()">|付款订货</a></td>
+    </tr>
+  </table>
+  <table class="pagination" cellspacing="0" cellpadding="4" width="89%" align="center">
+    <tr>
+      <td width="15%" nowrap="nowrap">共476页,4751条记录</td>
+      <td width="42%">&nbsp;</td>
+      <td width="43%" align="right" nowrap="nowrap">&lt;&lt;首页&nbsp;&lt;上一页&nbsp;|&nbsp;<a 
+            href="javascript:nextPageClicked();">下一页</a>&gt;&nbsp;<a 
+            href="javascript:lastPageClicked();">尾页</a>&gt;&gt;&nbsp;&nbsp;第
+        <input name="Input2" id="Input" onkeydown="if(event.keyCode == '13') return topCurPageChanged()" 
+			onkeyup="this.value=this.value.replace(/[\D]/g,'');" value="1" size="2" />
+      页
+      <input name="button22" type="button" onclick="return topCurPageChanged()" value="go" /></td>
+    </tr>
+  </table>
+
+</form>
+</body>
+</html>
+<script>
+function pay(){
+	alert("付款成功");
+	return false;
+}
+</script>
