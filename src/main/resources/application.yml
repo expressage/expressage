@@ -13,3 +13,5 @@ spring:
     driver-class-name: com.mysql.jdbc.Driver
   redis:    host: 127.0.0.1
     port: 6379
+    timeout: 0
+mybatis:  type-aliases-package: com.expressage.mapper
