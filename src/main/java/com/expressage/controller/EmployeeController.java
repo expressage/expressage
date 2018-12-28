@@ -17,7 +17,7 @@ import com.expressage.pojo.Employee;
 
 @Controller
 public class EmployeeController {
-	@RequestMapping(value="/login",method= RequestMethod.GET)
+	/*@RequestMapping(value="/login",method= RequestMethod.GET)
 	public String login() {
 		return "login.html";
 	}
@@ -42,5 +42,5 @@ public class EmployeeController {
 	            request.setAttribute("msg", "用户或密码不正确！");
 	            return "login.html";
 	        }
-	}
+	}*/
 }

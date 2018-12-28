@@ -7,11 +7,13 @@ spring:
     encoding: UTF-8
     mode: HTML5
     servlet:
-      content-type: text/html  datasource:    url: jdbc:mysql://localhost:3306/expressage
+      content-type: text/html
+  datasource:
+    url: jdbc:mysql://localhost:3306/expressage
     username: root
     password: 123
     driver-class-name: com.mysql.jdbc.Driver
-  redis:    host: 127.0.0.1
+  redis:
+    host: 127.0.0.1
     port: 6379
-    timeout: 0
-mybatis:  type-aliases-package: com.expressage.mapper
+server:  port: 8081
