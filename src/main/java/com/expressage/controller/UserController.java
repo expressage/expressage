@@ -9,6 +9,6 @@ public class UserController {
 
 	@RequestMapping("/getUser")
 	public String getUser(Model model) {
-		return "backstage/查询页面";
+		return "backstage/main";
 	}
 }
