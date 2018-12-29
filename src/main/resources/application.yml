@@ -1,6 +1,6 @@
 spring:
   thymeleaf:
-    prefix: classpath:/templates/
+    prefix: classpath:/static/
     check-template-location: true
     cache: false
     suffix: .html
