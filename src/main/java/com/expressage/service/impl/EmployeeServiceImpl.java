@@ -1,5 +1,8 @@
 package com.expressage.service.impl;
 
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.expressage.mapper.EmployeeMapper;
@@ -9,11 +12,37 @@ import com.expressage.service.EmployeeService;
 @Service
 public class EmployeeServiceImpl implements EmployeeService{
 
+	@Autowired
 	EmployeeMapper employeeMapper;
 	
 	@Override
-	public Employee selByUsername(String username) {
-		return employeeMapper.selByUsername(username);
+	public Employee zkSelByUsername(String username) {
+		return employeeMapper.zkSelByUsername(username);
+	}
+
+	@Override
+	public List<Employee> zkSelAll(Integer eid, String name, String enable,Integer tid, Integer num, Integer size) {
+		return employeeMapper.zkSelAll(eid, name, enable, num, size,tid);
+	}
+
+	@Override
+	public int zkCount(Integer eid, String name, String enable,Integer tid) {
+		return employeeMapper.zkCount(eid, name, enable,tid);
+	}
+
+	@Override
+	public int zkInsert(Employee employee) {
+		return employeeMapper.zkInsert(employee);
+	}
+
+	@Override
+	public Employee zkSelectByKey(Integer eid) {
+		return employeeMapper.zkSelectByKey(eid);
+	}
+
+	@Override
+	public int zkUpdByKey(Employee employee) {
+		return employeeMapper.zkUpdByKey(employee);
 	}
 
 }

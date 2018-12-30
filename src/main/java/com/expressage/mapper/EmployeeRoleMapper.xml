@@ -28,4 +28,7 @@
       </if>
     </trim>
   </insert>
+  <insert id="zkAddRoleByEid">
+  	INSERT INTO expressage.employee_role (eid, rid)VALUES(#{eid}, #{rid});
+  </insert>
 </mapper>

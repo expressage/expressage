@@ -28,4 +28,10 @@
       </if>
     </trim>
   </insert>
+   <select id="zkSelRole" resultType="role">
+  	select * from role
+  </select>
+  <select id="zkSelRoleByEid" resultType="role">
+  	SELECT * FROM role r INNER JOIN employee_role er ON r.rid = er.rid WHERE er.eId = #{eid}
+  </select>
 </mapper>

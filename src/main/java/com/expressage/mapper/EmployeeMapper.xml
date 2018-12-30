@@ -207,4 +207,162 @@
       enable = #{enable,jdbcType=CHAR}
     where eid = #{eid,jdbcType=INTEGER}
   </update>
+  <select id="zkSelAll" resultType="employee">
+		SELECT * FROM employee INNER JOIN transfer t ON e.tid = t.transfer_id
+		<where>
+			<if test="eid !=null and eid != ''"> and eid = #{eid}</if>
+			<if test="name !=null and name != ''"> and `name` LIKE CONCAT('%',#{name},'%')</if>
+			<if test="enable !=null and enable != ''"> and `enable` = #{enable}</if>
+			<if test="tid !=null and tid != ''"> and `tid` = #{tid}</if>
+		</where>
+		limit #{num},#{size}
+	</select>
+	<select id="zkCount" resultType="int">
+		SELECT COUNT(1) FROM employee INNER JOIN transfer t ON e.tid = t.transfer_id
+		<where>
+			<if test="eid !=null and eid != ''"> and eid = #{eid}</if>
+			<if test="name !=null and name != ''"> and `name` LIKE CONCAT('%',#{name},'%')</if>
+			<if test="enable !=null and enable != ''"> and `enable` = #{enable}</if>
+			<if test="tid !=null and tid != ''"> and `tid` = #{tid}</if>
+		</where>
+	</select>
+	<select id="zkSelByUsername" resultType="int">
+		select * from employee
+		where username = #{username}
+	</select>
+	<insert id="zkInsert"
+		parameterType="com.expressage.pojo.Employee">
+		insert into employee
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="eid != null">
+				eid,
+			</if>
+			<if test="name != null">
+				name,
+			</if>
+			<if test="account != null">
+				account,
+			</if>
+			<if test="password != null">
+				password,
+			</if>
+			<if test="sex != null">
+				sex,
+			</if>
+			<if test="tel != null">
+				tel,
+			</if>
+			<if test="idcard != null">
+				idCard,
+			</if>
+			<if test="email != null">
+				email,
+			</if>
+			<if test="birthday != null">
+				birthday,
+			</if>
+			<if test="address != null">
+				address,
+			</if>
+			<if test="sal != null">
+				sal,
+			</if>
+			<if test="tid != null">
+				tid,
+			</if>
+				createTime,
+			<if test="founderid != null">
+				founderId,
+			</if>
+			<if test="enable != null">
+				enable,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="eid != null">
+				#{eid,jdbcType=INTEGER},
+			</if>
+			<if test="name != null">
+				#{name,jdbcType=VARCHAR},
+			</if>
+			<if test="account != null">
+				#{account,jdbcType=VARCHAR},
+			</if>
+			<if test="password != null">
+				#{password,jdbcType=VARCHAR},
+			</if>
+			<if test="sex != null">
+				#{sex,jdbcType=CHAR},
+			</if>
+			<if test="tel != null">
+				#{tel,jdbcType=CHAR},
+			</if>
+			<if test="idcard != null">
+				#{idcard,jdbcType=CHAR},
+			</if>
+			<if test="email != null">
+				#{email,jdbcType=VARCHAR},
+			</if>
+			<if test="birthday != null">
+				#{birthday,jdbcType=DATE},
+			</if>
+			<if test="address != null">
+				#{address,jdbcType=VARCHAR},
+			</if>
+			<if test="sal != null">
+				#{sal,jdbcType=DOUBLE},
+			</if>
+			<if test="tid != null">
+				#{tid,jdbcType=INTEGER},
+			</if>
+				now(),
+			<if test="founderid != null">
+				#{founderid,jdbcType=INTEGER},
+			</if>
+			<if test="enable != null">
+				#{enable,jdbcType=CHAR},
+			</if>
+		</trim>
+	</insert>
+	<select id="zkSelectByKey" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		from employee
+		where eid = #{eid,jdbcType=INTEGER}
+	</select>
+	<update id="zkUpdByKey"
+		parameterType="com.expressage.pojo.Employee">
+		update employee
+		<set>
+			<if test="password != null">
+				password = #{password,jdbcType=VARCHAR},
+			</if>
+			<if test="sex != null">
+				sex = #{sex,jdbcType=CHAR},
+			</if>
+			<if test="tel != null">
+				tel = #{tel,jdbcType=CHAR},
+			</if>
+			<if test="email != null">
+				email = #{email,jdbcType=VARCHAR},
+			</if>
+			<if test="birthday != null">
+				birthday = #{birthday,jdbcType=DATE},
+			</if>
+			<if test="address != null">
+				address = #{address,jdbcType=VARCHAR},
+			</if>
+			<if test="sal != null">
+				sal = #{sal,jdbcType=DOUBLE},
+			</if>
+			<if test="tid != null">
+				tid = #{tid,jdbcType=INTEGER},
+			</if>
+			<if test="enable != null">
+				enable = #{enable,jdbcType=CHAR},
+			</if>
+		</set>
+		where eid = #{eid,jdbcType=INTEGER}
+	</update>
 </mapper>

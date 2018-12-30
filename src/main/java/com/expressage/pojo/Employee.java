@@ -32,8 +32,18 @@ public class Employee {
     private Integer founderid;
 
     private String enable;
+    
+    private Transfer transfer;
+    
+    public Transfer getTransfer() {
+		return transfer;
+	}
 
-    public Integer getEid() {
+	public void setTransfer(Transfer transfer) {
+		this.transfer = transfer;
+	}
+
+	public Integer getEid() {
         return eid;
     }
 

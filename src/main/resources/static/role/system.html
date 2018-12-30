@@ -1,0 +1,158 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>达内－NetCTOSS</title>
+<link type="text/css" rel="stylesheet" media="all"
+	href="../styles/global.css" />
+<link type="text/css" rel="stylesheet" media="all"
+	href="../styles/global_color.css" />
+<script type="text/javascript" src="../js/jquery-1.12.4.js"></script>
+<script language="javascript" type="text/javascript">
+	function changeTab(e, ulObj) {
+		var obj = e.srcElement || e.target;
+		if (obj.nodeName == "A") {
+			var links = ulObj.getElementsByTagName("a");
+			for (var i = 0; i < links.length; i++) {
+				if (links[i].innerHTML == obj.innerHTML) {
+					links[i].className = "tab_on";
+					$(".tableall").css("display", "none")
+					$("#sys" + i).css("display", "block")
+				} else {
+					links[i].className = "tab_out";
+				}
+			}
+		}
+	}
+</script>
+</head>
+<body>
+	<!--Logo区域开始-->
+	<div id="header">
+		<img src="../images/logo.png" alt="logo" class="left" /> <a href="#">[退出]</a>
+	</div>
+	<!--Logo区域结束-->
+	<!--导航区域开始-->
+	<div id="navi">
+		<ul id="menu">
+			<li><a href="../index.html" class="index_off"></a></li>
+			<li><a href="/employee/zkSelEmployee" class="role_on"></a></li>
+			<li><a href="../admin/admin_list.html" class="admin_off"></a></li>
+			<li><a href="../fee/fee_list.html" class="fee_off"></a></li>
+			<li><a href="../account/account_list.html" class="account_off"></a></li>
+			<li><a href="../service/service_list.html" class="service_off"></a></li>
+			<li><a href="../bill/bill_list.html" class="bill_off"></a></li>
+			<li><a href="../report/report_list.html" class="report_off"></a></li>
+			<li><a href="../user/user_info.html" class="information_off"></a></li>
+			<li><a href="../user/user_modi_pwd.html" class="password_off"></a></li>
+		</ul>
+	</div>
+	<!--导航区域结束-->
+	<!--主要区域开始-->
+	<div id="report_main">
+		<div class="tabs">
+			<ul onclick="changeTab(event,this);">
+				<li><a href="#####" class="tab_on" title="用户列表">用户列表</a></li>
+				<li><a href="#####" class="tab_out" title="每台服务器上累计时长最高的前三名客户">时长排行榜</a></li>
+				<li><a href="#####" class="tab_out" title="每台服务器每种资费标准的使用次数">资费使用率</a></li>
+			</ul>
+		</div>
+		<div class="report_box">
+			<!--数据区域：用表格展示数据-->
+			<div id="report_data">
+				<div id="sys0" class="tableall">
+					<form action="/employee/zkSelEmployee">
+						<label>编号:</label> <input type="text" name="eid" placeholder="编号:"
+							th:value="${eid}" /> <label>名称:</label> <input type="text"
+							name="name" placeholder="名称" th:value="${name}" /> <label
+							class="control-label">状态:</label> <select name="enable">
+							<option value="">全部</option>
+							<option value="1" th:selected="${enable=='1'}">开启</option>
+							<option value="0" th:selected="${enable=='0'}">禁用</option>
+						</select>
+						<button type="submit" onclick="search();">查询</button>
+						<button shiro:hasPermission="/users/add" type="button"
+							onclick="$('#addUser').modal();">新增</button>
+						<button shiro:hasPermission="/users/delete" type="button"
+							onclick="delByID();">删除</button>
+						<button shiro:hasPermission="/users/saveUserRoles" type="button"
+							onclick="allotRole();">分配角色</button>
+					</form>
+					<table id="datalist">
+						<tr class="title">
+							<!-- <td><input type="checkbox" class="checkall" /></td> -->
+							<td>ID</td>
+							<td>用户名</td>
+							<td>是否启用</td>
+							<td>操作</td>
+						</tr>
+						<tr class="rowAlternateA" th:each="list:${employeeList}">
+							<!-- <td><input type="checkbox" class="checkall" /></td> -->
+							<td th:text="${list.eid}" />
+							<td th:text="${list.name}" />
+							<td th:text="${list.enable=='0'?'禁用':'启用'}" />
+							<td><a href="">分配角色</a></td>
+						</tr>
+					</table>
+				</div>
+				<div id="sys1" class="tableall" style="display: none;">
+					<table id="datalist">
+						<tr>
+							<th class="width300">Unix 服务器IP</th>
+							<th>账务帐号</th>
+							<th>客户名称</th>
+							<th class="width200">身份证号码</th>
+							<th class="width150">累积时长</th>
+						</tr>
+					</table>
+				</div>
+				<div id="sys2" class="tableall" style="display: none;">
+					<table id="datalist">
+						<tr>
+							<th class="width300">Unix 服务器IP</th>
+							<th>包月</th>
+							<th>套餐</th>
+							<th>计时</th>
+						</tr>
+						<tr>
+							<td>192.168.0.20</td>
+							<td>345</td>
+							<td>21</td>
+							<td>34</td>
+						</tr>
+					</table>
+				</div>
+			</div>
+			<!--分页-->
+			<div id="pages">
+				<table class="pagination" cellspacing="0" cellpadding="4"
+					width="77%" align="center">
+					<tr>
+						<td width="15%" nowrap="nowrap">共<span th:text="${page}" />页,<span
+							th:text=${count} />条记录
+						</td>
+						<td width="42%">&nbsp;</td>
+						<td width="43%" align="right" nowrap="nowrap"><a
+							th:href="@{/employee/zkSelEmployee?(eid=${eid},name=${name},enable=${enable},num=1)}">首页</a>
+							<a
+							th:href="@{/employee/zkSelEmployee?(eid=${eid},name=${name},enable=${enable},num=${num-1})}"
+							th:if="!${num eq 1}">上一页</a> <a
+							th:href="@{/employee/zkSelEmployee?(eid=${eid},name=${name},enable=${enable},num=${num+1})}"
+							th:if="!${num eq page}">下一页</a> <a
+							th:href="@{/employee/zkSelEmployee?(eid=${eid},name=${name},enable=${enable},num=${page})}">尾页</a>
+						</td>
+					</tr>
+				</table>
+			</div>
+
+		</div>
+	</div>
+	<!--主要区域结束-->
+	<div id="footer">
+		<p>[源自北美的技术，最优秀的师资，最真实的企业环境，最适用的实战项目]</p>
+		<p>版权所有(C)加拿大达内IT培训集团公司</p>
+	</div>
+</body>
+</html>

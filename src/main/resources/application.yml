@@ -9,11 +9,14 @@ spring:
     servlet:
       content-type: text/html
   datasource:
-    url: jdbc:mysql://localhost:3306/expressage
+    url: jdbc:mysql://localhost:3306/expressage?serverTimezone=UTC&useUnicode=true&characterEncoding=utf8&useSSL=false
     username: root
-    password: 123
+    password: root
     driver-class-name: com.mysql.jdbc.Driver
   redis:
     host: 127.0.0.1
     port: 6379
 server:  port: 8081
+mybatis:  type-aliases-package: com.expressage.pojo
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl    auto-mapping-behavior: full
