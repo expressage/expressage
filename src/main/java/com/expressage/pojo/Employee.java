@@ -1,11 +1,13 @@
 package com.expressage.pojo;
 
-import java.util.Date;
+import java.sql.Date;
 
 public class Employee {
     private Integer eid;
 
     private String name;
+    
+    private String name2;
 
     private String account;
 
@@ -35,7 +37,15 @@ public class Employee {
     
     private Transfer transfer;
     
-    public Transfer getTransfer() {
+    public String getName2() {
+		return name2;
+	}
+
+	public void setName2(String name2) {
+		this.name2 = name2;
+	}
+
+	public Transfer getTransfer() {
 		return transfer;
 	}
 

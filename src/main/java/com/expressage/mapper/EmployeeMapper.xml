@@ -1,236 +1,64 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.expressage.mapper.EmployeeMapper" >
-  <resultMap id="BaseResultMap" type="com.expressage.pojo.Employee" >
-    <id column="eid" property="eid" jdbcType="INTEGER" />
-    <result column="name" property="name" jdbcType="VARCHAR" />
-    <result column="account" property="account" jdbcType="VARCHAR" />
-    <result column="password" property="password" jdbcType="VARCHAR" />
-    <result column="sex" property="sex" jdbcType="CHAR" />
-    <result column="tel" property="tel" jdbcType="CHAR" />
-    <result column="idCard" property="idcard" jdbcType="CHAR" />
-    <result column="email" property="email" jdbcType="VARCHAR" />
-    <result column="birthday" property="birthday" jdbcType="DATE" />
-    <result column="address" property="address" jdbcType="VARCHAR" />
-    <result column="sal" property="sal" jdbcType="DOUBLE" />
-    <result column="tid" property="tid" jdbcType="INTEGER" />
-    <result column="createTime" property="createtime" jdbcType="TIMESTAMP" />
-    <result column="founderId" property="founderid" jdbcType="INTEGER" />
-    <result column="enable" property="enable" jdbcType="CHAR" />
-  </resultMap>
-  <sql id="Base_Column_List" >
-    eid, name, account, password, sex, tel, idCard, email, birthday, address, sal, tid, 
-    createTime, founderId, enable
-  </sql>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
-    select 
-    <include refid="Base_Column_List" />
-    from employee
-    where eid = #{eid,jdbcType=INTEGER}
-  </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
-    delete from employee
-    where eid = #{eid,jdbcType=INTEGER}
-  </delete>
-  <insert id="insert" parameterType="com.expressage.pojo.Employee" >
-    insert into employee (eid, name, account, 
-      password, sex, tel, idCard, 
-      email, birthday, address, 
-      sal, tid, createTime, 
-      founderId, enable)
-    values (#{eid,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{account,jdbcType=VARCHAR}, 
-      #{password,jdbcType=VARCHAR}, #{sex,jdbcType=CHAR}, #{tel,jdbcType=CHAR}, #{idcard,jdbcType=CHAR}, 
-      #{email,jdbcType=VARCHAR}, #{birthday,jdbcType=DATE}, #{address,jdbcType=VARCHAR}, 
-      #{sal,jdbcType=DOUBLE}, #{tid,jdbcType=INTEGER}, #{createtime,jdbcType=TIMESTAMP}, 
-      #{founderid,jdbcType=INTEGER}, #{enable,jdbcType=CHAR})
-  </insert>
-  <insert id="insertSelective" parameterType="com.expressage.pojo.Employee" >
-    insert into employee
-    <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="eid != null" >
-        eid,
-      </if>
-      <if test="name != null" >
-        name,
-      </if>
-      <if test="account != null" >
-        account,
-      </if>
-      <if test="password != null" >
-        password,
-      </if>
-      <if test="sex != null" >
-        sex,
-      </if>
-      <if test="tel != null" >
-        tel,
-      </if>
-      <if test="idcard != null" >
-        idCard,
-      </if>
-      <if test="email != null" >
-        email,
-      </if>
-      <if test="birthday != null" >
-        birthday,
-      </if>
-      <if test="address != null" >
-        address,
-      </if>
-      <if test="sal != null" >
-        sal,
-      </if>
-      <if test="tid != null" >
-        tid,
-      </if>
-      <if test="createtime != null" >
-        createTime,
-      </if>
-      <if test="founderid != null" >
-        founderId,
-      </if>
-      <if test="enable != null" >
-        enable,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="eid != null" >
-        #{eid,jdbcType=INTEGER},
-      </if>
-      <if test="name != null" >
-        #{name,jdbcType=VARCHAR},
-      </if>
-      <if test="account != null" >
-        #{account,jdbcType=VARCHAR},
-      </if>
-      <if test="password != null" >
-        #{password,jdbcType=VARCHAR},
-      </if>
-      <if test="sex != null" >
-        #{sex,jdbcType=CHAR},
-      </if>
-      <if test="tel != null" >
-        #{tel,jdbcType=CHAR},
-      </if>
-      <if test="idcard != null" >
-        #{idcard,jdbcType=CHAR},
-      </if>
-      <if test="email != null" >
-        #{email,jdbcType=VARCHAR},
-      </if>
-      <if test="birthday != null" >
-        #{birthday,jdbcType=DATE},
-      </if>
-      <if test="address != null" >
-        #{address,jdbcType=VARCHAR},
-      </if>
-      <if test="sal != null" >
-        #{sal,jdbcType=DOUBLE},
-      </if>
-      <if test="tid != null" >
-        #{tid,jdbcType=INTEGER},
-      </if>
-      <if test="createtime != null" >
-        #{createtime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="founderid != null" >
-        #{founderid,jdbcType=INTEGER},
-      </if>
-      <if test="enable != null" >
-        #{enable,jdbcType=CHAR},
-      </if>
-    </trim>
-  </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.expressage.pojo.Employee" >
-    update employee
-    <set >
-      <if test="name != null" >
-        name = #{name,jdbcType=VARCHAR},
-      </if>
-      <if test="account != null" >
-        account = #{account,jdbcType=VARCHAR},
-      </if>
-      <if test="password != null" >
-        password = #{password,jdbcType=VARCHAR},
-      </if>
-      <if test="sex != null" >
-        sex = #{sex,jdbcType=CHAR},
-      </if>
-      <if test="tel != null" >
-        tel = #{tel,jdbcType=CHAR},
-      </if>
-      <if test="idcard != null" >
-        idCard = #{idcard,jdbcType=CHAR},
-      </if>
-      <if test="email != null" >
-        email = #{email,jdbcType=VARCHAR},
-      </if>
-      <if test="birthday != null" >
-        birthday = #{birthday,jdbcType=DATE},
-      </if>
-      <if test="address != null" >
-        address = #{address,jdbcType=VARCHAR},
-      </if>
-      <if test="sal != null" >
-        sal = #{sal,jdbcType=DOUBLE},
-      </if>
-      <if test="tid != null" >
-        tid = #{tid,jdbcType=INTEGER},
-      </if>
-      <if test="createtime != null" >
-        createTime = #{createtime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="founderid != null" >
-        founderId = #{founderid,jdbcType=INTEGER},
-      </if>
-      <if test="enable != null" >
-        enable = #{enable,jdbcType=CHAR},
-      </if>
-    </set>
-    where eid = #{eid,jdbcType=INTEGER}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="com.expressage.pojo.Employee" >
-    update employee
-    set name = #{name,jdbcType=VARCHAR},
-      account = #{account,jdbcType=VARCHAR},
-      password = #{password,jdbcType=VARCHAR},
-      sex = #{sex,jdbcType=CHAR},
-      tel = #{tel,jdbcType=CHAR},
-      idCard = #{idcard,jdbcType=CHAR},
-      email = #{email,jdbcType=VARCHAR},
-      birthday = #{birthday,jdbcType=DATE},
-      address = #{address,jdbcType=VARCHAR},
-      sal = #{sal,jdbcType=DOUBLE},
-      tid = #{tid,jdbcType=INTEGER},
-      createTime = #{createtime,jdbcType=TIMESTAMP},
-      founderId = #{founderid,jdbcType=INTEGER},
-      enable = #{enable,jdbcType=CHAR}
-    where eid = #{eid,jdbcType=INTEGER}
-  </update>
-  <select id="zkSelAll" resultType="employee">
-		SELECT * FROM employee INNER JOIN transfer t ON e.tid = t.transfer_id
-		<where>
-			<if test="eid !=null and eid != ''"> and eid = #{eid}</if>
-			<if test="name !=null and name != ''"> and `name` LIKE CONCAT('%',#{name},'%')</if>
-			<if test="enable !=null and enable != ''"> and `enable` = #{enable}</if>
-			<if test="tid !=null and tid != ''"> and `tid` = #{tid}</if>
-		</where>
-		limit #{num},#{size}
+<mapper namespace="com.expressage.mapper.EmployeeMapper">
+	<resultMap id="BaseResultMap"
+		type="com.expressage.pojo.Employee">
+		<id column="eid" property="eid" jdbcType="INTEGER" />
+		<result column="name" property="name" jdbcType="VARCHAR" />
+		<result column="account" property="account" jdbcType="VARCHAR" />
+		<result column="password" property="password"
+			jdbcType="VARCHAR" />
+		<result column="sex" property="sex" jdbcType="CHAR" />
+		<result column="tel" property="tel" jdbcType="CHAR" />
+		<result column="idCard" property="idcard" jdbcType="CHAR" />
+		<result column="email" property="email" jdbcType="VARCHAR" />
+		<result column="birthday" property="birthday" jdbcType="DATE" />
+		<result column="address" property="address" jdbcType="VARCHAR" />
+		<result column="sal" property="sal" jdbcType="DOUBLE" />
+		<result column="tid" property="tid" jdbcType="INTEGER" />
+		<result column="createTime" property="createtime"
+			jdbcType="TIMESTAMP" />
+		<result column="founderId" property="founderid"
+			jdbcType="INTEGER" />
+		<result column="enable" property="enable" jdbcType="CHAR" />
+		<association property="transfer" javaType="transfer">
+			<id column="transferId" property="transferId" jdbcType="INTEGER" />
+			<result column="transfer_name" property="transferName"
+				jdbcType="VARCHAR" />
+		</association>
+	</resultMap>
+	<sql id="Base_Column_List">
+		eid, name, account, password, sex, tel, idCard, email, birthday, address,
+		sal, tid,
+		createTime, founderId, enable
+	</sql>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		from employee
+		where eid = #{eid,jdbcType=INTEGER}
 	</select>
-	<select id="zkCount" resultType="int">
-		SELECT COUNT(1) FROM employee INNER JOIN transfer t ON e.tid = t.transfer_id
-		<where>
-			<if test="eid !=null and eid != ''"> and eid = #{eid}</if>
-			<if test="name !=null and name != ''"> and `name` LIKE CONCAT('%',#{name},'%')</if>
-			<if test="enable !=null and enable != ''"> and `enable` = #{enable}</if>
-			<if test="tid !=null and tid != ''"> and `tid` = #{tid}</if>
-		</where>
-	</select>
-	<select id="zkSelByUsername" resultType="int">
-		select * from employee
-		where username = #{username}
-	</select>
-	<insert id="zkInsert"
+	<delete id="deleteByPrimaryKey"
+		parameterType="java.lang.Integer">
+		delete from employee
+		where eid = #{eid,jdbcType=INTEGER}
+	</delete>
+	<insert id="insert" parameterType="com.expressage.pojo.Employee">
+		insert into employee (eid, name, account,
+		password, sex, tel, idCard,
+		email, birthday, address,
+		sal, tid, createTime,
+		founderId, enable)
+		values (#{eid,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR},
+		#{account,jdbcType=VARCHAR},
+		#{password,jdbcType=VARCHAR}, #{sex,jdbcType=CHAR}, #{tel,jdbcType=CHAR}, #{idcard,jdbcType=CHAR},
+		#{email,jdbcType=VARCHAR}, #{birthday,jdbcType=DATE},
+		#{address,jdbcType=VARCHAR},
+		#{sal,jdbcType=DOUBLE}, #{tid,jdbcType=INTEGER}, #{createtime,jdbcType=TIMESTAMP},
+		#{founderid,jdbcType=INTEGER}, #{enable,jdbcType=CHAR})
+	</insert>
+	<insert id="insertSelective"
 		parameterType="com.expressage.pojo.Employee">
 		insert into employee
 		<trim prefix="(" suffix=")" suffixOverrides=",">
@@ -270,7 +98,9 @@
 			<if test="tid != null">
 				tid,
 			</if>
+			<if test="createtime != null">
 				createTime,
+			</if>
 			<if test="founderid != null">
 				founderId,
 			</if>
@@ -315,7 +145,191 @@
 			<if test="tid != null">
 				#{tid,jdbcType=INTEGER},
 			</if>
-				now(),
+			<if test="createtime != null">
+				#{createtime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="founderid != null">
+				#{founderid,jdbcType=INTEGER},
+			</if>
+			<if test="enable != null">
+				#{enable,jdbcType=CHAR},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective"
+		parameterType="com.expressage.pojo.Employee">
+		update employee
+		<set>
+			<if test="name != null">
+				name = #{name,jdbcType=VARCHAR},
+			</if>
+			<if test="account != null">
+				account = #{account,jdbcType=VARCHAR},
+			</if>
+			<if test="password != null">
+				password = #{password,jdbcType=VARCHAR},
+			</if>
+			<if test="sex != null">
+				sex = #{sex,jdbcType=CHAR},
+			</if>
+			<if test="tel != null">
+				tel = #{tel,jdbcType=CHAR},
+			</if>
+			<if test="idcard != null">
+				idCard = #{idcard,jdbcType=CHAR},
+			</if>
+			<if test="email != null">
+				email = #{email,jdbcType=VARCHAR},
+			</if>
+			<if test="birthday != null">
+				birthday = #{birthday,jdbcType=DATE},
+			</if>
+			<if test="address != null">
+				address = #{address,jdbcType=VARCHAR},
+			</if>
+			<if test="sal != null">
+				sal = #{sal,jdbcType=DOUBLE},
+			</if>
+			<if test="tid != null">
+				tid = #{tid,jdbcType=INTEGER},
+			</if>
+			<if test="createtime != null">
+				createTime = #{createtime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="founderid != null">
+				founderId = #{founderid,jdbcType=INTEGER},
+			</if>
+			<if test="enable != null">
+				enable = #{enable,jdbcType=CHAR},
+			</if>
+		</set>
+		where eid = #{eid,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKey"
+		parameterType="com.expressage.pojo.Employee">
+		update employee
+		set name = #{name,jdbcType=VARCHAR},
+		account = #{account,jdbcType=VARCHAR},
+		password = #{password,jdbcType=VARCHAR},
+		sex = #{sex,jdbcType=CHAR},
+		tel = #{tel,jdbcType=CHAR},
+		idCard = #{idcard,jdbcType=CHAR},
+		email = #{email,jdbcType=VARCHAR},
+		birthday = #{birthday,jdbcType=DATE},
+		address = #{address,jdbcType=VARCHAR},
+		sal = #{sal,jdbcType=DOUBLE},
+		tid = #{tid,jdbcType=INTEGER},
+		createTime = #{createtime,jdbcType=TIMESTAMP},
+		founderId = #{founderid,jdbcType=INTEGER},
+		enable = #{enable,jdbcType=CHAR}
+		where eid = #{eid,jdbcType=INTEGER}
+	</update>
+	<select id="zkSelAll" resultMap="BaseResultMap">
+		SELECT e.*,t.*,(SELECT `name` FROM employee em WHERE em.eid =
+		e.founderId) name2 FROM employee e INNER JOIN transfer t ON e.tid =
+		t.transfer_id
+		<where>
+			<if test="eid !=null and eid != ''"> and e.eid = #{eid}</if>
+			<if test="name !=null and name != ''"> and `name` LIKE CONCAT('%',#{name},'%')</if>
+			<if test="enable !=null and enable != ''"> and `enable` = #{enable}</if>
+			<if test="tid !=null and tid != ''"> and e.tid = #{tid}</if>
+		</where>
+		limit #{num},#{size}
+	</select>
+	<select id="zkCount" resultType="int">
+		SELECT count(1) FROM employee e INNER JOIN transfer t ON e.tid =
+		t.transfer_id
+		<where>
+			<if test="eid !=null and eid != ''"> and e.eid = #{eid}</if>
+			<if test="name !=null and name != ''"> and `name` LIKE CONCAT('%',#{name},'%')</if>
+			<if test="enable !=null and enable != ''"> and `enable` = #{enable}</if>
+			<if test="tid !=null and tid != ''"> and e.tid = #{tid}</if>
+		</where>
+	</select>
+	<select id="zkSelByUsername" resultType="int">
+		select * from employee
+		where username = #{username}
+	</select>
+	<insert id="zkInsert"
+		parameterType="com.expressage.pojo.Employee">
+		insert into employee
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="name != null">
+				name,
+			</if>
+			<if test="account != null">
+				account,
+			</if>
+			<if test="password != null">
+				password,
+			</if>
+			<if test="sex != null">
+				sex,
+			</if>
+			<if test="tel != null">
+				tel,
+			</if>
+			<if test="idcard != null">
+				idCard,
+			</if>
+			<if test="email != null">
+				email,
+			</if>
+			<if test="birthday != null">
+				birthday,
+			</if>
+			<if test="address != null">
+				address,
+			</if>
+			<if test="sal != null">
+				sal,
+			</if>
+			<if test="tid != null">
+				tid,
+			</if>
+			createTime,
+			<if test="founderid != null">
+				founderId,
+			</if>
+			<if test="enable != null">
+				enable,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="name != null">
+				#{name,jdbcType=VARCHAR},
+			</if>
+			<if test="account != null">
+				#{account,jdbcType=VARCHAR},
+			</if>
+			<if test="password != null">
+				#{password,jdbcType=VARCHAR},
+			</if>
+			<if test="sex != null">
+				#{sex,jdbcType=CHAR},
+			</if>
+			<if test="tel != null">
+				#{tel,jdbcType=CHAR},
+			</if>
+			<if test="idcard != null">
+				#{idcard,jdbcType=CHAR},
+			</if>
+			<if test="email != null">
+				#{email,jdbcType=VARCHAR},
+			</if>
+			<if test="birthday != null">
+				#{birthday,jdbcType=DATE},
+			</if>
+			<if test="address != null">
+				#{address,jdbcType=VARCHAR},
+			</if>
+			<if test="sal != null">
+				#{sal,jdbcType=DOUBLE},
+			</if>
+			<if test="tid != null">
+				#{tid,jdbcType=INTEGER},
+			</if>
+			now(),
 			<if test="founderid != null">
 				#{founderid,jdbcType=INTEGER},
 			</if>
@@ -335,34 +349,41 @@
 		parameterType="com.expressage.pojo.Employee">
 		update employee
 		<set>
-			<if test="password != null">
+			<if test="name != null and name != ''">
+				name = #{name,jdbcType=VARCHAR},
+			</if>
+			<if test="password != null and password != ''">
 				password = #{password,jdbcType=VARCHAR},
 			</if>
-			<if test="sex != null">
+			<if test="sex != null and sex != ''">
 				sex = #{sex,jdbcType=CHAR},
 			</if>
-			<if test="tel != null">
+			<if test="tel != null and tel != ''">
 				tel = #{tel,jdbcType=CHAR},
 			</if>
-			<if test="email != null">
+			<if test="email != null and email != ''">
 				email = #{email,jdbcType=VARCHAR},
 			</if>
 			<if test="birthday != null">
 				birthday = #{birthday,jdbcType=DATE},
 			</if>
-			<if test="address != null">
+			<if test="address != null and address != ''">
 				address = #{address,jdbcType=VARCHAR},
 			</if>
-			<if test="sal != null">
+			<if test="sal != null and sal != ''">
 				sal = #{sal,jdbcType=DOUBLE},
 			</if>
-			<if test="tid != null">
+			<if test="tid != null and tid != ''">
 				tid = #{tid,jdbcType=INTEGER},
 			</if>
-			<if test="enable != null">
+			<if test="enable != null and enable != ''">
 				enable = #{enable,jdbcType=CHAR},
 			</if>
 		</set>
 		where eid = #{eid,jdbcType=INTEGER}
 	</update>
+	<select id="zkSelEmployeeByAccount" resultType="int">
+		select count(1)
+		from employee where account = #{account}
+	</select>
 </mapper>

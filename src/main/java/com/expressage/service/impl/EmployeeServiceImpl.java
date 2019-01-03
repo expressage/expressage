@@ -22,7 +22,7 @@ public class EmployeeServiceImpl implements EmployeeService{
 
 	@Override
 	public List<Employee> zkSelAll(Integer eid, String name, String enable,Integer tid, Integer num, Integer size) {
-		return employeeMapper.zkSelAll(eid, name, enable, num, size,tid);
+		return employeeMapper.zkSelAll(eid, name, enable, tid, num,size);
 	}
 
 	@Override
@@ -43,6 +43,11 @@ public class EmployeeServiceImpl implements EmployeeService{
 	@Override
 	public int zkUpdByKey(Employee employee) {
 		return employeeMapper.zkUpdByKey(employee);
+	}
+
+	@Override
+	public int zkSelEmployeeByAccount(String account) {
+		return employeeMapper.zkSelEmployeeByAccount(account);
 	}
 
 }

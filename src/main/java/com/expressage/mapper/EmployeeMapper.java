@@ -4,7 +4,6 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
-import org.apache.ibatis.annotations.Select;
 
 import com.expressage.pojo.Employee;
 @Mapper
@@ -27,9 +26,11 @@ public interface EmployeeMapper {
     
     int zkCount(@Param("eid")Integer eid,@Param("name")String name,@Param("enable")String enable,@Param("tid")Integer tid);
     
-    int zkInsert(@Param("employee")Employee employee);
+    int zkInsert(Employee employee);
     
     Employee zkSelectByKey(Integer eid);
     
     int zkUpdByKey(Employee employee);
+    
+    int zkSelEmployeeByAccount(String account);
 }

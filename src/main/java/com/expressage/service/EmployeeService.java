@@ -16,4 +16,6 @@ public interface EmployeeService {
 	Employee zkSelectByKey(Integer eid);
 	
 	int zkUpdByKey(Employee employee);
+	
+	int zkSelEmployeeByAccount(String account);
 }

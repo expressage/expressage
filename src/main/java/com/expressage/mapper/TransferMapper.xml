@@ -103,4 +103,7 @@
       address = #{address,jdbcType=VARCHAR}
     where transfer_id = #{transferId,jdbcType=INTEGER}
   </update>
+  <select id="zkSelTransfer" resultMap="BaseResultMap">
+  	select * from transfer
+  </select>
 </mapper>

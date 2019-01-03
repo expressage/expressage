@@ -12,12 +12,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.expressage.pojo.Employee;
 import com.expressage.pojo.Role;
 import com.expressage.service.EmployeeRoleService;
 import com.expressage.service.EmployeeService;
 import com.expressage.service.RoleService;
+import com.expressage.service.TransferService;
 
 @Controller
 @RequestMapping("/employee")
@@ -31,6 +33,9 @@ public class EmployeeController {
 	
 	@Autowired
 	EmployeeRoleService employeeRoleService;
+	
+	@Autowired
+	TransferService transferService;
 	
 	/*@RequestMapping(value="/login",method= RequestMethod.GET)
 	public String login() {
@@ -58,7 +63,16 @@ public class EmployeeController {
 	            return "login.html";
 	        }
 	}*/
-	
+	/**
+	 * 查询所有
+	 * @param eid
+	 * @param name
+	 * @param enable
+	 * @param num
+	 * @param size
+	 * @param model
+	 * @return
+	 */
 	@RequestMapping(value="/zkSelEmployee")
 	public String zkSelEmployee(
 			@RequestParam(value="eid",required=false)Integer eid,
@@ -82,20 +96,46 @@ public class EmployeeController {
 		return "role/system";
 	}
 	
+	/**
+	 * 增加员工
+	 * @param employee
+	 * @return
+	 */
 	@RequestMapping(value="zkAddEmployee")
-	public String zkAddEmployee(@RequestParam("employee")Employee employee) {
+	public String zkAddEmployee(Employee employee) {
+		employee.setFounderid(1);
 		employeeService.zkInsert(employee);
 		return "redirect:zkSelEmployee";
 	}
 	
+	
+	@RequestMapping(value="zkSelEmployeeByAccount")
+	@ResponseBody
+	public int zkSelEmployeeByAccount(String account) {
+		int num = employeeService.zkSelEmployeeByAccount(account);
+		return num;
+	}
+	
+	/**
+	 * 根据eid查询
+	 * @param eid
+	 * @param model
+	 * @return
+	 */
 	@RequestMapping(value="zkSelectByKey")
 	public String zkSelectByKey(@RequestParam("eid")Integer eid,Model model) {
 		model.addAttribute("employee", employeeService.zkSelectByKey(eid));
-		return "zkUpdEmployee";
+		model.addAttribute("transferList", transferService.zkSelTransfer());
+		return "/role/employee_upd.html";
 	}
 	
+	/**
+	 * 修改员工
+	 * @param employee
+	 * @return
+	 */
 	@RequestMapping(value="zkUpdByKey")
-	public String zkUpdByKey(@RequestParam("employee")Employee employee) {
+	public String zkUpdByKey(Employee employee) {
 		employeeService.zkUpdByKey(employee);
 		return "redirect:zkSelEmployee";
 	}
@@ -126,6 +166,17 @@ public class EmployeeController {
 			employeeRoleService.zkAddRoleByEid(eid, rids[i]);
 		}
 		return "redirect:assignRoles";
+	}
+	
+	/**
+	 **查询中转站
+	 * @param employee
+	 * @return
+	 */
+	@RequestMapping(value="zkSelTransfer")
+	public String zkSelTransfer(Model model) {
+		model.addAttribute("transferList", transferService.zkSelTransfer());
+		return "/role/employee_add.html";
 	}
 	
 }

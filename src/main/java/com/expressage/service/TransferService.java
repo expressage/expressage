@@ -1,5 +1,9 @@
 package com.expressage.service;
 
-public interface TransferService {
+import java.util.List;
 
+import com.expressage.pojo.Transfer;
+
+public interface TransferService {
+	List<Transfer> zkSelTransfer();
 }

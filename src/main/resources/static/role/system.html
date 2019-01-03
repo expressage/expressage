@@ -10,7 +10,42 @@
 <link type="text/css" rel="stylesheet" media="all"
 	href="../styles/global_color.css" />
 <script type="text/javascript" src="../js/jquery-1.12.4.js"></script>
+<script src="../js/layer.js"></script>
 <script language="javascript" type="text/javascript">
+	function add_employee() {
+		location = "/employee/zkSelTransfer";
+
+	}
+	function showRole(){
+		//多窗口模式，层叠置顶
+		alert(1)
+		layer.open({
+		  type: 2 //此处以iframe举例
+		  ,title: '当你选择该窗体时，即会在最顶端'
+		  ,area: ['390px', '330px']
+		  ,shade: 0
+		  ,offset: [ //为了演示，随机坐标
+		    Math.random()*($(window).height()-300)
+		    ,Math.random()*($(window).width()-390)
+		  ]
+		  ,maxmin: true
+		  ,content: '/role/employeeRole.html'
+		  ,btn: ['继续弹出', '全部关闭'] //只是为了演示
+		  ,yes: function(){
+		    $(that).click(); //此处只是为了演示，实际使用可以剔除
+		  }
+		  ,btn2: function(){
+		    layer.closeAll();
+		  }
+		  
+		  ,zIndex: layer.zIndex //重点1
+		  ,success: function(layero){
+		    layer.setTop(layero); //重点2
+		  }
+		});
+
+
+	}
 	function changeTab(e, ulObj) {
 		var obj = e.srcElement || e.target;
 		if (obj.nodeName == "A") {
@@ -73,18 +108,24 @@
 							<option value="0" th:selected="${enable=='0'}">禁用</option>
 						</select>
 						<button type="submit" onclick="search();">查询</button>
-						<button shiro:hasPermission="/users/add" type="button"
-							onclick="$('#addUser').modal();">新增</button>
-						<button shiro:hasPermission="/users/delete" type="button"
-							onclick="delByID();">删除</button>
-						<button shiro:hasPermission="/users/saveUserRoles" type="button"
-							onclick="allotRole();">分配角色</button>
+						<button type="button" onclick="add_employee();">新增</button>
 					</form>
 					<table id="datalist">
 						<tr class="title">
 							<!-- <td><input type="checkbox" class="checkall" /></td> -->
 							<td>ID</td>
-							<td>用户名</td>
+							<td>真实姓名</td>
+							<td>账号</td>
+							<td>性别</td>
+							<td>出身日期</td>
+							<td>身份证号</td>
+							<td>联系手机</td>
+							<td>联系邮箱</td>
+							<td>住址</td>
+							<td>工资</td>
+							<td>所属中转站</td>
+							<td>创建时间</td>
+							<td>创建人</td>
 							<td>是否启用</td>
 							<td>操作</td>
 						</tr>
@@ -92,8 +133,19 @@
 							<!-- <td><input type="checkbox" class="checkall" /></td> -->
 							<td th:text="${list.eid}" />
 							<td th:text="${list.name}" />
+							<td th:text="${list.account}" />
+							<td th:text="${list.sex=='1'?'男':'女'}" />
+							<td th:text="${list.birthday}" />
+							<td th:text="${list.idcard}" />
+							<td th:text="${list.tel}" />
+							<td th:text="${list.email}" />
+							<td th:text="${list.address}" />
+							<td th:text="${list.sal}" />
+							<td th:text="${list.transfer.transferName}" />
+							<td th:text="${list.createtime}" />
+							<td th:text="${list.name2}" />
 							<td th:text="${list.enable=='0'?'禁用':'启用'}" />
-							<td><a href="">分配角色</a></td>
+							<td><a th:href="@{/employee/zkSelectByKey?(eid=${list.eid})}">修改</a>/<a href="#" onclick="showRole();">分配角色</a></td>
 						</tr>
 					</table>
 				</div>
