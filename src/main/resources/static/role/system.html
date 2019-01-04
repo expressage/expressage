@@ -9,42 +9,29 @@
 	href="../styles/global.css" />
 <link type="text/css" rel="stylesheet" media="all"
 	href="../styles/global_color.css" />
+<!-- <link type="text/css" rel="stylesheet" media="all" href="../styles/bootstrap.min.css" /> -->
 <script type="text/javascript" src="../js/jquery-1.12.4.js"></script>
-<script src="../js/layer.js"></script>
+<script type="text/javascript" src="../js/layer.js"></script>
+<script type="text/javascript" src="../js/layer.ext.js"></script>
 <script language="javascript" type="text/javascript">
 	function add_employee() {
 		location = "/employee/zkSelTransfer";
 
 	}
-	function showRole(){
-		//多窗口模式，层叠置顶
-		alert(1)
-		layer.open({
-		  type: 2 //此处以iframe举例
-		  ,title: '当你选择该窗体时，即会在最顶端'
-		  ,area: ['390px', '330px']
-		  ,shade: 0
-		  ,offset: [ //为了演示，随机坐标
-		    Math.random()*($(window).height()-300)
-		    ,Math.random()*($(window).width()-390)
-		  ]
-		  ,maxmin: true
-		  ,content: '/role/employeeRole.html'
-		  ,btn: ['继续弹出', '全部关闭'] //只是为了演示
-		  ,yes: function(){
-		    $(that).click(); //此处只是为了演示，实际使用可以剔除
-		  }
-		  ,btn2: function(){
-		    layer.closeAll();
-		  }
-		  
-		  ,zIndex: layer.zIndex //重点1
-		  ,success: function(layero){
-		    layer.setTop(layero); //重点2
-		  }
-		});
-
-
+	function showRole(eid) {
+	 	layer.open({
+			type : 2,
+			title : '分配角色',
+			maxmin : true,
+			shadeClose : true, //点击遮罩关闭层
+			area : [ '400px', '500px' ],
+			content : '/role/employeeRole.html',
+			 success: function(layero, index) {
+	                var body = layer.getChildFrame('body', index);//建立父子联系
+	                var inputList = body.find('#eid');
+	                $(inputList).val(eid);
+	            }
+		}); 
 	}
 	function changeTab(e, ulObj) {
 		var obj = e.srcElement || e.target;
@@ -145,7 +132,9 @@
 							<td th:text="${list.createtime}" />
 							<td th:text="${list.name2}" />
 							<td th:text="${list.enable=='0'?'禁用':'启用'}" />
-							<td><a th:href="@{/employee/zkSelectByKey?(eid=${list.eid})}">修改</a>/<a href="#" onclick="showRole();">分配角色</a></td>
+							<td><a
+								th:href="@{/employee/zkSelectByKey?(eid=${list.eid})}">修改</a>/<a
+								href="#" th:onclick="'javascript:showRole('+${list.eid}+')'">分配角色</a></td>
 						</tr>
 					</table>
 				</div>
