@@ -9,9 +9,9 @@ spring:
     servlet:
       content-type: text/html
   datasource:
-    url: jdbc:mysql://localhost:3306/expressage
+    url: jdbc:mysql://localhost:3306/expressage?serverTimezone=GMT%2B8
     username: root
-    password: 123
+    password: 1234
     driver-class-name: com.mysql.jdbc.Driver
   redis:
     host: 127.0.0.1

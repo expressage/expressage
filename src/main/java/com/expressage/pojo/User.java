@@ -7,6 +7,8 @@ public class User {
 
     private String tel;
 
+    private String img;
+
     public Integer getUid() {
         return uid;
     }
@@ -29,5 +31,13 @@ public class User {
 
     public void setTel(String tel) {
         this.tel = tel == null ? null : tel.trim();
+    }
+
+    public String getImg() {
+        return img;
+    }
+
+    public void setImg(String img) {
+        this.img = img == null ? null : img.trim();
     }
 }

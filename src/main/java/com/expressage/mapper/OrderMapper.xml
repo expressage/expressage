@@ -23,12 +23,28 @@
     oid, orderNo, uid, maddress, raddress, order_time, appointmentTime, type_Name, weight, 
     rprice, eprice, total, pay_type, rpay, status, remarks
   </sql>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
-    select 
-    <include refid="Base_Column_List" />
-    from order
-    where oid = #{oid,jdbcType=INTEGER}
+  <select id="pmlSelectAll" resultMap="BaseResultMap" parameterType="java.lang.String" >
+   SELECT o.*,a1.address AS maddressm,a2.address AS raddressr ,u.uname
+   FROM `user` u, `order` o 
+   INNER JOIN address a1 ON o.maddress = a1.aid 
+   INNER JOIN address a2 ON o.raddress = a2.aid  
+   WHERE u.uid=o.uid
+    <if test="orderno != null and orderno != ''">
+      AND orderNo = #{orderno,jdbcType=VARCHAR}
+    </if>
   </select>
+  
+  
+  
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select o.*,a1.address AS maddressm,a2.address AS raddressr ,u.uname
+    FROM `user` u, `order` o 
+    INNER JOIN address a1 ON o.maddress = a1.aid 
+    INNER JOIN address a2 ON o.raddress = a2.aid  
+    WHERE u.uid=o.uid AND oid = #{oid,jdbcType=INTEGER}
+  </select>
+  
+  
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from order
     where oid = #{oid,jdbcType=INTEGER}
