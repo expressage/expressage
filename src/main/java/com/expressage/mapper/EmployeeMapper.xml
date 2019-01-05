@@ -386,4 +386,7 @@
 		select count(1)
 		from employee where account = #{account}
 	</select>
+	<update id="zkProhibitEmpl">
+		UPDATE expressage.employee  SET ENABLE = 0 WHERE eid = #{eid}
+	</update>
 </mapper>

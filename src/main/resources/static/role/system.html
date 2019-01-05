@@ -16,8 +16,78 @@
 <script language="javascript" type="text/javascript">
 	function add_employee() {
 		location = "/employee/zkSelTransfer";
-
 	}
+	function selRole() {
+		$
+				.get(
+						"/role/zkSelRole",
+						null,
+						function(data) {
+							var roleList = data.roles;
+							var roles = "<tr class=\"title\"><td>ID</td><td>角色名称</td><td>操作</td></tr>";
+							for (var i = 0; i < roleList.length; i++) {
+								roles += "<tr class=\"rowAlternateA\"><td>"
+										+ roleList[i].rid
+										+ "</td><td>"
+										+ roleList[i].rname
+										+ "</td><td><a href=\"#\" onclick=\"delRole("+roleList[i].rid+")\">删除</a>/<a href=\"#\" onclick=\"selPower("
+										+ roleList[i].rid
+										+ ");\">分配权限</a></td></tr>";
+							}
+							$("#sys1 #datalist").html(roles);
+						});
+	}
+	
+	function delRole(rid){
+		$.get("/role/zkDelRole?rid="+rid,null,function(data){
+			if(data>0){
+				alert("删除成功");
+			}else if(data==0){
+				alert("删除失败");
+			}else{
+				alert("此角色下有员工，不能删除");
+			}
+		});
+	}
+	
+	function prohibitEmpl(eid,num){
+		location="/employee/zkProhibitEmpl?eid="+eid+"&num="+num;
+	}
+	
+	function selPower(rid){
+		layer.open({
+			type : 2,
+			title : '分配权限',
+			maxmin : true,
+			shadeClose : true, //点击遮罩关闭层
+			area : [ '400px', '500px' ],
+			content : '/role/rolePower.html',
+			success : function(layero, index) {
+				var body = layer.getChildFrame('body', index);//建立父子联系
+				var inputList = body.find('#rid');
+				$(inputList).val(rid);
+			},
+			end : function() {
+				selRole();
+			}
+		});
+		//location="/role/zkAssignPower?rid="+rid;
+	}
+	
+	function addRole(){
+		layer.open({
+			type : 2,
+			title : '分配权限',
+			maxmin : true,
+			shadeClose : true, //点击遮罩关闭层
+			area : [ '400px', '300x' ],
+			content : '/role/addRole.html',
+			end : function() {
+				selRole();
+			}
+		});
+	}
+	
 	function showRole(eid) {
 		layer.open({
 			type : 2,
@@ -31,8 +101,8 @@
 				var inputList = body.find('#eid');
 				$(inputList).val(eid);
 			},
-			end: function () {
-			        location.reload();
+			end : function() {
+				location.reload();
 			}
 		});
 	}
@@ -56,7 +126,7 @@
 <body>
 	<!--Logo区域开始-->
 	<div id="header">
-		<img src="../images/logo.png" alt="logo" class="left" /> <a href="#">[退出]</a>
+		<!-- <img src="../images/logo.png" alt="logo" class="left" />  --><a href="#">[退出]</a>
 	</div>
 	<!--Logo区域结束-->
 	<!--导航区域开始-->
@@ -80,8 +150,9 @@
 		<div class="tabs">
 			<ul onclick="changeTab(event,this);">
 				<li><a href="#####" class="tab_on" title="用户管理">用户管理</a></li>
-				<li><a href="#####" class="tab_out" title="角色管理">角色管理</a></li>
-				<li><a href="#####" class="tab_out" title="资源管理">资源管理</a></li>
+				<li><a href="#####" class="tab_out" title="角色管理"
+					onclick="selRole();">角色管理</a></li>
+				<li><a href="#####" class="tab_out" title="资源管理" >资源管理</a></li>
 			</ul>
 		</div>
 		<div class="report_box">
@@ -89,7 +160,7 @@
 			<div id="report_data">
 				<div id="sys0" class="tableall">
 					<form action="/employee/zkSelEmployee">
-						<label>编号:</label> <input type="text" name="eid" placeholder="编号:"
+						<label>编号:</label> <input type="text" name="eid" placeholder="编号"
 							th:value="${eid}" /> <label>名称:</label> <input type="text"
 							name="name" placeholder="名称" th:value="${name}" /> <label
 							class="control-label">状态:</label> <select name="enable">
@@ -135,62 +206,46 @@
 							<td th:text="${list.createtime}" />
 							<td th:text="${list.name2}" />
 							<td th:text="${list.enable=='0'?'禁用':'启用'}" />
-							<td><a
-								th:href="@{/employee/zkSelectByKey?(eid=${list.eid})}">修改</a>/<a
+							<td th:if="${list.enable=='1'}">
+							<span th:onclick="'javascript:prohibitEmpl('+${list.eid}+','+${num}+')'">禁用</span>
+							<a
+								th:href="@{/employee/zkSelectByKey?(eid=${list.eid})}"> 修改</a>/<a
 								href="#" th:onclick="'javascript:showRole('+${list.eid}+')'">分配角色</a></td>
 						</tr>
 					</table>
+					<div id="pages">
+						<table class="pagination" cellspacing="0" cellpadding="4"
+							width="77%" align="center">
+							<tr>
+								<td width="15%" nowrap="nowrap">共<span th:text="${page}" />页,<span
+									th:text=${count} />条记录
+								</td>
+								<td width="42%">&nbsp;</td>
+								<td width="43%" align="right" nowrap="nowrap"><a
+									th:href="@{/employee/zkSelEmployee?(eid=${eid},name=${name},enable=${enable},num=1)}">首页</a>
+									<a
+									th:href="@{/employee/zkSelEmployee?(eid=${eid},name=${name},enable=${enable},num=${num-1})}"
+									th:if="!${num eq 1}">上一页</a> <a
+									th:href="@{/employee/zkSelEmployee?(eid=${eid},name=${name},enable=${enable},num=${num+1})}"
+									th:if="!${num eq page}">下一页</a> <a
+									th:href="@{/employee/zkSelEmployee?(eid=${eid},name=${name},enable=${enable},num=${page})}">尾页</a>
+								</td>
+							</tr>
+						</table>
+					</div>
 				</div>
 				<div id="sys1" class="tableall" style="display: none;">
+					<h2 onclick="addRole();">新增</h2>
 					<table id="datalist">
-						<tr>
-							<th class="width300">Unix 服务器IP</th>
-							<th>账务帐号</th>
-							<th>客户名称</th>
-							<th class="width200">身份证号码</th>
-							<th class="width150">累积时长</th>
-						</tr>
+
 					</table>
 				</div>
 				<div id="sys2" class="tableall" style="display: none;">
 					<table id="datalist">
-						<tr>
-							<th class="width300">Unix 服务器IP</th>
-							<th>包月</th>
-							<th>套餐</th>
-							<th>计时</th>
-						</tr>
-						<tr>
-							<td>192.168.0.20</td>
-							<td>345</td>
-							<td>21</td>
-							<td>34</td>
-						</tr>
+
 					</table>
 				</div>
 			</div>
-			<!--分页-->
-			<div id="pages">
-				<table class="pagination" cellspacing="0" cellpadding="4"
-					width="77%" align="center">
-					<tr>
-						<td width="15%" nowrap="nowrap">共<span th:text="${page}" />页,<span
-							th:text=${count} />条记录
-						</td>
-						<td width="42%">&nbsp;</td>
-						<td width="43%" align="right" nowrap="nowrap"><a
-							th:href="@{/employee/zkSelEmployee?(eid=${eid},name=${name},enable=${enable},num=1)}">首页</a>
-							<a
-							th:href="@{/employee/zkSelEmployee?(eid=${eid},name=${name},enable=${enable},num=${num-1})}"
-							th:if="!${num eq 1}">上一页</a> <a
-							th:href="@{/employee/zkSelEmployee?(eid=${eid},name=${name},enable=${enable},num=${num+1})}"
-							th:if="!${num eq page}">下一页</a> <a
-							th:href="@{/employee/zkSelEmployee?(eid=${eid},name=${name},enable=${enable},num=${page})}">尾页</a>
-						</td>
-					</tr>
-				</table>
-			</div>
-
 		</div>
 	</div>
 	<!--主要区域结束-->

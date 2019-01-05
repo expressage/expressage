@@ -9,4 +9,8 @@ public interface PowerService {
 	List<Power> selAll();
 	
 	List<Power> selByUserId(Map<String,Object> map);
+
+	List<Power> zkSelPowerByRid(Integer rid);
+
+	List<Power> zkSelPower();
 }

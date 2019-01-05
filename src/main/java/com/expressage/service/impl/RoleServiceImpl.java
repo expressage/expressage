@@ -22,4 +22,14 @@ public class RoleServiceImpl implements RoleService {
 	public List<Role> zkSelRoleByEid(Integer eid) {
 		return roleMapper.zkSelRoleByEid(eid);
 	}
+
+	@Override
+	public int zkAddRole(String rname) {
+		return roleMapper.zkAddRole(rname);
+	}
+
+	@Override
+	public int zkDelRole(Integer rid) {
+		return roleMapper.zkDelRole(rid);
+	}
 }

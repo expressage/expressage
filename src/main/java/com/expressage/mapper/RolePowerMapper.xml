@@ -28,4 +28,13 @@
       </if>
     </trim>
   </insert>
+  <delete id="zkDelPowerByRid">
+  	delete from role_power where rid = #{rid}
+  </delete>
+  <insert id="zkAddPowerByRid">
+  	INSERT INTO expressage.role_power (rid, pid)VALUES(#{rid}, #{powers});
+  </insert>
+  <select id="zkPowerCountByRid">
+  	SELECT COUNT(1) FROM role_power WHERE rid = #{rid}
+  </select>
 </mapper>

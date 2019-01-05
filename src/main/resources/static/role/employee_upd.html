@@ -144,7 +144,7 @@ xmlns:th="http://www.thymeleaf.org">
 					<option th:each="list:${transferList}" th:value="${list.transferId}" th:selected="${list.transferId==employee.tid}"><span th:text="${list.transferName}"/></option>
 				</select>
 			</div>
-			<div class="text_info clearfix">
+			<!-- <div class="text_info clearfix">
 				<span>是否启用：</span>
 			</div>
 			<div class="input_info">
@@ -153,7 +153,7 @@ xmlns:th="http://www.thymeleaf.org">
 							<option value="1" th:selected="${employee.enable=='1'}">开启</option>
 							<option value="0" th:selected="${employee.enable=='0'}">禁用</option>
 				</select>
-			</div>
+			</div> -->
 			<!--操作按钮-->
 			<div class="button_info clearfix">
 				<input type="submit" value="保存" class="btn_save" /> <input type="button" value="取消"

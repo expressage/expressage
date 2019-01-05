@@ -143,6 +143,18 @@ public class EmployeeController {
 	}
 	
 	/**
+	 * 禁用员工
+	 * @param eid
+	 * @return
+	 */
+	@RequestMapping(value="zkProhibitEmpl")
+	public String zkProhibitEmpl(@RequestParam("eid")Integer eid,@RequestParam("num")Integer num) {
+		employeeRoleService.zkDelRoleByEid(eid);
+		employeeService.zkProhibitEmpl(eid);
+		return "redirect:zkSelEmployee?num="+num;
+	}
+	
+	/**
 	 **查询分配角色
 	 * @param employee
 	 * @return

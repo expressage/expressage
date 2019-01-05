@@ -50,4 +50,9 @@ public class EmployeeServiceImpl implements EmployeeService{
 		return employeeMapper.zkSelEmployeeByAccount(account);
 	}
 
+	@Override
+	public int zkProhibitEmpl(Integer eid) {
+		return employeeMapper.zkProhibitEmpl(eid);
+	}
+
 }

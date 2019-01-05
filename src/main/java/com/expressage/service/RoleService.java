@@ -8,4 +8,8 @@ public interface RoleService {
 	List<Role> zkSelRole();
     
     List<Role> zkSelRoleByEid(Integer eid); 
+    
+    int zkAddRole(String rname);
+    
+    int zkDelRole(Integer rid);
 }
