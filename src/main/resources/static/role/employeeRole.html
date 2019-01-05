@@ -3,39 +3,59 @@
 	xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>达内－NetCTOSS</title>
+<title>即刻快递</title>
 <link type="text/css" rel="stylesheet" media="all"
 	href="../styles/global.css" />
 <link type="text/css" rel="stylesheet" media="all"
 	href="../styles/global_color.css" />
 </head>
 <body>
-	<div id="data" style="width: 350px; height: 450px">
-		<form action="/employee/zkAddEmployee" method="post">
+	<div id="data" style="width: 320px; height: 420px">
+		<form action="" id="form">
+			<span id="eid"></span>
 			<table id="datalist">
-				<tr>
-				<td><input id="eid" type="text" onblur="ad()"/></td>
-					<td><input type="checkbox"></input></td>
-					<td><input type="text" value="yi"></input></td>
-				</tr>
 			</table>
-			<div class="button_info clearfix">
-				<input type="submit" value="保存" class="btn_save" />
+			<div class="button_info clearfix" >
+				<input type="button" value="保存" class="btn_save" onclick="put()" />
 			</div>
 		</form>
 	</div>
-<script type="text/javascript" src="../js/jquery-1.12.4.js"></script>
-<script language="javascript" type="text/javascript">
-	$(function (){
-		setTimeout('ad()', 10);
-	})
-	function ad(){
-		var eid = $("#eid").val();
-		alert(eid)
-		$.get("/employee/zkSelAssignRoles","eid="+eid,function(data){
-			
+	<script type="text/javascript" src="../js/jquery-1.12.4.js"></script>
+	<script language="javascript" type="text/javascript">
+		$(function() {
+			setTimeout('selRole()', 10);
 		})
-	}
-</script>
+		var eid = "";
+		function selRole() {
+			eid = $("#eid").val();
+			$
+					.get(
+							"/employee/zkSelAssignRoles",
+							"eid=" + eid,
+							function(data) {
+								var role = data.role;
+								var roles = data.roles;
+								var table = ""
+								for (var i = 0; i < roles.length; i++) {
+									table += "<tr><td><input name=\"rids\" type=\"checkbox\" value=\""+roles[i].rid+"\"";
+									for (var j = 0; j < role.length; j++) {
+										if(role[j].rid==roles[i].rid){
+											table+="checked";
+										}
+									}
+									table+="></input></td> <td><span>"+roles[i].rname+"</span></td></tr>"
+								}
+								$("#datalist").html(table);
+							});
+		}
+		
+		function put(){
+			var rids = $('#form').serialize();
+			$.get("/employee/zkAssignRoles?eid="+eid,rids,function(data){
+				var index = parent.layer.getFrameIndex(window.name); 
+				parent.layer.close(index);
+			});
+		}
+	</script>
 </body>
 </html>

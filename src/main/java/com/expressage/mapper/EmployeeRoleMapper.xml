@@ -31,4 +31,7 @@
   <insert id="zkAddRoleByEid">
   	INSERT INTO expressage.employee_role (eid, rid)VALUES(#{eid}, #{rid});
   </insert>
+  <delete id="zkDelRoleByEid">
+  	delete from employee_role where eid = #{eid}
+  </delete>
 </mapper>

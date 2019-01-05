@@ -4,7 +4,7 @@
 	xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>达内－NetCTOSS</title>
+<title>即刻快递</title>
 <link type="text/css" rel="stylesheet" media="all"
 	href="../styles/global.css" />
 <link type="text/css" rel="stylesheet" media="all"
@@ -19,19 +19,22 @@
 
 	}
 	function showRole(eid) {
-	 	layer.open({
+		layer.open({
 			type : 2,
 			title : '分配角色',
 			maxmin : true,
 			shadeClose : true, //点击遮罩关闭层
 			area : [ '400px', '500px' ],
 			content : '/role/employeeRole.html',
-			 success: function(layero, index) {
-	                var body = layer.getChildFrame('body', index);//建立父子联系
-	                var inputList = body.find('#eid');
-	                $(inputList).val(eid);
-	            }
-		}); 
+			success : function(layero, index) {
+				var body = layer.getChildFrame('body', index);//建立父子联系
+				var inputList = body.find('#eid');
+				$(inputList).val(eid);
+			},
+			end: function () {
+			        location.reload();
+			}
+		});
 	}
 	function changeTab(e, ulObj) {
 		var obj = e.srcElement || e.target;
@@ -76,9 +79,9 @@
 	<div id="report_main">
 		<div class="tabs">
 			<ul onclick="changeTab(event,this);">
-				<li><a href="#####" class="tab_on" title="用户列表">用户列表</a></li>
-				<li><a href="#####" class="tab_out" title="每台服务器上累计时长最高的前三名客户">时长排行榜</a></li>
-				<li><a href="#####" class="tab_out" title="每台服务器每种资费标准的使用次数">资费使用率</a></li>
+				<li><a href="#####" class="tab_on" title="用户管理">用户管理</a></li>
+				<li><a href="#####" class="tab_out" title="角色管理">角色管理</a></li>
+				<li><a href="#####" class="tab_out" title="资源管理">资源管理</a></li>
 			</ul>
 		</div>
 		<div class="report_box">
