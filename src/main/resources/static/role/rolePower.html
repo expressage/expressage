@@ -12,7 +12,7 @@
 <body>
 	<div id="data" style="width: 320px; height: 420px">
 		<form action="/role/zddRole" id="form">
-			<span id="eid"></span>
+			<span id="rid"></span>
 			<table id="datalist">
 			</table>
 			<div class="button_info clearfix" >
@@ -25,33 +25,34 @@
 		$(function() {
 			setTimeout('selRole()', 10);
 		})
-		var eid = "";
+		var rid = "";
 		function selRole() {
-			eid = $("#eid").val();
+			rid = $("#rid").val();
 			$
 					.get(
-							"/employee/zkSelAssignRoles",
-							"eid=" + eid,
+							"/role/zkSelAssignPower",
+							"rid=" + rid,
 							function(data) {
-								var role = data.role;
-								var roles = data.roles;
+								var power = data.power;
+								var powers = data.powers;
 								var table = ""
-								for (var i = 0; i < roles.length; i++) {
-									table += "<tr><td><input name=\"rids\" type=\"checkbox\" value=\""+roles[i].rid+"\"";
-									for (var j = 0; j < role.length; j++) {
-										if(role[j].rid==roles[i].rid){
+								for (var i = 0; i < powers.length; i++) {
+									table += "<tr><td><input name=\"powers\" type=\"checkbox\" value=\""+powers[i].pid+"\"";
+									for (var j = 0; j < power.length; j++) {
+										if(power[j].pid==powers[i].pid){
 											table+="checked";
 										}
 									}
-									table+="></input></td> <td><span>"+roles[i].rname+"</span></td></tr>"
+									table+="></input></td> <td><span>"+powers[i].pname+"</span></td></tr>"
+									/* <td><span>"+powers[i].url+"</span></td> */
 								}
 								$("#datalist").html(table);
 							});
 		}
 		
 		function put(){
-			var rids = $('#form').serialize();
-			$.get("/employee/zkAssignRoles?eid="+eid,rids,function(data){
+			var powers = $('#form').serialize();
+			$.get("/role/zkAssignPower?rid="+rid,powers,function(data){
 				var index = parent.layer.getFrameIndex(window.name); 
 				parent.layer.close(index);
 			});

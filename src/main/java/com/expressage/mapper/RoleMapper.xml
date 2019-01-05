@@ -34,4 +34,10 @@
   <select id="zkSelRoleByEid" resultType="role">
   	SELECT * FROM role r INNER JOIN employee_role er ON r.rid = er.rid WHERE er.eId = #{eid}
   </select>
+  <insert id="zkAddRole" >
+    INSERT INTO role (rname) VALUES (#{rname})
+  </insert>
+  <delete id="zkDelRole">
+  	delete from role where rid = #{rid}
+  </delete>
 </mapper>

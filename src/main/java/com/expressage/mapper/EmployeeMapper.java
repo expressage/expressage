@@ -33,4 +33,6 @@ public interface EmployeeMapper {
     int zkUpdByKey(Employee employee);
     
     int zkSelEmployeeByAccount(String account);
+    
+    int zkProhibitEmpl(Integer eid);
 }

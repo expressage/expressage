@@ -10,4 +10,6 @@ public interface EmployeeRoleMapper {
     int insertSelective(EmployeeRole record);
     
     int zkAddRoleByEid(@Param("eid")Integer eid,@Param("rid")int rid);
+    
+    int zkDelRoleByEid(Integer eid);
 }

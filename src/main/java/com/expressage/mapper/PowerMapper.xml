@@ -37,4 +37,10 @@
       </if>
     </trim>
   </insert>
+  <select id="zkSelPowerByRid" resultType="power">
+  	SELECT * FROM POWER p INNER JOIN role_power rp ON p.pid = rp.pid WHERE rp.rid = #{rid}
+  </select>
+  <select id="zkSelPower" resultType="power">
+  	SELECT * FROM POWER
+  </select>
 </mapper>

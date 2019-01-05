@@ -1,6 +1,8 @@
 package com.expressage.controller;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 /*import org.apache.shiro.SecurityUtils;
@@ -141,18 +143,31 @@ public class EmployeeController {
 	}
 	
 	/**
+	 * 禁用员工
+	 * @param eid
+	 * @return
+	 */
+	@RequestMapping(value="zkProhibitEmpl")
+	public String zkProhibitEmpl(@RequestParam("eid")Integer eid,@RequestParam("num")Integer num) {
+		employeeRoleService.zkDelRoleByEid(eid);
+		employeeService.zkProhibitEmpl(eid);
+		return "redirect:zkSelEmployee?num="+num;
+	}
+	
+	/**
 	 **查询分配角色
 	 * @param employee
 	 * @return
 	 */
 	@RequestMapping(value="zkSelAssignRoles")
-	public String zkSelAssignRoles(@RequestParam("employee")Employee employee,Model model) {
-		List<Role> role = roleService.zkSelRoleByEid(employee.getEid());
+	@ResponseBody
+	public Map<String, Object> zkSelAssignRoles(@RequestParam("eid")Integer eid) {
+		List<Role> role = roleService.zkSelRoleByEid(eid);
 		List<Role> roles = roleService.zkSelRole();
-		model.addAttribute("role", role);
-		model.addAttribute("roles", roles);
-		model.addAttribute("eid", employee.getEid());
-		return "redirect:assignRoles";
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("role", role);
+		map.put("roles", roles);
+		return map;
 	}
 	
 	/**
@@ -161,11 +176,12 @@ public class EmployeeController {
 	 * @return
 	 */
 	@RequestMapping(value="zkAssignRoles")
-	public String zkAssignRoles(@RequestParam("eid")Integer eid,@RequestParam("rids")Integer[] rids) {
+	@ResponseBody
+	public void zkAssignRoles(@RequestParam("eid")Integer eid,@RequestParam("rids")Integer[] rids) {
+		employeeRoleService.zkDelRoleByEid(eid);
 		for (int i = 0; i < rids.length; i++) {
 			employeeRoleService.zkAddRoleByEid(eid, rids[i]);
 		}
-		return "redirect:assignRoles";
 	}
 	
 	/**

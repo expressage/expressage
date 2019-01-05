@@ -18,4 +18,6 @@ public interface EmployeeService {
 	int zkUpdByKey(Employee employee);
 	
 	int zkSelEmployeeByAccount(String account);
+
+	int zkProhibitEmpl(Integer eid);
 }
