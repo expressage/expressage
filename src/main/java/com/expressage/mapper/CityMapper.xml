@@ -10,6 +10,13 @@
   <sql id="Base_Column_List" >
     cid, cityName, level, fid
   </sql>
+  <!-- zm -->
+	<select id="zm_findCityByFid" parameterType="int"
+		resultMap="BaseResultMap">
+		select * from city where fid = #{fid}
+	</select>
+  
+  
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />

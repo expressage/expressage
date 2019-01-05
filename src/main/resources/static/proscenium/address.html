@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>地址管理</title>
+<meta
+	content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0"
+	name="viewport" />
+<meta content="yes" name="apple-mobile-web-app-capable" />
+<meta content="black" name="apple-mobile-web-app-status-bar-style" />
+<meta content="telephone=no" name="format-detection" />
+<link href="/proscenium/css/address.css" rel="stylesheet"
+	type="text/css" />
+<link href="/proscenium/css/bootstrap.min.css" rel="stylesheet"
+	type="text/css" />
+</head>
+<body>
+	<section class="aui-flexView">
+		<header class="aui-navBar aui-navBar-fixed b-line">
+			<a class="aui-navBar-item" onclick="location='/Personal/zmPersonal'"> <i
+				class="icon icon-return"></i>
+			</a>
+			<div class="aui-center">
+				<span class="aui-center-title">地址薄</span>
+			</div>
+			<a href="javascript:;" class="aui-navBar-item"> <i
+				class="icon icon-sys"></i>
+			</a>
+		</header>
+		<section class="aui-scrollView">
+			<div class="divHeight b-line"></div>
+			<div class="aui-address-box b-line">
+				<div class="aui-address-add b-line"
+					onclick="location='/Jump/zmJumpAdd'">+添加</div>
+				<div class="aui-flex b-line" th:each="address,iterStat:${listA}">
+					<div class="aui-flex-box">
+						<span th:text="${address.aname}"> </span> &nbsp;&nbsp;&nbsp;<span
+							th:text="${address.tel}" th:class="tel+${iterStat.index}"></span>
+						<p th:text="${address.region}"></p>
+						<p th:text="${address.address}"></p>
+						<p>
+							<input type="radio" name="isdefault"
+								th:onclick="'javascript:zmUpdIsdefault('+${address.aid}+')'"
+								th:checked="${address.isdefault==0?'true':'false'}">默认地址
+						</p>
+					</div>
+					<div class="glyphicon glyphicon-edit"
+						th:onclick="'javascript:zmSelAddressByAid('+${address.aid}+')'"></div>
+					<div class="glyphicon glyphicon-trash"
+						th:onclick="'javascript:zmDelAddress('+${address.aid}+')'"></div>
+				</div>
+			</div>
+		</section>
+	</section>
+	<script type="text/javascript" src="/proscenium/js/jquery.min.js"></script>
+	<script type="text/javascript">
+		$(function() {
+			$.post("/Personal/zmGetCount", null, function(data) {
+				for (var i = 0; i < data; i++) {
+					var tel = $(".tel" + i).text();
+					var mtel = tel.substr(0, 3) + '****' + tel.substr(7, 4);
+					$(".tel" + i).text(mtel);
+				}
+			})
+		});
+		$('input:radio').click(
+				function() {
+					var domName = $(this).attr('name');
+					if ($(this).data('waschecked') == true) {
+						$(this).prop('checked', false);
+						$("input:radio[name='" + domName + "']").data(
+								'waschecked', false);
+						$(this).attr("value", "1");
+					} else {
+						$(this).prop('checked', true);
+						$("input:radio[name='" + domName + "']").data(
+								'waschecked', false);
+						$(this).data('waschecked', true);
+						$(this).attr("value", "0");
+					}
+				});
+
+		function zmUpdIsdefault(aid) {
+			location = '/Personal/zmUpdIsdefault?aid=' + aid;
+		}
+		
+		function zmDelAddress(aid) {
+			if(confirm("确实要删除该内容吗?")){
+				location = '/Personal/zmDelAddress?aid=' + aid;
+			}
+		}
+		
+		function zmSelAddressByAid(aid){
+			location = '/Personal/zmSelAddressByAid?aid=' + aid;
+		}
+	</script>
+</body>
+</html>

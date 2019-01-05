@@ -1,69 +1,103 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.expressage.mapper.UserMapper" >
-  <resultMap id="BaseResultMap" type="com.expressage.pojo.User" >
-    <id column="uid" property="uid" jdbcType="INTEGER" />
-    <result column="uname" property="uname" jdbcType="VARCHAR" />
-    <result column="tel" property="tel" jdbcType="CHAR" />
-  </resultMap>
-  <sql id="Base_Column_List" >
-    uid, uname, tel
-  </sql>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
-    select 
-    <include refid="Base_Column_List" />
-    from user
-    where uid = #{uid,jdbcType=INTEGER}
-  </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
-    delete from user
-    where uid = #{uid,jdbcType=INTEGER}
-  </delete>
-  <insert id="insert" parameterType="com.expressage.pojo.User" >
-    insert into user (uid, uname, tel)
-    values (#{uid,jdbcType=INTEGER}, #{uname,jdbcType=VARCHAR}, #{tel,jdbcType=CHAR})
-  </insert>
-  <insert id="insertSelective" parameterType="com.expressage.pojo.User" >
-    insert into user
-    <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="uid != null" >
-        uid,
-      </if>
-      <if test="uname != null" >
-        uname,
-      </if>
-      <if test="tel != null" >
-        tel,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="uid != null" >
-        #{uid,jdbcType=INTEGER},
-      </if>
-      <if test="uname != null" >
-        #{uname,jdbcType=VARCHAR},
-      </if>
-      <if test="tel != null" >
-        #{tel,jdbcType=CHAR},
-      </if>
-    </trim>
-  </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.expressage.pojo.User" >
-    update user
-    <set >
-      <if test="uname != null" >
-        uname = #{uname,jdbcType=VARCHAR},
-      </if>
-      <if test="tel != null" >
-        tel = #{tel,jdbcType=CHAR},
-      </if>
-    </set>
-    where uid = #{uid,jdbcType=INTEGER}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="com.expressage.pojo.User" >
-    update user
-    set uname = #{uname,jdbcType=VARCHAR},
-      tel = #{tel,jdbcType=CHAR}
-    where uid = #{uid,jdbcType=INTEGER}
-  </update>
+<mapper namespace="com.expressage.mapper.UserMapper">
+	<resultMap id="BaseResultMap" type="com.expressage.pojo.User">
+		<id column="uid" property="uid" jdbcType="INTEGER" />
+		<result column="uname" property="uname" jdbcType="VARCHAR" />
+		<result column="tel" property="tel" jdbcType="CHAR" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		uid, uname, tel
+	</sql>
+	<insert id="zm_addUser">
+		insert into user(uname,tel) values(#{uname},#{tel})
+	</insert>
+	<select id="zm_selUserByTel" resultType="int">
+		select count(1) from user where tel = #{tel}
+	</select>
+	<select id="zm_login" resultType="user">
+		select * from user where tel = #{tel}
+	</select>
+	<update id="zm_updUser">
+		update user
+		<set>
+			<if test="uname != null">
+				uname = #{uname},
+			</if>
+			<if test="tel != null">
+				tel = #{tel},
+			</if>
+			<if test="img != null">
+				img = #{img},
+			</if>
+		</set>
+		where uid = #{uid}
+	</update>
+
+
+
+
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		from user
+		where uid = #{uid,jdbcType=INTEGER}
+	</select>
+	<delete id="deleteByPrimaryKey"
+		parameterType="java.lang.Integer">
+		delete from user
+		where uid = #{uid,jdbcType=INTEGER}
+	</delete>
+	<insert id="insert" parameterType="com.expressage.pojo.User">
+		insert into user (uid, uname, tel)
+		values (#{uid,jdbcType=INTEGER}, #{uname,jdbcType=VARCHAR},
+		#{tel,jdbcType=CHAR})
+	</insert>
+	<insert id="insertSelective"
+		parameterType="com.expressage.pojo.User">
+		insert into user
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="uid != null">
+				uid,
+			</if>
+			<if test="uname != null">
+				uname,
+			</if>
+			<if test="tel != null">
+				tel,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="uid != null">
+				#{uid,jdbcType=INTEGER},
+			</if>
+			<if test="uname != null">
+				#{uname,jdbcType=VARCHAR},
+			</if>
+			<if test="tel != null">
+				#{tel,jdbcType=CHAR},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective"
+		parameterType="com.expressage.pojo.User">
+		update user
+		<set>
+			<if test="uname != null">
+				uname = #{uname,jdbcType=VARCHAR},
+			</if>
+			<if test="tel != null">
+				tel = #{tel,jdbcType=CHAR},
+			</if>
+		</set>
+		where uid = #{uid,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKey"
+		parameterType="com.expressage.pojo.User">
+		update user
+		set uname = #{uname,jdbcType=VARCHAR},
+		tel = #{tel,jdbcType=CHAR}
+		where uid = #{uid,jdbcType=INTEGER}
+	</update>
 </mapper>

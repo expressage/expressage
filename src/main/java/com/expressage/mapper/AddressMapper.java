@@ -1,17 +1,25 @@
 package com.expressage.mapper;
 
+import java.util.List;
+
+import org.apache.ibatis.annotations.Param;
+
 import com.expressage.pojo.Address;
 
 public interface AddressMapper {
-    int deleteByPrimaryKey(Integer aid);
+	List<Address> zm_selAddress(@Param("uid") Integer uid);
 
-    int insert(Address record);
+	Address zm_selAddressByAid(@Param("aid") Integer aid);
 
-    int insertSelective(Address record);
+	int zm_addAddress(Address address);
 
-    Address selectByPrimaryKey(Integer aid);
+	int zm_updIsdefault1(@Param("aid") Integer aid, @Param("uid") Integer uid);
+	
+	int zm_updIsdefault0(@Param("aid") Integer aid);
 
-    int updateByPrimaryKeySelective(Address record);
-
-    int updateByPrimaryKey(Address record);
+	int zm_updAddress(Address address);
+	
+	int zm_delAddress(@Param("aid") Integer aid);
+	
+	int zm_getCount(@Param("uid") Integer uid);
 }

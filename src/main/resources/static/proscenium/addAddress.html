@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>添加地址</title>
+<meta
+	content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0"
+	name="viewport" />
+<meta content="yes" name="apple-mobile-web-app-capable" />
+<meta content="black" name="apple-mobile-web-app-status-bar-style" />
+<meta content="telephone=no" name="format-detection" />
+<link href="/proscenium/css/addAddress.css" rel="stylesheet"
+	type="text/css" />
+</head>
+<body>
+	<form action="/Personal/zmAddaddress" method="post"
+		onsubmit="return toVaild()">
+		<section class="aui-flexView">
+			<header class="aui-navBar aui-navBar-fixed">
+				<a href="javascript:;" class="aui-navBar-item"
+					onclick="history.go(-1); "> <i class="icon icon-return"></i>
+				</a>
+				<div class="aui-center">
+					<span class="aui-center-title">添加地址</span>
+				</div>
+				<a href="javascript:;" class="aui-navBar-item"> <i
+					class="icon icon-sys"></i> <input type="submit" value="保存" />
+				</a>
+			</header>
+			<section class="aui-scrollView">
+				<div class="aui-address-box">
+					<div class="aui-address-cell-item">
+						<div class="aui-cell-name">联系人</div>
+						<div class="aui-cell-input">
+							<input type="text" class="cell-input" placeholder="请输入联系人"
+								autocomplete="off" name="aname">
+						</div>
+					</div>
+					<div class="aui-address-cell-item">
+						<div class="aui-cell-name">联系电话</div>
+						<div class="aui-cell-input">
+							<input type="text" class="cell-input" placeholder="请输入联系电话"
+								autocomplete="off" name="tel">
+						</div>
+					</div>
+					<div class="aui-address-cell-item">
+						<div class="aui-cell-name">所在地区</div>
+						<div class="aui-cell-input cell-input-text">
+							<input type="text" class="cell-input" readonly id="J_Address"
+								placeholder="请选择收货地址" name="region">
+						</div>
+					</div>
+					<div class="aui-address-cell-item">
+						<div class="aui-cell-name">详细地址</div>
+						<div class="aui-cell-input">
+							<input type="text" class="cell-input" placeholder="请输入街道地址"
+								autocomplete="off" name="address">
+						</div>
+					</div>
+					<div class="aui-radio">
+						<input name="isdefault" type="hidden" value="1" /> <input
+							type="radio" name="a">默认地址
+					</div>
+				</div>
+			</section>
+		</section>
+	</form>
+	<script src="/proscenium/js/jquery.min.js"></script>
+	<script src="/proscenium/js/city.js"></script>
+	<script>
+		!function() {
+			first();
+		}();
+
+		function first() {
+			$.post("/City/zmGetCity", null, function(data) {
+				second(data)
+			})
+		}
+
+		function second(data) {
+			var citys = $.parseJSON(data);
+			if (typeof define === 'function') {
+				define(citys)
+			} else {
+				window.YDUI_CITYS = citys
+			}
+
+			var $target = $('#J_Address');
+
+			$target.citySelect();
+
+			$target.on('click', function(event) {
+				event.stopPropagation();
+				$target.citySelect('open');
+			});
+
+			$target.on('done.ydui.cityselect', function(ret) {
+				$(this).val(ret.provance + ' ' + ret.city + ' ' + ret.area);
+			});
+		}
+
+		$('input:radio').click(
+				function() {
+					var domName = $(this).attr('name');
+					if ($(this).data('waschecked') == true) {
+						$(this).prop('checked', false);
+						$("input:radio[name='" + domName + "']").data(
+								'waschecked', false);
+						$("input[name='isdefault']").attr("value", "1");
+					} else {
+						$(this).prop('checked', true);
+						$("input:radio[name='" + domName + "']").data(
+								'waschecked', false);
+						$(this).data('waschecked', true);
+						$("input[name='isdefault']").attr("value", "0");
+					}
+				});
+		function toVaild() {
+			var aname = $("input[name='aname']").val();
+			var tel = $("input[name='tel']").val();
+			var region = $("input[name='region']").val();
+			var address = $("input[name='address']").val();
+			if (aname.trim() == "" || tel.trim() == "" || region.trim() == ""
+					|| address.trim() == "") {
+				alert("请完善信息！");
+				return false;
+			} else if (!(/^1[34578]\d{9}$/.test(tel))) {
+				alert("手机号码有误，请重填");
+				return false;
+			} else {
+				return true;
+			}
+		}
+	</script>
+</body>
+</html>

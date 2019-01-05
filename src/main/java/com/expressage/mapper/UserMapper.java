@@ -1,17 +1,29 @@
 package com.expressage.mapper;
 
+import org.apache.ibatis.annotations.Param;
+
 import com.expressage.pojo.User;
 
 public interface UserMapper {
-    int deleteByPrimaryKey(Integer uid);
+	int zm_addUser(User user);
 
-    int insert(User record);
+	int zm_selUserByTel(@Param("tel")String tel);
 
-    int insertSelective(User record);
+	int zm_updUser(User user);
+	
+	User zm_login(@Param("tel")String tel);
+	
+	
 
-    User selectByPrimaryKey(Integer uid);
+	int deleteByPrimaryKey(Integer uid);
 
-    int updateByPrimaryKeySelective(User record);
+	int insert(User record);
 
-    int updateByPrimaryKey(User record);
+	int insertSelective(User record);
+
+	User selectByPrimaryKey(Integer uid);
+
+	int updateByPrimaryKeySelective(User record);
+
+	int updateByPrimaryKey(User record);
 }

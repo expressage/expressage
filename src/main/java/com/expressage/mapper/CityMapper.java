@@ -1,17 +1,23 @@
 package com.expressage.mapper;
 
+import java.util.List;
+
 import com.expressage.pojo.City;
 
 public interface CityMapper {
-    int deleteByPrimaryKey(Integer cid);
+	List<City> zm_findCityByFid(Integer fid);
+	
+	
 
-    int insert(City record);
+	int deleteByPrimaryKey(Integer cid);
 
-    int insertSelective(City record);
+	int insert(City record);
 
-    City selectByPrimaryKey(Integer cid);
+	int insertSelective(City record);
 
-    int updateByPrimaryKeySelective(City record);
+	City selectByPrimaryKey(Integer cid);
 
-    int updateByPrimaryKey(City record);
+	int updateByPrimaryKeySelective(City record);
+
+	int updateByPrimaryKey(City record);
 }

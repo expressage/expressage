@@ -9,13 +9,7 @@ public class Address {
 
     private String tel;
 
-    private Integer province;
-
-    private Integer municipality;
-
-    private Integer area;
-
-    private Integer street;
+    private String region;
 
     private String address;
 
@@ -53,36 +47,12 @@ public class Address {
         this.tel = tel == null ? null : tel.trim();
     }
 
-    public Integer getProvince() {
-        return province;
+    public String getRegion() {
+        return region;
     }
 
-    public void setProvince(Integer province) {
-        this.province = province;
-    }
-
-    public Integer getMunicipality() {
-        return municipality;
-    }
-
-    public void setMunicipality(Integer municipality) {
-        this.municipality = municipality;
-    }
-
-    public Integer getArea() {
-        return area;
-    }
-
-    public void setArea(Integer area) {
-        this.area = area;
-    }
-
-    public Integer getStreet() {
-        return street;
-    }
-
-    public void setStreet(Integer street) {
-        this.street = street;
+    public void setRegion(String region) {
+        this.region = region == null ? null : region.trim();
     }
 
     public String getAddress() {

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>个人中心</title>
+<meta
+	content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0"
+	name="viewport" />
+<meta content="yes" name="apple-mobile-web-app-capable" />
+<meta content="black" name="apple-mobile-web-app-status-bar-style" />
+<meta content="telephone=no" name="format-detection" />
+<link href="/proscenium/css/personal.css" rel="stylesheet"
+	type="text/css" />
+</head>
+<body>
+	<section class="aui-scrollView">
+		<div class="aui-flex">
+			<div class="aui-flex-users">
+				<h2 th:text="${user.uname}"></h2>
+				<img src="/proscenium/images/user-logo-003.png" alt="">
+			</div>
+		</div>
+		<div class="divHeight"></div>
+		<div class="aui-flex b-line">
+			<div class="aui-flex-box">
+				<p>地址簿</p>
+			</div>
+			<div class="aui-arrow-text"
+				onclick="location='/Personal/zmSelAddress'">
+				<p>查看全部</p>
+			</div>
+		</div>
+		<div class="aui-purge aui-purge-one">
+			<div style="margin-left: 20px;">
+				<p style="font-size: 14px;">
+					<span th:text="${address.aname}"> </span> &nbsp;&nbsp;&nbsp;<span
+						class="tel" th:text="${address.tel}"></span>
+				</p>
+				<p style="font-size: 12px;">
+					<span th:text="${address.region}"></span> &nbsp;&nbsp;&nbsp;<span
+						th:text="${address.address}"></span>
+				</p>
+			</div>
+		</div>
+		<div class="divHeight"></div>
+		<div class="aui-flex b-line">
+			<div class="aui-flex-box">
+				<p>常用服务</p>
+			</div>
+		</div>
+		<div class="aui-purge aui-purge-one">
+			<div class="aui-purge-item">
+				<div class="aui-purge-item-icon">
+					<img src="/proscenium/images/icon-item-1.png" alt="">
+				</div>
+				<p>寄件记录</p>
+			</div>
+			<div class="aui-purge-item">
+				<div class="aui-purge-item-icon">
+					<img src="/proscenium/images/icon-item-4.png" alt="">
+				</div>
+				<p>寄件模板</p>
+			</div>
+			<div class="aui-purge-item">
+				<div class="aui-purge-item-icon">
+					<img src="/proscenium/images/icon-item-5.png" alt="">
+				</div>
+				<p>在线客服</p>
+			</div>
+			<div class="aui-purge-item">
+				<div class="aui-purge-item-icon">
+					<img src="/proscenium/images/icon-item-2.png" alt="">
+				</div>
+				<p>投诉建议</p>
+			</div>
+		</div>
+	</section>
+	<footer class="aui-footer aui-footer-fixed">
+		<a href="/Jump/zmJumpIndex" class="aui-tabBar-item"> <span
+			class="aui-tabBar-item-text">首页</span>
+		</a> <a href="/Jump/zmJumpChat" class="aui-tabBar-item "> <span
+			class="aui-tabBar-item-text">消息</span>
+		</a> <a href="/Jump/zmPersonal" class="aui-tabBar-item "> <span
+			class="aui-tabBar-item-text" style="color: red;">我的</span>
+		</a>
+	</footer>
+	<script type="text/javascript" src="/proscenium/js/jquery.min.js"></script>
+	<script type="text/javascript">
+		$(function() {
+			var tel = $(".tel").text();
+			var mtel = tel.substr(0, 3) + '****' + tel.substr(7, 4);
+			$(".tel").text(mtel);
+		})
+	</script>
+</body>
+</html>
