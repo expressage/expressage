@@ -1,11 +1,15 @@
 package com.expressage.pojo;
 
+import java.util.Date;
+
 public class Tracking {
     private Integer tid;
 
     private String orderno;
 
     private String info;
+
+    private Date time;
 
     public Integer getTid() {
         return tid;
@@ -29,5 +33,13 @@ public class Tracking {
 
     public void setInfo(String info) {
         this.info = info == null ? null : info.trim();
+    }
+
+    public Date getTime() {
+        return time;
+    }
+
+    public void setTime(Date time) {
+        this.time = time;
     }
 }

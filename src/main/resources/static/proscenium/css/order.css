@@ -276,25 +276,6 @@ a {
     position: relative;
 }
 
-.aui-well-item-fr:after {
-    content: " ";
-    display: inline-block;
-    height: 8px;
-    width: 8px;
-    border-width: 2px 2px 0 0;
-    border-color: #999999;
-    border-style: solid;
-    -webkit-transform: matrix(0.71, 0.71, -0.71, 0.71, 0, 0);
-    transform: matrix(0.71, 0.71, -0.71, 0.71, 0, 0);
-    position: relative;
-    top: -2px;
-    position: absolute;
-    top: 50%;
-    margin-top: -5px;
-    right: 2px;
-    border-radius: 2px;
-}
-
 .aui-order-fl {
     color: #666666;
     font-size: 0.8rem;

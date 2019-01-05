@@ -34,132 +34,166 @@ public class Order {
     private String status;
 
     private String remarks;
+    
+    private String uname;
+    
+    private String maddressm;
+    
+    private String raddressr;
 
-    public Integer getOid() {
-        return oid;
-    }
+	public Integer getOid() {
+		return oid;
+	}
 
-    public void setOid(Integer oid) {
-        this.oid = oid;
-    }
+	public void setOid(Integer oid) {
+		this.oid = oid;
+	}
 
-    public String getOrderno() {
-        return orderno;
-    }
+	public String getOrderno() {
+		return orderno;
+	}
 
-    public void setOrderno(String orderno) {
-        this.orderno = orderno == null ? null : orderno.trim();
-    }
+	public void setOrderno(String orderno) {
+		this.orderno = orderno;
+	}
 
-    public Integer getUid() {
-        return uid;
-    }
+	public Integer getUid() {
+		return uid;
+	}
 
-    public void setUid(Integer uid) {
-        this.uid = uid;
-    }
+	public void setUid(Integer uid) {
+		this.uid = uid;
+	}
 
-    public Integer getMaddress() {
-        return maddress;
-    }
+	public Integer getMaddress() {
+		return maddress;
+	}
 
-    public void setMaddress(Integer maddress) {
-        this.maddress = maddress;
-    }
+	public void setMaddress(Integer maddress) {
+		this.maddress = maddress;
+	}
 
-    public Integer getRaddress() {
-        return raddress;
-    }
+	public Integer getRaddress() {
+		return raddress;
+	}
 
-    public void setRaddress(Integer raddress) {
-        this.raddress = raddress;
-    }
+	public void setRaddress(Integer raddress) {
+		this.raddress = raddress;
+	}
 
-    public Date getOrderTime() {
-        return orderTime;
-    }
+	public Date getOrderTime() {
+		return orderTime;
+	}
 
-    public void setOrderTime(Date orderTime) {
-        this.orderTime = orderTime;
-    }
+	public void setOrderTime(Date orderTime) {
+		this.orderTime = orderTime;
+	}
 
-    public Date getAppointmenttime() {
-        return appointmenttime;
-    }
+	public Date getAppointmenttime() {
+		return appointmenttime;
+	}
 
-    public void setAppointmenttime(Date appointmenttime) {
-        this.appointmenttime = appointmenttime;
-    }
+	public void setAppointmenttime(Date appointmenttime) {
+		this.appointmenttime = appointmenttime;
+	}
 
-    public String getTypeName() {
-        return typeName;
-    }
+	public String getTypeName() {
+		return typeName;
+	}
 
-    public void setTypeName(String typeName) {
-        this.typeName = typeName == null ? null : typeName.trim();
-    }
+	public void setTypeName(String typeName) {
+		this.typeName = typeName;
+	}
 
-    public Double getWeight() {
-        return weight;
-    }
+	public Double getWeight() {
+		return weight;
+	}
 
-    public void setWeight(Double weight) {
-        this.weight = weight;
-    }
+	public void setWeight(Double weight) {
+		this.weight = weight;
+	}
 
-    public Integer getRprice() {
-        return rprice;
-    }
+	public Integer getRprice() {
+		return rprice;
+	}
 
-    public void setRprice(Integer rprice) {
-        this.rprice = rprice;
-    }
+	public void setRprice(Integer rprice) {
+		this.rprice = rprice;
+	}
 
-    public Integer getEprice() {
-        return eprice;
-    }
+	public Integer getEprice() {
+		return eprice;
+	}
 
-    public void setEprice(Integer eprice) {
-        this.eprice = eprice;
-    }
+	public void setEprice(Integer eprice) {
+		this.eprice = eprice;
+	}
 
-    public Integer getTotal() {
-        return total;
-    }
+	public Integer getTotal() {
+		return total;
+	}
 
-    public void setTotal(Integer total) {
-        this.total = total;
-    }
+	public void setTotal(Integer total) {
+		this.total = total;
+	}
 
-    public Integer getPayType() {
-        return payType;
-    }
+	public Integer getPayType() {
+		return payType;
+	}
 
-    public void setPayType(Integer payType) {
-        this.payType = payType;
-    }
+	public void setPayType(Integer payType) {
+		this.payType = payType;
+	}
 
-    public Integer getRpay() {
-        return rpay;
-    }
+	public Integer getRpay() {
+		return rpay;
+	}
 
-    public void setRpay(Integer rpay) {
-        this.rpay = rpay;
-    }
+	public void setRpay(Integer rpay) {
+		this.rpay = rpay;
+	}
 
-    public String getStatus() {
-        return status;
-    }
+	public String getStatus() {
+		return status;
+	}
 
-    public void setStatus(String status) {
-        this.status = status == null ? null : status.trim();
-    }
+	public void setStatus(String status) {
+		this.status = status;
+	}
 
-    public String getRemarks() {
-        return remarks;
-    }
+	public String getRemarks() {
+		return remarks;
+	}
 
-    public void setRemarks(String remarks) {
-        this.remarks = remarks == null ? null : remarks.trim();
-    }
+	public void setRemarks(String remarks) {
+		this.remarks = remarks;
+	}
+
+	public String getUname() {
+		return uname;
+	}
+
+	public void setUname(String uname) {
+		this.uname = uname;
+	}
+
+	public String getMaddressm() {
+		return maddressm;
+	}
+
+	public void setMaddressm(String maddressm) {
+		this.maddressm = maddressm;
+	}
+
+	public String getRaddressr() {
+		return raddressr;
+	}
+
+	public void setRaddressr(String raddressr) {
+		this.raddressr = raddressr;
+	}
+    
+    
+    
+
 }

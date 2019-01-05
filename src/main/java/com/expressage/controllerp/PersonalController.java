@@ -26,6 +26,7 @@ public class PersonalController {
 	@Autowired
 	private UserService userService;
 
+	// 登录
 	@RequestMapping("/zmLogin")
 	public String zmLogin(@RequestParam("tel") String tel, HttpSession session) {
 		User user = userService.zm_login(tel);
@@ -37,12 +38,14 @@ public class PersonalController {
 		}
 	}
 
+	// 查询电话是否存在
 	@RequestMapping("/zmCheckTel")
 	@ResponseBody
 	public int zmCheckTel(@RequestParam("tel") String tel) {
 		return userService.zm_selUserByTel(tel);
 	}
 
+	// 注册
 	@RequestMapping("/zmRegister")
 	public String zmRegister(@RequestParam("tel") String tel, HttpSession session) {
 		User user = (User) session.getAttribute("user");
@@ -52,6 +55,7 @@ public class PersonalController {
 		return "proscenium/index";
 	}
 
+	// 获取短信验证
 	@RequestMapping("/zmGetCode")
 	@ResponseBody
 	public String zmGetCode(String tel) {
@@ -76,6 +80,7 @@ public class PersonalController {
 		return code;
 	}
 
+	// 跳转个人中心
 	@RequestMapping("/zmPersonal")
 	public String zmPersonal(Model model, HttpSession session) {
 		User user = (User) session.getAttribute("user");
@@ -85,6 +90,7 @@ public class PersonalController {
 		return "proscenium/personal";
 	}
 
+	// 查询登录人的地址
 	@RequestMapping("/zmSelAddress")
 	public String zm_selAddress(Model model, HttpSession session) {
 		User user = (User) session.getAttribute("user");
@@ -93,6 +99,7 @@ public class PersonalController {
 		return "proscenium/address";
 	}
 
+	// 查询地址详情
 	@RequestMapping("/zmSelAddressByAid")
 	public String zm_selAddressByAid(Integer aid, Model model) {
 		Address address = addressService.zm_selAddressByAid(aid);
@@ -100,6 +107,7 @@ public class PersonalController {
 		return "proscenium/updAddress";
 	}
 
+	// 添加地址信息
 	@RequestMapping("/zmAddaddress")
 	public String zm_addAddress(Address address, HttpSession session) {
 		User user = (User) session.getAttribute("user");
@@ -111,6 +119,7 @@ public class PersonalController {
 		return "redirect:zmSelAddress";
 	}
 
+	// 修改地址信息
 	@RequestMapping("/zmUpdAddress")
 	public String zm_updAddress(Address address, HttpSession session) {
 		User user = (User) session.getAttribute("user");
@@ -121,6 +130,7 @@ public class PersonalController {
 		return "redirect:zmSelAddress";
 	}
 
+	// 修改为默认地址
 	@RequestMapping("/zmUpdIsdefault")
 	public String zm_updIsdefault(Address address, HttpSession session) {
 		User user = (User) session.getAttribute("user");
@@ -129,18 +139,27 @@ public class PersonalController {
 		return "redirect:zmSelAddress";
 	}
 
+	// 删除地址信息
 	@RequestMapping("/zmDelAddress")
 	public String zm_delAddress(@RequestParam("aid") Integer aid) {
 		addressService.zm_delAddress(aid);
 		return "redirect:zmSelAddress";
 	}
 
+	// 获取登录人的地址总数
 	@RequestMapping("/zmGetCount")
 	@ResponseBody
 	public int zm_getCount(HttpSession session) {
 		User user = (User) session.getAttribute("user");
 		int count = addressService.zm_getCount(user.getUid());
 		return count;
+	}
+
+	// 我的订单
+	@RequestMapping("/zmGetOrder")
+	public String zm_getOrder(HttpSession session) {
+		/*User user = (User) session.getAttribute("user");*/
+		return "proscenium/order";
 	}
 
 }
