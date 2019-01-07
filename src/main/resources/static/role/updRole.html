@@ -1,0 +1,57 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>即刻快递</title>
+<link type="text/css" rel="stylesheet" media="all"
+	href="../styles/global.css" />
+<link type="text/css" rel="stylesheet" media="all"
+	href="../styles/global_color.css" />
+</head>
+<body>
+	<div id="data" style="width: 320px; height: 420px">
+		<form action="/role/updRole" id="form">
+			<span id="rid"></span>
+			<div class="input_info">
+				<input type="text" placeholder="角色名称" name="rname" id="rname" onblur="selRoleCountByRname();" />
+			</div>
+			<div class="button_info clearfix" >
+				<input type="button" value="保存" class="btn_save" onclick="put()" />
+			</div>
+		</form>
+	</div>
+	<script type="text/javascript" src="../js/jquery-1.12.4.js"></script>
+	<script language="javascript" type="text/javascript">
+		$(function() {
+			setTimeout('selPower()', 10);
+		})
+		var rid = "";
+		function selPower() {
+			rid = $("#rid").val();
+			$
+					.get(
+							"/role/zkSelRoleByRid",
+							"rid=" + rid,
+							function(data) {
+								$("#rname").val(data.rname);
+							});
+		}
+		
+		function put(){
+			var rids = $('#form').serialize();
+			$.get("/role/zkUpdRole?rid="+rid,rids,function(data){
+				var index = parent.layer.getFrameIndex(window.name); 
+				parent.layer.close(index);
+			});
+		}
+		
+		function selRoleCountByRname(){
+			var rname = $("#rname").val();
+			$.get("/role/zkSelRoleCountByRname?rname="+rname,null,function(data){
+				alert("rname"+data)
+			});
+		}
+	</script>
+</body>
+</html>

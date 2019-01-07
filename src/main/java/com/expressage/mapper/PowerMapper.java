@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 
 import com.expressage.pojo.Power;
@@ -12,14 +13,20 @@ public interface PowerMapper {
     int insert(Power record);
 
     int insertSelective(Power record);
-    
-    @Select("SELECT * FROM power")
-	List<Power> selAll();
 	
-	@Select("SELECT * FROM `power` p LEFT JOIN role_power  rp ON p.pid = rp.pid LEFT JOIN employee_role er ON er.rid =rp.rid WHERE er.eid=#{eid} GROUP BY p.pid")
-	List<Power> selByUserId(Map<String,Object> map);
+	List<Power> zkSelByUserId(Map<String,Object> map);
 	
 	List<Power> zkSelPowerByRid(Integer rid);
 
 	List<Power> zkSelPower();
+	
+	int zkAddPower(@Param("pname")String pname,@Param("url") String url);
+	
+	int zkDelPower(Integer pid);
+	
+	Power zkSelPowerByPid(Integer pid);
+	
+	int zkUpdPowerByPid(@Param("pid")Integer pid,@Param("pname")String pname,@Param("url") String url);
+	
+	int zkSelPowerCountByPname(String pname);
 }

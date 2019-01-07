@@ -14,15 +14,10 @@ public class PowerServiceImpl implements PowerService {
 
 	@Autowired
 	PowerMapper powerMapper;
-	
-	@Override
-	public List<Power> selAll() {
-		return powerMapper.selAll();
-	}
 
 	@Override
-	public List<Power> selByUserId(Map<String, Object> map) {
-		return powerMapper.selByUserId(map);
+	public List<Power> zkSelByUserId(Map<String, Object> map) {
+		return powerMapper.zkSelByUserId(map);
 	}
 
 	@Override
@@ -33,6 +28,31 @@ public class PowerServiceImpl implements PowerService {
 	@Override
 	public List<Power> zkSelPower() {
 		return powerMapper.zkSelPower();
+	}
+
+	@Override
+	public int zkAddPower(String pname, String url) {
+		return powerMapper.zkAddPower(pname, url);
+	}
+
+	@Override
+	public int zkDelPower(Integer pid) {
+		return powerMapper.zkDelPower(pid);
+	}
+
+	@Override
+	public Power zkSelPowerByPid(Integer pid) {
+		return powerMapper.zkSelPowerByPid(pid);
+	}
+
+	@Override
+	public int zkSelPowerCountByPname(String pname) {
+		return powerMapper.zkSelPowerCountByPname(pname);
+	}
+
+	@Override
+	public int zkUpdPowerByPid(Integer pid, String pname, String url) {
+		return powerMapper.zkUpdPowerByPid(pid, pname, url);
 	}
 
 }

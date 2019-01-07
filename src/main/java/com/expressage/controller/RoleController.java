@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.expressage.pojo.Power;
 import com.expressage.pojo.Role;
+import com.expressage.service.EmployeeRoleService;
 import com.expressage.service.PowerService;
 import com.expressage.service.RolePowerService;
 import com.expressage.service.RoleService;
@@ -28,6 +29,10 @@ public class RoleController {
 	
 	@Autowired
 	RolePowerService rolePowerService;
+	
+	@Autowired
+	EmployeeRoleService employeeRoleService;
+	
 	
 	/**
 	 * 查询角色
@@ -63,7 +68,12 @@ public class RoleController {
 		if(num>0) {
 			num = -1;
 		}else {
-			num = roleService.zkDelRole(rid);
+			num = employeeRoleService.zkEmplCountByRid(rid);
+			if(num>0) {
+				num = -2;
+			}else {
+				num = roleService.zkDelRole(rid);
+			}
 		}
 		return num;
 	}
@@ -91,10 +101,31 @@ public class RoleController {
 	 */
 	@RequestMapping(value="zkAssignPower")
 	@ResponseBody
-	public void zkAssignPower(@RequestParam("rid")Integer rid,@RequestParam("powers")Integer[] powers) {
+	public void zkAssignPower(@RequestParam("rid")Integer rid,@RequestParam(value="powers",required=false)Integer[] powers) {
 		rolePowerService.zkDelPowerByRid(rid);
-		for (int i = 0; i < powers.length; i++) {
-			rolePowerService.zkAddPowerByRid(rid, powers[i]);
+		if(powers!=null) {
+			for (int i = 0; i < powers.length; i++) {
+				rolePowerService.zkAddPowerByRid(rid, powers[i]);
+			}
 		}
 	}
+	
+	@RequestMapping("zkSelRoleByRid")
+	@ResponseBody
+	public Role zkSelRoleByRid(@RequestParam("rid")Integer rid) {
+		return roleService.zkSelRoleByRid(rid);
+	}
+	
+	@RequestMapping("zkUpdRole")
+	@ResponseBody
+	public void zkUpdRole(@RequestParam("rid")Integer rid,@RequestParam("rname")String rname) {
+		roleService.zkUpdRole(rid,rname);
+	}
+	
+	@RequestMapping("zkSelRoleCountByRname")
+	@ResponseBody
+	public int zkSelRoleCountByRname(@RequestParam("rname")String rname) {
+		return roleService.zkSelRoleCountByRname(rname);
+	}
+	
 }

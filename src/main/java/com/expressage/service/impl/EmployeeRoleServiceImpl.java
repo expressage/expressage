@@ -21,4 +21,9 @@ public class EmployeeRoleServiceImpl implements EmployeeRoleService {
 		return employeeRoleMapper.zkDelRoleByEid(eid);
 	}
 
+	@Override
+	public int zkEmplCountByRid(Integer rid) {
+		return employeeRoleMapper.zkEmplCountByRid(rid);
+	}
+
 }

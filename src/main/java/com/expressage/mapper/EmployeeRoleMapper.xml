@@ -34,4 +34,7 @@
   <delete id="zkDelRoleByEid">
   	delete from employee_role where eid = #{eid}
   </delete>
+  <select id="zkEmplCountByRid" resultType="int">
+  	SELECT COUNT(1) FROM employee_role WHERE rid = #{rid}
+  </select>
 </mapper>

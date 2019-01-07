@@ -1,0 +1,59 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>即刻快递</title>
+<link type="text/css" rel="stylesheet" media="all"
+	href="../styles/global.css" />
+<link type="text/css" rel="stylesheet" media="all"
+	href="../styles/global_color.css" />
+</head>
+<body>
+	<div id="data" style="width: 320px; height: 420px">
+		<form action="/power/updPower" id="form">
+			<span id="pid"></span>
+			<div class="input_info">
+				<input type="text" placeholder="资源名称" name="pname" id="pname" onblur="selPowerCountByPname();" />
+				<input type="text" placeholder="资源路径" name="url" id="url"/>
+			</div>
+			<div class="button_info clearfix" >
+				<input type="button" value="保存" class="btn_save" onclick="put()" />
+			</div>
+		</form>
+	</div>
+	<script type="text/javascript" src="../js/jquery-1.12.4.js"></script>
+	<script language="javascript" type="text/javascript">
+		$(function() {
+			setTimeout('selPower()', 10);
+		})
+		var pid = "";
+		function selPower() {
+			pid = $("#pid").val();
+			$
+					.get(
+							"/power/selPowerByPid",
+							"pid=" + pid,
+							function(data) {
+								$("#pname").val(data.pname);
+								$("#url").val(data.url);
+							});
+		}
+		
+		function put(){
+			var pids = $('#form').serialize();
+			$.get("/power/updPower?pid="+pid,pids,function(data){
+				var index = parent.layer.getFrameIndex(window.name); 
+				parent.layer.close(index);
+			});
+		}
+		
+		function selPowerCountByPname(){
+			var pname = $("#pname").val();
+			$.get("/power/selPowerCountByPname?pname="+pname,null,function(data){
+				alert("pname"+data)
+			});
+		}
+	</script>
+</body>
+</html>
