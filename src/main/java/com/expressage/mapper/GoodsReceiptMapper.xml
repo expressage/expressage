@@ -13,6 +13,11 @@
   <sql id="Base_Column_List" >
     cid, receiptCode, orderNo, error, pieceAmount, specifications, goodsValue
   </sql>
+   <select id="findSele" resultType="com.expressage.pojo.GoodsReceipt">
+    SELECT r.kid,f.receiptCode,o.orderNo,r.error,r.pieceAmount,r.specifications,r.goodsValue 
+       FROM 
+          goods_receipt r,freightreceipt f,`order` o
+  </select>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />
