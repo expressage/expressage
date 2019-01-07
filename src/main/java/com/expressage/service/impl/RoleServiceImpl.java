@@ -32,4 +32,19 @@ public class RoleServiceImpl implements RoleService {
 	public int zkDelRole(Integer rid) {
 		return roleMapper.zkDelRole(rid);
 	}
+
+	@Override
+	public Role zkSelRoleByRid(Integer rid) {
+		return roleMapper.zkSelRoleByRid(rid);
+	}
+
+	@Override
+	public int zkUpdRole(Integer rid, String name) {
+		return roleMapper.zkUpdRole(rid, name);
+	}
+
+	@Override
+	public int zkSelRoleCountByRname(String rname) {
+		return roleMapper.zkSelRoleCountByRname(rname);
+	}
 }

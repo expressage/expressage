@@ -17,6 +17,51 @@
 	function add_employee() {
 		location = "/employee/zkSelTransfer";
 	}
+
+	function selPowerAll() {
+		$
+				.get(
+						"/power/zkSelPower",
+						null,
+						function(data) {
+							var powerList = data.powerList;
+							var powers = "<tr class=\"title\" ><td>ID</td><td>资源名称</td><td>资源链接</td><td>操作</td></tr>";
+							for (var i = 0; i < powerList.length; i++) {
+								powers += "<tr class=\"rowAlternateA\" id=\"a"+powerList[i].pid+"\"><td>"
+										+ powerList[i].pid
+										+ "</td><td>"
+										+ powerList[i].pname
+										+ "</td><td>"
+										+ powerList[i].url
+										+ "</td><td><a href=\"#\" onclick=\"updPower("
+										+ powerList[i].pid
+										+ ")\">修改</a>/<a href=\"#\" onclick=\"delPower("
+										+ powerList[i].pid
+										+ ")\">删除</a></td></tr>";
+							}
+							$("#sys2 #datalist").html(powers);
+						});
+	}
+
+	function updPower(pid) {
+		layer.open({
+			type : 2,
+			title : '修改资源',
+			maxmin : true,
+			shadeClose : true, //点击遮罩关闭层
+			area : [ '400px', '500px' ],
+			content : '/role/updPower.html',
+			success : function(layero, index) {
+				var body = layer.getChildFrame('body', index);//建立父子联系
+				var inputList = body.find('#pid');
+				$(inputList).val(pid);
+			},
+			end : function() {
+				selPowerAll();
+			}
+		});
+	}
+	
 	function selRole() {
 		$
 				.get(
@@ -24,37 +69,74 @@
 						null,
 						function(data) {
 							var roleList = data.roles;
-							var roles = "<tr class=\"title\"><td>ID</td><td>角色名称</td><td>操作</td></tr>";
+							var roles = "<tr class=\"title\" ><td>ID</td><td>角色名称</td><td>操作</td></tr>";
 							for (var i = 0; i < roleList.length; i++) {
-								roles += "<tr class=\"rowAlternateA\"><td>"
+								roles += "<tr class=\"rowAlternateA\" id=\"a"+roleList[i].rid+"\"><td>"
 										+ roleList[i].rid
 										+ "</td><td>"
 										+ roleList[i].rname
-										+ "</td><td><a href=\"#\" onclick=\"delRole("+roleList[i].rid+")\">删除</a>/<a href=\"#\" onclick=\"selPower("
+										+ "</td><td><a href=\"#\" onclick=\"updRole("
+										+ roleList[i].rid
+										+ ")\">修改</a>/<a href=\"#\" onclick=\"delRole("
+										+ roleList[i].rid
+										+ ")\">删除</a>/<a href=\"#\" onclick=\"selPower("
 										+ roleList[i].rid
 										+ ");\">分配权限</a></td></tr>";
 							}
 							$("#sys1 #datalist").html(roles);
 						});
 	}
-	
-	function delRole(rid){
-		$.get("/role/zkDelRole?rid="+rid,null,function(data){
-			if(data>0){
-				alert("删除成功");
-			}else if(data==0){
-				alert("删除失败");
-			}else{
-				alert("此角色下有员工，不能删除");
+
+	function updRole(rid) {
+		layer.open({
+			type : 2,
+			title : '修改角色',
+			maxmin : true,
+			shadeClose : true, //点击遮罩关闭层
+			area : [ '400px', '500px' ],
+			content : '/role/updRole.html',
+			success : function(layero, index) {
+				var body = layer.getChildFrame('body', index);//建立父子联系
+				var inputList = body.find('#rid');
+				$(inputList).val(rid);
+			},
+			end : function() {
+				selRole();
 			}
 		});
 	}
 	
-	function prohibitEmpl(eid,num){
-		location="/employee/zkProhibitEmpl?eid="+eid+"&num="+num;
+	function delRole(rid) {
+		$.get("/role/zkDelRole?rid=" + rid, null, function(data) {
+			if (data == -1) {
+				alert("此角色有对应的权限，不能删除")
+			}else if(data == -2){
+				alert("此角色下有员工，不能删除");
+			} else if (data == 0) {
+				alert("删除失败");
+			} else {
+				alert("删除成功");
+				$("#a"+rid).remove();
+			}
+		});
 	}
 	
-	function selPower(rid){
+	function delPower(pid) {
+		$.get("/power/zkDelPower?pid=" + pid, null, function(data) {
+			if (data > 0) {
+				alert("删除成功");
+				$("#a"+pid).remove();
+			} else {
+				alert("删除失败");
+			}
+		});
+	}
+
+	function prohibitEmpl(eid, num) {
+		location = "/employee/zkProhibitEmpl?eid=" + eid + "&num=" + num;
+	}
+
+	function selPower(rid) {
 		layer.open({
 			type : 2,
 			title : '分配权限',
@@ -73,11 +155,11 @@
 		});
 		//location="/role/zkAssignPower?rid="+rid;
 	}
-	
-	function addRole(){
+
+	function addRole() {
 		layer.open({
 			type : 2,
-			title : '分配权限',
+			title : '添加角色',
 			maxmin : true,
 			shadeClose : true, //点击遮罩关闭层
 			area : [ '400px', '300x' ],
@@ -88,6 +170,20 @@
 		});
 	}
 	
+	function addPower(){
+		layer.open({
+			type : 2,
+			title : '添加资源',
+			maxmin : true,
+			shadeClose : true, //点击遮罩关闭层
+			area : [ '400px', '300x' ],
+			content : '/role/addPower.html',
+			end : function() {
+				selPowerAll()
+			}
+		});
+	}
+
 	function showRole(eid) {
 		layer.open({
 			type : 2,
@@ -126,7 +222,8 @@
 <body>
 	<!--Logo区域开始-->
 	<div id="header">
-		<!-- <img src="../images/logo.png" alt="logo" class="left" />  --><a href="#">[退出]</a>
+		<!-- <img src="../images/logo.png" alt="logo" class="left" />  -->
+		<a href="#">[退出]</a>
 	</div>
 	<!--Logo区域结束-->
 	<!--导航区域开始-->
@@ -152,7 +249,8 @@
 				<li><a href="#####" class="tab_on" title="用户管理">用户管理</a></li>
 				<li><a href="#####" class="tab_out" title="角色管理"
 					onclick="selRole();">角色管理</a></li>
-				<li><a href="#####" class="tab_out" title="资源管理" >资源管理</a></li>
+				<li><a href="#####" class="tab_out" title="资源管理"
+					onclick="selPowerAll();">资源管理</a></li>
 			</ul>
 		</div>
 		<div class="report_box">
@@ -206,11 +304,11 @@
 							<td th:text="${list.createtime}" />
 							<td th:text="${list.name2}" />
 							<td th:text="${list.enable=='0'?'禁用':'启用'}" />
-							<td th:if="${list.enable=='1'}">
-							<span th:onclick="'javascript:prohibitEmpl('+${list.eid}+','+${num}+')'">禁用</span>
-							<a
-								th:href="@{/employee/zkSelectByKey?(eid=${list.eid})}"> 修改</a>/<a
-								href="#" th:onclick="'javascript:showRole('+${list.eid}+')'">分配角色</a></td>
+							<td th:if="${list.enable=='1'}"><span
+								th:onclick="'javascript:prohibitEmpl('+${list.eid}+','+${num}+')'">禁用</span>
+								<a th:href="@{/employee/zkSelectByKey?(eid=${list.eid})}">
+									修改</a>/<a href="#"
+								th:onclick="'javascript:showRole('+${list.eid}+')'">分配角色</a></td>
 						</tr>
 					</table>
 					<div id="pages">
@@ -241,6 +339,7 @@
 					</table>
 				</div>
 				<div id="sys2" class="tableall" style="display: none;">
+					<h2 onclick="addPower();">新增</h2>
 					<table id="datalist">
 
 					</table>

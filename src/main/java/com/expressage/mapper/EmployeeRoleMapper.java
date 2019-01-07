@@ -12,4 +12,6 @@ public interface EmployeeRoleMapper {
     int zkAddRoleByEid(@Param("eid")Integer eid,@Param("rid")int rid);
     
     int zkDelRoleByEid(Integer eid);
+    
+    int zkEmplCountByRid(Integer rid);
 }

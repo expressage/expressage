@@ -40,4 +40,13 @@
   <delete id="zkDelRole">
   	delete from role where rid = #{rid}
   </delete>
+   <select id="zkSelRoleByRid" resultType="role">
+  	select * from role where rid = #{rid}
+  </select>
+  <update id="zkUpdRole">
+  	UPDATE expressage.role SET rname = #{rname} WHERE rid = #{rid} 
+  </update>
+  <select id="zkSelRoleCountByRname" resultType="int">
+  	select count(1) FROM role where rname = #{rname}
+  </select>
 </mapper>

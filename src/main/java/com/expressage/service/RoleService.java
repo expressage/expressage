@@ -12,4 +12,10 @@ public interface RoleService {
     int zkAddRole(String rname);
     
     int zkDelRole(Integer rid);
+
+	Role zkSelRoleByRid(Integer rid);
+
+	int zkUpdRole(Integer rid,String name);
+
+	int zkSelRoleCountByRname(String rname);
 }
