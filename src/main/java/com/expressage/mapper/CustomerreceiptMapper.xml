@@ -13,12 +13,14 @@
   <sql id="Base_Column_List" >
     kid, orderNo, maddress, raddress, checkGoodsRecord, consignee, consigneeDate
   </sql>
-   <select id="findCustomer" resultType="com.expressage.pojo.Customerreceipt">
-    SELECT c.cid,o.orderNo,a.address,a.address,c.checkGoodsRecord,c.consignee,c.consigneeDate 
-      FROM 
-         customerreceipt c,`order` o,address a 
-      WHERE 
-          c.maddress = o.maddress  AND o.maddress = a.aid 
+  <select id="findCustomer" resultType="com.expressage.pojo.Customerreceipt">
+    SELECT c.kid,o.orderNo,a.address,a.address,c.checkGoodsRecord,c.consignee,c.consigneeDate 
+       FROM 
+          customerreceipt c,`order` o,address a 
+       WHERE 
+          c.maddress = o.maddress  
+             AND 
+                o.maddress = a.aid 
   </select>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 

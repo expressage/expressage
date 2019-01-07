@@ -32,9 +32,10 @@ public class CustomerreceiptController {
 	public String findCustomer(Model model) {
 		List<Customerreceipt> list = service.SelCustomer();
 		model.addAttribute("list", list);
-		return "";
+		return "report/report_list2";
 	}
 	
+	@RequestMapping("del")
 	public String deleCustomer(int kid,HttpServletResponse response) throws IOException {
 		int num = service.delCustomer(kid);
 		if (num > 0) {
@@ -42,7 +43,7 @@ public class CustomerreceiptController {
 		} else {
 			response.getWriter().print("<script>alert('删除失败!');location='selGoods'</script>");
 		}
-		return null;
+		return "report/report_list";
 		}
 	
 	/**
@@ -111,6 +112,6 @@ public class CustomerreceiptController {
 			System.out.println("---出现异常---");
 			e.printStackTrace();
 		}
-		return "";
+		return "report/report_list";
 	}
 }

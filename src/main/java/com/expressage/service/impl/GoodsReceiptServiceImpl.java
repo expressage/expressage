@@ -20,7 +20,7 @@ public class GoodsReceiptServiceImpl implements GoodsReceiptService {
 	}
 
 	@Override
-	public int deleReceipt(int cid) {
+	public int deleReceipt(Integer cid) {
 		// TODO Auto-generated method stub
 		return mapper.deleteByPrimaryKey(cid);
 	}

@@ -40,14 +40,14 @@ public class FreightreceiptController {
 		}else{
 			response.getWriter().print("<script>alert('删除失败!');location='selFreig'</script>");
 		}
-		return null;
+		return "report/report_list";
 	 }
 	/**
 	 * 回执单导出
 	 * 
 	 * @return
 	 */
-	@RequestMapping("jxlWriteMenu5")
+	@RequestMapping("jxlWriteMenus")
 	public String jxlWriteMenu() {
 		List<Freightreceipt> list = service.findFreig();
 		// 准备设置excel工作表的标题
@@ -111,6 +111,6 @@ public class FreightreceiptController {
 			System.out.println("---出现异常---");
 			e.printStackTrace();
 		}
-		return "";
+		return "report/report_list";
 	}
 }

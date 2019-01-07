@@ -7,7 +7,7 @@
         <link type="text/css" rel="stylesheet" media="all" href="../styles/global.css" />
         <link type="text/css" rel="stylesheet" media="all" href="../styles/global_color.css" /> 
         <script language="javascript" type="text/javascript">
-            function changeTab(e,ulObj) {                
+          <!--  function changeTab(e,ulObj) {                
                 var obj = e.srcElement || e.target;
                 if (obj.nodeName == "A") {
                     var links = ulObj.getElementsByTagName("a");
@@ -24,7 +24,7 @@
                         }
                     }
                 }
-            }
+            }-->
         </script>
     </head>
     <body>
@@ -54,10 +54,10 @@
         <div id="report_main">
         	<div class="tabs">
     	        <ul onclick="changeTab(event,this);">
-        	       <li><a href="#####" class="tab_out" title="">货运回执单</a></li>
-				   <li><a href="#####" class="tab_on" title="">货物回执单</a></li>
-				   <li><a href="#####" class="tab_out" title="">客户信息回执单</a></li>
-				   <li><a href="#####" class="tab_out" title="">货物差错单</a></li>
+        	       <li><a href="selFreig" title="">货运回执单</a></li>
+				   <li><a href="selGoods" title="">货物回执单</a></li>
+				   <li><a href="selCustomers" title="">客户信息回执单</a></li>
+				   <li><a href="selReceipt" title="">货物差错单</a></li>
 			    </ul>
             </div>            
             <div class="report_box">
@@ -75,10 +75,8 @@
 						<td>回执单状态</td>
 						<td>操作</td>
 					</tr>
-					<tr>
-						<td></td>
-					</tr>
 					<tr th:each="li:${list}">
+					    <button onclick="location.href='jxlWriteMenus'">栏目导出</button>
 						<td th:text="${li.hid}"></td>
 						<td th:text="${li.receiptcode}"></td>
 						<td th:text="${li.loadstation}"></td>
@@ -87,10 +85,10 @@
 						<td th:text="${li.arrivedate}"></td>
 						<td th:text="${li.did}"></td>
 						<td th:text="${li.billstate}"></td>
-						<td><input type="button" ondblclick="" />删除</td>
+						<td><input type="button" id="del" value="删除" /></td>
 					</tr>
 				</table>
-				<table id="datalist1" style="display: none;" th:if="${lists!=null}">
+				<!--<table id="datalist1" style="display: none;" th:if="${lists!=null}">
 					<tr>
 						<th>ID</th>
 						<th>货运回执编号</th>
@@ -110,6 +108,7 @@
 						<td th:text="${lis.checkgoodsrecord}"></td>
 						<td th:text="${lis.consignee}"></td>
 						<td th:text="${lis.consigneedate}"></td>
+						<td><input type="button" id="delFreig" value="删除" /></td>
 					</tr>
 				</table>
 				<table id="datalist2" style="display: none;" th:if="${list!=null}">
@@ -123,9 +122,9 @@
 						<th>收货日期</th>
 						<td>操作</td>
 					</tr>
-					<!--  <tr>
+					<tr>
                           <td></td>
-                        </tr> 
+                     </tr> 
                         <tr th:each="list:${list}">
                           <td th:text="${list.}"></td>
                           <td th:text="${list.}"></td>
@@ -134,7 +133,8 @@
                           <td th:text="${list.}"></td>
                           <td th:text="${list.}"></td>
                           <td th:text="${list.}"></td>
-                        </tr>  -->
+                          <td><input type="button" id="delGoods" value="删除" /></td>
+                        </tr> 
 				</table>
 				<table id="datalist2" style="display: none;" th:if="${listl!=null}">
 					<tr>
@@ -158,8 +158,9 @@
 						<td th:text="${lists.pieceamount}"></td>
 						<td th:text="${lists.specifications}"></td>
 						<td th:text="${lists.goodsvalue}"></td>
+						<td><input type="button" id="deleReceipt" value="删除" /></td>
 					</tr>
-				</table>
+				</table>-->
                 </div>
                 <!--分页-->
                 <div id="pages">

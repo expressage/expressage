@@ -29,7 +29,7 @@ public class GoodsInformationController {
 	public String findGoods(Model model) {
 		List<GoodsInformation> list = service.findGoods();
 		model.addAttribute("lists", list);
-		return "report/report_list";
+		return "report/report_list1";
 	}
 
 	@RequestMapping("delGoods")
@@ -40,7 +40,7 @@ public class GoodsInformationController {
 		} else {
 			response.getWriter().print("<script>alert('删除失败!');location='selGoods'</script>");
 		}
-		return null;
+		return "report/report_list";
 	}
 
 	/**
@@ -106,6 +106,6 @@ public class GoodsInformationController {
 			System.out.println("---出现异常---");
 			e.printStackTrace();
 		}
-		return "";
+		return "report/report_list";
 	}
 }

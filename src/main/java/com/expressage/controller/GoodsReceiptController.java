@@ -33,17 +33,13 @@ public class GoodsReceiptController {
 	public String findReceipt(Model model) {
 		List<GoodsReceipt> list = service.findReceipt();
 		model.addAttribute("listl", list);
-		return "report/report_list";
+		return "report/report_list3";
 	}
 	
+	@RequestMapping("deleReceipt")
 	public String deleReceipt(int cid,HttpServletResponse response) throws IOException {
-		int num = service.deleReceipt(cid);
-		if (num > 0) {
-			response.getWriter().print("<script>alert('删除成功!');location='selGoods'</script>");
-		} else {
-			response.getWriter().print("<script>alert('删除失败!');location='selGoods'</script>");
-		}
-		return null;
+        service.deleReceipt(cid);
+		return "report/report_list3";
 		}
 	
 	/**
@@ -112,6 +108,6 @@ public class GoodsReceiptController {
 			System.out.println("---出现异常---");
 			e.printStackTrace();
 		}
-		return "";
+		return "selReceipt";
 	}
 }

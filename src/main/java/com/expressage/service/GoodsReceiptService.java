@@ -15,5 +15,5 @@ public interface GoodsReceiptService {
     * @param cid
     * @return
     */
-   int deleReceipt(int cid);
+   int deleReceipt(Integer cid);
 }
