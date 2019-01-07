@@ -58,4 +58,7 @@
   <select id="zkSelPowerCountByPname" resultType="int">
   	select count(1) FROM power where pname = #{pname}
   </select>
+  <select id="zkSelByEmplId" resultType="power">
+  	SELECT * FROM `power` p LEFT JOIN role_power  rp ON p.pid = rp.pid LEFT JOIN employee_role er ON er.rid =rp.rid WHERE er.eid=#{eid} GROUP BY p.pid
+  </select>
 </mapper>

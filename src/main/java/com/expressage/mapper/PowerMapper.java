@@ -13,12 +13,8 @@ public interface PowerMapper {
     int insert(Power record);
 
     int insertSelective(Power record);
-    
-    @Select("SELECT * FROM power")
-	List<Power> selAll();
 	
-	@Select("SELECT * FROM `power` p LEFT JOIN role_power  rp ON p.pid = rp.pid LEFT JOIN employee_role er ON er.rid =rp.rid WHERE er.eid=#{eid} GROUP BY p.pid")
-	List<Power> selByUserId(Map<String,Object> map);
+	List<Power> zkSelByUserId(Map<String,Object> map);
 	
 	List<Power> zkSelPowerByRid(Integer rid);
 
