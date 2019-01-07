@@ -35,4 +35,29 @@ public class PowerServiceImpl implements PowerService {
 		return powerMapper.zkSelPower();
 	}
 
+	@Override
+	public int zkAddPower(String pname, String url) {
+		return powerMapper.zkAddPower(pname, url);
+	}
+
+	@Override
+	public int zkDelPower(Integer pid) {
+		return powerMapper.zkDelPower(pid);
+	}
+
+	@Override
+	public Power zkSelPowerByPid(Integer pid) {
+		return powerMapper.zkSelPowerByPid(pid);
+	}
+
+	@Override
+	public int zkSelPowerCountByPname(String pname) {
+		return powerMapper.zkSelPowerCountByPname(pname);
+	}
+
+	@Override
+	public int zkUpdPowerByPid(Integer pid, String pname, String url) {
+		return powerMapper.zkUpdPowerByPid(pid, pname, url);
+	}
+
 }

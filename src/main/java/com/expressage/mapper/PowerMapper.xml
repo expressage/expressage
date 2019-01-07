@@ -43,4 +43,19 @@
   <select id="zkSelPower" resultType="power">
   	SELECT * FROM POWER
   </select>
+  <insert id="zkAddPower">
+  	INSERT INTO expressage.power ( pname, url)VALUES(#{pname},#{url})
+  </insert>
+  <delete id="zkDelPower">
+  	DELETE FROM expressage.power  WHERE pid = #{pid}
+  </delete>
+  <select id="zkSelPowerByPid" resultType="power">
+  	select * from power where pid = #{pid}
+  </select>
+  <update id="zkUpdPowerByPid">
+  	UPDATE expressage.power SET pname = #{pname},url = #{url} WHERE pid = #{pid} ;
+  </update>
+  <select id="zkSelPowerCountByPname" resultType="int">
+  	select count(1) FROM power where pname = #{pname}
+  </select>
 </mapper>
