@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
 <title>我的订单</title>
@@ -18,22 +19,32 @@
 				<i class="icon icon-return"></i>
 			</a>
 			<div class="aui-center">
-				<span class="aui-center-title">我的订单</span>
+				<span class="aui-center-title">我的快递</span>
 			</div>
 		</header>
 		<section class="aui-scrollView">
 			<div class="aui-order-title">
-				<div class="aui-order-box">
+				<div class="aui-order-box" th:each="order:${listO}">
 					<a href="javascript:void(0);" class="aui-well-item">
 						<div class="aui-well-item-bd">
 							<h3>
-								订单号：<span></span>
+								订单号：<span th:text="${order.orderno}"></span>
 							</h3>
-						</div> <span class="aui-well-item-fr">已完成</span>
+						</div> <span class="aui-well-item-fr"
+						th:text="${order.remarks==''?'无备注':order.remarks}"></span>
 					</a>
-					<p class="aui-order-fl aui-order-time">上周日19:53</p>
-					<p class="aui-order-fl aui-order-address">巴沟地铁-东北口</p>
-					<p class="aui-order-fl aui-order-door">双榆树东里12号楼3门</p>
+					<p class="aui-order-fl aui-order-address"
+						th:text="${order.address1.region+'  '+order.address1.address}"></p>
+					<p class="aui-order-fl aui-order-door"
+						th:text="${order.address2.region+'  '+order.address2.address}"></p>
+					<hr />
+					<p style="display: inline-block; font-size: 12px;">
+						<span th:text="${order.status}"></span><br />
+						<span
+							th:text="${#dates.format(order.orderTime,'yyyy-MM-dd hh:mm:ss')}"></span>
+						<a href="#" style="display: inline-block; font-size: 12px;color: blue;"
+							th:text="${order.status=='已签收'?'删除记录':''}"></a>
+					</p>
 				</div>
 			</div>
 		</section>

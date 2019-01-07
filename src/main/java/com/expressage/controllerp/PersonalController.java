@@ -13,8 +13,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.expressage.pojo.Address;
+import com.expressage.pojo.Order;
 import com.expressage.pojo.User;
 import com.expressage.service.AddressService;
+import com.expressage.service.OrderService;
 import com.expressage.service.UserService;
 import com.expressage.util.HttpClientUtil;
 
@@ -25,6 +27,8 @@ public class PersonalController {
 	private AddressService addressService;
 	@Autowired
 	private UserService userService;
+	@Autowired
+	private OrderService orderService;
 
 	// 登录
 	@RequestMapping("/zmLogin")
@@ -157,8 +161,10 @@ public class PersonalController {
 
 	// 我的订单
 	@RequestMapping("/zmGetOrder")
-	public String zm_getOrder(HttpSession session) {
+	public String zm_getOrder(HttpSession session,Model model) {
 		/*User user = (User) session.getAttribute("user");*/
+		List<Order> listO = orderService.zm_selOrder(1);
+		model.addAttribute("listO", listO);
 		return "proscenium/order";
 	}
 
