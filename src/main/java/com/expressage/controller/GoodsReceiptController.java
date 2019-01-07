@@ -99,6 +99,7 @@ public class GoodsReceiptController {
 				sheet.addCell(label);
 				label = new Label(i, j, goods.getGoodsvalue().toString());
 				i++;
+				j++;
 			}
 			// 写入数据
 			wwb.write();

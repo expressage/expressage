@@ -103,6 +103,7 @@ public class CustomerreceiptController {
 				sheet.addCell(label);
 				label = new Label(i, j, cust.getConsigneedate().toString());
 				i++;
+				j++;
 			}
 			// 写入数据
 			wwb.write();

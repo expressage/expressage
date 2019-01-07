@@ -97,6 +97,7 @@ public class GoodsInformationController {
 				sheet.addCell(label);
 				label = new Label(i, j, goods.getConsigneedate().toString());
 				i++;
+				j++;
 			}
 			// 写入数据
 			wwb.write();
