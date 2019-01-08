@@ -2,6 +2,8 @@ package com.expressage.service;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
+
 import com.expressage.pojo.Order;
 
 public interface OrderService {
@@ -18,4 +20,6 @@ public interface OrderService {
     int updateByPrimaryKey(Order record);
     
     List<Order> pmlSelectAll(String orderno);
+    
+    Order pmlSelectByPrimaryOid(Integer oid);    
 }

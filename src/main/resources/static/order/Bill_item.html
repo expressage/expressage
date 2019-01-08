@@ -31,8 +31,10 @@
         <!--导航区域结束-->
         <!--主要区域开始-->
         <div id="main">
-            <form action="/billController/" method="post">
-                
+            <form action="/billController/pmlQuery" method="post">
+                 <div class="search_add">                        
+                    <div><input type="submit" value="返回" class="btn_search" /></div>
+                 </div>
                 <!--数据区域：用表格展示数据-->     
                 <div id="data">            
                     <table id="datalist">
@@ -54,14 +56,13 @@
                             <th class="width50">备注</th>
                         </tr>
                         
-                        
-                         <tr th:each="user:${selectByPrimaryKey}">
+                        <tr th:each="user:${pmlSelectByPrimaryOid}">
                         <td th:text="${user.orderno}"></td>
                         <td th:text="${user.uname}"></td>
                         <td th:text="${user.maddressm}"></td>
                         <td th:text="${user.raddressr}"></td>
                         <td th:text="${#dates.format(user.orderTime,'yyyy-MM-dd')}"></td>
-                        <td th:text="${#dates.format(user.appointmenttime,'yyyy-MM-dd HH-mm-SS')}"></td>
+                        <td th:text="${#dates.format(user.appointmenttime,'yyyy-MM-dd')}"></td>
                         <td th:text="${user.typeName}"></td>
                         <td th:text="${user.weight}"></td>
                         <td th:text="${user.rprice}"></td>
@@ -86,8 +87,8 @@
         </div>
         <!--主要区域结束-->
         <div id="footer">
-            <p>[源自北美的技术，最优秀的师资，最真实的企业环境，最适用的实战项目]</p>
-            <p>版权所有(C)加拿大达内IT培训集团公司 </p>
+            <p>[源自岳阳 ，相信即刻 ，就是相信自己]</p>
+            <p>版权所有(C)即刻快递 </p>
         </div>
     </body>
 </html>

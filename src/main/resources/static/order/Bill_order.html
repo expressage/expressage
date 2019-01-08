@@ -90,8 +90,11 @@
 	                       <span class="label label-success radius">月结</span>
                         </td>
                         <td th:text="${user.total}"></td>
-                        <td th:text="${user.status}"></td>                            
-                        <td><a href="/billController/pmlSelectOid?oid=${user.oid}" title="账单明细">明细</a></td>
+                        <td th:text="${user.status}"></td>   
+                        <td><a th:href="@{/billController/pmlSelectOid?(oid=${user.oid})}" title="账单明细">明细</a></td>
+                       
+                       
+                        <td><a th:href="@{/billController/pmlUpdateStatus?(oid=${user.oid})}" title="货物状态">货物状态</a></td>
                     </tr>
                 </table>
               

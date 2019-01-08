@@ -14,7 +14,7 @@ public interface OrderMapper {
 
     int insertSelective(Order record);
 
-    Order selectByPrimaryKey(@Param("oid")Integer oid);
+    Order selectByPrimaryKey(Integer oid);
 
     int updateByPrimaryKeySelective(Order record);
 
@@ -22,5 +22,5 @@ public interface OrderMapper {
     
     List<Order> pmlSelectAll(@Param("orderno")String orderno);
     
-    
+    Order pmlSelectByPrimaryOid(@Param("oid") Integer oid);    
 }

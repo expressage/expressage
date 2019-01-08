@@ -51,4 +51,9 @@ public class OrderServiceImpl implements OrderService {
 		return orderMapper.pmlSelectAll(orderno);
 	}
 
+	@Override
+	public Order pmlSelectByPrimaryOid(Integer oid) {
+		return orderMapper.pmlSelectByPrimaryOid(oid);
+	}
+
 }
