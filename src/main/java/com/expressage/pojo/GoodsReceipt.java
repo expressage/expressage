@@ -14,8 +14,28 @@ public class GoodsReceipt {
     private String specifications;
 
     private Integer goodsvalue;
+    
+    private Freightreceipt freig;
+    
+    private Order order;
+    
+    public Freightreceipt getFreig() {
+		return freig;
+	}
 
-    public Integer getCid() {
+	public void setFreig(Freightreceipt freig) {
+		this.freig = freig;
+	}
+
+	public Order getOrder() {
+		return order;
+	}
+
+	public void setOrder(Order order) {
+		this.order = order;
+	}
+
+	public Integer getCid() {
         return cid;
     }
 

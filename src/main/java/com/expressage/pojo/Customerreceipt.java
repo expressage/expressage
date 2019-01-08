@@ -16,8 +16,28 @@ public class Customerreceipt {
     private String consignee;
 
     private Date consigneedate;
+    
+    private Order order;
+    
+    private Address address;
+   
+    public Order getOrder() {
+		return order;
+	}
 
-    public Integer getKid() {
+	public void setOrder(Order order) {
+		this.order = order;
+	}
+
+	public Address getAddress() {
+		return address;
+	}
+
+	public void setAddress(Address address) {
+		this.address = address;
+	}
+
+	public Integer getKid() {
         return kid;
     }
 
