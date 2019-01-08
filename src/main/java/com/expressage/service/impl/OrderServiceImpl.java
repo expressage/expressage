@@ -15,6 +15,11 @@ public class OrderServiceImpl implements OrderService {
 	@Autowired
 	private OrderMapper orderMapper;
 	
+
+	public List<Order> zm_selOrder(Integer uid) {
+		return orderMapper.zm_selOrder(uid);
+	}
+	
 	@Override
 	public int deleteByPrimaryKey(Integer oid) {
 		return orderMapper.deleteByPrimaryKey(oid);
@@ -56,4 +61,5 @@ public class OrderServiceImpl implements OrderService {
 		return orderMapper.pmlSelectByPrimaryOid(oid);
 	}
 
+	
 }

@@ -7,6 +7,10 @@ import org.apache.ibatis.annotations.Param;
 import com.expressage.pojo.Order;
 
 public interface OrderService {
+	List<Order> zm_selOrder(Integer uid);
+	
+	
+	
 	int deleteByPrimaryKey(Integer oid);
 
     int insert(Order record);

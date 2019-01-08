@@ -12,6 +12,13 @@
   <sql id="Base_Column_List" >
     xid, revertCode, eid, checkGoodsRecord, consignee, consigneeDate
   </sql>
+    <select id="finInformation" resultType="com.expressage.pojo.GoodsInformation">
+     SELECT g.xid,g.revertCode,e.name,g.checkGoodsRecord,g.consignee,g.consigneeDate  
+       FROM 
+          goods_information g,employee e 
+       WHERE 
+          g.eid=e.eid
+  </select>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />

@@ -1,25 +1,30 @@
 ﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <title>即刻快递</title>
         <link type="text/css" rel="stylesheet" media="all" href="../styles/global.css" />
         <link type="text/css" rel="stylesheet" media="all" href="../styles/global_color.css" /> 
         <script language="javascript" type="text/javascript">
-            function changeTab(e,ulObj) {                
+          <!--  function changeTab(e,ulObj) {                
                 var obj = e.srcElement || e.target;
                 if (obj.nodeName == "A") {
                     var links = ulObj.getElementsByTagName("a");
                     for (var i = 0; i < links.length; i++) {
                         if (links[i].innerHTML == obj.innerHTML) {
                             links[i].className = "tab_on";
+                           var tables= $("#report_data>table");
+                           alert(i);
+                           tables[i].show();                    
+                           alert(tables[i])
                         }
                         else {
                             links[i].className = "tab_out";
                         }
                     }
                 }
-            }
+            }-->
         </script>
     </head>
     <body>
@@ -49,70 +54,113 @@
         <div id="report_main">
         	<div class="tabs">
     	        <ul onclick="changeTab(event,this);">
-        	        <li><a href="#####" class="tab_on" title="每位客户每月的累计时长">客户使用时长</a></li>
-                    <li><a href="#####" class="tab_out" title="每台服务器上累计时长最高的前三名客户">时长排行榜</a></li>
-                    <li><a href="#####" class="tab_out" title="每台服务器每种资费标准的使用次数">资费使用率</a></li>
-                </ul>
+        	       <li><a href="selFreig" title="">货运回执单</a></li>
+				   <li><a href="selGoods" title="">货物回执单</a></li>
+				   <li><a href="selCustomers" title="">客户信息回执单</a></li>
+				   <li><a href="selReceipt" title="">货物差错单</a></li>
+			    </ul>
             </div>            
             <div class="report_box">
                 <!--数据区域：用表格展示数据-->
                 <div id="report_data">
-                    <table id="datalist">
-                        <tr>                            
-                            <th>账号 ID</th>
-                            <th>账务帐号</th>
-                            <th>客户名称</th>
-                            <th class="width200">身份证号码</th>
-                            <th>电话</th>
-                            <th class="width150">月份</th>
-                            <th class="width150">累积时长</th>
-                        </tr>                      
-                        <tr>
-                            <td>1</td>
-                            <td>xm</td>
-                            <td>贾强</td>
-                            <td>220222020202020202</td>
-                            <td>13987654345</td>
-                            <td>2013年1月</td>
-                            <td>16小时32分</td>
-                        </tr>
-                    </table>
-                    <table id="datalist1" style="display:none;">
-                        <tr>                            
-                            <th class="width300">Unix 服务器IP</th>
-                            <th>账务帐号</th>
-                            <th>客户名称</th>
-                            <th class="width200">身份证号码</th>
-                            <th class="width150">累积时长</th>
-                        </tr>                      
-                        <tr>
-                            <td>192.168.0.20</td>
-                            <td>xk</td>
-                            <td>贾强</td>
-                            <td>220222020202020202</td>
-                            <td>106小时32分</td>
-                        </tr>
-                    </table>
-                    <table id="datalist2" style="display:none;">
-                        <tr>                            
-                            <th class="width300">Unix 服务器IP</th>
-                            <th>包月</th>
-                            <th>套餐</th>
-                            <th>计时</th>
-                        </tr>                      
-                        <tr>
-                            <td>192.168.0.20</td>
-                            <td>345</td>
-                            <td>21</td>
-                            <td>34</td>
-                        </tr>
-                        <tr>
-                            <td>192.168.0.23</td>
-                            <td>32</td>
-                            <td>221</td>
-                            <td>314</td>
-                        </tr>                        
-                    </table>
+                    <table id="datalist" th:if="${list!=null}">
+					<tr>
+						<td>ID</td>
+						<td>货运回执单编号</td>
+						<td>装货地点</td>
+						<td>起运时间</td>
+						<td>交货地点</td>
+						<td>到达时间</td>
+						<td>司机ID</td>
+						<td>回执单状态</td>
+						<td>操作</td>
+					</tr>
+					<tr th:each="li:${list}">
+					    <button onclick="location.href='jxlWriteMenus'">栏目导出</button>
+						<td th:text="${li.hid}"></td>
+						<td th:text="${li.receiptcode}"></td>
+						<td th:text="${li.loadstation}"></td>
+						<td th:text="${li.startcarrydate}"></td>
+						<td th:text="${li.dealstation}"></td>
+						<td th:text="${li.arrivedate}"></td>
+						<td th:text="${li.did}"></td>
+						<td th:text="${li.billstate}"></td>
+						<td><input type="button" id="del" value="删除" /></td>
+					</tr>
+				</table>
+				<!--<table id="datalist1" style="display: none;" th:if="${lists!=null}">
+					<tr>
+						<th>ID</th>
+						<th>货运回执编号</th>
+						<th>快递员名称</th>
+						<th>验收货物记录</th>
+						<th>收货人</th>
+						<th>收货日期</th>
+						<td>操作</td>
+					</tr>
+					<tr>
+						<td></td>
+					</tr>
+					<tr th:each="lis:${lists}">
+						<td th:text="${lis.xid}"></td>
+						<td th:text="${lis.revertcode}"></td>
+						<td th:text="${lis.eid.anem}"></td>
+						<td th:text="${lis.checkgoodsrecord}"></td>
+						<td th:text="${lis.consignee}"></td>
+						<td th:text="${lis.consigneedate}"></td>
+						<td><input type="button" id="delFreig" value="删除" /></td>
+					</tr>
+				</table>
+				<table id="datalist2" style="display: none;" th:if="${list!=null}">
+					<tr>
+						<th>ID</th>
+						<th>货运单编号</th>
+						<th>寄货地址</th>
+						<th>收货地址</th>
+						<th>验收货物记录</th>
+						<th>收货人</th>
+						<th>收货日期</th>
+						<td>操作</td>
+					</tr>
+					<tr>
+                          <td></td>
+                     </tr> 
+                        <tr th:each="list:${list}">
+                          <td th:text="${list.}"></td>
+                          <td th:text="${list.}"></td>
+                          <td th:text="${list.}"></td>
+                          <td th:text="${list.}"></td>
+                          <td th:text="${list.}"></td>
+                          <td th:text="${list.}"></td>
+                          <td th:text="${list.}"></td>
+                          <td><input type="button" id="delGoods" value="删除" /></td>
+                        </tr> 
+				</table>
+				<table id="datalist2" style="display: none;" th:if="${listl!=null}">
+					<tr>
+						<th>ID</th>
+						<th>货运回执单编号</th>
+						<th>订单编号</th>
+						<th>差错类别</th>
+						<th>件数</th>
+						<th>规格</th>
+						<th>货物价值</th>
+						<td>操作</td>
+					</tr>
+					<tr>
+						<td></td>
+					</tr>
+					<tr th:each="lists:${listl}">
+						<td th:text="${lists.cid}"></td>
+						<td th:text="${lists.receiptcode}"></td>
+						<td th:text="${lists.orderno}"></td>
+						<td th:text="${lists.error}"></td>
+						<td th:text="${lists.pieceamount}"></td>
+						<td th:text="${lists.specifications}"></td>
+						<td th:text="${lists.goodsvalue}"></td>
+						<td><input type="button" id="deleReceipt" value="删除" /></td>
+					</tr>
+				</table>-->
                 </div>
                 <!--分页-->
                 <div id="pages">

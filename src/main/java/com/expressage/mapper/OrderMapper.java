@@ -8,17 +8,20 @@ import com.expressage.pojo.Order;
 
 
 public interface OrderMapper {
+	List<Order> zm_selOrder(@Param("uid")Integer uid);
+	
+	
     int deleteByPrimaryKey(Integer oid);
 
-    int insert(Order record);
+    int insert(Order order);
 
-    int insertSelective(Order record);
+    int insertSelective(Order order);
 
     Order selectByPrimaryKey(Integer oid);
 
-    int updateByPrimaryKeySelective(Order record);
+    int updateByPrimaryKeySelective(Order order);
 
-    int updateByPrimaryKey(Order record);
+    int updateByPrimaryKey(Order order);
     
     List<Order> pmlSelectAll(@Param("orderno")String orderno);
     
