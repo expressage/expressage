@@ -37,10 +37,27 @@ public class BillController {
 		return "/order/Bill_item";
 	}   
 	
-	@RequestMapping("/pmlUpdateStatus")
-	public String pmlUpdateStatus(Model model ,Order order) {
-		
+	@RequestMapping("/pmlSelectStatus")
+	public String pmlSelectStatus(Model model ,
+			@RequestParam(value="oid",required=false)Integer oid) {
+		Order pmlSelectByPrimaryOid = orderService.pmlSelectByPrimaryOid(oid);
+		model.addAttribute("order",pmlSelectByPrimaryOid);
+		model.addAttribute("oid",oid);
 		return "/order/Bill_Update_status";
+	}   
+	
+	
+	@RequestMapping("/pmlUpdateStatus")
+	public String pmlUpdateStatus(Model model ,
+			@RequestParam(value="oid",required=false)Integer oid,
+			@RequestParam(value="status",required=false)String status,
+			Order order) {
+		/*order.setStatus(status);
+		int pmlUpdateStatus = orderService.pmlUpdateStatus(status, oid);
+		if(pmlUpdateStatus > 0) {
+			return "redirect:/billController/pmlQuery";
+		}*/
+		return null;
 	}
 	
 	

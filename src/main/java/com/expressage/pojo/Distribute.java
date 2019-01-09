@@ -15,7 +15,39 @@ public class Distribute {
 
     private String status;
 
-    public Integer getDid() {
+    private Integer type;
+    
+    private String orderNo;//订单编号
+    
+    private String uname;//记录人姓名
+    
+    
+    
+    public String getOrderNo() {
+		return orderNo;
+	}
+
+	public void setOrderNo(String orderNo) {
+		this.orderNo = orderNo;
+	}
+
+	public String getUname() {
+		return uname;
+	}
+
+	public void setUname(String uname) {
+		this.uname = uname;
+	}
+
+	public Integer getType() {
+		return type;
+	}
+
+	public void setType(Integer type) {
+		this.type = type;
+	}
+
+	public Integer getDid() {
         return did;
     }
 

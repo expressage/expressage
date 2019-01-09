@@ -2,14 +2,33 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-        <title>即刻快递-明细</title>
+        <title>分发详情</title>
         <link type="text/css" rel="stylesheet" media="all" href="../styles/global.css" />
         <link type="text/css" rel="stylesheet" media="all" href="../styles/global_color.css" /> 
+        <script language="javascript" type="text/javascript">
+            //写入下拉框中的年份和月份
+            function initialYearAndMonth() {
+                //写入最近3年
+                var yearObj = document.getElementById("selYears");
+                var year = (new Date()).getFullYear();
+                for (var i = 0; i <= 2; i++) {
+                    var opObj = new Option(year - i, year - i);
+                    yearObj.options[i] = opObj;
+                }
+                //写入 12 月
+                var monthObj = document.getElementById("selMonths");
+                var opObj = new Option("全部", "全部");
+                monthObj.options[0] = opObj;
+                for (var i = 1; i <= 12; i++) {
+                    var opObj = new Option(i, i);
+                    monthObj.options[i] = opObj;
+                }
+            }
+        </script>
     </head>
     <body onload="initialYearAndMonth();">
         <!--Logo区域开始-->
         <div id="header">
-          <!--   <img src="../images/logo.png" alt="logo" class="left"/> -->
             <a href="#">[退出]</a>            
         </div>
         <!--Logo区域结束-->
@@ -32,43 +51,32 @@
         <!--主要区域开始-->
         <div id="main">
             <form action="/billController/pmlQuery" method="post">
-                 <div class="search_add">                        
-                    <div><input type="submit" value="返回" class="btn_search" /></div>
-                     <div><a th:href="@{/billController/pmlUpdateStatus?(oid=${user.oid})}" title="货物状态">修改</a></div>
-                 </div>
+                <!--查询-->
+                <!-- <div class="search_add">                        
+                    <div>订单编号：<input type="text" th:value="*{orderno}" name="orderno"  placeholder="请输入您的订单编号"/></div>                            
+                    <div><input type="submit" value="搜索" class="btn_search" /></div>
+                </div>   -->
                 <!--数据区域：用表格展示数据-->     
                 <div id="data">            
                     <table id="datalist">
-                        <tr>
-                            <th class="width70">订单编号</th>
-                            <th class="width150">用户名</th>
-                            <th class="width150">寄件地址</th>
-                            <th class="width70">收件地址</th>
-                            <th class="width150">下单时间</th>
-                            <th class="width70">预约上门取件时间</th>
-                            <th class="width150">寄件类型</th>
-                            <th class="width50">重量/体积</th>
-                            <th class="width50">物品实际价值</th>
-                            <th class="width50">预估收费</th>
-                            <th class="width50">总运费</th>
-                            <th class="width50">付款方式</th>
-                            <th class="width50">实际付款</th>
-                            <th class="width50">状态</th>
-                            <th class="width50">备注</th>
-                        </tr>
-                        
-                        <tr th:each="user:${pmlSelectByPrimaryOid}">
+                    <tr>
+                        <th class="width80">单据ID</th>
+                        <th class="width80">取件人姓名</th>
+                        <th class="width80">分发时间</th>
+                        <th class="width80">取件完成时间</th>
+                        <th class="width80">取件类型</th>
+                        <th class="width80">取件状态</th>
+                        <th class="width115" colspan="2">操作</th> 
+                    </tr>
+                  
+                  
+                    <tr th:each="user:${pmlSelectAll}">
                         <td th:text="${user.orderno}"></td>
-                        <td th:text="${user.uname}"></td>
+                        <td th:text="${user.name}"></td>
                         <td th:text="${user.maddressm}"></td>
                         <td th:text="${user.raddressr}"></td>
-                        <td th:text="${#dates.format(user.orderTime,'yyyy-MM-dd')}"></td>
-                        <td th:text="${#dates.format(user.appointmenttime,'yyyy-MM-dd')}"></td>
                         <td th:text="${user.typeName}"></td>
-                        <td th:text="${user.weight}"></td>
-                        <td th:text="${user.rprice}"></td>
-                        <td th:text="${user.eprice}"></td>
-                        <td th:text="${user.total}"></td>
+                        <td th:text="${#dates.format(user.dtime,'yyyy-MM-dd')}"></td>
                         <td class="td-status" th:if="${user.payType} eq 1">
 	                       <span class="label label-success radius">现付</span>
                         </td>
@@ -78,12 +86,25 @@
                          <td class="td-status" th:if="${user.payType} eq 3">
 	                       <span class="label label-success radius">月结</span>
                         </td>
-                        <td th:text="${user.rpay}"></td>
-                        <td th:text="${user.status}"></td>                            
-                        <td th:text="${user.remarks}"></td> 
+                        <td th:text="${user.status}"></td>   
+                        <td><a th:href="@{/billController/pmlSelectOid?(oid=${user.oid})}" title="分发明细">添加</a></td>
+                        <td><a th:href="@{/billController/pmlSelectStatus?(oid=${user.oid})}" title="货物状态">修改</a></td>
                     </tr>
-                    </table>
-                </div>
+                </table>
+              
+                </div>                    
+                <!--分页-->
+                <!-- <div id="pages">
+                    <a href="#">首页</a>
+        	        <a href="#">上一页</a>
+                    <a href="#" class="current_page">1</a>
+                    <a href="#">2</a>
+                    <a href="#">3</a>
+                    <a href="#">4</a>
+                    <a href="#">5</a>
+                    <a href="#">下一页</a>
+                    <a href="#">末页</a>
+                </div>     -->                
             </form>
         </div>
         <!--主要区域结束-->
