@@ -246,9 +246,9 @@
 			<if test="tid !=1 and tid != '1'"> and e.tid = #{tid}</if>
 		</where>
 	</select>
-	<select id="zkSelByUsername" resultType="int">
+	<select id="zkSelByUsername" resultType="employee">
 		select * from employee
-		where username = #{username}
+		where account = #{account}
 	</select>
 	<insert id="zkInsert"
 		parameterType="com.expressage.pojo.Employee">
