@@ -28,13 +28,8 @@
 
 	<resultMap id="zm_orderMap" type="com.expressage.pojo.Order">
 		<id column="oid" property="oid" />
-<<<<<<< HEAD
-		<result column="order_time" property="orderTime" />
-=======
-		<result column="order_time" property="orderTime"/>
 		<result column="type_Name" property="typeName"/>
 		<result column="pay_type" property="payType"/>
->>>>>>> branch 'master' of https://github.com/expressage/expressage.git
 		<association property="address1" javaType="address">
 			<id column="aid1" property="aid" />
 			<result column="aname1" property="aname" />
@@ -51,7 +46,6 @@
 		</association>
 	</resultMap>
 
-<<<<<<< HEAD
 	<sql id="Base_Column_List">
 		oid, orderNo, uid, maddress, raddress, order_time,
 		appointmentTime,
@@ -59,23 +53,6 @@
 		rprice, eprice, total, pay_type,
 		rpay, status, remarks
 	</sql>
-=======
-	<select id="pmlSelectAll" resultMap="BaseResultMap"
-		parameterType="java.lang.String">
-		SELECT o.*,a1.address AS maddressm,a2.address AS raddressr ,u.uname
-		FROM `user` u, `order` o
-		INNER JOIN address a1 ON o.maddress = a1.aid
-		INNER JOIN address a2 ON o.raddress = a2.aid
-		WHERE u.uid=o.uid
-		<if test="orderno != null and orderno != ''">
-			AND orderNo = #{orderno,jdbcType=VARCHAR}
-		</if>
-	</select>
-
-
-
-
->>>>>>> branch 'master' of https://github.com/expressage/expressage.git
 	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
 		parameterType="java.lang.Integer">
 		select o.*,a1.address AS maddressm,a2.address AS
