@@ -29,6 +29,8 @@
 	<resultMap id="zm_orderMap" type="com.expressage.pojo.Order">
 		<id column="oid" property="oid" />
 		<result column="order_time" property="orderTime"/>
+		<result column="type_Name" property="typeName"/>
+		<result column="pay_type" property="payType"/>
 		<association property="address1" javaType="address">
 			<id column="aid1" property="aid" />
 			<result column="aname1" property="aname" />

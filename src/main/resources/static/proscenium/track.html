@@ -16,8 +16,8 @@
 <body>
 	<section class="aui-flexView">
 		<header class="aui-navBar aui-navBar-fixed b-line">
-			<a href="javascript:;" class="aui-navBar-item" onclick="history.back();"> <i
-				class="icon icon-return"></i>
+			<a href="javascript:;" class="aui-navBar-item"
+				onclick="history.back();"> <i class="icon icon-return"></i>
 			</a>
 			<div class="aui-center">
 				<span class="aui-center-title">快件详情</span>
@@ -33,17 +33,18 @@
 					订单号：<em th:text="${order.orderno}"></em>
 				</p>
 				<p
-					style="text-align: center; font-size: 16px; height: 50px; line-height: 50px;">
+					style="text-align: center; font-size: 16px; height: 50px; line-height: 50px;"
+					th:onclick="'javascript:zmGetOrderByOid('+${order.oid}+')'">
 					<span
 						th:text="${order.address1.region.substring(order.address1.region.indexOf(' '),order.address1.region.lastIndexOf(' '))+' '+order.address1.aname}"></span>——><span
 						th:text="${order.address1.region.substring(order.address2.region.indexOf(' '),order.address2.region.lastIndexOf(' '))+' '+order.address2.aname}"></span>
 					<br />
 				</p>
-				<p style="padding-left: 20px;">
+				<p style="padding-left: 20px;"
+					th:onclick="'javascript:zmOrderRemarks('+${order.oid}+')'">
 					<span class="glyphicon glyphicon-pencil"></span> 备注：<input
 						type="text" maxlength="10" placeholder="添加备注，限10个字"
-						style="border: 0px;" th:value="${order.remarks}" name="remarks"
-						th:onblur="'javascript:zmOrderRemarks('+${order.oid}+')'" />
+						style="border: 0px;" th:value="${order.remarks}" name="remarks" />
 				</p>
 			</div>
 			<div class="divHeight">
@@ -73,6 +74,9 @@
 					+ remarks, null, function(data) {
 
 			})
+		}
+		function zmGetOrderByOid(oid) {
+			location = "/Personal/zmGetOrderByOid?oid=" + oid;
 		}
 	</script>
 </body>

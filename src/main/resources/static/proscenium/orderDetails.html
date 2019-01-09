@@ -13,121 +13,59 @@
 	type="text/css" />
 </head>
 <body>
-	<section class="aui-flexView">
-		<header class="aui-navBar aui-navBar-fixed">
-			<a href="javascript:;" class="aui-navBar-item"> <i
-				class="icon icon-return"></i>快件详情
-			</a>
-			<div class="aui-center">
-				<span class="aui-center-title"></span>
+	<header class="aui-navBar aui-navBar-fixed b-line">
+		<a href="javascript:;" class="aui-navBar-item"
+			onclick="history.back();"> <i class="icon icon-return"></i>
+		</a>
+		<div class="aui-center">
+			<span class="aui-center-title">订单详情</span>
+		</div>
+		<a href="javascript:;" class="aui-navBar-item"> <i
+			class="icon icon-more"></i>
+		</a>
+	</header>
+	<section class="aui-scrollView">
+		<p
+			style="color: white; background-color: pink; padding-left: 20px; height: 30px; line-height: 30px;">
+			订单号：<em th:text="${order.orderno}"></em>
+		</p>
+		<div class="aui-order-box">
+			<p class="aui-order-fl aui-order-address">
+				<span th:text="${order.address1.aname+' '+order.address1.tel}"></span>
+				<br /> <span
+					th:text="${order.address1.region+' '+order.address1.address}"></span>
+			</p>
+			<p class="aui-order-fl aui-order-door">
+				<span th:text="${order.address2.aname+' '+order.address2.tel}"></span>
+				<br /> <span
+					th:text="${order.address2.region+' '+order.address2.address}"></span>
+			</p>
+		</div>
+		<div class="divHeight">
+			<span style="color: #333">详情信息</span>
+		</div>
+		<div class="aui-flex aui-flex-text-sml b-line">
+			<div class="aui-flex-box">
+				<p>
+					<em>托 寄 物 :</em> <span th:text="${order.typeName}"></span>&nbsp;&nbsp;&nbsp;<span
+						th:text="${order.weight}"></span>kg
+				</p>
+				<p>
+					<em>保价费用:</em> <span th:text="${order.rprice}"></span>
+				</p>
+				<p>
+					<em>预估费用:</em> <span th:text="${order.total}"></span>
+				</p>
+				<p>
+					<em>付款方式:</em> <span
+						th:text="${order.payType==1?'寄付现结':(order.payType==2?'到付':'月结')}"></span>
+				</p>
+				<p>
+					<em>下单时间:</em> <span
+						th:text="${#dates.format(order.orderTime,'yyyy-MM-dd hh:mm:ss')}"></span>
+				</p>
 			</div>
-			<a href="javascript:;" class="aui-navBar-item"> <i
-				class="icon icon-more"></i>
-			</a>
-		</header>
-		<section class="aui-scrollView">
-			<div class="aui-flex">
-				<div class="aui-flex-add">
-					<img src="images/icon-add.png" alt="">
-				</div>
-				<div class="aui-flex-box">
-					<p></p>
-				</div>
-			</div>
-			<div class="divHeight"></div>
-			<div class="aui-flex">
-				<div class="aui-shop-item">
-					<img src="images/logo-item.png" alt="">
-				</div>
-				<div class="aui-shop-item-arrow">京东商城自营旗舰店</div>
-			</div>
-			<div class="aui-commodity-bg">
-				<div class="aui-flex">
-					<div class="aui-commodity-img">
-						<img src="images/ad-001.png" alt="">
-					</div>
-					<div class="aui-flex-box">
-						<h4>苹果iPhone X 大理石手机保护壳多彩手机壳限时抢购</h4>
-						<p>黑色 (5.5iphone8 plus)</p>
-						<span class="aui-barter-time">七天退换</span>
-					</div>
-					<div>
-						<h5>￥69.99</h5>
-						<p class="aui-sml-text">X1</p>
-					</div>
-				</div>
-			</div>
-			<div class="aui-flex aui-insurance-box b-line">
-				<div class="aui-insurance-img">
-					<img src="images/icon-bx.png" alt="">
-				</div>
-				<div class="aui-flex-box">
-					<h4>运费险</h4>
-					<h5>确认收货前退货可理赔</h5>
-				</div>
-				<div>
-					<h5>￥00.00</h5>
-					<p class="aui-sml-text">X00</p>
-				</div>
-			</div>
-			<div class="aui-cp-edu b-line">
-				<div class="aui-san-sml"></div>
-				<div class="aui-flex aui-flex-ed">
-					<div class="aui-flex-box">
-						商品总价 <em>￥69.99</em>
-					</div>
-				</div>
-				<div class="aui-flex aui-flex-ed">
-					<div class="aui-flex-box">
-						运费 (快递) <em>￥69.99</em>
-					</div>
-				</div>
-				<div class="aui-flex aui-flex-ed">
-					<div class="aui-flex-box">
-						运费险(卖家赠送) <em>￥69.99</em>
-					</div>
-				</div>
-				<div class="aui-flex aui-flex-ed">
-					<div class="aui-flex-box" style="color: #333; font-size: 15px;">
-						订单总价<em style="color: #333">￥69.99</em>
-					</div>
-				</div>
-			</div>
-			<div class="divHeight b-line"></div>
-			<div class="aui-flex aui-flex-text-sml b-line">
-				<div class="aui-flex-box">
-					<p>
-						<em>商品积分:</em> 可以获得30积分
-					</p>
-					<p>
-						<em>订单编号:</em> 120848234387344378734
-					</p>
-					<p>
-						<em>交易编号:</em> 2018090886654545233444
-					</p>
-					<p>
-						<em>下单时间:</em> 2018-08-22 02:12:22
-					</p>
-				</div>
-				<div class="aui-btn-copy">复制</div>
-			</div>
-			<div class="aui-confirm-flex">
-				<a href="javascript:;" class="aui-modify-btn modify"> <i
-					class="icon icon-kf"></i> 联系客服
-				</a> <a href="javascript:;" class="aui-modify-btn delete"> <i
-					class="icon icon-dh"></i> 拨打电话
-				</a>
-			</div>
-			<div class="aui-like">
-				<img src="images/head-like.png" alt="">
-			</div>
-		</section>
-		<!-- <footer class="aui-footer aui-footer-fixed">
-			<div class="aui-footer-text-info">
-				<a href="javascript:;">朋友代付</a> <a href="javascript:;">取消订单</a> <a
-					href="javascript:;" class="aui-payment">付款</a>
-			</div>
-		</footer> -->
+		</div>
 	</section>
 </body>
 </html>
