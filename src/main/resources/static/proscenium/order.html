@@ -21,10 +21,12 @@
 			<div class="aui-center">
 				<span class="aui-center-title">我的快递</span>
 			</div>
+			<div></div>
 		</header>
 		<section class="aui-scrollView">
 			<div class="aui-order-title">
-				<div class="aui-order-box" th:each="order:${listO}">
+				<div class="aui-order-box" th:each="order:${listO}"
+					th:onclick="'javascript:zmSelTrackByOid('+${order.oid}+')'">
 					<a href="javascript:void(0);" class="aui-well-item">
 						<div class="aui-well-item-bd">
 							<h3>
@@ -34,20 +36,35 @@
 						th:text="${order.remarks==''?'无备注':order.remarks}"></span>
 					</a>
 					<p class="aui-order-fl aui-order-address"
-						th:text="${order.address1.region+'  '+order.address1.address}"></p>
+						th:text="${order.address1.aname+' '+order.address1.tel}"></p>
+					<p class="aui-order-fl"
+						th:text="${order.address1.region+' '+order.address1.address}"></p>
 					<p class="aui-order-fl aui-order-door"
-						th:text="${order.address2.region+'  '+order.address2.address}"></p>
+						th:text="${order.address2.aname+' '+order.address2.tel}"></p>
+					<p class="aui-order-fl"
+						th:text="${order.address2.region+' '+order.address2.address}"></p>
 					<hr />
 					<p style="display: inline-block; font-size: 12px;">
-						<span th:text="${order.status}"></span><br />
-						<span
+						<span th:text="${order.status}"></span><br /> <span
 							th:text="${#dates.format(order.orderTime,'yyyy-MM-dd hh:mm:ss')}"></span>
-						<a href="#" style="display: inline-block; font-size: 12px;color: blue;"
+						<a th:onclick="'javascript:zmDelOrder('+${order.oid}+')'"
+							style="display: inline-block; font-size: 12px; color: red; position: relative;; right: -40%; bottom: 10%;"
 							th:text="${order.status=='已签收'?'删除记录':''}"></a>
 					</p>
 				</div>
 			</div>
 		</section>
 	</section>
+	<script type="text/javascript" src="/proscenium/js/jquery.min.js"></script>
+	<script type="text/javascript">
+		function zmDelOrder(oid) {
+			if (confirm("确实要删除该内容吗?")) {
+				location = "/Personal/zmDelOrder?oid=" + oid;
+			}
+		}
+		function zmSelTrackByOid(oid) {
+			location = "/Personal/zmSelTrackByOid?oid=" + oid;
+		}
+	</script>
 </body>
 </html>

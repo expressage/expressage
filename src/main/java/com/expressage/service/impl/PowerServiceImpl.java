@@ -16,8 +16,8 @@ public class PowerServiceImpl implements PowerService {
 	PowerMapper powerMapper;
 
 	@Override
-	public List<Power> zkSelByUserId(Map<String, Object> map) {
-		return powerMapper.zkSelByUserId(map);
+	public List<Power> zkSelByEmplId(Map<String, Object> map) {
+		return powerMapper.zkSelByEmplId(map);
 	}
 
 	@Override

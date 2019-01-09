@@ -1,8 +1,14 @@
 package com.expressage.mapper;
 
+import java.util.List;
+
 import com.expressage.pojo.Tracking;
 
 public interface TrackingMapper {
+	List<Tracking> zm_selTrackByOid(Integer oid);
+	
+	
+	
     int deleteByPrimaryKey(Integer tid);
 
     int insert(Tracking record);

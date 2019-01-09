@@ -28,7 +28,13 @@
 
 	<resultMap id="zm_orderMap" type="com.expressage.pojo.Order">
 		<id column="oid" property="oid" />
+<<<<<<< HEAD
 		<result column="order_time" property="orderTime" />
+=======
+		<result column="order_time" property="orderTime"/>
+		<result column="type_Name" property="typeName"/>
+		<result column="pay_type" property="payType"/>
+>>>>>>> branch 'master' of https://github.com/expressage/expressage.git
 		<association property="address1" javaType="address">
 			<id column="aid1" property="aid" />
 			<result column="aname1" property="aname" />
@@ -45,6 +51,7 @@
 		</association>
 	</resultMap>
 
+<<<<<<< HEAD
 	<sql id="Base_Column_List">
 		oid, orderNo, uid, maddress, raddress, order_time,
 		appointmentTime,
@@ -52,6 +59,23 @@
 		rprice, eprice, total, pay_type,
 		rpay, status, remarks
 	</sql>
+=======
+	<select id="pmlSelectAll" resultMap="BaseResultMap"
+		parameterType="java.lang.String">
+		SELECT o.*,a1.address AS maddressm,a2.address AS raddressr ,u.uname
+		FROM `user` u, `order` o
+		INNER JOIN address a1 ON o.maddress = a1.aid
+		INNER JOIN address a2 ON o.raddress = a2.aid
+		WHERE u.uid=o.uid
+		<if test="orderno != null and orderno != ''">
+			AND orderNo = #{orderno,jdbcType=VARCHAR}
+		</if>
+	</select>
+
+
+
+
+>>>>>>> branch 'master' of https://github.com/expressage/expressage.git
 	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
 		parameterType="java.lang.Integer">
 		select o.*,a1.address AS maddressm,a2.address AS
@@ -65,11 +89,7 @@
 	</select>
 
 
-	<delete id="deleteByPrimaryKey"
-		parameterType="java.lang.Integer">
-		delete from order
-		where oid = #{oid,jdbcType=INTEGER}
-	</delete>
+
 	<insert id="insert" parameterType="com.expressage.pojo.Order">
 		insert into order (oid,
 		orderNo, uid,
@@ -90,110 +110,6 @@
 		#{payType,jdbcType=INTEGER}, #{rpay,jdbcType=INTEGER},
 		#{status,jdbcType=VARCHAR},
 		#{remarks,jdbcType=VARCHAR})
-	</insert>
-	<insert id="insertSelective"
-		parameterType="com.expressage.pojo.Order">
-		insert into order
-		<trim prefix="(" suffix=")" suffixOverrides=",">
-			<if test="oid != null">
-				oid,
-			</if>
-			<if test="orderno != null">
-				orderNo,
-			</if>
-			<if test="uid != null">
-				uid,
-			</if>
-			<if test="maddress != null">
-				maddress,
-			</if>
-			<if test="raddress != null">
-				raddress,
-			</if>
-			<if test="orderTime != null">
-				order_time,
-			</if>
-			<if test="appointmenttime != null">
-				appointmentTime,
-			</if>
-			<if test="typeName != null">
-				type_Name,
-			</if>
-			<if test="weight != null">
-				weight,
-			</if>
-			<if test="rprice != null">
-				rprice,
-			</if>
-			<if test="eprice != null">
-				eprice,
-			</if>
-			<if test="total != null">
-				total,
-			</if>
-			<if test="payType != null">
-				pay_type,
-			</if>
-			<if test="rpay != null">
-				rpay,
-			</if>
-			<if test="status != null">
-				status,
-			</if>
-			<if test="remarks != null">
-				remarks,
-			</if>
-		</trim>
-		<trim prefix="values (" suffix=")" suffixOverrides=",">
-			<if test="oid != null">
-				#{oid,jdbcType=INTEGER},
-			</if>
-			<if test="orderno != null">
-				#{orderno,jdbcType=VARCHAR},
-			</if>
-			<if test="uid != null">
-				#{uid,jdbcType=INTEGER},
-			</if>
-			<if test="maddress != null">
-				#{maddress,jdbcType=INTEGER},
-			</if>
-			<if test="raddress != null">
-				#{raddress,jdbcType=INTEGER},
-			</if>
-			<if test="orderTime != null">
-				#{orderTime,jdbcType=TIMESTAMP},
-			</if>
-			<if test="appointmenttime != null">
-				#{appointmenttime,jdbcType=TIMESTAMP},
-			</if>
-			<if test="typeName != null">
-				#{typeName,jdbcType=VARCHAR},
-			</if>
-			<if test="weight != null">
-				#{weight,jdbcType=DOUBLE},
-			</if>
-			<if test="rprice != null">
-				#{rprice,jdbcType=INTEGER},
-			</if>
-			<if test="eprice != null">
-				#{eprice,jdbcType=INTEGER},
-			</if>
-			<if test="total != null">
-				#{total,jdbcType=INTEGER},
-			</if>
-			<if test="payType != null">
-				#{payType,jdbcType=INTEGER},
-			</if>
-			<if test="rpay != null">
-				#{rpay,jdbcType=INTEGER},
-			</if>
-			<if test="status != null">
-				#{status,jdbcType=VARCHAR},
-			</if>
-			<if test="remarks != null">
-				#{remarks,jdbcType=VARCHAR},
-			</if>
-		</trim>
 	</insert>
 	<update id="updateByPrimaryKeySelective"
 		parameterType="com.expressage.pojo.Order">
@@ -304,4 +220,17 @@
 		o inner join address a1 ON o.maddress = a1.aid inner join address a2
 		ON o.raddress = a2.aid where o.uid = #{uid}
 	</select>
+	<select id="zm_getOrderByOid" resultMap="zm_orderMap">
+		select o.*,a1.aid aid1,a1.aname aname1,a1.tel
+		tel1,a1.region region1,a1.address address1,a2.aid aid2,a2.aname
+		aname2,a2.tel tel2,a2.region region2,a2.address address2 FROM `order`
+		o inner join address a1 ON o.maddress = a1.aid inner join address a2
+		ON o.raddress = a2.aid where o.oid = #{oid}
+	</select>
+	<delete id="zm_delOrder">
+		delete from `order` where oid = #{oid}
+	</delete>
+	<update id="zm_orderRemarks">
+		update `order` set remarks = #{remarks} where oid = #{oid}
+	</update>
 </mapper>

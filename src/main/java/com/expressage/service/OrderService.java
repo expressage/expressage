@@ -2,28 +2,28 @@ package com.expressage.service;
 
 import java.util.List;
 
-import org.apache.ibatis.annotations.Param;
-
 import com.expressage.pojo.Order;
 
 public interface OrderService {
 	List<Order> zm_selOrder(Integer uid);
+
+	Order zm_getOrderByOid(Integer oid);
+
+	int zm_delOrder(Integer oid);
+
+	int zm_orderRemarks(Integer oid, String remarks);
 	
 	
-	
-	int deleteByPrimaryKey(Integer oid);
 
-    int insert(Order record);
+	int insert(Order record);
 
-    int insertSelective(Order record);
+	Order selectByPrimaryKey(Integer oid);
 
-    Order selectByPrimaryKey(Integer oid);
+	int updateByPrimaryKeySelective(Order record);
 
-    int updateByPrimaryKeySelective(Order record);
+	int updateByPrimaryKey(Order record);
 
-    int updateByPrimaryKey(Order record);
-    
     List<Order> pmlSelectAll(String orderno);
     
-    Order pmlSelectByPrimaryOid(Integer oid);    
+    Order pmlSelectByPrimaryOid(Integer oid);  
 }

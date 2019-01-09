@@ -1,0 +1,61 @@
+﻿<!doctype html>
+<html>
+<head design-width="750">
+<meta charset="utf-8">
+<meta name="viewport"
+	content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="format-detection" content="telephone=no">
+<title>Demo</title>
+<link rel="stylesheet" href="/proscenium/css/userInfo.css" />
+</head>
+<body>
+	<div class="mobile-wrap center mobile-wrap-mb">
+		<header>
+			<span class="return" onclick="location='history.back();'"> 返回
+			</span>
+		</header>
+		<div class="inform">
+			<h3>账号管理</h3>
+			<div class="inform-list">
+				<ul>
+					<li class="acti">个人信息</li>
+					<li>修改资料</li>
+					<li>修改密码</li>
+				</ul>
+			</div>
+			<div class="inform-text">
+				<p>
+					<span> UID ： </span> <input type="text" />
+				</p>
+				<p>
+					<span> 用户名 </span> <input type="text" />
+				</p>
+				<p>
+					<span> 电话号 </span> <input type="text" />
+				</p>
+				<p>
+					<span> 微信号 </span> <input type="text" />
+				</p>
+				<p>
+					<span> 商户级别 </span> <input type="text" />
+				</p>
+				<h4>
+					<input type="submit" name="" id="" value="确定修改" /> <a href="#">遇到问题？</a>
+				</h4>
+			</div>
+		</div>
+	</div>
+</body>
+<script src="/proscenium/js/userInfo.js"></script>
+<script src="/proscenium/js/bootstrap.min.js"></script>
+<script type="text/javascript">
+	$('.inform-list ul li').click(function() {
+		var n = $(this).index();
+		$(this).addClass('acti').siblings().removeClass('acti');
+		$('.inform-text').fadeOut();
+		$('.inform-text').eq(n).fadeIn();
+	})
+</script>
+</html>

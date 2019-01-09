@@ -4,24 +4,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.servlet.http.HttpServletRequest;
-
-import org.apache.shiro.SecurityUtils;
-import org.apache.shiro.authc.AuthenticationException;
-import org.apache.shiro.authc.LockedAccountException;
-import org.apache.shiro.authc.UsernamePasswordToken;
-import org.apache.shiro.subject.Subject;
+import org.apache.shiro.authz.annotation.Logical;
+import org.apache.shiro.authz.annotation.RequiresRoles;
 import org.springframework.beans.factory.annotation.Autowired;
-/*import org.apache.shiro.SecurityUtils;
-import org.apache.shiro.authc.AuthenticationException;
-import org.apache.shiro.authc.LockedAccountException;
-import org.apache.shiro.authc.UsernamePasswordToken;
-import org.apache.shiro.subject.Subject;*/
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -48,32 +36,6 @@ public class EmployeeController {
 	@Autowired
 	TransferService transferService;
 
-	@RequestMapping(value="/login",method= RequestMethod.GET)
-	public String login() {
-		return "login";
-	}
-	
-	@RequestMapping(value="/login",method= RequestMethod.POST)
-	public String login(HttpServletRequest request,Employee employee,Model model) {
-		  if (StringUtils.isEmpty(employee.getName()) || StringUtils.isEmpty(employee.getPassword())) {
-	            request.setAttribute("msg", "用户名或密码不能为空！");
-	            return "login";
-	        }
-	        Subject subject = SecurityUtils.getSubject();
-	        UsernamePasswordToken token=new UsernamePasswordToken(employee.getName(),employee.getPassword());
-	        try {
-	            subject.login(token);
-	            return "redirect:home";
-	        }catch (LockedAccountException lae) {
-	            token.clear();
-	            request.setAttribute("msg", "用户已经被锁定不能登录，请与管理员联系！");
-	            return "login";
-	        } catch (AuthenticationException e) {
-	            token.clear();
-	            request.setAttribute("msg", "用户或密码不正确！");
-	            return "login";
-	        }
-	}
 	/**
 	 * 查询所有
 	 * 
@@ -85,6 +47,7 @@ public class EmployeeController {
 	 * @param model
 	 * @return
 	 */
+	//@RequiresRoles(value={"管理人员","超级管理员"},logical = Logical.OR)
 	@RequestMapping(value = "/zkSelEmployee")
 	public String zkSelEmployee(@RequestParam(value = "eid", required = false) Integer eid,
 			@RequestParam(value = "name", required = false) String name,

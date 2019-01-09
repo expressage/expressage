@@ -15,24 +15,27 @@ public class OrderServiceImpl implements OrderService {
 	@Autowired
 	private OrderMapper orderMapper;
 	
-
+	
 	public List<Order> zm_selOrder(Integer uid) {
 		return orderMapper.zm_selOrder(uid);
 	}
 	
-	@Override
-	public int deleteByPrimaryKey(Integer oid) {
-		return orderMapper.deleteByPrimaryKey(oid);
+	public Order zm_getOrderByOid(Integer oid) {
+		return orderMapper.zm_getOrderByOid(oid);
 	}
+	
+	public int zm_delOrder(Integer oid) {
+		return orderMapper.zm_delOrder(oid);
+	}
+	
+	public int zm_orderRemarks(Integer oid, String remarks) {
+		return orderMapper.zm_orderRemarks(oid, remarks);
+	}
+	
 
 	@Override
 	public int insert(Order record) {
 		return orderMapper.insert(record);
-	}
-
-	@Override
-	public int insertSelective(Order record) {
-		return orderMapper.insertSelective(record);
 	}
 
 	@Override
@@ -61,5 +64,6 @@ public class OrderServiceImpl implements OrderService {
 		return orderMapper.pmlSelectByPrimaryOid(oid);
 	}
 
+	
 	
 }
