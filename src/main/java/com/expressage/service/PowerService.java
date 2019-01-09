@@ -8,7 +8,7 @@ import com.expressage.pojo.Role;
 
 public interface PowerService {
 	
-	List<Power> zkSelByUserId(Map<String,Object> map);
+	List<Power> zkSelByEmplId(Map<String,Object> map);
 
 	List<Power> zkSelPowerByRid(Integer rid);
 

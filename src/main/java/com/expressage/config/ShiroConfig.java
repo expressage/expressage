@@ -17,6 +17,7 @@ import org.apache.shiro.web.session.mgt.DefaultWebSessionManager;
 import org.crazycake.shiro.RedisCacheManager;
 import org.crazycake.shiro.RedisManager;
 import org.crazycake.shiro.RedisSessionDAO;
+import org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cache.annotation.EnableCaching;
@@ -70,16 +71,17 @@ public class ShiroConfig {
 		ShiroFilterFactoryBean shiroFilterFactoryBean = new ShiroFilterFactoryBean();
 		shiroFilterFactoryBean.setSecurityManager(securityManager);
 		shiroFilterFactoryBean.setLoginUrl("/login.html");
-		shiroFilterFactoryBean.setSuccessUrl("/index.html");
-		shiroFilterFactoryBean.setUnauthorizedUrl("/403");
+		shiroFilterFactoryBean.setSuccessUrl("/home.html");
+		shiroFilterFactoryBean.setUnauthorizedUrl("/error.html");
 		Map<String, String> filterChainDefinitionMap = new LinkedHashMap<String,String>();
 		filterChainDefinitionMap.put("/styles/**", "anon");
 		filterChainDefinitionMap.put("/js/**", "anon");
 		filterChainDefinitionMap.put("/images/**", "anon");
-		filterChainDefinitionMap.put("/start/**", "anon");
-		filterChainDefinitionMap.put("/Jump/**", "anon");
+		filterChainDefinitionMap.put("/start/login*", "anon");
+		filterChainDefinitionMap.put("/start/validateCode", "anon");
+		/*filterChainDefinitionMap.put("/Jump/**", "anon");
 		filterChainDefinitionMap.put("/Personal/**", "anon");
-		filterChainDefinitionMap.put("/proscenium/**", "anon");
+		filterChainDefinitionMap.put("/proscenium/**", "anon");*/
 		filterChainDefinitionMap.put("/logout", "logout");
 		List<Power> powersList = powerService.zkSelPower();
 		for (Power power : powersList) {
@@ -148,6 +150,18 @@ public class ShiroConfig {
     	AuthorizationAttributeSourceAdvisor authorizationAttributeSourceAdvisor = new AuthorizationAttributeSourceAdvisor();
         authorizationAttributeSourceAdvisor.setSecurityManager(securityManager);
         return authorizationAttributeSourceAdvisor;
+    }
+    
+    /**
+     *  开启Shiro的注解(如@RequiresRoles,@RequiresPermissions),需借助SpringAOP扫描使用Shiro注解的类,并在必要时进行安全逻辑验证
+     * 配置以下两个bean(DefaultAdvisorAutoProxyCreator和AuthorizationAttributeSourceAdvisor)即可实现此功能
+     * @return
+     */
+    @Bean
+    public DefaultAdvisorAutoProxyCreator advisorAutoProxyCreator(){
+        DefaultAdvisorAutoProxyCreator advisorAutoProxyCreator = new DefaultAdvisorAutoProxyCreator();
+        advisorAutoProxyCreator.setProxyTargetClass(true);
+        return advisorAutoProxyCreator;
     }
 	
 	

@@ -52,7 +52,7 @@ public class MyShiroRealm extends AuthorizingRealm{
 		Employee employee = (Employee) SecurityUtils.getSubject().getPrincipal();
 		Map<String, Object> map = new HashMap<String,Object>();
 		map.put("eid", employee.getEid());
-		List<Power> powersList = powerService.zkSelByUserId(map);
+		List<Power> powersList = powerService.zkSelByEmplId(map);
 		SimpleAuthorizationInfo info = new SimpleAuthorizationInfo();
 		for (Power power : powersList) {
 			info.addStringPermission(power.getUrl());

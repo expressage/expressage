@@ -4,6 +4,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.shiro.authz.annotation.Logical;
+import org.apache.shiro.authz.annotation.RequiresRoles;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -45,6 +47,7 @@ public class EmployeeController {
 	 * @param model
 	 * @return
 	 */
+	//@RequiresRoles(value={"管理人员","超级管理员"},logical = Logical.OR)
 	@RequestMapping(value = "/zkSelEmployee")
 	public String zkSelEmployee(@RequestParam(value = "eid", required = false) Integer eid,
 			@RequestParam(value = "name", required = false) String name,

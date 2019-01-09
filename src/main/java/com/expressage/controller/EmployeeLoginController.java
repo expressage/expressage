@@ -13,6 +13,8 @@ import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.LockedAccountException;
 import org.apache.shiro.authc.UsernamePasswordToken;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
+import org.apache.shiro.authz.annotation.RequiresRoles;
 import org.apache.shiro.subject.Subject;
 import org.apache.shiro.web.util.WebUtils;
 import org.springframework.stereotype.Controller;
@@ -50,7 +52,7 @@ public class EmployeeLoginController {
 //		token.setRememberMe(true);
 		try {
 			subject.login(token);
-			return "redirect:/index.html";
+			return "/home";
 		} catch (LockedAccountException lae) {
 			token.clear();
 			request.setAttribute("msg", "用户已经被锁定不能登录，请与管理员联系！");
@@ -62,6 +64,11 @@ public class EmployeeLoginController {
 			return "login";
 		}
 	}
+	
+	/*@RequestMapping(value="/home")
+	public String redIndex() {
+		return "redirect:/home.html";
+	}*/
 
 	/**
 	 * 生成验证码
