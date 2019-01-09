@@ -14,9 +14,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.expressage.pojo.Address;
 import com.expressage.pojo.Order;
+import com.expressage.pojo.Tracking;
 import com.expressage.pojo.User;
 import com.expressage.service.AddressService;
 import com.expressage.service.OrderService;
+import com.expressage.service.TrackingService;
 import com.expressage.service.UserService;
 import com.expressage.util.HttpClientUtil;
 
@@ -29,6 +31,8 @@ public class PersonalController {
 	private UserService userService;
 	@Autowired
 	private OrderService orderService;
+	@Autowired
+	private TrackingService trackingService;
 
 	// 登录
 	@RequestMapping("/zmLogin")
@@ -159,13 +163,45 @@ public class PersonalController {
 		return count;
 	}
 
-	// 我的订单
+	// 查询我的快递
 	@RequestMapping("/zmGetOrder")
-	public String zm_getOrder(HttpSession session,Model model) {
-		/*User user = (User) session.getAttribute("user");*/
+	public String zm_getOrder(HttpSession session, Model model) {
+		/* User user = (User) session.getAttribute("user"); */
 		List<Order> listO = orderService.zm_selOrder(1);
 		model.addAttribute("listO", listO);
 		return "proscenium/order";
+	}
+
+	// 查看物流详情(物流跟踪)
+	@RequestMapping("/zmSelTrackByOid")
+	public String zm_selTrackByOid(@RequestParam("oid") Integer oid, Model model) {
+		Order order = orderService.zm_getOrderByOid(oid);
+		List<Tracking> listT = trackingService.zm_selTrackByOid(oid);
+		model.addAttribute("listT", listT);
+		model.addAttribute("order", order);
+		return "proscenium/track";
+	}
+
+	// 到订单里修改或添加备注
+	@RequestMapping("/zmOrderRemarks")
+	@ResponseBody
+	public int zm_orderRemarks(@RequestParam("oid") Integer oid, @RequestParam("remarks") String remarks) {
+		return orderService.zm_orderRemarks(oid, remarks);
+	}
+
+	// 查询快递详情
+	@RequestMapping("/zmGetOrderByOid")
+	public String zm_getOrderByOid(@RequestParam("oid") Integer oid, Model model) {
+		Order order = orderService.zm_getOrderByOid(1);
+		model.addAttribute("order", order);
+		return "proscenium/orderDetails";
+	}
+
+	// 删除我的订单
+	@RequestMapping("/zmDelOrder")
+	public String zm_delOrder(Integer oid) {
+		orderService.zm_delOrder(oid);
+		return "redirect:zmGetOrder";
 	}
 
 }

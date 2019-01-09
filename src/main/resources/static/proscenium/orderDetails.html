@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
 <title>订单详情</title>
@@ -16,8 +16,7 @@
 	<section class="aui-flexView">
 		<header class="aui-navBar aui-navBar-fixed">
 			<a href="javascript:;" class="aui-navBar-item"> <i
-				class="icon icon-return"></i> 订单详情
-
+				class="icon icon-return"></i>快件详情
 			</a>
 			<div class="aui-center">
 				<span class="aui-center-title"></span>
@@ -27,26 +26,12 @@
 			</a>
 		</header>
 		<section class="aui-scrollView">
-			<div class="aui-pay-change">
-				<div class="aui-flex">
-					<div class="aui-flex-box">
-						<h3>等待买家付款</h3>
-						<p>剩余23小时59分自动关闭</p>
-					</div>
-					<div class="aui-pay-zfb">
-						<img src="images/icon-zfb.png" alt="">
-					</div>
-				</div>
-			</div>
 			<div class="aui-flex">
 				<div class="aui-flex-add">
 					<img src="images/icon-add.png" alt="">
 				</div>
 				<div class="aui-flex-box">
-					<h3>
-						李嘉桦 <em>86-18519238945</em>
-					</h3>
-					<p>北京 北京市 海淀区 新城街道 北五环中路48号 时代索引大厦B座6层</p>
+					<p></p>
 				</div>
 			</div>
 			<div class="divHeight"></div>
@@ -136,296 +121,13 @@
 			<div class="aui-like">
 				<img src="images/head-like.png" alt="">
 			</div>
-			<div class="aui-shop-list aui-shop-list-selected">
-				<a href="javascript:;" class="aui-shop-list-item">
-					<div class="aui-shop-list-item-hd">
-						<img src="images/icon-page-001.png" alt="">
-					</div>
-					<div class="aui-shop-list-item-bd">
-						<h3>华为 HUAWEI P20 Pro 全面屏徕卡三摄游戏手机 6GB +128GB 樱粉金
-							全网通移动联通电信4G手机 双卡双待</h3>
-						<p class="aui-special-etc">
-							<span class="aui-special-etc-hd">￥399.99</span> <span
-								class="aui-special-etc-bd">￥898</span> <em> <i
-								class="icon icon-sm-more"></i>
-							</em>
-						</p>
-					</div>
-				</a> <a href="javascript:;" class="aui-shop-list-item">
-					<div class="aui-shop-list-item-hd">
-						<img src="images/icon-page-002.png" alt="">
-					</div>
-					<div class="aui-shop-list-item-bd">
-						<h3>华为 HUAWEI P20 Pro 全面屏徕卡三摄游戏手机 6GB +128GB 樱粉金
-							全网通移动联通电信4G手机 双卡双待</h3>
-						<p class="aui-special-etc">
-							<span class="aui-special-etc-hd">￥399.99</span> <span
-								class="aui-special-etc-bd">￥898</span> <em> <i
-								class="icon icon-sm-more"></i>
-							</em>
-						</p>
-					</div>
-				</a> <a href="javascript:;" class="aui-shop-list-item">
-					<div class="aui-shop-list-item-hd">
-						<img src="images/icon-page-003.png" alt="">
-					</div>
-					<div class="aui-shop-list-item-bd">
-						<h3>华为 HUAWEI P20 Pro 全面屏徕卡三摄游戏手机 6GB +128GB 樱粉金
-							全网通移动联通电信4G手机 双卡双待</h3>
-						<p class="aui-special-etc">
-							<span class="aui-special-etc-hd">￥399.99</span> <span
-								class="aui-special-etc-bd">￥898</span> <em> <i
-								class="icon icon-sm-more"></i>
-							</em>
-						</p>
-					</div>
-				</a> <a href="javascript:;" class="aui-shop-list-item">
-					<div class="aui-shop-list-item-hd">
-						<img src="images/icon-page-004.png" alt="">
-					</div>
-					<div class="aui-shop-list-item-bd">
-						<h3>华为 HUAWEI P20 Pro 全面屏徕卡三摄游戏手机 6GB +128GB 樱粉金
-							全网通移动联通电信4G手机 双卡双待</h3>
-						<p class="aui-special-etc">
-							<span class="aui-special-etc-hd">￥399.99</span> <span
-								class="aui-special-etc-bd">￥898</span> <em> <i
-								class="icon icon-sm-more"></i>
-							</em>
-						</p>
-					</div>
-				</a> <a href="javascript:;" class="aui-shop-list-item">
-					<div class="aui-shop-list-item-hd">
-						<img src="images/icon-page-005.png" alt="">
-					</div>
-					<div class="aui-shop-list-item-bd">
-						<h3>华为 HUAWEI P20 Pro 全面屏徕卡三摄游戏手机 6GB +128GB 樱粉金
-							全网通移动联通电信4G手机 双卡双待</h3>
-						<p class="aui-special-etc">
-							<span class="aui-special-etc-hd">￥399.99</span> <span
-								class="aui-special-etc-bd">￥898</span> <em> <i
-								class="icon icon-sm-more"></i>
-							</em>
-						</p>
-					</div>
-				</a> <a href="javascript:;" class="aui-shop-list-item">
-					<div class="aui-shop-list-item-hd">
-						<img src="images/icon-page-006.png" alt="">
-					</div>
-					<div class="aui-shop-list-item-bd">
-						<h3>华为 HUAWEI P20 Pro 全面屏徕卡三摄游戏手机 6GB +128GB 樱粉金
-							全网通移动联通电信4G手机 双卡双待</h3>
-						<p class="aui-special-etc">
-							<span class="aui-special-etc-hd">￥399.99</span> <span
-								class="aui-special-etc-bd">￥898</span> <em> <i
-								class="icon icon-sm-more"></i>
-							</em>
-						</p>
-					</div>
-				</a> <a href="javascript:;" class="aui-shop-list-item">
-					<div class="aui-shop-list-item-hd">
-						<img src="images/icon-page-007.png" alt="">
-					</div>
-					<div class="aui-shop-list-item-bd">
-						<h3>华为 HUAWEI P20 Pro 全面屏徕卡三摄游戏手机 6GB +128GB 樱粉金
-							全网通移动联通电信4G手机 双卡双待</h3>
-						<p class="aui-special-etc">
-							<span class="aui-special-etc-hd">￥399.99</span> <span
-								class="aui-special-etc-bd">￥898</span> <em> <i
-								class="icon icon-sm-more"></i>
-							</em>
-						</p>
-					</div>
-				</a> <a href="javascript:;" class="aui-shop-list-item">
-					<div class="aui-shop-list-item-hd">
-						<img src="images/icon-page-008.png" alt="">
-					</div>
-					<div class="aui-shop-list-item-bd">
-						<h3>华为 HUAWEI P20 Pro 全面屏徕卡三摄游戏手机 6GB +128GB 樱粉金
-							全网通移动联通电信4G手机 双卡双待</h3>
-						<p class="aui-special-etc">
-							<span class="aui-special-etc-hd">￥399.99</span> <span
-								class="aui-special-etc-bd">￥898</span> <em> <i
-								class="icon icon-sm-more"></i>
-							</em>
-						</p>
-					</div>
-				</a> <a href="javascript:;" class="aui-shop-list-item">
-					<div class="aui-shop-list-item-hd">
-						<img src="images/icon-page-009.png" alt="">
-					</div>
-					<div class="aui-shop-list-item-bd">
-						<h3>华为 HUAWEI P20 Pro 全面屏徕卡三摄游戏手机 6GB +128GB 樱粉金
-							全网通移动联通电信4G手机 双卡双待</h3>
-						<p class="aui-special-etc">
-							<span class="aui-special-etc-hd">￥399.99</span> <span
-								class="aui-special-etc-bd">￥898</span> <em> <i
-								class="icon icon-sm-more"></i>
-							</em>
-						</p>
-					</div>
-				</a> <a href="javascript:;" class="aui-shop-list-item">
-					<div class="aui-shop-list-item-hd">
-						<img src="images/icon-page-027.png" alt="">
-					</div>
-					<div class="aui-shop-list-item-bd">
-						<h3>华为 HUAWEI P20 Pro 全面屏徕卡三摄游戏手机 6GB +128GB 樱粉金
-							全网通移动联通电信4G手机 双卡双待</h3>
-						<p class="aui-special-etc">
-							<span class="aui-special-etc-hd">￥399.99</span> <span
-								class="aui-special-etc-bd">￥898</span> <em> <i
-								class="icon icon-sm-more"></i>
-							</em>
-						</p>
-					</div>
-				</a> <a href="javascript:;" class="aui-shop-list-item">
-					<div class="aui-shop-list-item-hd">
-						<img src="images/icon-page-011.png" alt="">
-					</div>
-					<div class="aui-shop-list-item-bd">
-						<h3>华为 HUAWEI P20 Pro 全面屏徕卡三摄游戏手机 6GB +128GB 樱粉金
-							全网通移动联通电信4G手机 双卡双待</h3>
-						<p class="aui-special-etc">
-							<span class="aui-special-etc-hd">￥399.99</span> <span
-								class="aui-special-etc-bd">￥898</span> <em> <i
-								class="icon icon-sm-more"></i>
-							</em>
-						</p>
-					</div>
-				</a> <a href="javascript:;" class="aui-shop-list-item">
-					<div class="aui-shop-list-item-hd">
-						<img src="images/icon-page-012.png" alt="">
-					</div>
-					<div class="aui-shop-list-item-bd">
-						<h3>华为 HUAWEI P20 Pro 全面屏徕卡三摄游戏手机 6GB +128GB 樱粉金
-							全网通移动联通电信4G手机 双卡双待</h3>
-						<p class="aui-special-etc">
-							<span class="aui-special-etc-hd">￥399.99</span> <span
-								class="aui-special-etc-bd">￥898</span> <em> <i
-								class="icon icon-sm-more"></i>
-							</em>
-						</p>
-					</div>
-				</a> <a href="javascript:;" class="aui-shop-list-item">
-					<div class="aui-shop-list-item-hd">
-						<img src="images/icon-page-013.png" alt="">
-					</div>
-					<div class="aui-shop-list-item-bd">
-						<h3>华为 HUAWEI P20 Pro 全面屏徕卡三摄游戏手机 6GB +128GB 樱粉金
-							全网通移动联通电信4G手机 双卡双待</h3>
-						<p class="aui-special-etc">
-							<span class="aui-special-etc-hd">￥399.99</span> <span
-								class="aui-special-etc-bd">￥898</span> <em> <i
-								class="icon icon-sm-more"></i>
-							</em>
-						</p>
-					</div>
-				</a> <a href="javascript:;" class="aui-shop-list-item">
-					<div class="aui-shop-list-item-hd">
-						<img src="images/icon-page-014.png" alt="">
-					</div>
-					<div class="aui-shop-list-item-bd">
-						<h3>华为 HUAWEI P20 Pro 全面屏徕卡三摄游戏手机 6GB +128GB 樱粉金
-							全网通移动联通电信4G手机 双卡双待</h3>
-						<p class="aui-special-etc">
-							<span class="aui-special-etc-hd">￥399.99</span> <span
-								class="aui-special-etc-bd">￥898</span> <em> <i
-								class="icon icon-sm-more"></i>
-							</em>
-						</p>
-					</div>
-				</a> <a href="javascript:;" class="aui-shop-list-item">
-					<div class="aui-shop-list-item-hd">
-						<img src="images/icon-page-015.png" alt="">
-					</div>
-					<div class="aui-shop-list-item-bd">
-						<h3>华为 HUAWEI P20 Pro 全面屏徕卡三摄游戏手机 6GB +128GB 樱粉金
-							全网通移动联通电信4G手机 双卡双待</h3>
-						<p class="aui-special-etc">
-							<span class="aui-special-etc-hd">￥399.99</span> <span
-								class="aui-special-etc-bd">￥898</span> <em> <i
-								class="icon icon-sm-more"></i>
-							</em>
-						</p>
-					</div>
-				</a> <a href="javascript:;" class="aui-shop-list-item">
-					<div class="aui-shop-list-item-hd">
-						<img src="images/icon-page-026.png" alt="">
-					</div>
-					<div class="aui-shop-list-item-bd">
-						<h3>华为 HUAWEI P20 Pro 全面屏徕卡三摄游戏手机 6GB +128GB 樱粉金
-							全网通移动联通电信4G手机 双卡双待</h3>
-						<p class="aui-special-etc">
-							<span class="aui-special-etc-hd">￥399.99</span> <span
-								class="aui-special-etc-bd">￥898</span> <em> <i
-								class="icon icon-sm-more"></i>
-							</em>
-						</p>
-					</div>
-				</a> <a href="javascript:;" class="aui-shop-list-item">
-					<div class="aui-shop-list-item-hd">
-						<img src="images/icon-page-025.png" alt="">
-					</div>
-					<div class="aui-shop-list-item-bd">
-						<h3>华为 HUAWEI P20 Pro 全面屏徕卡三摄游戏手机 6GB +128GB 樱粉金
-							全网通移动联通电信4G手机 双卡双待</h3>
-						<p class="aui-special-etc">
-							<span class="aui-special-etc-hd">￥399.99</span> <span
-								class="aui-special-etc-bd">￥898</span> <em> <i
-								class="icon icon-sm-more"></i>
-							</em>
-						</p>
-					</div>
-				</a> <a href="javascript:;" class="aui-shop-list-item">
-					<div class="aui-shop-list-item-hd">
-						<img src="images/icon-page-024.png" alt="">
-					</div>
-					<div class="aui-shop-list-item-bd">
-						<h3>华为 HUAWEI P20 Pro 全面屏徕卡三摄游戏手机 6GB +128GB 樱粉金
-							全网通移动联通电信4G手机 双卡双待</h3>
-						<p class="aui-special-etc">
-							<span class="aui-special-etc-hd">￥399.99</span> <span
-								class="aui-special-etc-bd">￥898</span> <em> <i
-								class="icon icon-sm-more"></i>
-							</em>
-						</p>
-					</div>
-				</a> <a href="javascript:;" class="aui-shop-list-item">
-					<div class="aui-shop-list-item-hd">
-						<img src="images/icon-page-023.png" alt="">
-					</div>
-					<div class="aui-shop-list-item-bd">
-						<h3>华为 HUAWEI P20 Pro 全面屏徕卡三摄游戏手机 6GB +128GB 樱粉金
-							全网通移动联通电信4G手机 双卡双待</h3>
-						<p class="aui-special-etc">
-							<span class="aui-special-etc-hd">￥399.99</span> <span
-								class="aui-special-etc-bd">￥898</span> <em> <i
-								class="icon icon-sm-more"></i>
-							</em>
-						</p>
-					</div>
-				</a> <a href="javascript:;" class="aui-shop-list-item">
-					<div class="aui-shop-list-item-hd">
-						<img src="images/icon-page-021.png" alt="">
-					</div>
-					<div class="aui-shop-list-item-bd">
-						<h3>华为 HUAWEI P20 Pro 全面屏徕卡三摄游戏手机 6GB +128GB 樱粉金
-							全网通移动联通电信4G手机 双卡双待</h3>
-						<p class="aui-special-etc">
-							<span class="aui-special-etc-hd">￥399.99</span> <span
-								class="aui-special-etc-bd">￥898</span> <em> <i
-								class="icon icon-sm-more"></i>
-							</em>
-						</p>
-					</div>
-				</a>
-			</div>
 		</section>
-		<footer class="aui-footer aui-footer-fixed">
+		<!-- <footer class="aui-footer aui-footer-fixed">
 			<div class="aui-footer-text-info">
 				<a href="javascript:;">朋友代付</a> <a href="javascript:;">取消订单</a> <a
 					href="javascript:;" class="aui-payment">付款</a>
 			</div>
-		</footer>
+		</footer> -->
 	</section>
 </body>
 </html>
