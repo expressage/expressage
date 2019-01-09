@@ -14,6 +14,13 @@
   <sql id="Base_Column_List" >
     hid, receiptCode, loadStation, StartCarryDate, DealStation, ArriveDate, did, billState
   </sql>
+  <select id="finfreightreceipt" resultType="com.expressage.pojo.Freightreceipt">
+     SELECT f.hid,f.receiptCode,f.loadStation,f.StartCarryDate,f.DealStation,f.ArriveDate,e.name,f.billState 
+     FROM 
+       Freightreceipt f,distribute d ,employee e 
+     WHERE  
+       f.did = d.did AND d.eid = e.eid
+  </select>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />

@@ -1,5 +1,7 @@
 package com.expressage.mapper;
 
+import java.util.List;
+
 import com.expressage.pojo.Compensate;
 
 public interface CompensateMapper {
@@ -14,4 +16,8 @@ public interface CompensateMapper {
     int updateByPrimaryKeySelective(Compensate record);
 
     int updateByPrimaryKey(Compensate record);
+    
+    List<Compensate>pmlSelectWage();
+    
+    
 }

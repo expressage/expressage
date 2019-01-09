@@ -14,8 +14,18 @@ public class GoodsInformation {
     private String consignee;
 
     private Date consigneedate;
+    
+    private Employee employee;
+    
+    public Employee getEmployee() {
+		return employee;
+	}
 
-    public Integer getXid() {
+	public void setEmployee(Employee employee) {
+		this.employee = employee;
+	}
+
+	public Integer getXid() {
         return xid;
     }
 

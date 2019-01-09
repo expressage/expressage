@@ -103,4 +103,18 @@
       status = #{status,jdbcType=VARCHAR}
     where did = #{did,jdbcType=INTEGER}
   </update>
+  
+  
+  <select id="pmlSelectDistribute" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+  SELECT d.*, o.orderNo AS 订单编号 , e.name AS 记录人姓名  
+  FROM `order`o , `distribute` d , `employee` e
+  WHERE d.oid = o.oid AND d.eid = e.eid
+  </select>
+  
+  <select id="pmlSelectKeyDid" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+    SELECT d.*, o.orderNo AS 订单编号 , e.name AS 记录人姓名  
+    FROM `order`o , `distribute` d , `employee` e
+    WHERE d.oid = o.oid AND d.eid = e.eid AND did = #{did,jdbcType=INTEGER}
+  </select>
+  
 </mapper>

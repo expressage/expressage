@@ -23,5 +23,7 @@ public interface OrderService {
 
 	int updateByPrimaryKey(Order record);
 
-	List<Order> pmlSelectAll(String orderno);
+    List<Order> pmlSelectAll(String orderno);
+    
+    Order pmlSelectByPrimaryOid(Integer oid);  
 }

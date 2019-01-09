@@ -18,8 +18,28 @@ public class Freightreceipt {
     private Integer did;
 
     private String billstate;
+    
+    private Distribute distribute;
+    
+    private Employee employee;
+    
+    public Distribute getDistribute() {
+		return distribute;
+	}
 
-    public Integer getHid() {
+	public void setDistribute(Distribute distribute) {
+		this.distribute = distribute;
+	}
+
+	public Employee getEmployee() {
+		return employee;
+	}
+
+	public void setEmployee(Employee employee) {
+		this.employee = employee;
+	}
+
+	public Integer getHid() {
         return hid;
     }
 

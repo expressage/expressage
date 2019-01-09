@@ -58,6 +58,12 @@ public class OrderServiceImpl implements OrderService {
 	public List<Order> pmlSelectAll(String orderno) {
 		return orderMapper.pmlSelectAll(orderno);
 	}
+
+	@Override
+	public Order pmlSelectByPrimaryOid(Integer oid) {
+		return orderMapper.pmlSelectByPrimaryOid(oid);
+	}
+
 	
 	
 }

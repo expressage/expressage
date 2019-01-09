@@ -31,13 +31,13 @@
         <!--Logo区域开始-->
         <div id="header">
             <img src="../images/logo.png" alt="logo" class="left"/>
-            <a href="/logout">[退出]</a>            
+            <a href="#">[退出]</a>            
         </div>
         <!--Logo区域结束-->
         <!--导航区域开始-->
         <div id="navi">                        
             <ul id="menu">
-                <li><a href="/home.html" class="index_off"></a></li>
+                <li><a href="../index.html" class="index_off"></a></li>
                 <li><a href="/employee/zkSelEmployee" class="role_off"></a></li>
                 <li><a href="../admin/admin_list.html" class="admin_off"></a></li>
                 <li><a href="../fee/fee_list.html" class="fee_off"></a></li>
@@ -53,7 +53,7 @@
         <!--主要区域开始-->        
         <div id="report_main">
         	<div class="tabs">
-    	        <ul onclick="changeTab(event,this);">
+    	        <ul >
         	       <li><a href="selFreig" title="">货运回执单</a></li>
 				   <li><a href="selGoods" title="">货物回执单</a></li>
 				   <li><a href="selCustomers" title="">客户信息回执单</a></li>
@@ -63,32 +63,7 @@
             <div class="report_box">
                 <!--数据区域：用表格展示数据-->
                 <div id="report_data">
-                    <table id="datalist" th:if="${list!=null}">
-					<tr>
-						<td>ID</td>
-						<td>货运回执单编号</td>
-						<td>装货地点</td>
-						<td>起运时间</td>
-						<td>交货地点</td>
-						<td>到达时间</td>
-						<td>司机ID</td>
-						<td>回执单状态</td>
-						<td>操作</td>
-					</tr>
-					<tr th:each="li:${list}">
-					    <button onclick="location.href='jxlWriteMenus'">栏目导出</button>
-						<td th:text="${li.hid}"></td>
-						<td th:text="${li.receiptcode}"></td>
-						<td th:text="${li.loadstation}"></td>
-						<td th:text="${li.startcarrydate}"></td>
-						<td th:text="${li.dealstation}"></td>
-						<td th:text="${li.arrivedate}"></td>
-						<td th:text="${li.employee.name}"></td>
-						<td th:text="${li.billstate}"></td>
-						<td><input type="button" id="del" value="删除" /></td>
-					</tr>
-				</table>
-				<!--<table id="datalist1" style="display: none;" th:if="${lists!=null}">
+                    <table id="datalist" th:if="${lists!=null}">
 					<tr>
 						<th>ID</th>
 						<th>货运回执编号</th>
@@ -98,69 +73,18 @@
 						<th>收货日期</th>
 						<td>操作</td>
 					</tr>
-					<tr>
-						<td></td>
-					</tr>
 					<tr th:each="lis:${lists}">
 						<td th:text="${lis.xid}"></td>
 						<td th:text="${lis.revertcode}"></td>
-						<td th:text="${lis.eid.anem}"></td>
+						<td th:text="${lis.eid}"></td>
 						<td th:text="${lis.checkgoodsrecord}"></td>
 						<td th:text="${lis.consignee}"></td>
 						<td th:text="${lis.consigneedate}"></td>
-						<td><input type="button" id="delFreig" value="删除" /></td>
+						<td><button onclick="location.href=\'delFreig?xid='+${lis.xid}+'\''">删除</button>
+						    <button onclick="location.href='jxlWriteMenu2'">栏目导出</button>
+						</td>
 					</tr>
 				</table>
-				<table id="datalist2" style="display: none;" th:if="${list!=null}">
-					<tr>
-						<th>ID</th>
-						<th>货运单编号</th>
-						<th>寄货地址</th>
-						<th>收货地址</th>
-						<th>验收货物记录</th>
-						<th>收货人</th>
-						<th>收货日期</th>
-						<td>操作</td>
-					</tr>
-					<tr>
-                          <td></td>
-                     </tr> 
-                        <tr th:each="list:${list}">
-                          <td th:text="${list.}"></td>
-                          <td th:text="${list.}"></td>
-                          <td th:text="${list.}"></td>
-                          <td th:text="${list.}"></td>
-                          <td th:text="${list.}"></td>
-                          <td th:text="${list.}"></td>
-                          <td th:text="${list.}"></td>
-                          <td><input type="button" id="delGoods" value="删除" /></td>
-                        </tr> 
-				</table>
-				<table id="datalist2" style="display: none;" th:if="${listl!=null}">
-					<tr>
-						<th>ID</th>
-						<th>货运回执单编号</th>
-						<th>订单编号</th>
-						<th>差错类别</th>
-						<th>件数</th>
-						<th>规格</th>
-						<th>货物价值</th>
-						<td>操作</td>
-					</tr>
-					<tr>
-						<td></td>
-					</tr>
-					<tr th:each="lists:${listl}">
-						<td th:text="${lists.cid}"></td>
-						<td th:text="${lists.receiptcode}"></td>
-						<td th:text="${lists.orderno}"></td>
-						<td th:text="${lists.error}"></td>
-						<td th:text="${lists.pieceamount}"></td>
-						<td th:text="${lists.specifications}"></td>
-						<td th:text="${lists.goodsvalue}"></td>
-						<td><input type="button" id="deleReceipt" value="删除" /></td>
-					</tr>
-				</table>-->
                 </div>
                 <!--分页-->
                 <div id="pages">

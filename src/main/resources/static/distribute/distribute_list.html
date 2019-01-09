@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-        <title>票据</title>
+        <title>分发详情</title>
         <link type="text/css" rel="stylesheet" media="all" href="../styles/global.css" />
         <link type="text/css" rel="stylesheet" media="all" href="../styles/global_color.css" /> 
         <script language="javascript" type="text/javascript">
@@ -29,13 +29,13 @@
     <body onload="initialYearAndMonth();">
         <!--Logo区域开始-->
         <div id="header">
-            <a href="/logout">[退出]</a>            
+            <a href="#">[退出]</a>            
         </div>
         <!--Logo区域结束-->
         <!--导航区域开始-->
         <div id="navi">                        
             <ul id="menu">
-                <li><a href="/home.html" class="index_off"></a></li>
+                <li><a href="../index.html" class="index_off"></a></li>
                 <li><a href="../role/role_list.html" class="role_off"></a></li>
                 <li><a href="../admin/admin_list.html" class="admin_off"></a></li>
                 <li><a href="../fee/fee_list.html" class="fee_off"></a></li>
@@ -52,34 +52,31 @@
         <div id="main">
             <form action="/billController/pmlQuery" method="post">
                 <!--查询-->
-                <div class="search_add">                        
+                <!-- <div class="search_add">                        
                     <div>订单编号：<input type="text" th:value="*{orderno}" name="orderno"  placeholder="请输入您的订单编号"/></div>                            
                     <div><input type="submit" value="搜索" class="btn_search" /></div>
-                </div>  
+                </div>   -->
                 <!--数据区域：用表格展示数据-->     
                 <div id="data">            
                     <table id="datalist">
                     <tr>
-                        <th class="width80">订单编号</th>
-                        <th class="width80">用户名</th>
-                        <th class="width80">寄件地址</th>
-                        <th class="width80">收件地址</th>
-                        <th class="width80">寄件类型</th>
-                        <th class="width80">下单时间</th>
-                        <th class="width80">支付方式</th>
-                        <th class="width80">实际运费</th>                                                        
-                        <th class="width80">状态</th>
+                        <th class="width80">单据ID</th>
+                        <th class="width80">取件人姓名</th>
+                        <th class="width80">分发时间</th>
+                        <th class="width80">取件完成时间</th>
+                        <th class="width80">取件类型</th>
+                        <th class="width80">取件状态</th>
                         <th class="width115" colspan="2">操作</th> 
                     </tr>
                   
                   
                     <tr th:each="user:${pmlSelectAll}">
                         <td th:text="${user.orderno}"></td>
-                        <td th:text="${user.uname}"></td>
+                        <td th:text="${user.name}"></td>
                         <td th:text="${user.maddressm}"></td>
                         <td th:text="${user.raddressr}"></td>
                         <td th:text="${user.typeName}"></td>
-                        <td th:text="${#dates.format(user.orderTime,'yyyy-MM-dd')}"></td>
+                        <td th:text="${#dates.format(user.dtime,'yyyy-MM-dd')}"></td>
                         <td class="td-status" th:if="${user.payType} eq 1">
 	                       <span class="label label-success radius">现付</span>
                         </td>
@@ -89,9 +86,8 @@
                          <td class="td-status" th:if="${user.payType} eq 3">
 	                       <span class="label label-success radius">月结</span>
                         </td>
-                        <td th:text="${user.total}"></td>
                         <td th:text="${user.status}"></td>   
-                        <td><a th:href="@{/billController/pmlSelectOid?(oid=${user.oid})}" title="账单明细">明细</a></td>
+                        <td><a th:href="@{/billController/pmlSelectOid?(oid=${user.oid})}" title="分发明细">添加</a></td>
                         <td><a th:href="@{/billController/pmlSelectStatus?(oid=${user.oid})}" title="货物状态">修改</a></td>
                     </tr>
                 </table>
