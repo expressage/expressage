@@ -15,14 +15,25 @@ public class GoodsInformation {
 
     private Date consigneedate;
     
-    private Employee employee;
+ private Employee employeeid;
     
-    public Employee getEmployee() {
-		return employee;
+    private Freightreceipt freigid;
+    
+
+	public Freightreceipt getFreigid() {
+		return freigid;
 	}
 
-	public void setEmployee(Employee employee) {
-		this.employee = employee;
+	public void setFreigid(Freightreceipt freigid) {
+		this.freigid = freigid;
+	}
+
+	public Employee getEmployeeid() {
+		return employeeid;
+	}
+
+	public void setEmployeeid(Employee employeeid) {
+		this.employeeid = employeeid;
 	}
 
 	public Integer getXid() {

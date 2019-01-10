@@ -40,7 +40,7 @@ public class GoodsInformationController {
 		} else {
 			response.getWriter().print("<script>alert('删除失败!');location='selGoods'</script>");
 		}
-		return "report/report_list";
+		return "redirect:selGoods";
 	}
 
 	/**
@@ -107,6 +107,6 @@ public class GoodsInformationController {
 			System.out.println("---出现异常---");
 			e.printStackTrace();
 		}
-		return "report/report_list";
+		return "redirect:selGoods";
 	}
 }

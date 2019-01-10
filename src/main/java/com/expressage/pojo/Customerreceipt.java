@@ -17,25 +17,15 @@ public class Customerreceipt {
 
     private Date consigneedate;
     
-    private Order order;
-    
-    private Address address;
-   
-    public Order getOrder() {
-		return order;
-	}
+    private Address addressid;
 
-	public void setOrder(Order order) {
-		this.order = order;
-	}
+   	public Address getAddressid() {
+   		return addressid;
+   	}
 
-	public Address getAddress() {
-		return address;
-	}
-
-	public void setAddress(Address address) {
-		this.address = address;
-	}
+   	public void setAddressid(Address addressid) {
+   		this.addressid = addressid;
+   	}
 
 	public Integer getKid() {
         return kid;

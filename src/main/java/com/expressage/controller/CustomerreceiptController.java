@@ -39,15 +39,10 @@ public class CustomerreceiptController {
 	}
 
 	@RequestMapping("del")
-	public String deleCustomer(int kid, HttpServletResponse response) throws IOException {
-		int num = service.delCustomer(kid);
-		if (num > 0) {
-			response.getWriter().print("<script>alert('删除成功!');location='selGoods'</script>");
-		} else {
-			response.getWriter().print("<script>alert('删除失败!');location='selGoods'</script>");
+	public String deleCustomer(int kid){
+		service.delCustomer(kid);
+		return "redirect:selCustomers";
 		}
-		return "report/report_list";
-	}
 
 	/**
 	 * 回执单导出
@@ -116,6 +111,6 @@ public class CustomerreceiptController {
 			System.out.println("---出现异常---");
 			e.printStackTrace();
 		}
-		return "report/report_list";
+		return "redirect:selCustomers";
 	}
 }
