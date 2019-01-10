@@ -28,7 +28,8 @@
 		</association>
 	</resultMap>
 	<sql id="Base_Column_List">
-		eid, name, account, password, sex, tel, idCard, email, birthday, address,
+		eid, name, account, password, sex, tel, idCard, email,
+		birthday, address,
 		sal, tid,
 		createTime, founderId, enable
 	</sql>
@@ -45,17 +46,21 @@
 		where eid = #{eid,jdbcType=INTEGER}
 	</delete>
 	<insert id="insert" parameterType="com.expressage.pojo.Employee">
-		insert into employee (eid, name, account,
+		insert into employee (eid,
+		name, account,
 		password, sex, tel, idCard,
 		email, birthday, address,
 		sal, tid, createTime,
 		founderId, enable)
-		values (#{eid,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR},
+		values
+		(#{eid,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR},
 		#{account,jdbcType=VARCHAR},
-		#{password,jdbcType=VARCHAR}, #{sex,jdbcType=CHAR}, #{tel,jdbcType=CHAR}, #{idcard,jdbcType=CHAR},
+		#{password,jdbcType=VARCHAR},
+		#{sex,jdbcType=CHAR}, #{tel,jdbcType=CHAR}, #{idcard,jdbcType=CHAR},
 		#{email,jdbcType=VARCHAR}, #{birthday,jdbcType=DATE},
 		#{address,jdbcType=VARCHAR},
-		#{sal,jdbcType=DOUBLE}, #{tid,jdbcType=INTEGER}, #{createtime,jdbcType=TIMESTAMP},
+		#{sal,jdbcType=DOUBLE},
+		#{tid,jdbcType=INTEGER}, #{createtime,jdbcType=TIMESTAMP},
 		#{founderid,jdbcType=INTEGER}, #{enable,jdbcType=CHAR})
 	</insert>
 	<insert id="insertSelective"
@@ -210,19 +215,25 @@
 		update employee
 		set name = #{name,jdbcType=VARCHAR},
 		account = #{account,jdbcType=VARCHAR},
-		password = #{password,jdbcType=VARCHAR},
+		password =
+		#{password,jdbcType=VARCHAR},
 		sex = #{sex,jdbcType=CHAR},
-		tel = #{tel,jdbcType=CHAR},
+		tel =
+		#{tel,jdbcType=CHAR},
 		idCard = #{idcard,jdbcType=CHAR},
-		email = #{email,jdbcType=VARCHAR},
+		email =
+		#{email,jdbcType=VARCHAR},
 		birthday = #{birthday,jdbcType=DATE},
 		address = #{address,jdbcType=VARCHAR},
 		sal = #{sal,jdbcType=DOUBLE},
 		tid = #{tid,jdbcType=INTEGER},
-		createTime = #{createtime,jdbcType=TIMESTAMP},
-		founderId = #{founderid,jdbcType=INTEGER},
+		createTime =
+		#{createtime,jdbcType=TIMESTAMP},
+		founderId =
+		#{founderid,jdbcType=INTEGER},
 		enable = #{enable,jdbcType=CHAR}
-		where eid = #{eid,jdbcType=INTEGER}
+		where
+		eid = #{eid,jdbcType=INTEGER}
 	</update>
 	<select id="zkSelAll" resultMap="BaseResultMap">
 		SELECT e.*,t.*,(SELECT `name` FROM employee em WHERE em.eid =
@@ -246,9 +257,12 @@
 			<if test="tid !=1 and tid != '1'"> and e.tid = #{tid}</if>
 		</where>
 	</select>
-	<select id="zkSelByUsername" resultType="employee">
-		select * from employee
-		where account = #{account}
+	<select id="zkSelByUsername" resultMap="BaseResultMap">
+		SELECT e.*,t.*,(SELECT
+		`name` FROM employee em WHERE em.eid =
+		e.founderId) name2 FROM employee e INNER JOIN transfer t ON e.tid =
+		t.transfer_id
+		WHERE e.account = #{account}
 	</select>
 	<insert id="zkInsert"
 		parameterType="com.expressage.pojo.Employee">
@@ -387,6 +401,7 @@
 		from employee where account = #{account}
 	</select>
 	<update id="zkProhibitEmpl">
-		UPDATE expressage.employee  SET ENABLE = 0 WHERE eid = #{eid}
+		UPDATE expressage.employee SET ENABLE = 0 WHERE eid =
+		#{eid}
 	</update>
 </mapper>

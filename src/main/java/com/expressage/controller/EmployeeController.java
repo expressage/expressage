@@ -4,8 +4,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authz.annotation.Logical;
 import org.apache.shiro.authz.annotation.RequiresRoles;
+import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -173,6 +175,13 @@ public class EmployeeController {
 	public String zkSelTransfer(Model model) {
 		model.addAttribute("transferList", transferService.zkSelTransfer());
 		return "/role/employee_add.html";
+	}
+	
+	@RequestMapping(value="selEmplByAccount")
+	public String selEmplByAccount(Model model) {
+		Employee employee = (Employee) SecurityUtils.getSubject().getPrincipal();
+		model.addAttribute("employee", employee);
+		return "/user/user_info";
 	}
 
 }

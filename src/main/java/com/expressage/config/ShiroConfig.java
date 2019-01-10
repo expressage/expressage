@@ -79,9 +79,9 @@ public class ShiroConfig {
 		filterChainDefinitionMap.put("/images/**", "anon");
 		filterChainDefinitionMap.put("/start/login*", "anon");
 		filterChainDefinitionMap.put("/start/validateCode", "anon");
-		/*filterChainDefinitionMap.put("/Jump/**", "anon");
+		filterChainDefinitionMap.put("/Jump/**", "anon");
 		filterChainDefinitionMap.put("/Personal/**", "anon");
-		filterChainDefinitionMap.put("/proscenium/**", "anon");*/
+		filterChainDefinitionMap.put("/proscenium/**", "anon");
 		filterChainDefinitionMap.put("/logout", "logout");
 		List<Power> powersList = powerService.zkSelPower();
 		for (Power power : powersList) {
