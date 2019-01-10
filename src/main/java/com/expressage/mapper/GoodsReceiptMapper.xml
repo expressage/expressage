@@ -9,14 +9,28 @@
     <result column="pieceAmount" property="pieceamount" jdbcType="INTEGER" />
     <result column="specifications" property="specifications" jdbcType="VARCHAR" />
     <result column="goodsValue" property="goodsvalue" jdbcType="INTEGER" />
+  <association property="freigid" javaType="Freightreceipt">
+		<id property="receiptCode" column="id" />
+		<result property="receiptcode" column="receiptcode" />
+	</association>
+  </resultMap>
+  <resultMap type="com.expressage.mapper.GoodsReceiptMapper" id="freightreceipts">
+     <id property="id" column="id" />
+    <association property="freigid" javaType="Freightreceipt">
+		<id property="sid" column="revertCode" />
+		<result property="receiptcode" column="receiptcode" />
+	</association>
   </resultMap>
   <sql id="Base_Column_List" >
     cid, receiptCode, orderNo, error, pieceAmount, specifications, goodsValue
   </sql>
-   <select id="findSele" resultType="com.expressage.pojo.GoodsReceipt">
-   SELECT r.cid,f.receiptCode,o.orderNo,r.error,r.pieceAmount,r.specifications,r.goodsValue 
-     FROM 
-        goods_receipt r,freightreceipt f,`order` o
+   <select id="findSele"  resultMap="BaseResultMap" resultType="com.expressage.pojo.GoodsReceipt">
+  SELECT 
+     r.cid,f.receiptCode,o.orderNo,r.error,r.pieceAmount,r.specifications,r.goodsValue 
+  FROM 
+     goods_receipt r,freightreceipt f,`order` o 
+  WHERE 
+     r.receiptcode=f.hid
   </select>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 

@@ -10,4 +10,6 @@ public interface UserService {
 	int zm_updUser(User user);
 
 	User zm_login(String tel);
+
+	User zm_selUserByUid(Integer uid);
 }

@@ -40,7 +40,7 @@ public class FreightreceiptController {
 		}else{
 			response.getWriter().print("<script>alert('删除失败!');location='selFreig'</script>");
 		}
-		return "report/report_list";
+		return "redirect:selFreig";
 	 }
 	/**
 	 * 回执单导出
@@ -112,6 +112,6 @@ public class FreightreceiptController {
 			System.out.println("---出现异常---");
 			e.printStackTrace();
 		}
-		return "report/report_list";
+		return "redirect:selFreig";
 	}
 }

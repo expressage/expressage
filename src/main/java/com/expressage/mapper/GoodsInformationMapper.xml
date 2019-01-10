@@ -8,16 +8,38 @@
     <result column="checkGoodsRecord" property="checkgoodsrecord" jdbcType="VARCHAR" />
     <result column="consignee" property="consignee" jdbcType="VARCHAR" />
     <result column="consigneeDate" property="consigneedate" jdbcType="TIMESTAMP" />
+   <association property="employeeid" javaType="Employee">
+		<id property="eid" column="id" />
+		<result property="name" column="name" />
+	</association>
+	<association property="freigid" javaType="Freightreceipt">
+		<id property="revertCode" column="id" />
+		<result property="receiptcode" column="receiptcode" />
+	</association>
+  </resultMap>
+    <resultMap type="com.expressage.mapper.GoodsInformationMapper" id="employeel">
+     <id property="id" column="id" />
+	 <association property="employeeid" javaType="Employee">
+		<id property="hid" column="eid" />
+		<result property="name" column="name" />
+	</association>
+  </resultMap>
+  <resultMap type="com.expressage.mapper.GoodsInformationMapper" id="freightreceipts">
+     <id property="id" column="id" />
+    <association property="freigid" javaType="Freightreceipt">
+		<id property="sid" column="revertCode" />
+		<result property="receiptcode" column="receiptcode" />
+	</association>
   </resultMap>
   <sql id="Base_Column_List" >
     xid, revertCode, eid, checkGoodsRecord, consignee, consigneeDate
   </sql>
-    <select id="finInformation" resultType="com.expressage.pojo.GoodsInformation">
-     SELECT g.xid,g.revertCode,e.name,g.checkGoodsRecord,g.consignee,g.consigneeDate  
-       FROM 
-          goods_information g,employee e 
-       WHERE 
-          g.eid=e.eid
+    <select id="finInformation" resultMap="BaseResultMap" resultType="com.expressage.pojo.GoodsInformation">
+     SELECT g.xid,f.receiptCode,e.name,g.checkGoodsRecord,g.consignee,g.consigneeDate  
+     FROM 
+        goods_information g,employee e,Freightreceipt f 
+     WHERE 
+         g.eid=e.eid AND g.revertCode=f.hid
   </select>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 

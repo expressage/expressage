@@ -39,9 +39,8 @@ public class GoodsReceiptController {
 	@RequestMapping("deleReceipt")
 	public String deleReceipt(int cid,HttpServletResponse response) throws IOException {
         service.deleReceipt(cid);
-		return "report/report_list3";
+		return "redirect:selReceipt";
 		}
-	
 	/**
 	 * 回执单导出
 	 * 
@@ -109,6 +108,6 @@ public class GoodsReceiptController {
 			System.out.println("---出现异常---");
 			e.printStackTrace();
 		}
-		return "selReceipt";
+		return "redirect:selReceipt";
 	}
 }

@@ -15,24 +15,24 @@ public class GoodsReceipt {
 
     private Integer goodsvalue;
     
-    private Freightreceipt freig;
+   private Freightreceipt freigid;
     
-    private Order order;
-    
-    public Freightreceipt getFreig() {
-		return freig;
+    private Order orderid;
+
+	public Freightreceipt getFreigid() {
+		return freigid;
 	}
 
-	public void setFreig(Freightreceipt freig) {
-		this.freig = freig;
+	public void setFreigid(Freightreceipt freigid) {
+		this.freigid = freigid;
 	}
 
-	public Order getOrder() {
-		return order;
+	public Order getOrderid() {
+		return orderid;
 	}
 
-	public void setOrder(Order order) {
-		this.order = order;
+	public void setOrderid(Order orderid) {
+		this.orderid = orderid;
 	}
 
 	public Integer getCid() {

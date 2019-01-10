@@ -9,11 +9,33 @@
     <result column="checkGoodsRecord" property="checkgoodsrecord" jdbcType="VARCHAR" />
     <result column="consignee" property="consignee" jdbcType="VARCHAR" />
     <result column="consigneeDate" property="consigneedate" jdbcType="TIMESTAMP" />
-  </resultMap>
+   <association property="addressid" javaType="Address">
+		<id property="maddress" column="id" />
+		<result property="address" column="address" />
+	</association>
+	<!-- <association property="addressid" javaType="Address">
+	    <id property="raddress" column="id" />
+		<result property="address" column="addresss" />
+	</association>-->
+    </resultMap>
+    <resultMap type="com.expressage.mapper.CustomerreceiptMapper" id="addresst">
+        <id property="id" column="id" />
+        <association property="addressid" javaType="Address">
+		<id property="maddress" column="maddress" />
+		<result property="address" column="address" />
+	</association>
+    </resultMap>
+   <!-- <resultMap type="com.expressage.mapper.CustomerreceiptMapper" id="addressts">
+        <id property="id" column="id" />
+        <association property="addressid" javaType="Address">
+		<id property="raddress" column="raddress" />
+		<result property="address" column="address" />
+	</association>
+    </resultMap> -->
   <sql id="Base_Column_List" >
     kid, orderNo, maddress, raddress, checkGoodsRecord, consignee, consigneeDate
   </sql>
-  <select id="findCustomer" resultType="com.expressage.pojo.Customerreceipt">
+  <select id="findCustomer" resultMap="BaseResultMap" resultType="com.expressage.pojo.Customerreceipt">
     SELECT c.kid,o.orderNo,a.address,a.address,c.checkGoodsRecord,c.consignee,c.consigneeDate 
        FROM 
           customerreceipt c,`order` o,address a 

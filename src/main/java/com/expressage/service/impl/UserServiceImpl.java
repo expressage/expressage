@@ -24,6 +24,10 @@ public class UserServiceImpl implements UserService {
 		return userMapper.zm_updUser(user);
 	}
 
+	public User zm_selUserByUid(Integer uid) {
+		return userMapper.zm_selUserByUid(uid);
+	}
+	
 	public User zm_login(String tel) {
 		return userMapper.zm_login(tel);
 	}

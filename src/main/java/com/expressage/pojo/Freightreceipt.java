@@ -21,7 +21,15 @@ public class Freightreceipt {
     
     private Distribute distribute;
     
-    private Employee employee;
+    private Employee employeeid;
+    
+    public Employee getEmployeeid() {
+		return employeeid;
+	}
+
+	public void setEmployeeid(Employee employeeid) {
+		this.employeeid = employeeid;
+	}
     
     public Distribute getDistribute() {
 		return distribute;
@@ -29,14 +37,6 @@ public class Freightreceipt {
 
 	public void setDistribute(Distribute distribute) {
 		this.distribute = distribute;
-	}
-
-	public Employee getEmployee() {
-		return employee;
-	}
-
-	public void setEmployee(Employee employee) {
-		this.employee = employee;
 	}
 
 	public Integer getHid() {

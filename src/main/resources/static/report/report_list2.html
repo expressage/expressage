@@ -77,12 +77,12 @@
                         <tr th:each="list:${list}">
                           <td th:text="${list.kid}"></td>
                           <td th:text="${list.orderno}"></td>
-                          <td th:text="${list.maddress}"></td>
-                          <td th:text="${list.raddress}"></td>
+                          <td th:text="${list.addressid.address}"></td>
+                          <td th:text="${list.addressid.address}"></td>
                           <td th:text="${list.checkgoodsrecord}"></td>
                           <td th:text="${list.consignee}"></td>
                           <td th:text="${list.consigneedate}"></td>
-                          <td><input type="button" id="\'delGoods?kid='+${lis.kid}+'\''" value="删除" />
+                          <td><button onclick="\'del?kid='+${lis.kid}+'\''">删除</button>
                           <button onclick="location.href='jxlWriteMenu1'">栏目导出</button></td>
                         </tr> 
 				</table>

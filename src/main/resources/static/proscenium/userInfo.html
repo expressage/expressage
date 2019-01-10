@@ -1,6 +1,6 @@
 ﻿<!doctype html>
-<html>
-<head design-width="750">
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
 <meta charset="utf-8">
 <meta name="viewport"
 	content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
@@ -8,54 +8,48 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="black">
 <meta name="format-detection" content="telephone=no">
 <title>Demo</title>
-<link rel="stylesheet" href="/proscenium/css/userInfo.css" />
+<link href="/proscenium/css/address.css" rel="stylesheet"
+	type="text/css" />
+<link href="/proscenium/css/bootstrap.min.css" rel="stylesheet"
+	type="text/css" />
 </head>
 <body>
-	<div class="mobile-wrap center mobile-wrap-mb">
-		<header>
-			<span class="return" onclick="location='history.back();'"> 返回
-			</span>
+	<section class="aui-flexView">
+		<header class="aui-navBar aui-navBar-fixed b-line">
+			<a class="aui-navBar-item" onclick="location='/Personal/zmPersonal'">
+				<i class="icon icon-return"></i>
+			</a>
+			<div class="aui-center">
+				<span class="aui-center-title">地址薄</span>
+			</div>
+			<a href="javascript:;" class="aui-navBar-item"> <i
+				class="icon icon-sys"></i>
+			</a>
 		</header>
-		<div class="inform">
-			<h3>账号管理</h3>
-			<div class="inform-list">
-				<ul>
-					<li class="acti">个人信息</li>
-					<li>修改资料</li>
-					<li>修改密码</li>
-				</ul>
+		<section class="aui-scrollView">
+			<div class="divHeight b-line"></div>
+			<div class="aui-address-box b-line">
+				<div class="aui-address-add b-line"
+					onclick="location='/Jump/zmJumpAdd'">+添加</div>
+				<div class="aui-flex b-line" th:each="address,iterStat:${listA}">
+					<div class="aui-flex-box">
+						<span th:text="${address.aname}"> </span> &nbsp;&nbsp;&nbsp;<span
+							th:text="${address.tel}" th:class="tel+${iterStat.index}"></span>
+						<p th:text="${address.region}"></p>
+						<p th:text="${address.address}"></p>
+						<p>
+							<input type="radio" name="isdefault"
+								th:onclick="'javascript:zmUpdIsdefault('+${address.aid}+')'"
+								th:checked="${address.isdefault==0?'true':'false'}">默认地址
+						</p>
+					</div>
+					<div class="glyphicon glyphicon-edit"
+						th:onclick="'javascript:zmSelAddressByAid('+${address.aid}+')'"></div>
+					<div class="glyphicon glyphicon-trash"
+						th:onclick="'javascript:zmDelAddress('+${address.aid}+')'"></div>
+				</div>
 			</div>
-			<div class="inform-text">
-				<p>
-					<span> UID ： </span> <input type="text" />
-				</p>
-				<p>
-					<span> 用户名 </span> <input type="text" />
-				</p>
-				<p>
-					<span> 电话号 </span> <input type="text" />
-				</p>
-				<p>
-					<span> 微信号 </span> <input type="text" />
-				</p>
-				<p>
-					<span> 商户级别 </span> <input type="text" />
-				</p>
-				<h4>
-					<input type="submit" name="" id="" value="确定修改" /> <a href="#">遇到问题？</a>
-				</h4>
-			</div>
-		</div>
-	</div>
+		</section>
+	</section>
 </body>
-<script src="/proscenium/js/userInfo.js"></script>
-<script src="/proscenium/js/bootstrap.min.js"></script>
-<script type="text/javascript">
-	$('.inform-list ul li').click(function() {
-		var n = $(this).index();
-		$(this).addClass('acti').siblings().removeClass('acti');
-		$('.inform-text').fadeOut();
-		$('.inform-text').eq(n).fadeIn();
-	})
-</script>
 </html>

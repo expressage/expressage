@@ -76,16 +76,16 @@
 						<td>操作</td>
 					</tr>
 					<tr th:each="li:${list}">
-					    <button onclick="location.href='jxlWriteMenus'">栏目导出</button>
 						<td th:text="${li.hid}"></td>
 						<td th:text="${li.receiptcode}"></td>
 						<td th:text="${li.loadstation}"></td>
 						<td th:text="${li.startcarrydate}"></td>
 						<td th:text="${li.dealstation}"></td>
 						<td th:text="${li.arrivedate}"></td>
-						<td th:text="${li.employee.name}"></td>
+						<td th:text="${li.employeeid.name}"></td>
 						<td th:text="${li.billstate}"></td>
-						<td><input type="button" id="del" value="删除" /></td>
+						<td><button onclick="location.href=\'del?hid='+${li.hid}+'\''">删除</button>
+						    <button onclick="location.href='jxlWriteMenus'">栏目导出</button></td>
 					</tr>
 				</table>
 				<!--<table id="datalist1" style="display: none;" th:if="${lists!=null}">

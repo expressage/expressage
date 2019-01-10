@@ -10,11 +10,23 @@
     <result column="ArriveDate" property="arrivedate" jdbcType="TIMESTAMP" />
     <result column="did" property="did" jdbcType="INTEGER" />
     <result column="billState" property="billstate" jdbcType="VARCHAR" />
+  <association property="employeeid" javaType="Employee">
+			<id property="eid" column="id" />
+			<result property="name" column="name" />
+		</association>  
+  </resultMap>
+  <resultMap type="com.expressage.pojo.Freightreceipt" id="employees">
+     <id property="id" column="id" />
+	 <association property="employeeid" javaType="Employee">
+		<id property="hid" column="eid" />
+		<result property="name" column="name" />
+	</association>
+  
   </resultMap>
   <sql id="Base_Column_List" >
     hid, receiptCode, loadStation, StartCarryDate, DealStation, ArriveDate, did, billState
   </sql>
-  <select id="finfreightreceipt" resultType="com.expressage.pojo.Freightreceipt">
+  <select id="finfreightreceipt" resultMap="BaseResultMap" resultType="com.expressage.pojo.Freightreceipt">
      SELECT f.hid,f.receiptCode,f.loadStation,f.StartCarryDate,f.DealStation,f.ArriveDate,e.name,f.billState 
      FROM 
        Freightreceipt f,distribute d ,employee e 

@@ -17,7 +17,7 @@
 	<section class="aui-flexView">
 		<header class="aui-navBar aui-navBar-fixed b-line">
 			<a href="javascript:;" class="aui-navBar-item"
-				onclick="history.back();"> <i class="icon icon-return"></i>
+				onclick="location='/Personal/zmGetOrder'"> <i class="icon icon-return"></i>
 			</a>
 			<div class="aui-center">
 				<span class="aui-center-title">快件详情</span>
@@ -40,11 +40,11 @@
 						th:text="${order.address1.region.substring(order.address2.region.indexOf(' '),order.address2.region.lastIndexOf(' '))+' '+order.address2.aname}"></span>
 					<br />
 				</p>
-				<p style="padding-left: 20px;"
-					th:onclick="'javascript:zmOrderRemarks('+${order.oid}+')'">
+				<p style="padding-left: 20px;">
 					<span class="glyphicon glyphicon-pencil"></span> 备注：<input
 						type="text" maxlength="10" placeholder="添加备注，限10个字"
-						style="border: 0px;" th:value="${order.remarks}" name="remarks" />
+						style="border: 0px;" th:value="${order.remarks}" name="remarks"
+						th:onblur="'javascript:zmOrderRemarks('+${order.oid}+')'" />
 				</p>
 			</div>
 			<div class="divHeight">
