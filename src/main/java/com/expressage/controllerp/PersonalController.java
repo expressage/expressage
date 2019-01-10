@@ -1,5 +1,6 @@
 package com.expressage.controllerp;
 
+import java.io.File;
 import java.util.List;
 import java.util.Random;
 
@@ -8,9 +9,12 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.ClassUtils;
+import org.springframework.util.ResourceUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.expressage.pojo.Address;
 import com.expressage.pojo.Order;
@@ -204,4 +208,36 @@ public class PersonalController {
 		return "redirect:zmGetOrder";
 	}
 
+	// 根据用户id查询用户个人信息
+	@RequestMapping("/zmSelUserByUid")
+	public String zm_selUserByUid(HttpSession session,Model model) {
+		User user = (User) session.getAttribute("user");
+		user = userService.zm_selUserByUid(user.getUid());
+		model.addAttribute("user", user);
+		return "/proscenium/userInfo";
+	}
+
+	// 修改用户个人信息
+	@RequestMapping("/zmUpdUser")
+	public String zm_updUser(@RequestParam(value = "img") MultipartFile img, User user) {
+		String a = ClassUtils.getDefaultClassLoader().getResource("").getPath();
+		System.out.println(a);
+		String path;
+		String oldImg = img.getOriginalFilename();
+		user.setImg(oldImg);
+		try {
+			path = ResourceUtils.getFile("static").getAbsolutePath().substring(0,
+					ResourceUtils.getFile("static").getAbsolutePath().lastIndexOf("\\"))
+					+ "\\src\\main\\resources\\static\\proscenium\\images";
+			File file = new File(path, oldImg);
+			if (!file.getParentFile().exists()) {
+				file.mkdir();
+			}
+			img.transferTo(file);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		userService.zm_updUser(user);
+		return "";
+	}
 }

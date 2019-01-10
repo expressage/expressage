@@ -30,6 +30,7 @@
 		<id column="oid" property="oid" />
 		<result column="type_Name" property="typeName"/>
 		<result column="pay_type" property="payType"/>
+		<result column="order_time" property="orderTime"/>
 		<association property="address1" javaType="address">
 			<id column="aid1" property="aid" />
 			<result column="aname1" property="aname" />

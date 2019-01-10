@@ -25,32 +25,36 @@
 		</header>
 		<section class="aui-scrollView">
 			<div class="aui-order-title">
-				<div class="aui-order-box" th:each="order:${listO}"
-					th:onclick="'javascript:zmSelTrackByOid('+${order.oid}+')'">
+				<div class="aui-order-box" th:each="order:${listO}">
+					<div th:onclick="'javascript:zmSelTrackByOid('+${order.oid}+')'">
+						<a href="javascript:void(0);" class="aui-well-item">
+							<div class="aui-well-item-bd">
+								<h3>
+									订单号：<span th:text="${order.orderno}"></span>
+								</h3>
+							</div> <span class="aui-well-item-fr"
+							th:text="${order.remarks==''?'无备注':order.remarks}"></span>
+						</a>
+						<p class="aui-order-fl aui-order-address"
+							th:text="${order.address1.aname+' '+order.address1.tel}"></p>
+						<p class="aui-order-fl"
+							th:text="${order.address1.region+' '+order.address1.address}"></p>
+						<p class="aui-order-fl aui-order-door"
+							th:text="${order.address2.aname+' '+order.address2.tel}"></p>
+						<p class="aui-order-fl"
+							th:text="${order.address2.region+' '+order.address2.address}"></p>
+					</div>
+					<hr />
 					<a href="javascript:void(0);" class="aui-well-item">
 						<div class="aui-well-item-bd">
 							<h3>
-								订单号：<span th:text="${order.orderno}"></span>
+								<span th:text="${order.status}"></span><br/> <span
+									th:text="${#dates.format(order.orderTime,'yyyy-MM-dd hh:mm:ss')}"></span>
 							</h3>
-						</div> <span class="aui-well-item-fr"
-						th:text="${order.remarks==''?'无备注':order.remarks}"></span>
+						</div> <span class="aui-well-item-fr" style="color: red;"
+						th:text="${order.status=='已签收'?'删除记录':''}"
+						th:onclick="'javascript:zmDelOrder('+${order.oid}+')'"></span>
 					</a>
-					<p class="aui-order-fl aui-order-address"
-						th:text="${order.address1.aname+' '+order.address1.tel}"></p>
-					<p class="aui-order-fl"
-						th:text="${order.address1.region+' '+order.address1.address}"></p>
-					<p class="aui-order-fl aui-order-door"
-						th:text="${order.address2.aname+' '+order.address2.tel}"></p>
-					<p class="aui-order-fl"
-						th:text="${order.address2.region+' '+order.address2.address}"></p>
-					<hr />
-					<p style="display: inline-block; font-size: 12px;">
-						<span th:text="${order.status}"></span><br /> <span
-							th:text="${#dates.format(order.orderTime,'yyyy-MM-dd hh:mm:ss')}"></span>
-						<a th:onclick="'javascript:zmDelOrder('+${order.oid}+')'"
-							style="display: inline-block; font-size: 12px; color: red; position: relative;; right: -40%; bottom: 10%;"
-							th:text="${order.status=='已签收'?'删除记录':''}"></a>
-					</p>
 				</div>
 			</div>
 		</section>
