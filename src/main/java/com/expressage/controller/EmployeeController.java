@@ -21,6 +21,7 @@ import com.expressage.service.EmployeeRoleService;
 import com.expressage.service.EmployeeService;
 import com.expressage.service.RoleService;
 import com.expressage.service.TransferService;
+import com.expressage.util.ShiroMd5Util;
 
 @Controller
 @RequestMapping("/employee")
@@ -80,6 +81,7 @@ public class EmployeeController {
 	@RequestMapping(value = "zkAddEmployee")
 	public String zkAddEmployee(Employee employee) {
 		employee.setFounderid(1);
+		employee.setPassword(ShiroMd5Util.SysMd5(employee));
 		employeeService.zkInsert(employee);
 		return "redirect:zkSelEmployee";
 	}
@@ -177,11 +179,5 @@ public class EmployeeController {
 		return "/role/employee_add.html";
 	}
 	
-	@RequestMapping(value="selEmplByAccount")
-	public String selEmplByAccount(Model model) {
-		Employee employee = (Employee) SecurityUtils.getSubject().getPrincipal();
-		model.addAttribute("employee", employee);
-		return "/user/user_info";
-	}
 
 }

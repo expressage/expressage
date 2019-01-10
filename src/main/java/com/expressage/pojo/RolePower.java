@@ -1,6 +1,8 @@
 package com.expressage.pojo;
 
-public class RolePower {
+import java.io.Serializable;
+
+public class RolePower  implements Serializable{
     private Integer rid;
 
     private String pid;

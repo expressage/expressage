@@ -20,4 +20,6 @@ public interface EmployeeService {
 	int zkSelEmployeeByAccount(String account);
 
 	int zkProhibitEmpl(Integer eid);
+
+	int zkUpdPassword(String password, Integer eid);
 }

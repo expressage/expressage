@@ -11,14 +11,17 @@ spring:
   datasource:
     url: jdbc:mysql://localhost:3306/expressage?serverTimezone=UTC&useUnicode=true&characterEncoding=utf8&useSSL=false
     username: root
-    password: 1234
+    password: root
     driver-class-name: com.mysql.jdbc.Driver
   redis:
-    host: 127.0.0.1
+    host: localhost
     port: 6379
-    pool:      max-idle: 8      min-idle: 0
-      max-active: 8
-      max-wait: -1
+    jedis:
+      pool:
+        max-idle: 8
+        min-idle: 0
+        max-active: 8
+        max-wait: -1
     timeout: 0
 server:  port: 8081
 mybatis:  type-aliases-package: com.expressage.pojo

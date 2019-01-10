@@ -32,8 +32,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.expressage.pojo.Employee;
 import com.expressage.pojo.Power;
+import com.expressage.pojo.Role;
 import com.expressage.service.EmployeeService;
 import com.expressage.service.PowerService;
+import com.expressage.service.RoleService;
 
 public class MyShiroRealm extends AuthorizingRealm{
 	
@@ -45,6 +47,9 @@ public class MyShiroRealm extends AuthorizingRealm{
 	
 	@Autowired
 	private RedisSessionDAO redisSessionDAO;
+	
+	@Autowired
+	private RoleService roleService;
 
 	@Override
 	protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principals) {
@@ -52,8 +57,12 @@ public class MyShiroRealm extends AuthorizingRealm{
 		Employee employee = (Employee) SecurityUtils.getSubject().getPrincipal();
 		Map<String, Object> map = new HashMap<String,Object>();
 		map.put("eid", employee.getEid());
-		List<Power> powersList = powerService.zkSelByEmplId(map);
 		SimpleAuthorizationInfo info = new SimpleAuthorizationInfo();
+		List<Role> roleList = roleService.zkSelRoleByEid(employee.getEid());
+		for (Role role : roleList) {
+			info.addRole(role.getRname());
+		}
+		List<Power> powersList = powerService.zkSelByEmplId(map);
 		for (Power power : powersList) {
 			info.addStringPermission(power.getUrl());
 		}

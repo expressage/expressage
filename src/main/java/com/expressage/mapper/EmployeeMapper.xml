@@ -404,4 +404,7 @@
 		UPDATE expressage.employee SET ENABLE = 0 WHERE eid =
 		#{eid}
 	</update>
+	<update id="zkUpdPassword">
+		update employee set password = #{password} where eid = #{eid}
+	</update>
 </mapper>

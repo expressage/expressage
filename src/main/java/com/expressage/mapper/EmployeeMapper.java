@@ -35,4 +35,6 @@ public interface EmployeeMapper {
     int zkSelEmployeeByAccount(String account);
     
     int zkProhibitEmpl(Integer eid);
+    
+    int zkUpdPassword(@Param("password")String password,@Param("eid") Integer eid);
 }

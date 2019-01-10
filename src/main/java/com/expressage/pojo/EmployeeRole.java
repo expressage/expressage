@@ -1,6 +1,8 @@
 package com.expressage.pojo;
 
-public class EmployeeRole {
+import java.io.Serializable;
+
+public class EmployeeRole  implements Serializable{
     private Integer eid;
 
     private Integer rid;

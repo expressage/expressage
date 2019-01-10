@@ -13,8 +13,6 @@ import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.LockedAccountException;
 import org.apache.shiro.authc.UsernamePasswordToken;
-import org.apache.shiro.authz.annotation.RequiresPermissions;
-import org.apache.shiro.authz.annotation.RequiresRoles;
 import org.apache.shiro.subject.Subject;
 import org.apache.shiro.web.util.WebUtils;
 import org.springframework.stereotype.Controller;
@@ -88,4 +86,10 @@ public class EmployeeLoginController {
 		System.out.println("validateCode:"+ verifyCode);
 		System.out.println("bim:"+ bim);
 	}
+	
+	//被踢出后跳转的页面
+    @RequestMapping(value = "/kickout", method = RequestMethod.GET)
+    public String kickOut() {
+        return "kickout";
+    }
 }

@@ -55,4 +55,9 @@ public class EmployeeServiceImpl implements EmployeeService{
 		return employeeMapper.zkProhibitEmpl(eid);
 	}
 
+	@Override
+	public int zkUpdPassword(String password, Integer eid) {
+		return employeeMapper.zkUpdPassword(password, eid);
+	}
+
 }
