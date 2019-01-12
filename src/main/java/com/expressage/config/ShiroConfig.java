@@ -14,7 +14,9 @@ import org.apache.shiro.mgt.SecurityManager;
 import org.apache.shiro.spring.LifecycleBeanPostProcessor;
 import org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor;
 import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
+import org.apache.shiro.web.mgt.CookieRememberMeManager;
 import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
+import org.apache.shiro.web.servlet.SimpleCookie;
 import org.apache.shiro.web.session.mgt.DefaultWebSessionManager;
 import org.crazycake.shiro.RedisCacheManager;
 import org.crazycake.shiro.RedisManager;
@@ -92,6 +94,7 @@ public class ShiroConfig {
 		filterChainDefinitionMap.put("/proscenium/**", "anon");
 		filterChainDefinitionMap.put("/City/**", "anon");
 		filterChainDefinitionMap.put("/logout", "logout");
+		filterChainDefinitionMap.put("/kickout", "anon");
 		List<Power> powersList = powerService.zkSelPower();
 		for (Power power : powersList) {
 			if (!StringUtil.isNullOrEmpty(power.getUrl())) {
@@ -99,7 +102,7 @@ public class ShiroConfig {
 				filterChainDefinitionMap.put(power.getUrl(), permission);//表示需要某个或某些权限才能通过
 			}
 		}
-		filterChainDefinitionMap.put("/**", "authc");
+		filterChainDefinitionMap.put("/**", "authc,kickout");
 		shiroFilterFactoryBean.setFilterChainDefinitionMap(filterChainDefinitionMap);
 		return shiroFilterFactoryBean;
 	}
@@ -116,6 +119,7 @@ public class ShiroConfig {
 		securityManager.setRealm(myShiroRealm());
 		securityManager.setCacheManager(cacheManager());
 		securityManager.setSessionManager(sessionManager());
+		securityManager.setRememberMeManager(getCookieRememberMeManager());
 		//securityManager.setSessionManager(new DefaultWebSessionManager());
 		return securityManager;
 	}
@@ -244,12 +248,37 @@ public class ShiroConfig {
     @Bean
     public KickoutSessionControlFilter kickoutSessionControlFilter() {
         KickoutSessionControlFilter kickoutSessionControlFilter = new KickoutSessionControlFilter();
+        //使用cacheManager获取相应的cache来缓存用户登录的会话；用于保存用户—会话之间的关系的；
+        //这里我们还是用之前shiro使用的redisManager()实现的cacheManager()缓存管理
+        //也可以重新另写一个，重新配置缓存时间之类的自定义缓存属性
         kickoutSessionControlFilter.setCacheManager(cacheManager());
+        //用于根据会话ID，获取会话进行踢出操作的；
         kickoutSessionControlFilter.setSessionManager(sessionManager());
+        //是否踢出后来登录的，默认是false；即后者登录的用户踢出前者登录的用户；踢出顺序。
         kickoutSessionControlFilter.setKickoutAfter(false);
+        //同一个用户最大的会话数，默认1；比如2的意思是同一个用户允许最多同时两个人登录；
         kickoutSessionControlFilter.setMaxSession(1);
+        //被踢出后重定向到的地址；
         kickoutSessionControlFilter.setKickoutUrl("/kickout");
         return kickoutSessionControlFilter;
+    }
+    
+    @Bean(name = "rememberMeCookie")
+    public SimpleCookie getRememberMeCookie() {
+        SimpleCookie simpleCookie = new SimpleCookie("rememberMe");
+        simpleCookie.setHttpOnly(true);
+        simpleCookie.setMaxAge(2592000);//30天
+        return simpleCookie;
+    }
+
+    @Bean(name = "rememberMeManager")
+    public CookieRememberMeManager getCookieRememberMeManager() {
+        CookieRememberMeManager cookieRememberMeManager =
+                new CookieRememberMeManager();
+        cookieRememberMeManager.setCipherKey(
+                org.apache.shiro.codec.Base64.decode("4AvVhmFLUs0KTA3Kprsdag=="));
+        cookieRememberMeManager.setCookie(getRememberMeCookie());
+        return cookieRememberMeManager;
     }
 
 }

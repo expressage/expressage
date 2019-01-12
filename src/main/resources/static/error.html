@@ -1,10 +1,23 @@
-<!DOCTYPE html>
-<html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
 <head>
-<meta charset="UTF-8">
-<title>错误</title>
+    <title>错误</title>
 </head>
-<body>
-错误
+<body class="layout">
+<div class="wrap">
+    <div class="panel-l container clearfix">
+        <div class="error">
+            <p class="title"><span class="code" th:text="${status}"></span>非常抱歉，没有找到您要查看的页面</p>
+            <a href="/home.html" class="btn-back common-button">返回首页
+            </a>
+            <div class="common-hint-word">
+                <div th:text="${#dates.format(timestamp,'yyyy-MM-dd HH:mm:ss')}"></div>
+                <div th:text="${messages}"></div>
+                <div th:text="${error}"></div>
+            </div>
+        </div>
+    </div>
+</div>
 </body>
 </html>

@@ -11,8 +11,8 @@ import redis.clients.jedis.JedisPoolConfig;
 /**
  * Created by yangqj on 2017/4/30.
  */
-@Configuration
-@EnableCaching
+/*@Configuration
+@EnableCaching*/
 public class RedisConfig extends CachingConfigurerSupport {
     @Value("${spring.redis.host}")
     private String host;

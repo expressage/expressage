@@ -47,7 +47,7 @@ public class EmployeeLoginController {
 		}
 		Subject subject = SecurityUtils.getSubject();
 		UsernamePasswordToken token = new UsernamePasswordToken(employee.getAccount(), employee.getPassword());
-//		token.setRememberMe(true);
+		token.setRememberMe(true);
 		try {
 			subject.login(token);
 			return "/home";

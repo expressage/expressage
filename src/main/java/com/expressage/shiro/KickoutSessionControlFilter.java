@@ -118,6 +118,7 @@ public class KickoutSessionControlFilter extends AccessControlFilter {
 					kickoutSession.setAttribute("kickout", true);
 				}
 			} catch (Exception e) {// ignore exception
+				System.out.println(e);
 			}
 		}
 
@@ -128,6 +129,7 @@ public class KickoutSessionControlFilter extends AccessControlFilter {
 				// 退出登录
 				subject.logout();
 			} catch (Exception e) { // ignore
+				System.out.println(e);
 			}
 			saveRequest(request);
 
