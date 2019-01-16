@@ -14,22 +14,48 @@
 		<form action="" method="post" id="form">
 			<br />
 			<div class="input_info">
-				<input type="text" placeholder="资源名称" name="pname" />
-				<input type="text" placeholder="资源路径" name="url" />
+				<input type="text" placeholder="资源名称" name="pname"
+					onblur="selPowerCountByPname()" id="pname"/> <input type="text"
+					placeholder="资源路径" name="url" id="url"/>
 			</div>
 			<div class="button_info clearfix">
-				<input type="button" value="保存" class="btn_save" onclick="add()"/>
+				<input type="button" value="保存" class="btn_save" onclick="add()" />
 			</div>
 		</form>
 	</div>
 	<script type="text/javascript" src="../js/jquery-1.12.4.js"></script>
 	<script language="javascript" type="text/javascript">
+		var br = false;
+		function selPowerCountByPname() {
+			var pname = $("#pname").val()
+			$.get("/power/selPowerCountByPname?pname=" + pname, null,
+					function(data) {
+						if (data > 0) {
+							br = false;
+						} else {
+							br = true;
+						}
+					})
+			return br;
+		}
 		function add() {
-			var power = $('#form').serialize();
-			$.get("/power/zkAddPower", power, function(data) {
-				var index = parent.layer.getFrameIndex(window.name);
-				parent.layer.close(index);
-			});
+			var pname = $("#pname").val();
+			var url = $("#url").val();
+			if(pname==null||pname==""){
+				alert("名称不能为空");
+			}else if(url==null||url==""){
+				alert("资源路径不能为空");
+			}else{
+				if (br==true) {
+					var power = $('#form').serialize();
+					$.get("/power/zkAddPower", power, function(data) {
+						var index = parent.layer.getFrameIndex(window.name);
+						parent.layer.close(index);
+					});
+				}else{
+					alert("名称不能重复")
+				}
+			}
 		}
 	</script>
 </body>

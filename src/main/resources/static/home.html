@@ -13,8 +13,8 @@ xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
 	<!--导航区域开始-->
 	<div id="index_navi">
 		<ul id="menu">
-			<li><a href="/home.html" class="index_on"/></li>
-			<li><a href="/employee/zkSelEmployee" class="role_off" shiro:hasPermission="/employee/zkSelEmployee"></a></li>
+			<li><a href="/home.html" shiro:hasPermission="/home.html" class="index_on"></a></li>
+			<li><a href="/employee/zkSelEmployee" shiro:hasPermission="/employee/zkSelEmployee" class="role_off"></a></li>
 			<li><a href="/admin/admin_list.html" class="admin_off" shiro:hasPermission="/yi.html"></a></li>
 			<li><a href="/fee/fee_list.html" class="fee_off" shiro:hasPermission="/er.html"></a></li>
 			<li><a href="/account/account_list.html" class="account_off" shiro:hasPermission="/home.html"></a></li>

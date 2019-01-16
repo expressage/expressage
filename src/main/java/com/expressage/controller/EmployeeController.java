@@ -58,6 +58,8 @@ public class EmployeeController {
 			@RequestParam(value = "num", defaultValue = "1", required = false) Integer num,
 			@RequestParam(value = "size", defaultValue = "3", required = false) Integer size, Model model) {
 		Integer tid = 1;
+		Employee employee = (Employee) SecurityUtils.getSubject().getPrincipal();
+		tid = employee.getTid();
 		List<Employee> employeeList = employeeService.zkSelAll(eid, name, enable, tid, ((num - 1) * size), size);
 		int count = employeeService.zkCount(eid, name, enable, tid);
 		int page = count % size == 0 ? count / size : count / size + 1;

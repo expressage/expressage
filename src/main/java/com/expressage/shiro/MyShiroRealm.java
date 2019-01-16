@@ -96,33 +96,4 @@ public class MyShiroRealm extends AuthorizingRealm{
 		return authorizationInfo;
 	}
 	
-	public void clearUserAuthByUserId(List<Integer> employeeIds) {
-		System.out.println("--------------*clearUserAuthByUserId*--------------");
-		if (employeeIds==null||employeeIds.size()==0) return;
-		Collection<Session> sessions = redisSessionDAO.getActiveSessions();
-		List<SimplePrincipalCollection> list = new ArrayList<SimplePrincipalCollection>();
-		for (Session session : sessions) {
-			Object obj = session.getAttribute(DefaultSubjectContext.PRINCIPALS_SESSION_KEY);
-			//PRINCIPALS_SESSION_KEY这个属性记录的是用户名，而AUTHENTICATED_SESSION_KEY属性记录的是用户认证
-			if (obj!=null&&obj instanceof SimplePrincipalCollection) {
-				SimplePrincipalCollection spc = (SimplePrincipalCollection)obj;
-				obj = spc.getPrimaryPrincipal();
-				if(obj!=null&&obj instanceof Employee) {
-					Employee employee = (Employee)obj;
-					System.out.println("employee:"+employee);
-					if(employee!=null&&employeeIds.contains(employee.getEid())) {
-						list.add(spc);
-					}
-				}
-			}
-		}
-		RealmSecurityManager securityManager =
-				(RealmSecurityManager) SecurityUtils.getSecurityManager();
-		
-		MyShiroRealm realm = (MyShiroRealm) securityManager.getRealms().iterator().next();
-		for (SimplePrincipalCollection simplePrincipalCollection : list) {
-			realm.clearCachedAuthorizationInfo(simplePrincipalCollection);
-		}
-	}
-
 }

@@ -14,9 +14,10 @@
 		<form action="/role/updRole" id="form">
 			<span id="rid"></span>
 			<div class="input_info">
-				<input type="text" placeholder="角色名称" name="rname" id="rname" onblur="selRoleCountByRname();" />
+				<input type="text" placeholder="角色名称" name="rname" id="rname"
+					onblur="rnamecount();" />
 			</div>
-			<div class="button_info clearfix" >
+			<div class="button_info clearfix">
 				<input type="button" value="保存" class="btn_save" onclick="put()" />
 			</div>
 		</form>
@@ -29,29 +30,50 @@
 		var rid = "";
 		function selPower() {
 			rid = $("#rid").val();
-			$
-					.get(
-							"/role/zkSelRoleByRid",
-							"rid=" + rid,
-							function(data) {
-								$("#rname").val(data.rname);
-							});
-		}
-		
-		function put(){
-			var rids = $('#form').serialize();
-			$.get("/role/zkUpdRole?rid="+rid,rids,function(data){
-				var index = parent.layer.getFrameIndex(window.name); 
-				parent.layer.close(index);
+			$.get("/role/zkSelRoleByRid", "rid=" + rid, function(data) {
+				$("#rname").val(data.rname);
 			});
 		}
-		
-		function selRoleCountByRname(){
+
+		var br = false;
+		function rnamecount() {
+			var rname2 = $("#rname").val()
+			$.get("/role/zkSelRoleCountByRname?rname=" + rname2, null,
+					function(data) {
+						if (data > 0) {
+							alert("名称不能重复")
+							br = false;
+						} else {
+							br = true;
+						}
+					})
+			return br;
+		}
+
+		function put() {
+			var rname = $("#rname").val();
+			if (rname == null || rname == "") {
+				alert("名称不能为空");
+			} else {
+				if (br == true) {
+					$.get("/role/zkUpdRole?rid=" + rid + "&rname=" + rname,
+							null, function(data) {
+								var index = parent.layer
+										.getFrameIndex(window.name);
+								parent.layer.close(index);
+							});
+				} else {
+					alert("名称不能重复")
+				}
+			}
+		}
+
+		/* function selRoleCountByRname(){
 			var rname = $("#rname").val();
 			$.get("/role/zkSelRoleCountByRname?rname="+rname,null,function(data){
 				alert("rname"+data)
 			});
-		}
+		} */
 	</script>
 </body>
 </html>
