@@ -35,9 +35,9 @@
 										+ powerList[i].url
 										+ "</td><td><a href=\"#\" onclick=\"updPower("
 										+ powerList[i].pid
-										+ ")\">修改</a>/<a href=\"#\" onclick=\"delPower("
+										+ ")\" shiro:hasPermission=\"/power/zkUpdPower\">修改</a>/<a href=\"#\" onclick=\"delPower("
 										+ powerList[i].pid
-										+ ")\">删除</a></td></tr>";
+										+ ")\" shiro:hasPermission=\"/power/zkDelPower\">删除</a></td></tr>";
 							}
 							$("#sys2 #datalist").html(powers);
 						});
@@ -49,7 +49,7 @@
 			title : '修改资源',
 			maxmin : true,
 			shadeClose : true, //点击遮罩关闭层
-			area : [ '400px', '500px' ],
+			area : [ '500px', '300x' ],
 			content : '/role/updPower.html',
 			success : function(layero, index) {
 				var body = layer.getChildFrame('body', index);//建立父子联系
@@ -77,11 +77,11 @@
 										+ roleList[i].rname
 										+ "</td><td><a href=\"#\" onclick=\"updRole("
 										+ roleList[i].rid
-										+ ")\">修改</a>/<a href=\"#\" onclick=\"delRole("
+										+ ")\" shiro:hasPermission=\"/role/zkUpdRole\">修改</a>/<a href=\"#\" onclick=\"delRole("
 										+ roleList[i].rid
-										+ ")\">删除</a>/<a href=\"#\" onclick=\"selPower("
+										+ ")\" shiro:hasPermission=\"/role/zkDelRole\">删除</a>/<a href=\"#\" onclick=\"selPower("
 										+ roleList[i].rid
-										+ ");\">分配权限</a></td></tr>";
+										+ ");\" shiro:hasPermission=\"/role/zkRolePower\">分配权限</a></td></tr>";
 							}
 							$("#sys1 #datalist").html(roles);
 						});
@@ -93,7 +93,7 @@
 			title : '修改角色',
 			maxmin : true,
 			shadeClose : true, //点击遮罩关闭层
-			area : [ '400px', '500px' ],
+			area : [ '400px', '300x' ],
 			content : '/role/updRole.html',
 			success : function(layero, index) {
 				var body = layer.getChildFrame('body', index);//建立父子联系
@@ -176,7 +176,7 @@
 			title : '添加资源',
 			maxmin : true,
 			shadeClose : true, //点击遮罩关闭层
-			area : [ '400px', '300x' ],
+			area : [ '500px', '300x' ],
 			content : '/role/addPower.html',
 			end : function() {
 				selPowerAll()
@@ -230,15 +230,15 @@
 	<div id="navi">
 		<ul id="menu">
 			<li><a href="/home.html" class="index_off"></a></li>
-			<li><a href="/employee/zkSelEmployee" class="role_on"></a></li>
+			<li><a href="/employee/zkSelEmployee" shiro:hasPermission="/employee/zkSelEmployee" class="role_on"></a></li>
 			<li><a href="../admin/admin_list.html" class="admin_off"></a></li>
 			<li><a href="../fee/fee_list.html" class="fee_off"></a></li>
 			<li><a href="../account/account_list.html" class="account_off"></a></li>
 			<li><a href="../service/service_list.html" class="service_off"></a></li>
 			<li><a href="../bill/bill_list.html" class="bill_off"></a></li>
 			<li><a href="../report/report_list.html" class="report_off"></a></li>
-			<li><a href="../user/user_info.html" class="information_off"></a></li>
-			<li><a href="../user/user_modi_pwd.html" class="password_off"></a></li>
+			<li><a href="/user/zkSelEmplByAccount" class="information_off"></a></li>
+			<li><a href="/user/user_modi_pwd.html" class="password_off"></a></li>
 		</ul>
 	</div>
 	<!--导航区域结束-->
@@ -248,9 +248,9 @@
 			<ul onclick="changeTab(event,this);">
 				<li><a href="#####" class="tab_on" title="用户管理">用户管理</a></li>
 				<li><a href="#####" class="tab_out" title="角色管理"
-					onclick="selRole();">角色管理</a></li>
+					onclick="selRole();" shiro:hasPermission="/role/zkSelRole">角色管理</a></li>
 				<li><a href="#####" class="tab_out" title="资源管理"
-					onclick="selPowerAll();">资源管理</a></li>
+					onclick="selPowerAll();" shiro:hasPermission="/power/zkSelPower">资源管理</a></li>
 			</ul>
 		</div>
 		<div class="report_box">
@@ -266,8 +266,8 @@
 							<option value="1" th:selected="${enable=='1'}">开启</option>
 							<option value="0" th:selected="${enable=='0'}">禁用</option>
 						</select>
-						<button type="submit" onclick="search();">查询</button>
-						<button type="button" onclick="add_employee();">新增</button>
+						<button type="submit" onclick="search();" shiro:hasPermission="/employee/zkSelEmployee">查询</button>
+						<button type="button" onclick="add_employee();" shiro:hasPermission="/employee/zkAddEmployee">新增</button>
 					</form>
 					<table id="datalist">
 						<tr class="title">
@@ -305,10 +305,10 @@
 							<td th:text="${list.name2}" />
 							<td th:text="${list.enable=='0'?'禁用':'启用'}" />
 							<td th:if="${list.enable=='1'}"><span
-								th:onclick="'javascript:prohibitEmpl('+${list.eid}+','+${num}+')'">禁用</span>
-								<a th:href="@{/employee/zkSelectByKey?(eid=${list.eid})}">
+								th:onclick="'javascript:prohibitEmpl('+${list.eid}+','+${num}+')'" shiro:hasPermission="/employee/zkProhibitEmpl">禁用</span>
+								<a th:href="@{/employee/zkSelectByKey?(eid=${list.eid})}" shiro:hasPermission="/employee/zkUpdEmployee">
 									修改</a>/<a href="#"
-								th:onclick="'javascript:showRole('+${list.eid}+')'">分配角色</a></td>
+								th:onclick="'javascript:showRole('+${list.eid}+')'" shiro:hasPermission="/employee/zkEmployeeRole">分配角色</a></td>
 						</tr>
 					</table>
 					<div id="pages">
@@ -333,13 +333,13 @@
 					</div>
 				</div>
 				<div id="sys1" class="tableall" style="display: none;">
-					<h2 onclick="addRole();">新增</h2>
+					<h2 onclick="addRole();" shiro:hasPermission="/role/zkAddRole">新增</h2>
 					<table id="datalist">
 
 					</table>
 				</div>
 				<div id="sys2" class="tableall" style="display: none;">
-					<h2 onclick="addPower();">新增</h2>
+					<h2 onclick="addPower();" shiro:hasPermission="/power/zkAddPower">新增</h2>
 					<table id="datalist">
 
 					</table>

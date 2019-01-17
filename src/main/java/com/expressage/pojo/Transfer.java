@@ -1,6 +1,8 @@
 package com.expressage.pojo;
 
-public class Transfer {
+import java.io.Serializable;
+
+public class Transfer  implements Serializable{
     private Integer transferId;
 
     private Integer eid;

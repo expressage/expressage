@@ -1,6 +1,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:th="http://www.thymeleaf.org">
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>即刻快递</title>
@@ -16,7 +17,7 @@
 			<table id="datalist">
 			</table>
 			<div class="button_info clearfix" >
-				<input type="button" value="保存" class="btn_save" onclick="put()" />
+				<input type="button" value="保存" class="btn_save" onclick="put()" shiro:hasPermission="/employee/zkEmployeeRoleImpl"/>
 			</div>
 		</form>
 	</div>

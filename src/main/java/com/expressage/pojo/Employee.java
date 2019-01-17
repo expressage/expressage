@@ -1,8 +1,9 @@
 package com.expressage.pojo;
 
+import java.io.Serializable;
 import java.sql.Date;
 
-public class Employee {
+public class Employee implements Serializable{
     private Integer eid;
 
     private String name;

@@ -21,6 +21,7 @@ import com.expressage.service.EmployeeRoleService;
 import com.expressage.service.EmployeeService;
 import com.expressage.service.RoleService;
 import com.expressage.service.TransferService;
+import com.expressage.util.ShiroMd5Util;
 
 @Controller
 @RequestMapping("/employee")
@@ -57,6 +58,8 @@ public class EmployeeController {
 			@RequestParam(value = "num", defaultValue = "1", required = false) Integer num,
 			@RequestParam(value = "size", defaultValue = "3", required = false) Integer size, Model model) {
 		Integer tid = 1;
+		Employee employee = (Employee) SecurityUtils.getSubject().getPrincipal();
+		tid = employee.getTid();
 		List<Employee> employeeList = employeeService.zkSelAll(eid, name, enable, tid, ((num - 1) * size), size);
 		int count = employeeService.zkCount(eid, name, enable, tid);
 		int page = count % size == 0 ? count / size : count / size + 1;
@@ -80,6 +83,7 @@ public class EmployeeController {
 	@RequestMapping(value = "zkAddEmployee")
 	public String zkAddEmployee(Employee employee) {
 		employee.setFounderid(1);
+		employee.setPassword(ShiroMd5Util.SysMd5(employee));
 		employeeService.zkInsert(employee);
 		return "redirect:zkSelEmployee";
 	}
@@ -177,11 +181,5 @@ public class EmployeeController {
 		return "/role/employee_add.html";
 	}
 	
-	@RequestMapping(value="selEmplByAccount")
-	public String selEmplByAccount(Model model) {
-		Employee employee = (Employee) SecurityUtils.getSubject().getPrincipal();
-		model.addAttribute("employee", employee);
-		return "/user/user_info";
-	}
 
 }

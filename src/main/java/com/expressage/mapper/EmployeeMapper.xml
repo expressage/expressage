@@ -237,30 +237,30 @@
 	</update>
 	<select id="zkSelAll" resultMap="BaseResultMap">
 		SELECT e.*,t.*,(SELECT `name` FROM employee em WHERE em.eid =
-		e.founderId) name2 FROM employee e INNER JOIN transfer t ON e.tid =
+		e.founderId) name2 FROM employee e LEFT JOIN transfer t ON e.tid =
 		t.transfer_id
 		<where>
 			<if test="eid !=null and eid != ''"> and e.eid = #{eid}</if>
 			<if test="name !=null and name != ''"> and `name` LIKE CONCAT('%',#{name},'%')</if>
 			<if test="enable !=null and enable != ''"> and `enable` = #{enable}</if>
-			<if test="tid !=1 and tid != '1'"> and e.tid = #{tid}</if>
+			<if test="tid !=0 and tid != '0'"> and e.tid = #{tid}</if>
 		</where>
 		limit #{num},#{size}
 	</select>
 	<select id="zkCount" resultType="int">
-		SELECT count(1) FROM employee e INNER JOIN transfer t ON e.tid =
+		SELECT count(1) FROM employee e LEFT JOIN transfer t ON e.tid =
 		t.transfer_id
 		<where>
 			<if test="eid !=null and eid != ''"> and e.eid = #{eid}</if>
 			<if test="name !=null and name != ''"> and `name` LIKE CONCAT('%',#{name},'%')</if>
 			<if test="enable !=null and enable != ''"> and `enable` = #{enable}</if>
-			<if test="tid !=1 and tid != '1'"> and e.tid = #{tid}</if>
+			<if test="tid !=0 and tid != '0'"> and e.tid = #{tid}</if>
 		</where>
 	</select>
 	<select id="zkSelByUsername" resultMap="BaseResultMap">
 		SELECT e.*,t.*,(SELECT
 		`name` FROM employee em WHERE em.eid =
-		e.founderId) name2 FROM employee e INNER JOIN transfer t ON e.tid =
+		e.founderId) name2 FROM employee e LEFT JOIN transfer t ON e.tid =
 		t.transfer_id
 		WHERE e.account = #{account}
 	</select>
@@ -403,5 +403,8 @@
 	<update id="zkProhibitEmpl">
 		UPDATE expressage.employee SET ENABLE = 0 WHERE eid =
 		#{eid}
+	</update>
+	<update id="zkUpdPassword">
+		update employee set password = #{password} where eid = #{eid}
 	</update>
 </mapper>

@@ -26,7 +26,7 @@ xmlns:th="http://www.thymeleaf.org">
 <body>
 	<!--Logo区域开始-->
 	<div id="header">
-		<img src="../images/jike.png" alt="logo" class="left" /> <a
+		<!-- <img src="../images/jike.png" alt="logo" class="left" /> --> <a
 			href="/logout">[退出]</a>
 	</div>
 	<!--Logo区域结束-->
@@ -34,15 +34,15 @@ xmlns:th="http://www.thymeleaf.org">
 	<div id="navi">
 		<ul id="menu">
 			<li><a href="/home.html" class="index_off"></a></li>
-			<li><a href="/employee/zkSelEmployee" class="role_off"></a></li>
+			<li><a href="/employee/zkSelEmployee" shiro:hasPermission="/employee/zkSelEmployee" class="role_off"></a></li>
 			<li><a href="../admin/admin_list.html" class="admin_off"></a></li>
 			<li><a href="../fee/fee_list.html" class="fee_off"></a></li>
 			<li><a href="../account/account_list.html" class="account_off"></a></li>
 			<li><a href="../service/service_list.html" class="service_off"></a></li>
 			<li><a href="../bill/bill_list.html" class="bill_off"></a></li>
 			<li><a href="../report/report_list.html" class="report_off"></a></li>
-			<li><a href="../user/user_info.html" class="information_on"></a></li>
-			<li><a href="../user/user_modi_pwd.html" class="password_off"></a></li>
+			<li><a href="/user/zkSelEmplByAccount" class="information_on"></a></li>
+			<li><a href="/user/user_modi_pwd.html" class="password_off"></a></li>
 		</ul>
 	</div>
 	<!--导航区域结束-->
@@ -54,43 +54,43 @@ xmlns:th="http://www.thymeleaf.org">
 		<div class="text_info clearfix">
 			<span >账号：</span>
 		</div>
-		<div class="input_info" th:text="${list.account}" ></div>
+		<div class="input_info" th:text="${employee.account}" ></div>
 		<div class="text_info clearfix">
 			<span>真实姓名：</span>
 		</div>
-		<div class="input_info" th:text="${list.name}" ></div>
+		<div class="input_info" th:text="${employee.name}" ></div>
 		<div class="text_info clearfix">
 			<span>性别：</span>
 		</div>
-		<div class="input_info" th:text="${list.sex}" ></div>
+		<div class="input_info" th:text="${employee.sex=='1'?'男':'女'}" ></div>
 		<div class="text_info clearfix">
 			<span>出身日期：</span>
 		</div>
-		<div class="input_info" th:text="${list.birthday}" ></div>
+		<div class="input_info" th:text="${employee.birthday}" ></div>
 		<div class="text_info clearfix">
 			<span>身份证号：</span>
 		</div>
-		<div class="input_info" th:text="${list.idcard}" ></div>
+		<div class="input_info" th:text="${employee.idcard}" ></div>
 		<div class="text_info clearfix">
 			<span>联系手机：</span>
 		</div>
-		<div class="input_info" th:text="${list.tid}" ></div>
+		<div class="input_info" th:text="${employee.tel}" ></div>
 		<div class="text_info clearfix">
 			<span>联系邮箱：</span>
 		</div>
-		<div class="input_info" th:text="${list.email}" ></div>
+		<div class="input_info" th:text="${employee.email}" ></div>
 		<div class="text_info clearfix">
 			<span>住址：</span>
 		</div>
-		<div class="input_info" th:text="${list.address}" ></div>
+		<div class="input_info" th:text="${employee.address}" ></div>
 		<div class="text_info clearfix">
 			<span>工资：</span>
 		</div>
-		<div class="input_info" th:text="${list.eid}" ></div>
+		<div class="input_info" th:text="${employee.sal}" ></div>
 		<div class="text_info clearfix">
 			<span>所属中转站：</span>
 		</div>
-		<div class="input_info" th:text="${list.transfer.transferName}" ></div>
+		<div class="input_info" th:text="${employee.transfer.transferName}" ></div>
 	</div>
 	<!--主要区域结束-->
 	<div id="footer">

@@ -1,6 +1,8 @@
 package com.expressage.pojo;
 
-public class Power {
+import java.io.Serializable;
+
+public class Power  implements Serializable{
     private Integer pid;
 
     private String pname;

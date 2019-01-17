@@ -99,7 +99,7 @@
 	function checked() {
 		var tel1 = $.trim($('#phone').val());
 		var code1 = $("#code1").val();
-		if (tel1 == "" && code1 == "") {
+		if (tel1 == "" || code1 == "") {
 			alert("请填写手机号和验证码！");
 			return false;
 		} else if (tel != tel1 && code != code1) {

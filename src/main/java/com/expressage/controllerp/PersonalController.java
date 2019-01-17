@@ -90,8 +90,9 @@ public class PersonalController {
 
 		HttpClientUtil client = HttpClientUtil.getInstance();
 		// 调用方法
-		int num = client.sendMsgUtf8(uid, key, smsText, smsMob);
-		System.out.println(num);
+		/*int num = client.sendMsgUtf8(uid, key, smsText, smsMob);
+		System.out.println(num);*/
+		System.out.println(code);
 		return code;
 	}
 

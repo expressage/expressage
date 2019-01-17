@@ -1,6 +1,6 @@
 ﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-xmlns:th="http://www.thymeleaf.org">
+	xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>即刻快递</title>
@@ -10,19 +10,20 @@ xmlns:th="http://www.thymeleaf.org">
 	href="../styles/global_color.css" />
 <script type="text/javascript" src="../js/jquery-1.12.4.js"></script>
 <script language="javascript" type="text/javascript">
-	$(function(){
-		$(".validate_msg_long").hide();
-	})
-	
-	function selAccount(){
+	var br = false;
+	function selAccount() {
 		var account = $("#account").val();
-		$.get("/employee/zkSelEmployeeByAccount","account="+account,function(num){
-			if(num>0){
-				$("#accountT").show();
-			}else{
-				$("#accountT").hide();
-			}
-		})
+		$.get("/employee/zkSelEmployeeByAccount", "account=" + account,
+				function(num) {
+					if (num > 0) {
+						alert("账号不能重复")
+						br = false;
+					} else {
+						br = true;
+					}
+				})
+		
+		return br;
 	}
 	//保存成功的提示信息
 	function showResult() {
@@ -41,57 +42,121 @@ xmlns:th="http://www.thymeleaf.org">
 	function searchAccounts(txtObj) {
 		//document.getElementById("a1").innerHTML = txtObj.value;
 	}
+
+	function addEmpl() {
+		var list = document.getElementsByTagName("input");
+		for (var i = 0; i < list.length; i++) {
+			// 判断是否为文本框
+			if (list[i].type == "text") {
+				// 判断文本框是否为空
+				if (list[i].value == "") {
+					alert("请将员工信息填写完整！");
+					return false;
+				}
+			}
+		}
+		/* var name = $("#name").val();
+		var Rname = /^[\u4e00-\u9fa5]{2,4}$/;
+		if (!Rname.test(name)) {
+			alert("真实姓名只能输入汉字2-4位");
+			return false;
+		} */
+		if (!selAccount()) {
+			return false;
+		}
+
+		var password = $("#password").val();
+		var Rpassword = /^(\w){6,20}$/;
+		if (!Rpassword.test(password)) {
+			alert("密码只能输入6-20个字母、数字、下划线  ")
+			return false;
+		}
+
+		var birthday = $("#birthday").val();
+		/* var dP2 = /^\d{4}(\-)\d{1,2}\1\d{1,2}$/; */
+		var Rbirthday = /^(?:(?!0000)[0-9]{4}-(?:(?:0[1-9]|1[0-2])-(?:0[1-9]|1[0-9]|2[0-8])|(?:0[13-9]|1[0-2])-(?:29|30)|(?:0[13578]|1[02])-31)|(?:[0-9]{2}(?:0[48]|[2468][048]|[13579][26])|(?:0[48]|[2468][048]|[13579][26])00)-02-29)$/;
+		if (!Rbirthday.test(birthday)) {
+			alert("出身日期只能yyyy-MM-dd的格式")
+			return false;
+		}
+
+		var idcard = $("#idcard").val();
+		var Ridcard = /^[1-9]\d{5}(18|19|([23]\d))\d{2}((0[1-9])|(10|11|12))(([0-2][1-9])|10|20|30|31)\d{3}[0-9Xx]$/;
+		if (!Ridcard.test(idcard)) {
+			alert("请输入身份证号（18位）  ")
+			return false;
+		}
+
+		var tel = $("#tel").val();
+		var Rtel = /^((13[0-9])|(14[5|7])|(15([0-3]|[5-9]))|(18[0,5-9]))\d{8}$/;
+		if (!Rtel.test(tel)) {
+			alert("请输入联系手机（11位） ")
+			return false;
+		}
+
+		var email = $("#email").val();
+		var Remail = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
+		if (!Remail.test(email)) {
+			alert("请输入正确联系邮箱格式")
+			return false;
+		}
+
+		var sal = $("#sal").val();
+		var Rsal = /^\d+$/;
+		if (!Rsal.test(sal)) {
+			alert("工资需要为正整数")
+			return false;
+		}
+	}
 </script>
 </head>
 <body>
 	<!--Logo区域开始-->
 	<div id="header">
-		<img src="../images/logo.png" alt="logo" class="left" /> <a href="/logout">[退出]</a>
+		<img src="../images/logo.png" alt="logo" class="left" /> <a
+			href="/logout">[退出]</a>
 	</div>
 	<!--Logo区域结束-->
 	<!--导航区域开始-->
 	<div id="navi">
 		<ul id="menu">
 			<li><a href="/home.html" class="index_off"></a></li>
-			<li><a href="/employee/zkSelEmployee" class="role_on"></a></li>
+			<li><a href="/employee/zkSelEmployee" shiro:hasPermission="/employee/zkSelEmployee" class="role_on"></a></li>
 			<li><a href="../admin/admin_list.html" class="admin_off"></a></li>
 			<li><a href="../fee/fee_list.html" class="fee_off"></a></li>
 			<li><a href="../account/account_list.html" class="account_off"></a></li>
 			<li><a href="../service/service_list.html" class="service_off"></a></li>
 			<li><a href="../bill/bill_list.html" class="bill_off"></a></li>
 			<li><a href="../report/report_list.html" class="report_off"></a></li>
-			<li><a href="../user/user_info.html" class="information_off"></a></li>
-			<li><a href="../user/user_modi_pwd.html" class="password_off"></a></li>
+			<li><a href="/user/zkSelEmplByAccount" class="information_off"></a></li>
+			<li><a href="/user/user_modi_pwd.html" class="password_off"></a></li>
 		</ul>
 	</div>
 	<!--导航区域结束-->
 	<!--主要区域开始-->
 	<div id="main">
-		<!--保存操作的提示信息-->
-		<div id="save_result_info" class="save_fail">保存失败！192.168.0.23服务器上已经开通过
-			OS 账号 “mary”。</div>
-		<form action="/employee/zkAddEmployee" method="post" class="main_form">
+		<form action="/employee/zkAddEmployee" method="post" class="main_form"
+			onsubmit="return addEmpl();">
 			<!--内容项-->
 			<div class="text_info clearfix">
 				<span>真实姓名：</span>
 			</div>
 			<div class="input_info">
-				<input type="text" placeholder="张三" name="name"/><span class="required">*</span>
-				<div class="validate_msg_long">不能为空，请重新录入。</div>
+				<input type="text" placeholder="张三" name="name" id="name" />
 			</div>
 			<div class="text_info clearfix">
 				<span>账号：</span>
 			</div>
 			<div class="input_info">
-				<input type="text" placeholder="zhangsan" name="account" onblur="selAccount()" id="account"/><span class="required">*</span>
-				<div class="validate_msg_long" id="accountT">不能重复，请重新录入。</div>
+				<input type="text" placeholder="zhangsan" name="account"
+					id="account" onblur="selAccount();"/>
 			</div>
 			<div class="text_info clearfix">
 				<span>密码：</span>
 			</div>
 			<div class="input_info">
-				<input type="password" placeholder="123456" name="password"/><span class="required">*</span>
-				<div class="validate_msg_long">密码不能为空，请重新录入。</div>
+				<input type="password" placeholder="123456" name="password"
+					id="password" />
 			</div>
 			<div class="text_info clearfix">
 				<span>性别：</span>
@@ -106,51 +171,48 @@ xmlns:th="http://www.thymeleaf.org">
 				<span>出身日期：</span>
 			</div>
 			<div class="input_info">
-				<input type="text" placeholder="1999-09-09" name="birthday"/><span class="required">*</span>
-				<div class="validate_msg_long">yyyy-MM-dd</div>
+				<input type="text" placeholder="1999-09-09" name="birthday"
+					id="birthday" />
 			</div>
 			<div class="text_info clearfix">
 				<span>身份证号：</span>
 			</div>
 			<div class="input_info">
-				<input type="text" name="idcard"/><span class="required">*</span>
-				<div class="validate_msg_long">必须为18位的数字，请重新录入。</div>
+				<input type="text" name="idcard" id="idcard" />
 			</div>
 			<div class="text_info clearfix">
 				<span>联系手机：</span>
 			</div>
 			<div class="input_info">
-				<input type="text" name="tel"/><span class="required">*</span>
-				<div class="validate_msg_long">必须为11位的数字，请重新录入。</div>
+				<input type="text" name="tel" id="tel" />
 			</div>
 			<div class="text_info clearfix">
 				<span>联系邮箱：</span>
 			</div>
 			<div class="input_info">
-				<input type="text" placeholder="zhangsan@qq.com" name="email"><span
-					class="required">*</span>
-				<div class="validate_msg_long">非法邮箱格式，请重新录入。</div>
+				<input type="text" placeholder="zhangsan@qq.com" name="email"
+					id="email">
 			</div>
 			<div class="text_info clearfix">
 				<span>住址：</span>
 			</div>
 			<div class="input_info">
-				<input type="text" name="address"/><span class="required">*</span>
-				<div class="validate_msg_long">住址不能为空，请重新录入。</div>
+				<input type="text" name="address" />
 			</div>
 			<div class="text_info clearfix">
 				<span>工资：</span>
 			</div>
 			<div class="input_info">
-				<input type="text" name="sal"/><span class="required">*</span>
-				<div class="validate_msg_long">工资不能为空，请重新录入。</div>
+				<input type="text" name="sal" id="sal" />
 			</div>
 			<div class="text_info clearfix">
 				<span>所属中转站：</span>
 			</div>
 			<div class="input_info">
 				<select name="tid">
-					<option th:each="list:${transferList}" th:value="${list.transferId}"><span th:text="${list.transferName}"/></option>
+					<option th:each="list:${transferList}"
+						th:value="${list.transferId}"><span
+							th:text="${list.transferName}" /></option>
 				</select>
 			</div>
 			<div class="text_info clearfix">
@@ -164,8 +226,8 @@ xmlns:th="http://www.thymeleaf.org">
 			</div>
 			<!--操作按钮-->
 			<div class="button_info clearfix">
-				<input type="submit" value="保存" class="btn_save" /> <input type="button" value="取消"
-					onclick="history.back()" class="btn_save" />
+				<input type="submit" value="保存" class="btn_save" /> <input
+					type="button" value="取消" onclick="history.back()" class="btn_save" />
 			</div>
 		</form>
 	</div>

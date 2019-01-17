@@ -64,15 +64,15 @@
         <div id="navi">
             <ul id="menu">
                 <li><a href="/home.html" class="index_off"></a></li>
-                <li><a href="/employee/zkSelEmployee" class="role_off"></a></li>
+                <li><a href="/employee/zkSelEmployee" shiro:hasPermission="/employee/zkSelEmployee" class="role_off"></a></li>
                 <li><a href="../admin/admin_list.html" class="admin_off"></a></li>
                  <li><a href="/compensateController/pmlSelectWage" class="bill_off"></a></li>
                 <li><a href="../account/account_list.html" class="account_off"></a></li>
                 <li><a href="../service/service_list.html" class="service_off"></a></li>
                 <li><a href="/billController/pmlQuery" class="bill_off"></a></li>
                 <li><a href="../report/report_list.html" class="report_off"></a></li>
-                <li><a href="../user/user_info.html" class="information_off"></a></li>
-                <li><a href="../user/user_modi_pwd.html" class="password_off"></a></li>
+                <li><a href="/user/zkSelEmplByAccount" class="information_off"></a></li>
+                <li><a href="/user/user_modi_pwd.html" class="password_off"></a></li>
             </ul>
         </div>
         <!--导航区域结束-->
