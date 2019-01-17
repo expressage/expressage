@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head lang="en">
+<meta charset="UTF-8">
+<title>即刻快递</title>
+<meta name="viewport"
+	content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+<meta name="apple-mobile-web-app-capable" content="no">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="format-detection" content="telephone=no">
+<link href="/proscenium/css/price.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+	<section class="aui-scrollView">
+		<div class="aui-order-box">
+			<p class="aui-order-fl aui-order-address">
+				<select id="address1" onchange="selPrice()"
+					style="height: 30px; width: 100%; font-size: 20px; line-height: 30px; text-align: center; text-align-last: center;">
+					<option value="">请选择寄件地址</option>
+					<option th:each="city:${listC}" th:value="${city.cityname}"
+						th:text="${city.cityname}"></option>
+				</select>
+			</p>
+			<p class="aui-order-fl aui-order-door">
+				<select id="address2" onchange="selPrice()"
+					style="height: 30px; width: 100%; font-size: 20px; line-height: 30px; text-align: center; text-align-last: center;">
+					<option value="">请选择收件地址</option>
+					<option th:each="city:${listC}" th:value="${city.cityname}"
+						th:text="${city.cityname}"></option>
+				</select>
+
+			</p>
+		</div>
+		<div class="divHeight"></div>
+		<div>
+			<div style="padding: 5% 0 5% 35%;">
+				<button onclick="addOrSub('sub')"
+					style="height: 30px; width: 30px; font-size: 25px; border-radius: 50%; border: 1px; outline: none;">-</button>
+				<input type="text" value="1" readonly="readonly" id="num"
+					style="height: 30px; font-size: 20px; width: 20%; text-align: center; border: 0; outline: none;" />kg
+				<button onclick="addOrSub('add')"
+					style="height: 30px; width: 30px; font-size: 25px; border-radius: 50%; border: 1px; outline: none;">+</button>
+			</div>
+			<hr />
+			<div style="text-align: center; width: 100%;">
+				<span
+					style="display: inline-block; color: red; width: 100px; font-size: 25px;"
+					id="price">0</span>元 <br /> <span
+					style="position: absolute; left: 5%;"> 首重<span id="fweight">--</span>(元/公斤)
+				</span> <span style="position: absolute; right: 5%;"> 续重<span
+					id="cweight">--</span>(元/公斤)
+				</span>
+			</div>
+		</div>
+	</section>
+	<footer class="aui-footer" style="position: fixed; bottom: 0px;">
+		<a href="/Jump/zmJumpIndex" class="aui-tabBar-item"> <span
+			class="aui-tabBar-item-text">查件</span>
+		</a><a href="/Item/zmGetProductType" class="aui-tabBar-item"> <span
+			class="aui-tabBar-item-text">寄件</span>
+		</a> <a href="/Item/zmSelCity" class="aui-tabBar-item "> <span
+			class="aui-tabBar-item-text" style="color: red;">查价格</span>
+		</a> <a href="/Personal/zmPersonal" class="aui-tabBar-item "> <span
+			class="aui-tabBar-item-text">个人中心</span>
+		</a>
+	</footer>
+	<script type="text/javascript" src="/proscenium/js/jquery.min.js"></script>
+	<script type="text/javascript">
+		function selPrice() {
+			var address1 = $("#address1").val();
+			var address2 = $("#address2").val();
+			var num = $("#num").val();
+			if (address1 != null && address1 != "" && address2 != null
+					&& address2 != "") {
+				$.post("/Item/zmSelPrice?address1=" + address1 + "&address2="
+						+ address2, null, function(data) {
+					$("#fweight").html(data.fweight);
+					$("#cweight").html(data.cweight);
+					if (num > 1) {
+						var price = data.fweight + (num - 1) * data.cweight;
+						$("#price").html(price);
+					} else {
+						$("#price").html(data.fweight);
+					}
+				})
+			}
+		}
+		function addOrSub(str) {
+			var num = $("#num").val();
+			if (str == "add") {
+				num++;
+				if (num > 50) {
+					num = 50;
+				}
+			} else {
+				num--;
+				if (num <= 0) {
+					num = 1;
+				}
+			}
+			$("#num").val(num);
+			selPrice();
+		}
+	</script>
+</body>
+</html>

@@ -11,34 +11,49 @@
 		tid, orderNo, info,time
 	</sql>
 	<!-- zm -->
+	<insert id="zm_addTrack">
+		insert into tracking (tid,orderNo, info,`time`)
+		values(#{tid},#{orderno},#{info},now())
+	</insert>
+
 	<select id="zm_selTrackByOid" resultMap="BaseResultMap">
-		select * from tracking where orderno = #{oid} order by `time` desc
+		select * from tracking
+		where orderno = #{oid} order by `time` desc
 	</select>
-	
-	
-	
-	
-	
-	
-	
-	
+
+	<select id="zm_selTrackByOrderno" resultMap="BaseResultMap">
+		select * from
+		tracking
+		where orderno = (select oid from `order` where orderno =
+		#{orderno}) order by `time` desc
+	</select>
+
+
+
+
+
+
+
+
 	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
 		parameterType="java.lang.Integer">
 		select
 		<include refid="Base_Column_List" />
 		from tracking
-		where tid = #{tid,jdbcType=INTEGER}
+		where tid = #{tid}
 	</select>
 	<delete id="deleteByPrimaryKey"
 		parameterType="java.lang.Integer">
 		delete from tracking
-		where tid = #{tid,jdbcType=INTEGER}
+		where tid = #{tid}
 	</delete>
 	<insert id="insert" parameterType="com.expressage.pojo.Tracking">
-		insert into tracking (tid, orderNo, info
+		insert into tracking (tid,
+		orderNo, info
 		)
-		values (#{tid,jdbcType=INTEGER}, #{orderno,jdbcType=VARCHAR},
-		#{info,jdbcType=VARCHAR}
+		values (#{tid},
+		#{orderno},
+		#{info}
 		)
 	</insert>
 	<insert id="insertSelective"
@@ -57,13 +72,13 @@
 		</trim>
 		<trim prefix="values (" suffix=")" suffixOverrides=",">
 			<if test="tid != null">
-				#{tid,jdbcType=INTEGER},
+				#{tid},
 			</if>
 			<if test="orderno != null">
-				#{orderno,jdbcType=VARCHAR},
+				#{orderno},
 			</if>
 			<if test="info != null">
-				#{info,jdbcType=VARCHAR},
+				#{info},
 			</if>
 		</trim>
 	</insert>
@@ -72,19 +87,21 @@
 		update tracking
 		<set>
 			<if test="orderno != null">
-				orderNo = #{orderno,jdbcType=VARCHAR},
+				orderNo = #{orderno},
 			</if>
 			<if test="info != null">
-				info = #{info,jdbcType=VARCHAR},
+				info = #{info},
 			</if>
 		</set>
-		where tid = #{tid,jdbcType=INTEGER}
+		where tid = #{tid}
 	</update>
 	<update id="updateByPrimaryKey"
 		parameterType="com.expressage.pojo.Tracking">
 		update tracking
-		set orderNo = #{orderno,jdbcType=VARCHAR},
-		info = #{info,jdbcType=VARCHAR}
-		where tid = #{tid,jdbcType=INTEGER}
+		set orderNo =
+		#{orderno},
+		info = #{info}
+		where tid =
+		#{tid}
 	</update>
 </mapper>

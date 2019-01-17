@@ -85,9 +85,8 @@
 		}
 		if (checkTel() == true) {
 			//向后台发送处理数据
-			$.post("/Personal/zmGetCode", null, function(data) {
+			$.post("/Personal/zmGetCode?tel=" + tel, null, function(data) {
 				code = data;
-				$("#code1").val(code);
 			})
 			//设置button效果，开始计时
 			$("#btnSendCode1").attr("disabled", "true");

@@ -32,5 +32,7 @@ public interface OrderMapper {
     
     List<Order> pmlSelectAll(@Param("orderno")String orderno);
     
-    Order pmlSelectByPrimaryOid(@Param("oid") Integer oid);    
+    Order pmlSelectByPrimaryOid(@Param("oid") Integer oid);
+
+	int zm_addOrder(Order order);    
 }

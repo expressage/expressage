@@ -25,5 +25,7 @@ public interface OrderService {
 
     List<Order> pmlSelectAll(String orderno);
     
-    Order pmlSelectByPrimaryOid(Integer oid);  
+    Order pmlSelectByPrimaryOid(Integer oid);
+
+	int zm_addOrder(Order order);  
 }

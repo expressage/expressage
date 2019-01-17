@@ -2,22 +2,26 @@ package com.expressage.mapper;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
+
 import com.expressage.pojo.Tracking;
 
 public interface TrackingMapper {
-	List<Tracking> zm_selTrackByOid(Integer oid);
-	
-	
-	
-    int deleteByPrimaryKey(Integer tid);
+	int zm_addTrack(Tracking tracking);
 
-    int insert(Tracking record);
+	List<Tracking> zm_selTrackByOid(@Param("oid") Integer oid);
 
-    int insertSelective(Tracking record);
+	List<Tracking> zm_selTrackByOrderno(@Param("orderno") String orderno);
 
-    Tracking selectByPrimaryKey(Integer tid);
+	int deleteByPrimaryKey(Integer tid);
 
-    int updateByPrimaryKeySelective(Tracking record);
+	int insert(Tracking record);
 
-    int updateByPrimaryKey(Tracking record);
+	int insertSelective(Tracking record);
+
+	Tracking selectByPrimaryKey(Integer tid);
+
+	int updateByPrimaryKeySelective(Tracking record);
+
+	int updateByPrimaryKey(Tracking record);
 }

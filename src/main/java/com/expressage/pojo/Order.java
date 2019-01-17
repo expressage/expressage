@@ -19,7 +19,7 @@ public class Order {
 
     private String typeName;
 
-    private Double weight;
+    private Integer weight;
 
     private Integer rprice;
 
@@ -109,11 +109,11 @@ public class Order {
 		this.typeName = typeName;
 	}
 
-	public Double getWeight() {
+	public Integer getWeight() {
 		return weight;
 	}
 
-	public void setWeight(Double weight) {
+	public void setWeight(Integer weight) {
 		this.weight = weight;
 	}
 

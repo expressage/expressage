@@ -16,8 +16,9 @@
 <body>
 	<section class="aui-scrollView">
 		<div class="aui-flex">
-			<div class="aui-flex-users" onclick="location='/Personal/zmSelUserByUid'">
-				<h2 th:text="${user.uname}"></h2>
+			<div class="aui-flex-users"
+				onclick="location='/Personal/zmSelUserByUid'">
+				<h2 th:text="${user.uname==''?'':user.uname}"></h2>
 				<img src="/proscenium/images/user-logo-003.png" alt="">
 			</div>
 		</div>
@@ -34,12 +35,14 @@
 		<div class="aui-purge aui-purge-one">
 			<div style="margin-left: 20px;">
 				<p style="font-size: 14px;">
-					<span th:text="${address.aname}"> </span> &nbsp;&nbsp;&nbsp;<span
-						class="tel" th:text="${address.tel}"></span>
+					<span th:text="${address.aname==''?'':address.aname}"> </span>
+					&nbsp;&nbsp;&nbsp;<span class="tel"
+						th:text="${address.tel==''?'':address.tel}"></span>
 				</p>
 				<p style="font-size: 12px;">
-					<span th:text="${address.region}"></span> &nbsp;&nbsp;&nbsp;<span
-						th:text="${address.address}"></span>
+					<span th:text="${address.region==''?'':address.region}"></span>
+					&nbsp;&nbsp;&nbsp;<span
+						th:text="${address.address==''?'':address.address}"></span>
 				</p>
 			</div>
 		</div>
@@ -56,33 +59,17 @@
 				</div>
 				<p>寄件记录</p>
 			</div>
-			<div class="aui-purge-item">
-				<div class="aui-purge-item-icon">
-					<img src="/proscenium/images/icon-item-4.png" alt="">
-				</div>
-				<p>寄件模板</p>
-			</div>
-			<div class="aui-purge-item">
-				<div class="aui-purge-item-icon">
-					<img src="/proscenium/images/icon-item-5.png" alt="">
-				</div>
-				<p>在线客服</p>
-			</div>
-			<div class="aui-purge-item">
-				<div class="aui-purge-item-icon">
-					<img src="/proscenium/images/icon-item-2.png" alt="">
-				</div>
-				<p>投诉建议</p>
-			</div>
 		</div>
 	</section>
 	<footer class="aui-footer aui-footer-fixed">
 		<a href="/Jump/zmJumpIndex" class="aui-tabBar-item"> <span
-			class="aui-tabBar-item-text">首页</span>
-		</a> <a href="/Jump/zmJumpChat" class="aui-tabBar-item "> <span
-			class="aui-tabBar-item-text">消息</span>
-		</a> <a href="/Jump/zmPersonal" class="aui-tabBar-item "> <span
-			class="aui-tabBar-item-text" style="color: red;">我的</span>
+			class="aui-tabBar-item-text">查件</span>
+		</a><a href="/Item/zmGetProductType" class="aui-tabBar-item"> <span
+			class="aui-tabBar-item-text">寄件</span>
+		</a> <a href="/Item/zmSelCity" class="aui-tabBar-item "> <span
+			class="aui-tabBar-item-text">查价格</span>
+		</a> <a href="/Personal/zmPersonal" class="aui-tabBar-item "> <span
+			class="aui-tabBar-item-text" style="color: red;">个人中心</span>
 		</a>
 	</footer>
 	<script type="text/javascript" src="/proscenium/js/jquery.min.js"></script>

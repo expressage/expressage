@@ -6,18 +6,18 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @RequestMapping("/Jump")
 public class JumpController {
-	// 首页
+	// 查件
 	@RequestMapping("/zmJumpIndex")
 	public String zmJumpIndex() {
 		return "proscenium/index";
 	}
 
-	// 客服
-	@RequestMapping("/zmJumpChat")
-	public String zmJumpChat() {
-		return "proscenium/chat";
+	// 寄件
+	@RequestMapping("/zmJumpMailing")
+	public String zmJumpMailing() {
+		return "proscenium/mailing";
 	}
-	
+
 	// 登录
 	@RequestMapping("/zmJumpLogin")
 	public String zmJumpLogin() {

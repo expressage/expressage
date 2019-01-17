@@ -38,8 +38,9 @@
 						</div>
 						<div class="layui-form-item"
 							style="float: left; margin-left: -10px;">
-							<input lay-filter="agreen-checkbox" name="checkbox" title="我同意" type="checkbox"
-								lay-skin="primary" checked="checked"> <a href="#" target="_blank">《注册协议》</a>
+							<input lay-filter="agreen-checkbox" name="checkbox" title="我同意"
+								type="checkbox" lay-skin="primary" checked="checked"> <a
+								href="#" target="_blank">《注册协议》</a>
 						</div>
 						<div class="layui-form-item">
 							<input type="submit"
@@ -90,9 +91,8 @@
 		}
 		if (checkTel() == true) {
 			//向后台发送处理数据
-			$.post("/Personal/zmGetCode", null, function(data) {
+			$.post("/Personal/zmGetCode?tel=" + tel, null, function(data) {
 				code = data;
-				$("#code1").val(code);
 			})
 			//设置button效果，开始计时
 			$("#btnSendCode1").attr("disabled", "true");
@@ -105,14 +105,14 @@
 	function checked() {
 		var tel1 = $.trim($('#phone').val());
 		var code1 = $("#code1").val();
-		var  checkbox = document.getElementsByName("checkbox")[0].checked;
+		var checkbox = document.getElementsByName("checkbox")[0].checked;
 		if (tel1 == "" && code1 == "") {
 			alert("请填写手机号和验证码！");
 			return false;
 		} else if (tel != tel1 && code != code1) {
 			alert("手机号或验证码与上次不匹配，请重新获取！");
 			return false;
-		}else if(checkbox == false){
+		} else if (checkbox == false) {
 			alert("请先同意《注册协议》");
 			return false;
 		}

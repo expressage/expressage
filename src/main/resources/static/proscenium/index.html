@@ -1,70 +1,200 @@
 <!DOCTYPE html>
 <html>
-<head>
+<head lang="en">
 <meta charset="UTF-8">
-<title>即刻快递首页</title>
-<meta
-	content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0"
-	name="viewport" />
-<meta content="yes" name="apple-mobile-web-app-capable" />
-<meta content="black" name="apple-mobile-web-app-status-bar-style" />
-<meta content="telephone=no" name="format-detection" />
-<link href="/proscenium/css/index.css" rel="stylesheet" type="text/css" />
+<title>即刻快递</title>
+<meta name="viewport"
+	content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+<meta name="apple-mobile-web-app-capable" content="no">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="format-detection" content="telephone=no">
+<link rel="stylesheet" href="/proscenium/css/index.css" type="text/css" />
+<link href="/proscenium/css/track.css" rel="stylesheet" type="text/css" />
 <link href="/proscenium/css/bootstrap.min.css" rel="stylesheet"
 	type="text/css" />
-<link href="/proscenium/css/personal.css" rel="stylesheet"
-	type="text/css" />
+<style type="text/css">
+a {
+	text-decoration: none;
+	color: #000;
+}
+
+.aui-footer {
+	width: 100%;
+	position: relative;
+	z-index: 100;
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-align: center;
+	-webkit-align-items: center;
+	-ms-flex-align: center;
+	align-items: center;
+	padding: 7px 5px 7px 5px;
+	background: #f7f7f7;
+}
+
+.aui-footer:after {
+	content: '';
+	position: absolute;
+	z-index: 0;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 1px;
+	border-top: 1px solid #bbbbbb;
+	-webkit-transform: scaleY(0.5);
+	transform: scaleY(0.5);
+	-webkit-transform-origin: 0 100%;
+	transform-origin: 0 100%;
+}
+
+.aui-tabBar-item {
+	-webkit-box-flex: 1;
+	-webkit-flex: 1;
+	-ms-flex: 1;
+	flex: 1;
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-box-orient: vertical;
+	-webkit-box-direction: normal;
+	-webkit-flex-direction: column;
+	-ms-flex-direction: column;
+	flex-direction: column;
+	-webkit-box-pack: center;
+	-webkit-justify-content: center;
+	-ms-flex-pack: center;
+	justify-content: center;
+	-webkit-box-align: center;
+	-webkit-align-items: center;
+	-ms-flex-align: center;
+	align-items: center;
+	color: #979797;
+}
+
+.aui-tabBar-item-active .aui-tabBar-item-text {
+	color: #f4bd37;
+}
+
+.aui-tabBar-item-text {
+	display: inline-block;
+	font-size: 0.65rem;
+	color: #757980;
+	padding-top: 2px;
+}
+</style>
 </head>
 <body>
-	<section class="aui-flexView">
-		<section class="aui-scrollView">
-			<div class="aui-head-bj">
-				<input type="search" style="display: inline-block;"
-					class="aui-navBar-item" value="" placeholder="请输入运单号查询快件信息" /> <span
-					style="display: inline-block; height: 25px; width: 26px; margin-top: 25px;"
-					class="glyphicon glyphicon-search"></span>
-			</div>
-			<div class="aui-palace aui-palace-one  clearfix">
-				<a href="javascript:;" class="aui-palace-grid">
-					<div class="aui-palace-grid-icon">
-						<img src="/proscenium/images/icon-item-001.png" alt="">
-					</div>
-					<div class="aui-palace-grid-text">
-						<h2>我要寄件</h2>
-					</div>
-				</a> <a href="javascript:;" class="aui-palace-grid">
-					<div class="aui-palace-grid-icon">
-						<img src="/proscenium/images/icon-item-002.png" alt="">
-					</div>
-					<div class="aui-palace-grid-text">
-						<h2>我的快递</h2>
-					</div>
-				</a> <a href="javascript:;" class="aui-palace-grid">
-					<div class="aui-palace-grid-icon">
-						<img src="/proscenium/images/icon-item-003.png" alt="">
-					</div>
-					<div class="aui-palace-grid-text">
-						<h2>费用评估</h2>
-					</div>
-				</a> <a href="javascript:;" class="aui-palace-grid">
-					<div class="aui-palace-grid-icon">
-						<img src="/proscenium/images/icon-item-004.png" alt="">
-					</div>
-					<div class="aui-palace-grid-text">
-						<h2>收费标准</h2>
-					</div>
-				</a>
-			</div>
-		</section>
-		<footer class="aui-footer aui-footer-fixed">
-			<a href="/Jump/zmJumpIndex" class="aui-tabBar-item"> <span
-				class="aui-tabBar-item-text" style="color: red;">首页</span>
-			</a> <a href="/Jump/zmJumpChat" class="aui-tabBar-item "> <span
-				class="aui-tabBar-item-text">消息</span>
-			</a> <a href="/Personal/zmPersonal" class="aui-tabBar-item "> <span
-				class="aui-tabBar-item-text">我的</span>
-			</a>
-		</footer>
-	</section>
+	<img src="/proscenium/images/icon_search.png"
+		style="position: absolute; top: 1.9rem; left: 3rem; width: 1.6rem; height: 1.6rem;" />
+	<input id="orderno" placeholder="一键查包裹"
+		style="margin-top: 1.5rem; margin-left: 2rem; outline-style: none; background-color: #eee; text-indent: 3rem; text-overflow: ellipsis;">
+	<button id="search">查询</button>
+	<div style="height: 20px;"></div>
+	<div class="delete history" style="width: 100%; margin-top: -1rem;">
+	</div>
+	<div class="history" id="his-dele">
+		<img src="/proscenium/images/icon_search_del.png"
+			style="width: .98rem; height: .92rem; display: inline-block;" />清除记录
+	</div>
+	<!-- 物流信息 -->
+	<div id="track"></div>
+	<!--清空历史记录-->
+	<footer class="aui-footer"
+		style="position: fixed; bottom: 0px; height: 30px;">
+		<a href="/Jump/zmJumpIndex" class="aui-tabBar-item"> <span
+			class="aui-tabBar-item-text" style="color: red;">查件</span>
+		</a><a href="/Item/zmGetProductType" class="aui-tabBar-item"> <span
+			class="aui-tabBar-item-text">寄件</span>
+		</a> <a href="/Item/zmSelCity" class="aui-tabBar-item "> <span
+			class="aui-tabBar-item-text">查价格</span>
+		</a> <a href="/Personal/zmPersonal" class="aui-tabBar-item "> <span
+			class="aui-tabBar-item-text">个人中心</span>
+		</a>
+	</footer>
+	<script type="text/javascript" src="/proscenium/js/jquery.min.js"></script>
+	<script type="text/javascript">
+		function zmSelTrack() {
+			var orderno = $("#orderno").val();
+			$.post("/Item/zmSelTrack?orderno=" + orderno, null, function(data) {
+				$("#track").html(data);
+			})
+		}
+
+		$(document).delegate(".delete>div", "click", function() {
+			$("#orderno").val($(this).text());
+		});
+
+		/*搜索记录相关*/
+		//从localStorage获取搜索时间的数组
+		var hisTime;
+		//从localStorage获取搜索内容的数组
+		var hisItem;
+
+		function init() {
+			//每次执行都把2个数组置空
+			hisTime = [];
+			hisItem = [];
+			//模拟localStorage本来有的记录
+			//localStorage.setItem("a",12333);
+			//本函数内的两个for循环用到的变量
+			for (var i = 0; i < localStorage.length; i++) {
+				if (localStorage.key(i) != "") {
+					/* hisItem.push(localStorage.getItem(localStorage.key(i)));
+					hisTime.push(localStorage.key(i)); */
+					hisItem[i] = localStorage.getItem(localStorage.key(i));
+					hisTime[i] = localStorage.key(i);
+				}
+			}
+			//执行init(),每次清空之前添加的节点
+			$(".delete").html("");
+			for (var i = 0; i < hisItem.length; i++) {
+				//prepend()用于在被选元素的开头插入元素
+				$(".delete").prepend(
+						'<div class="word-break" id="" style="z-index: 1000;">'
+								+ hisItem[i] + '</div>')
+			}
+		}
+		init();
+
+		$("#search").click(function() {
+			var value = $("#orderno").val();
+			var time = (new Date()).getTime();
+			if (value == "") {
+				alert("请输入搜索内容");
+				return false;
+			}
+			//输入的内容localStorage有记录
+			//inArray() 返回数组中指定元素的索引值
+			if ($.inArray(value, hisItem) >= 0) {
+				for (var j = 0; j < localStorage.length; j++) {
+					if (value == localStorage.getItem(localStorage.key(j))) {
+						localStorage.removeItem(localStorage.key(j));
+					}
+				}
+				localStorage.setItem(time, value);
+			}
+			//输入的内容localStorage没有记录
+			else {
+				//由于限制了只能有5条记录，所以这里进行判断
+				if (hisItem.length > 5) {
+					localStorage.removeItem(hisTime[0]);
+					localStorage.setItem(time, value);
+				} else {
+					localStorage.setItem(time, value);
+				}
+			}
+			zmSelTrack();
+			init();
+		});
+
+		//清除记录功能
+		$("#his-dele").click(function() {
+			window.localStorage.clear();
+			init();
+		});
+	</script>
 </body>
 </html>

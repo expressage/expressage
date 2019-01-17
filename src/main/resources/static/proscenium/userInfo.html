@@ -7,49 +7,51 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black">
 <meta name="format-detection" content="telephone=no">
-<title>Demo</title>
+<title>个人中心</title>
 <link href="/proscenium/css/address.css" rel="stylesheet"
 	type="text/css" />
-<link href="/proscenium/css/bootstrap.min.css" rel="stylesheet"
+<link href="/proscenium/css/userInfo.css" rel="stylesheet"
 	type="text/css" />
 </head>
 <body>
-	<section class="aui-flexView">
-		<header class="aui-navBar aui-navBar-fixed b-line">
+	<section>
+		<header class="aui-navBar">
 			<a class="aui-navBar-item" onclick="location='/Personal/zmPersonal'">
 				<i class="icon icon-return"></i>
 			</a>
-			<div class="aui-center">
-				<span class="aui-center-title">地址薄</span>
-			</div>
-			<a href="javascript:;" class="aui-navBar-item"> <i
-				class="icon icon-sys"></i>
-			</a>
+			<p class="aui-center">个人中心</p>
 		</header>
 		<section class="aui-scrollView">
-			<div class="divHeight b-line"></div>
-			<div class="aui-address-box b-line">
-				<div class="aui-address-add b-line"
-					onclick="location='/Jump/zmJumpAdd'">+添加</div>
-				<div class="aui-flex b-line" th:each="address,iterStat:${listA}">
-					<div class="aui-flex-box">
-						<span th:text="${address.aname}"> </span> &nbsp;&nbsp;&nbsp;<span
-							th:text="${address.tel}" th:class="tel+${iterStat.index}"></span>
-						<p th:text="${address.region}"></p>
-						<p th:text="${address.address}"></p>
-						<p>
-							<input type="radio" name="isdefault"
-								th:onclick="'javascript:zmUpdIsdefault('+${address.aid}+')'"
-								th:checked="${address.isdefault==0?'true':'false'}">默认地址
-						</p>
-					</div>
-					<div class="glyphicon glyphicon-edit"
-						th:onclick="'javascript:zmSelAddressByAid('+${address.aid}+')'"></div>
-					<div class="glyphicon glyphicon-trash"
-						th:onclick="'javascript:zmDelAddress('+${address.aid}+')'"></div>
+			<form action="/Personal/zmUpdUser" method="post"
+				enctype="multipart/form-data">
+				<div class="con4">
+					<img id="cvs" width="150" height="150"
+						th:src="${user.img==null?'/proscenium/images/head-bj1.jpg':'/proscenium/images/'+user.img}"></img>
+					<span class="btn upload">上传头像<input type="file" name="img"
+						class="upload_pic" id="upload" onchange="imgChange();" /></span>
 				</div>
-			</div>
+				<div class="divHeight b-line"></div>
+				<div style="padding: 20px 50px; font-size: 18px; width: 100%;">
+					昵 称 :<input type="text" name="uname" th:value="${user.uname}"
+						style="margin-left: 20px;" />
+					<p style="font-size: 14px; margin: 10px;">限4-20个字符，一个汉字为2个字符</p>
+				</div>
+				<div style="position: fixed; bottom: 0%; width: 100%;">
+					<input type="submit" value="保存"
+						style="width: 100%; height: 40px; background-color: red; color: white;" />
+				</div>
+			</form>
 		</section>
 	</section>
+	<script type="text/javascript" src="/proscenium/js/jquery.min.js"></script>
+	<script type="text/javascript">
+		function imgChange() {
+			//获取点击的文本框
+			var file = document.getElementById("upload");
+			//转换图片路径
+			var imgUrl = window.URL.createObjectURL(file.files[0]);
+			$("#cvs").attr('src', imgUrl); // 修改img标签src属性值
+		};
+	</script>
 </body>
 </html>

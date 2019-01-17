@@ -10,7 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.ClassUtils;
-import org.springframework.util.ResourceUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -61,6 +60,9 @@ public class PersonalController {
 	@RequestMapping("/zmRegister")
 	public String zmRegister(@RequestParam("tel") String tel, HttpSession session) {
 		User user = (User) session.getAttribute("user");
+		if (user == null) {
+			return "redirect:/Jump/zmJumpLogin";
+		}
 		user.setTel(tel);
 		user.setUname(tel.replaceAll("(\\d{3})\\d{6}(\\d{2})", "$1****$2"));
 		userService.zm_addUser(user);
@@ -70,7 +72,7 @@ public class PersonalController {
 	// 获取短信验证
 	@RequestMapping("/zmGetCode")
 	@ResponseBody
-	public String zmGetCode(String tel) {
+	public String zmGetCode(@RequestParam("tel") String tel) {
 		Random random = new Random();
 		String code = random.nextInt(10000) + "";
 		if (code.length() < 4) {
@@ -88,7 +90,8 @@ public class PersonalController {
 
 		HttpClientUtil client = HttpClientUtil.getInstance();
 		// 调用方法
-		// client.sendMsgUtf8(uid, key, smsText, smsMob);
+		int num = client.sendMsgUtf8(uid, key, smsText, smsMob);
+		System.out.println(num);
 		return code;
 	}
 
@@ -96,16 +99,23 @@ public class PersonalController {
 	@RequestMapping("/zmPersonal")
 	public String zmPersonal(Model model, HttpSession session) {
 		User user = (User) session.getAttribute("user");
-		List<Address> listA = addressService.zm_selAddress(user.getUid());
-		model.addAttribute("user", user);
-		model.addAttribute("address", listA.get(0));
-		return "proscenium/personal";
+		if (user == null) {
+			return "redirect:/Jump/zmJumpLogin";
+		} else {
+			List<Address> listA = addressService.zm_selAddress(user.getUid());
+			model.addAttribute("user", user);
+			model.addAttribute("address", listA.get(0));
+			return "proscenium/personal";
+		}
 	}
 
 	// 查询登录人的地址
 	@RequestMapping("/zmSelAddress")
 	public String zm_selAddress(Model model, HttpSession session) {
 		User user = (User) session.getAttribute("user");
+		if (user == null) {
+			return "redirect:/Jump/zmJumpLogin";
+		}
 		List<Address> listA = addressService.zm_selAddress(user.getUid());
 		model.addAttribute("listA", listA);
 		return "proscenium/address";
@@ -123,6 +133,9 @@ public class PersonalController {
 	@RequestMapping("/zmAddaddress")
 	public String zm_addAddress(Address address, HttpSession session) {
 		User user = (User) session.getAttribute("user");
+		if (user == null) {
+			return "redirect:/Jump/zmJumpLogin";
+		}
 		address.setUid(user.getUid());
 		addressService.zm_addAddress(address);
 		if (address.getIsdefault() == 0) {
@@ -135,6 +148,9 @@ public class PersonalController {
 	@RequestMapping("/zmUpdAddress")
 	public String zm_updAddress(Address address, HttpSession session) {
 		User user = (User) session.getAttribute("user");
+		if (user == null) {
+			return "redirect:/Jump/zmJumpLogin";
+		}
 		addressService.zm_updAddress(address);
 		if (address.getIsdefault() == 0) {
 			addressService.zm_updIsdefault1(address.getAid(), user.getUid());
@@ -146,6 +162,9 @@ public class PersonalController {
 	@RequestMapping("/zmUpdIsdefault")
 	public String zm_updIsdefault(Address address, HttpSession session) {
 		User user = (User) session.getAttribute("user");
+		if (user == null) {
+			return "redirect:/Jump/zmJumpLogin";
+		}
 		addressService.zm_updIsdefault1(address.getAid(), user.getUid());
 		addressService.zm_updIsdefault0(address.getAid());
 		return "redirect:zmSelAddress";
@@ -170,8 +189,11 @@ public class PersonalController {
 	// 查询我的快递
 	@RequestMapping("/zmGetOrder")
 	public String zm_getOrder(HttpSession session, Model model) {
-		/* User user = (User) session.getAttribute("user"); */
-		List<Order> listO = orderService.zm_selOrder(1);
+		User user = (User) session.getAttribute("user");
+		if (user == null) {
+			return "redirect:/Jump/zmJumpLogin";
+		}
+		List<Order> listO = orderService.zm_selOrder(user.getUid());
 		model.addAttribute("listO", listO);
 		return "proscenium/order";
 	}
@@ -210,8 +232,11 @@ public class PersonalController {
 
 	// 根据用户id查询用户个人信息
 	@RequestMapping("/zmSelUserByUid")
-	public String zm_selUserByUid(HttpSession session,Model model) {
+	public String zm_selUserByUid(HttpSession session, Model model) {
 		User user = (User) session.getAttribute("user");
+		if (user == null) {
+			return "redirect:/Jump/zmJumpLogin";
+		}
 		user = userService.zm_selUserByUid(user.getUid());
 		model.addAttribute("user", user);
 		return "/proscenium/userInfo";
@@ -219,16 +244,17 @@ public class PersonalController {
 
 	// 修改用户个人信息
 	@RequestMapping("/zmUpdUser")
-	public String zm_updUser(@RequestParam(value = "img") MultipartFile img, User user) {
-		String a = ClassUtils.getDefaultClassLoader().getResource("").getPath();
-		System.out.println(a);
+	public String zm_updUser(@RequestParam(value = "img") MultipartFile img, String uname, HttpSession session) {
+		User user = (User) session.getAttribute("user");
+		if (user == null) {
+			return "redirect:/Jump/zmJumpLogin";
+		}
+		user.setUname(uname);
 		String path;
 		String oldImg = img.getOriginalFilename();
 		user.setImg(oldImg);
 		try {
-			path = ResourceUtils.getFile("static").getAbsolutePath().substring(0,
-					ResourceUtils.getFile("static").getAbsolutePath().lastIndexOf("\\"))
-					+ "\\src\\main\\resources\\static\\proscenium\\images";
+			path = ClassUtils.getDefaultClassLoader().getResource("").getPath() + "static/proscenium/images";
 			File file = new File(path, oldImg);
 			if (!file.getParentFile().exists()) {
 				file.mkdir();
@@ -238,6 +264,6 @@ public class PersonalController {
 			e.printStackTrace();
 		}
 		userService.zm_updUser(user);
-		return "";
+		return "redirect:zmSelUserByUid";
 	}
 }

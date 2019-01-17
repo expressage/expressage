@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head lang="en">
+<meta charset="UTF-8">
+<title>即刻快递</title>
+<meta name="viewport"
+	content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+<meta name="apple-mobile-web-app-capable" content="no">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="format-detection" content="telephone=no">
+<link href="/proscenium/css/bootstrap.min.css" rel="stylesheet"
+	type="text/css" />
+<link href="/proscenium/css/mailing.css" rel="stylesheet"
+	type="text/css" />
+</head>
+<body>
+	<header class="aui-navBar">
+		<a style="position: absolute; top: 12px; left: 20px; color: red;"
+			onclick="location='/Jump/zmJumpIndex'">取消</a>
+		<div class="aui-center">
+			<span class="aui-center-title">预约取件</span>
+		</div>
+	</header>
+	<section class="aui-scrollView">
+		<form action="/Item/zmAddOrder" onsubmit="return checkedInfo();">
+			<div class="aui-order-box">
+				<p class="aui-order-fl aui-order-address"
+					onclick="location='/Item/zmGetAddress?address=1'"
+					style="font-size: 16px;">
+					<input name="maddress" type="hidden"
+						th:value="${address1 == null?'':address1.aid}" /> <span
+						th:text="${address1 == null?'请选择地址':address1.aname+' '+address1.tel}"></span>
+					<br /> <span
+						th:text="${address1 == null?'':address1.region+' '+address1.address}"></span>
+					<span class="glyphicon glyphicon-menu-right"
+						style="position: absolute; right: 20px; top: 15px;"></span>
+				</p>
+				<p class="aui-order-fl aui-order-door"
+					onclick="location='/Item/zmGetAddress?address=2'"
+					style="font-size: 16px;">
+					<input name="raddress" type="hidden"
+						th:value="${address2 == null?'':address2.aid}" /> <span
+						th:text="${address2 == null?'请选择地址':(address2.aname+' '+address2.tel)}"></span>
+					<br /> <span
+						th:text="${address2 == null?'':(address2.region+' '+address2.address)}"></span>
+					<span class="glyphicon glyphicon-menu-right"
+						style="position: absolute; right: 20px; top: 15px;"></span>
+				</p>
+			</div>
+			<div class="divHeight"></div>
+			<div>
+				<div class="info" style="border-right: 1px solid;"
+					onclick="showType();">
+					<span>物品</span><br /> <input type="text" name="typeName" value=""
+						placeholder="必填" readonly="readonly" /> <input type="text"
+						name="weight" value="" readonly="readonly" /> <span
+						class="glyphicon glyphicon-menu-right"
+						style="position: absolute; left: 40%; top: 38%;"></span>
+				</div>
+				<div class="info" onclick="showRprice();">
+					<span>保价费用</span><br /> <input type="text" name="rprice" value=""
+						placeholder="选填" readonly="readonly" /> <span
+						style="position: absolute; right: 30%; top: 39%;">元</span>
+				</div>
+			</div>
+			<div class="divHeight"></div>
+			<div class="aa">
+				<c>寄件方式</c>
+				<c style="margin: 10px 0px 0px 32%;">快递员上门取件</c>
+			</div>
+			<hr style="margin: 15px 0px 0px 0px;" />
+			<div class="aa">
+				<c>付款方式：</c>
+				<span><input type="radio" value="1" name="payType"
+					checked="checked" />寄件现付</span> <span><input type="radio"
+					value="2" name="payType" />到付</span><span> <input type="radio"
+					value="3" name="payType" />寄付月结
+				</span>
+			</div>
+			<div style="padding: 20px;">
+				备注：
+				<textarea style="width: 80%;" name="remarks"
+					placeholder="对快递员说：比如物品无包装"></textarea>
+			</div>
+			<div
+				style="background: #808080; width: 100%; height: 40px; color: white; position: absolute; bottom: 5%;">
+				<span style="padding: 15px; line-height: 40px;">运费估算：<input
+					type="text" name="total" value="" readonly="readonly"
+					style="color: red; border: none; width: 30px; background: #808080; outline-style: none;" /><span>仅供参考</span></span>
+				<input type="submit" value="预约"
+					style="height: 40px; width: 25%; border: 0px; background: red; position: absolute; right: 0%;" />
+			</div>
+		</form>
+		<div id="type"
+			style="border: 1px solid buttonhighlight; position: fixed; bottom: 5%; width: 100%; height: 40%; background: white; display: none;">
+			<span
+				style="position: absolute; left: 20px; font-size: 25px; color: rgb(137, 207, 240);"
+				onclick="closeP(this)">x</span>
+			<p style="margin: 50px 0px 0px 20px; font-size: 18px;">物品类型</p>
+			<hr style="margin: 15px 0px 0px 0px;" />
+			<span
+				style="display: inline-block; width: 33%; text-align: center; height: 30px; margin-top: 10px;"
+				th:each="t:${listP}" th:text="${t.name}" onclick="showWeight(this);"></span>
+		</div>
+		<div id="weight"
+			style="border: 1px solid buttonhighlight; position: fixed; bottom: 5%; width: 100%; height: 40%; background: white; display: none;">
+			<span
+				style="position: absolute; left: 20px; font-size: 25px; color: rgb(137, 207, 240);"
+				onclick="closeP(this)">x</span>
+			<p style="margin: 50px 0px 0px 20px; font-size: 18px;">
+				物品重量<a
+					style="text-decoration: none; color: blue; position: absolute; right: 4%;"
+					onclick="showVolume()">或填物品体积</a>
+			</p>
+			<hr style="margin: 15px 0px 0px 0px;" />
+			<span
+				style="display: inline-block; width: 33%; text-align: center; height: 30px; margin-top: 10px;"
+				th:each="i:${#numbers.sequence(1,10)}"
+				th:onclick="'javascript:weight1('+${i}+')'"><span
+				th:text="${i}"></span>kg</span>
+		</div>
+		<div id="volume"
+			style="border: 1px solid buttonhighlight; position: fixed; bottom: 5%; width: 100%; height: 40%; background: white; display: none;">
+			<span
+				style="position: absolute; left: 20px; font-size: 25px; color: rgb(137, 207, 240);"
+				onclick="closeP(this)">x</span>
+			<div style="margin: 50px 0px 0px 20px; font-size: 18px;">
+				物品体积<a
+					style="text-decoration: none; color: blue; position: absolute; right: 4%;"
+					onclick="showWeight()">或填物品重量</a>
+				<p
+					style="font-size: 17px; line-height: 20px; color: buttonhighlight;">请度量物品包装的长*宽*高，并填入：</p>
+				<input type="text" name="c" placeholder="长度（cm）"
+					style="width: 26%; text-align: center;" onkeyup="volume1()" /> * <input
+					type="text" name="k" placeholder="宽度（cm）"
+					style="width: 26%; text-align: center;" onkeyup="volume1()" /> * <input
+					type="text" name="g" placeholder="高度（cm）"
+					style="width: 26%; text-align: center;" onkeyup="volume1()" />
+				<p style="font-size: 16px;">
+					计算重量<span id="weight1"
+						style="display: inline-block; color: red; width: 30px; text-align: center;">0</span>kg
+				</p>
+			</div>
+			<hr style="margin: 15px 0px 0px 0px;" />
+			<input type="button" class="volume" value="确定"
+				style="width: 95%; border: 1px solid red; background: red; color: white; height: 30px; position: absolute; bottom: 6%; left: 3%;" />
+		</div>
+		<div id="rprice"
+			style="border: 1px solid buttonhighlight; position: fixed; bottom: 5%; width: 100%; height: 40%; background: white; display: none;">
+			<span
+				style="position: absolute; left: 20px; font-size: 25px; color: rgb(137, 207, 240);"
+				onclick="closeP(this)">x</span>
+			<div style="margin: 50px 0px 0px 20px; font-size: 16px;">
+				<input type="text" placeholder="请填写您的物品时间价值"
+					style="width: 90%; height: 30px; border: 0.5px solid buttonface; outline: none;"
+					onkeyup="changePrice(this)" />元<br /> <span>预估收取费用</span> <span
+					style="color: red;" id="rPrice">0元</span>
+				<p style="font-size: 12px; margin-top: 10px;">
+					温馨提示<br /> 1、预估收取费用仅供参考，请以快递员收取为准。<br /> 2、物品价值不能>5万元，如需寄递价值>
+					5万元的物品，请拨打客服热线95338 !<br /> 3、保价物品声明价值>
+					2万元，将为您提供特安服务，系统会进行实时信息监控,保证货物安全
+				</p>
+				<input type="button" id="button" value="确定"
+					style="width: 95%; height: 30px; border: 1px solid red; background: red; color: white; position: absolute; bottom: 2%; left: 3%;" />
+			</div>
+		</div>
+	</section>
+	<footer class="aui-footer" style="position: fixed; bottom: 0px;">
+		<a href="/Jump/zmJumpIndex" class="aui-tabBar-item"> <span
+			class="aui-tabBar-item-text">查件</span>
+		</a><a href="/Item/zmGetProductType" class="aui-tabBar-item"> <span
+			class="aui-tabBar-item-text" style="color: red;">寄件</span>
+		</a> <a href="/Item/zmSelCity" class="aui-tabBar-item "> <span
+			class="aui-tabBar-item-text">查价格</span>
+		</a> <a href="/Personal/zmPersonal" class="aui-tabBar-item "> <span
+			class="aui-tabBar-item-text">个人中心</span>
+		</a>
+	</footer>
+	<script type="text/javascript" src="/proscenium/js/jquery.min.js"></script>
+	<script type="text/javascript">
+		function closeP(obj) {
+			$(obj).parent().hide();
+		}
+		function showType() {
+			$("#volume").hide();
+			$("#weight").hide();
+			$("#rprice").hide();
+			$("#type").show();
+		}
+		function showVolume() {
+			$("#weight").hide();
+			$("#volume").show();
+		}
+		function showRprice() {
+			$("#volume").hide();
+			$("#weight").hide();
+			$("#type").hide();
+			$("#rprice").show();
+		}
+		var typeName;
+		function showWeight(obj) {
+			typeName = $(obj).html();
+			$("#volume").hide();
+			$("#rprice").hide();
+			$("#type").hide();
+			$("#weight").show();
+		}
+		var weight = 0;
+		function weight1(data) {
+			weight = data;
+			$("#volume").hide();
+			$("#rprice").hide();
+			$("#type").hide();
+			$("#weight").hide();
+			compute(1);
+			$("input[name=typeName]").val(typeName);
+			$("input[name=weight]").val(weight);
+		}
+		function volume1(obj) {
+			var c = $("input[name=c]").val();
+			var k = $("input[name=k]").val();
+			var g = $("input[name=g]").val();
+			weight = Math.ceil(c * k * g / 6000);
+			$("#weight1").html(weight);
+		}
+		var rPrice = 0;
+		function changePrice(obj) {
+			var m = $(obj).val();
+			if (m == "") {
+				rPrice = 0;
+				$("#rPrice").html("0元");
+				return;
+			} else if (m > 20000) {
+				m = 20000;
+				$(obj).val(m);
+			}
+			rPrice = m <= 1000 ? 2 : 2 + Math.ceil((m - 1000) / 200);
+			$("#rPrice").html(rPrice + "元");
+		}
+		$("#button").click(function() {
+			$("#rprice").hide();
+			if (rPrice == 0) {
+				$("input[name=rprice]").val("");
+			} else {
+				$("input[name=rprice]").val(rPrice);
+			}
+			compute(2);
+		})
+		$(".volume").click(function() {
+			$("#volume").hide();
+			compute(1);
+			$("input[name=typeName]").val(typeName);
+			$("input[name=weight]").val(weight);
+		})
+		function checkedInfo() {
+			var maddress = $("input[name=maddress]").val();
+			var raddress = $("input[name=raddress]").val();
+			var typeName = $("input[name=typeName]").val();
+			var weight = $("input[name=weight]").val();
+			if (maddress == "" || raddress == "" || weight == null
+					|| typeName == "") {
+				alert("请完善寄件信息!");
+				return false;
+			}
+			return true;
+		}
+
+		function compute(num) {
+			if (num == 1) {
+				if (rPrice == 0) {
+					var total = (weight - 1) * 5 + 12;
+					$("input[name=total]").val(total);
+				} else {
+					var total = (weight - 1) * 5 + 12 + rPrice;
+					$("input[name=total]").val(total);
+				}
+			} else {
+				if (weight == 0) {
+					$("input[name=total]").val("");
+				} else {
+					var total = (weight - 1) * 5 + 12 + rPrice;
+					$("input[name=total]").val(total);
+				}
+			}
+		}
+	</script>
+</body>
+</html>

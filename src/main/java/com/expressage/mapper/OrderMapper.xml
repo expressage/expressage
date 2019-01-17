@@ -28,9 +28,9 @@
 
 	<resultMap id="zm_orderMap" type="com.expressage.pojo.Order">
 		<id column="oid" property="oid" />
-		<result column="type_Name" property="typeName"/>
-		<result column="pay_type" property="payType"/>
-		<result column="order_time" property="orderTime"/>
+		<result column="type_Name" property="typeName" />
+		<result column="pay_type" property="payType" />
+		<result column="order_time" property="orderTime" />
 		<association property="address1" javaType="address">
 			<id column="aid1" property="aid" />
 			<result column="aname1" property="aname" />
@@ -63,7 +63,7 @@
 		o.maddress = a1.aid
 		INNER JOIN address a2 ON o.raddress = a2.aid
 		WHERE
-		u.uid=o.uid AND oid = #{oid,jdbcType=INTEGER}
+		u.uid=o.uid AND oid = #{oid}
 	</select>
 
 
@@ -77,96 +77,99 @@
 		rprice, eprice, total,
 		pay_type, rpay, status,
 		remarks)
-		values (#{oid,jdbcType=INTEGER}, #{orderno,jdbcType=VARCHAR},
-		#{uid,jdbcType=INTEGER},
-		#{maddress,jdbcType=INTEGER},
-		#{raddress,jdbcType=INTEGER}, #{orderTime,jdbcType=TIMESTAMP},
-		#{appointmenttime,jdbcType=TIMESTAMP}, #{typeName,jdbcType=VARCHAR},
+		values (#{oid}, #{orderno},
+		#{uid},
+		#{maddress},
+		#{raddress},
+		#{orderTime},
+		#{appointmenttime}, #{typeName},
 		#{weight,jdbcType=DOUBLE},
-		#{rprice,jdbcType=INTEGER},
-		#{eprice,jdbcType=INTEGER}, #{total,jdbcType=INTEGER},
-		#{payType,jdbcType=INTEGER}, #{rpay,jdbcType=INTEGER},
-		#{status,jdbcType=VARCHAR},
-		#{remarks,jdbcType=VARCHAR})
+		#{rprice},
+		#{eprice}, #{total},
+		#{payType},
+		#{rpay},
+		#{status},
+		#{remarks})
 	</insert>
 	<update id="updateByPrimaryKeySelective"
 		parameterType="com.expressage.pojo.Order">
 		update order
 		<set>
 			<if test="orderno != null">
-				orderNo = #{orderno,jdbcType=VARCHAR},
+				orderNo = #{orderno},
 			</if>
 			<if test="uid != null">
-				uid = #{uid,jdbcType=INTEGER},
+				uid = #{uid},
 			</if>
 			<if test="maddress != null">
-				maddress = #{maddress,jdbcType=INTEGER},
+				maddress = #{maddress},
 			</if>
 			<if test="raddress != null">
-				raddress = #{raddress,jdbcType=INTEGER},
+				raddress = #{raddress},
 			</if>
 			<if test="orderTime != null">
-				order_time = #{orderTime,jdbcType=TIMESTAMP},
+				order_time = #{orderTime},
 			</if>
 			<if test="appointmenttime != null">
-				appointmentTime = #{appointmenttime,jdbcType=TIMESTAMP},
+				appointmentTime = #{appointmenttime},
 			</if>
 			<if test="typeName != null">
-				type_Name = #{typeName,jdbcType=VARCHAR},
+				type_Name = #{typeName},
 			</if>
 			<if test="weight != null">
 				weight = #{weight,jdbcType=DOUBLE},
 			</if>
 			<if test="rprice != null">
-				rprice = #{rprice,jdbcType=INTEGER},
+				rprice = #{rprice},
 			</if>
 			<if test="eprice != null">
-				eprice = #{eprice,jdbcType=INTEGER},
+				eprice = #{eprice},
 			</if>
 			<if test="total != null">
-				total = #{total,jdbcType=INTEGER},
+				total = #{total},
 			</if>
 			<if test="payType != null">
-				pay_type = #{payType,jdbcType=INTEGER},
+				pay_type = #{payType},
 			</if>
 			<if test="rpay != null">
-				rpay = #{rpay,jdbcType=INTEGER},
+				rpay = #{rpay},
 			</if>
 			<if test="status != null">
-				status = #{status,jdbcType=VARCHAR},
+				status = #{status},
 			</if>
 			<if test="remarks != null">
-				remarks = #{remarks,jdbcType=VARCHAR},
+				remarks = #{remarks},
 			</if>
 		</set>
-		where oid = #{oid,jdbcType=INTEGER}
+		where oid = #{oid}
 	</update>
 	<update id="updateByPrimaryKey"
 		parameterType="com.expressage.pojo.Order">
 		update order
-		set orderNo = #{orderno,jdbcType=VARCHAR},
-		uid = #{uid,jdbcType=INTEGER},
-		maddress = #{maddress,jdbcType=INTEGER},
-		raddress = #{raddress,jdbcType=INTEGER},
+		set orderNo = #{orderno},
+		uid = #{uid},
+		maddress = #{maddress},
+		raddress = #{raddress},
 		order_time =
-		#{orderTime,jdbcType=TIMESTAMP},
+		#{orderTime},
 		appointmentTime =
-		#{appointmenttime,jdbcType=TIMESTAMP},
+		#{appointmenttime},
 		type_Name =
-		#{typeName,jdbcType=VARCHAR},
+		#{typeName},
 		weight = #{weight,jdbcType=DOUBLE},
-		rprice = #{rprice,jdbcType=INTEGER},
+		rprice = #{rprice},
 		eprice =
-		#{eprice,jdbcType=INTEGER},
-		total = #{total,jdbcType=INTEGER},
+		#{eprice},
+		total = #{total},
 		pay_type
-		= #{payType,jdbcType=INTEGER},
-		rpay = #{rpay,jdbcType=INTEGER},
+		= #{payType},
+		rpay =
+		#{rpay},
 		status =
-		#{status,jdbcType=VARCHAR},
-		remarks = #{remarks,jdbcType=VARCHAR}
+		#{status},
+		remarks = #{remarks}
 		where
-		oid = #{oid,jdbcType=INTEGER}
+		oid = #{oid}
 	</update>
 	<!-- pml -->
 	<select id="pmlSelectAll" resultMap="BaseResultMap"
@@ -177,38 +180,63 @@
 		INNER JOIN address a2 ON o.raddress = a2.aid
 		WHERE u.uid=o.uid
 		<if test="orderno != null and orderno != ''">
-			AND orderNo = #{orderno,jdbcType=VARCHAR}
+			AND orderNo = #{orderno}
 		</if>
 	</select>
 
 
 	<select id="pmlSelectByPrimaryOid" resultMap="BaseResultMap"
 		parameterType="java.lang.Integer">
-		SELECT o.*,a1.address AS maddressm,a2.address AS raddressr ,u.uname
+		SELECT o.*,a1.address AS maddressm,a2.address AS
+		raddressr ,u.uname
 		FROM `user` u, `order` o
-		INNER JOIN address a1 ON o.maddress = a1.aid
+		INNER JOIN address a1 ON
+		o.maddress = a1.aid
 		INNER JOIN address a2 ON o.raddress = a2.aid
-		WHERE u.uid=o.uid AND oid = #{oid,jdbcType=INTEGER}
+		WHERE
+		u.uid=o.uid AND oid = #{oid}
 	</select>
 	<!-- zm -->
+	<insert id="zm_addOrder" useGeneratedKeys="true"
+		keyProperty="oid">
+		insert into `order` (oid,orderNo,
+		uid,maddress,raddress,
+		order_time,appointmentTime,type_Name,
+		weight,rprice,
+		eprice,total,pay_type, rpay, status,remarks)
+		values
+		(#{oid},#{orderno},#{uid},#{maddress},#{raddress},now(),#{appointmenttime},#{typeName},#{weight,jdbcType=DOUBLE},#{rprice},#{eprice},
+		#{total},#{payType}, #{rpay},#{status},#{remarks})
+	</insert>
 	<select id="zm_selOrder" resultMap="zm_orderMap">
-		select o.*,a1.aid aid1,a1.aname aname1,a1.tel
-		tel1,a1.region region1,a1.address address1,a2.aid aid2,a2.aname
-		aname2,a2.tel tel2,a2.region region2,a2.address address2 FROM `order`
-		o inner join address a1 ON o.maddress = a1.aid inner join address a2
-		ON o.raddress = a2.aid where o.uid = #{uid}
+		select o.*,a1.aid
+		aid1,a1.aname aname1,a1.tel
+		tel1,a1.region region1,a1.address
+		address1,a2.aid aid2,a2.aname
+		aname2,a2.tel tel2,a2.region
+		region2,a2.address address2 FROM `order`
+		o inner join address a1 ON
+		o.maddress = a1.aid inner join address a2
+		ON o.raddress = a2.aid where
+		o.uid = #{uid}
 	</select>
 	<select id="zm_getOrderByOid" resultMap="zm_orderMap">
-		select o.*,a1.aid aid1,a1.aname aname1,a1.tel
-		tel1,a1.region region1,a1.address address1,a2.aid aid2,a2.aname
-		aname2,a2.tel tel2,a2.region region2,a2.address address2 FROM `order`
-		o inner join address a1 ON o.maddress = a1.aid inner join address a2
-		ON o.raddress = a2.aid where o.oid = #{oid}
+		select o.*,a1.aid
+		aid1,a1.aname aname1,a1.tel
+		tel1,a1.region region1,a1.address
+		address1,a2.aid aid2,a2.aname
+		aname2,a2.tel tel2,a2.region
+		region2,a2.address address2 FROM `order`
+		o inner join address a1 ON
+		o.maddress = a1.aid inner join address a2
+		ON o.raddress = a2.aid where
+		o.oid = #{oid}
 	</select>
 	<delete id="zm_delOrder">
 		delete from `order` where oid = #{oid}
 	</delete>
 	<update id="zm_orderRemarks">
-		update `order` set remarks = #{remarks} where oid = #{oid}
+		update `order` set remarks = #{remarks} where oid =
+		#{oid}
 	</update>
 </mapper>

@@ -18,30 +18,18 @@
 <body>
 	<section class="aui-flexView">
 		<header class="aui-navBar aui-navBar-fixed b-line">
-			<a href="javascript:;" class="aui-navBar-item"> <i
-				class="icon icon-return"></i>
-			</a>
 			<div class="aui-center">
 				<span class="aui-center-title">选择地址</span>
 			</div>
-			<a href="javascript:;" class="aui-navBar-item"> <i
-				class="icon icon-sys"></i>
-			</a>
 		</header>
 		<section class="aui-scrollView">
-			<div class="divHeight b-line"></div>
-			<div class="aui-address-box b-line">
-				<div class="aui-address-add b-line"
-					onclick="location='/Personal/zmJumpAdd'">+添加</div>
-				<div class="aui-flex b-line" th:each="address,iterStat:${listA}">
-					<div class="aui-flex-box">
-						<span th:text="${address.aname}"> </span> &nbsp;&nbsp;&nbsp;<span
-							th:text="${address.tel}" th:class="tel+${iterStat.index}"></span>
-						<p th:text="${address.region}"></p>
-						<p th:text="${address.address}"></p>
-					</div>
-					<div class="glyphicon glyphicon-edit"
-						th:onclick="'javascript:zmSelAddressByAid('+${address.aid}+')'"></div>
+			<div class="aui-flex b-line" th:each="address,iterStat:${listA}">
+				<div class="aui-flex-box" style="font-size: 20px;"
+					th:onclick="'javascript:zmGetAddressByAid('+${address.aid}+')'">
+					<span th:text="${address.aname}"> </span> &nbsp;&nbsp;&nbsp;<span
+						th:text="${address.tel}" th:class="tel+${iterStat.index}"></span>
+					<p th:text="${address.region}" style="font-size: 16px;"></p>
+					<p th:text="${address.address}" style="font-size: 16px;"></p>
 				</div>
 			</div>
 		</section>
@@ -49,7 +37,7 @@
 	<script type="text/javascript" src="/proscenium/js/jquery.min.js"></script>
 	<script type="text/javascript">
 		$(function() {
-			$.post("/Address/zmGetCount", null, function(data) {
+			$.post("/Personal/zmGetCount", null, function(data) {
 				for (var i = 0; i < data; i++) {
 					var tel = $(".tel" + i).text();
 					var mtel = tel.substr(0, 3) + '****' + tel.substr(7, 4);
@@ -57,25 +45,8 @@
 				}
 			})
 		});
-		$('input:radio').click(
-				function() {
-					var domName = $(this).attr('name');
-					if ($(this).data('waschecked') == true) {
-						$(this).prop('checked', false);
-						$("input:radio[name='" + domName + "']").data(
-								'waschecked', false);
-						$(this).attr("value", "1");
-					} else {
-						$(this).prop('checked', true);
-						$("input:radio[name='" + domName + "']").data(
-								'waschecked', false);
-						$(this).data('waschecked', true);
-						$(this).attr("value", "0");
-					}
-				});
-
-		function zmSelAddressByAid(aid) {
-			location = '/Personal/zmSelAddressByAid?aid=' + aid;
+		function zmGetAddressByAid(aid) {
+			location = '/Item/zmGetAddressByAid?aid=' + aid;
 		}
 	</script>
 </body>

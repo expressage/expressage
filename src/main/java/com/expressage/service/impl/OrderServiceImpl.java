@@ -32,6 +32,9 @@ public class OrderServiceImpl implements OrderService {
 		return orderMapper.zm_orderRemarks(oid, remarks);
 	}
 	
+	public int zm_addOrder(Order order) {
+		return orderMapper.zm_addOrder(order);
+	}
 
 	@Override
 	public int insert(Order record) {
@@ -64,6 +67,4 @@ public class OrderServiceImpl implements OrderService {
 		return orderMapper.pmlSelectByPrimaryOid(oid);
 	}
 
-	
-	
 }

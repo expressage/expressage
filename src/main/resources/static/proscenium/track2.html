@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title></title>
+<link href="/proscenium/css/track.css" rel="stylesheet" type="text/css" />
+<link href="/proscenium/css/bootstrap.min.css" rel="stylesheet"
+	type="text/css" />
+</head>
+<body>
+	<div class="aui-timeLine b-line"
+		style="position: fixed; top: 10%; width: 100%; height: 86%; overflow: auto;">
+		<span
+			style="position: absolute; top: 10px; right: 10px; color: buttonhighlight; font-size: 20px;"
+			class="glyphicon glyphicon-remove" onclick="location.reload();"></span>
+		<h3 style="position: absolute; top: 30px; left: 10%;"
+			th:text="${listT.size()==0?'无此单号或此单号无物流信息':''}"></h3>
+		<ul class="aui-timeLine-content">
+			<li class="aui-timeLine-content-item" th:each="track:${listT}"><em
+				class="aui-timeLine-content-icon"></em>
+				<p th:text="${track.info}"></p>
+				<p style="margin-top: 10px; font-size: 8px;"
+					th:text="${#dates.format(track.time,'yyyy-MM-dd hh:mm:ss')}"></p></li>
+		</ul>
+	</div>
+	<div style="height: 370px;"></div>
+</body>
+</html>
