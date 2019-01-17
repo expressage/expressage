@@ -62,7 +62,7 @@ xmlns:th="http://www.thymeleaf.org">
 		<div class="text_info clearfix">
 			<span>性别：</span>
 		</div>
-		<div class="input_info" th:text="${employee.sex}" ></div>
+		<div class="input_info" th:text="${employee.sex=='1'?'男':'女'}" ></div>
 		<div class="text_info clearfix">
 			<span>出身日期：</span>
 		</div>
