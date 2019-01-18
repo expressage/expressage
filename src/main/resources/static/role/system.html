@@ -304,7 +304,7 @@
 							<td th:text="${list.createtime}" />
 							<td th:text="${list.name2}" />
 							<td th:text="${list.enable=='0'?'禁用':'启用'}" />
-							<td th:if="${list.enable=='1'}"><span
+							<td th:if="${list.enable=='1' && list.tid!=0 && list.eid!=emplId}"><span
 								th:onclick="'javascript:prohibitEmpl('+${list.eid}+','+${num}+')'" shiro:hasPermission="/employee/zkProhibitEmpl">禁用</span>
 								<a th:href="@{/employee/zkSelectByKey?(eid=${list.eid})}" shiro:hasPermission="/employee/zkUpdEmployee">
 									修改</a>/<a href="#"

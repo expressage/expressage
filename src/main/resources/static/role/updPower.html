@@ -14,7 +14,7 @@
 		<form action="/power/updPower" id="form">
 			<span id="pid"></span>
 			<div class="input_info">
-				<input type="text" placeholder="资源名称" name="pname" id="pname" onblur="selPowerCountByPname();" />
+				<input type="text" placeholder="资源名称" name="pname" id="pname" />
 				<input type="text" placeholder="资源路径" name="url" id="url"/>
 			</div>
 			<div class="button_info clearfix" >
@@ -47,15 +47,15 @@
 			}else if(url==null||url==""){
 				alert("资源路径不能为空");
 			}else{
-				if (br==true) {
+				/* if (br==true) { */
 					var power = $('#form').serialize();
 					$.get("/power/updPower?pid="+pid,power,function(data){
 						var index = parent.layer.getFrameIndex(window.name); 
 						parent.layer.close(index);
 					});
-				}else{
+				/* }else{
 					alert("名称不能重复")
-				}
+				} */
 			}
 		}
 		

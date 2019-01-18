@@ -71,6 +71,7 @@ public class EmployeeController {
 		model.addAttribute("name", name);
 		model.addAttribute("enable", enable);
 		model.addAttribute("num", num);
+		model.addAttribute("emplId", employee.getEid());
 		return "role/system";
 	}
 

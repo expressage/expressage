@@ -19,7 +19,6 @@ public class PowerServiceImpl implements PowerService {
 	PowerMapper powerMapper;
 
 	@Override
-	@Cacheable(key="'powerMe'",value="zk")
 	public List<Power> zkSelByEmplId(Map<String, Object> map) {
 		return powerMapper.zkSelByEmplId(map);
 	}
@@ -30,19 +29,16 @@ public class PowerServiceImpl implements PowerService {
 	}
 
 	@Override
-	@Cacheable(key="'power'",value="zk")
 	public List<Power> zkSelPower() {
 		return powerMapper.zkSelPower();
 	}
 
 	@Override
-	@Cacheable(key="'power'",value="zk")
 	public int zkAddPower(String pname, String url) {
 		return powerMapper.zkAddPower(pname, url);
 	}
 
 	@Override
-	@CacheEvict(key="'power'",value="zk")
 	public int zkDelPower(Integer pid) {
 		return powerMapper.zkDelPower(pid);
 	}
@@ -58,7 +54,6 @@ public class PowerServiceImpl implements PowerService {
 	}
 
 	@Override
-	@CachePut(key="'power'",value="zk")
 	public int zkUpdPowerByPid(Integer pid, String pname, String url) {
 		return powerMapper.zkUpdPowerByPid(pid, pname, url);
 	}

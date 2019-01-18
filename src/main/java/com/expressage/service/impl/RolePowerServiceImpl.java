@@ -16,19 +16,16 @@ public class RolePowerServiceImpl implements RolePowerService {
 	RolePowerMapper rolePowerMapper;
 	
 	@Override
-	@CacheEvict(key="'powerMe'",value="zk")
 	public int zkDelPowerByRid(Integer rid) {
 		return rolePowerMapper.zkDelPowerByRid(rid);
 	}
 
 	@Override
-	@Cacheable(key="'powerMe'",value="zk")
 	public int zkAddPowerByRid(Integer rid, Integer powers) {
 		return rolePowerMapper.zkAddPowerByRid(rid, powers);
 	}
 
 	@Override
-	@CachePut(key="'powerMe'",value="zk")
 	public int zkPowerCountByRid(Integer rid) {
 		return rolePowerMapper.zkPowerCountByRid(rid);
 	}

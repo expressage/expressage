@@ -17,25 +17,21 @@ public class RoleServiceImpl implements RoleService {
 	RoleMapper roleMapper;
 
 	@Override
-	@Cacheable(key="'role'",value="zk")
 	public List<Role> zkSelRole() {
 		return roleMapper.zkSelRole();
 	}
 
 	@Override
-	@Cacheable(key="'roleMe'",value="zk")
 	public List<Role> zkSelRoleByEid(Integer eid) {
 		return roleMapper.zkSelRoleByEid(eid);
 	}
 
 	@Override
-	@Cacheable(key="'role'",value="zk")
 	public int zkAddRole(String rname) {
 		return roleMapper.zkAddRole(rname);
 	}
 
 	@Override
-	@CacheEvict(key="'role'",value="zk")
 	public int zkDelRole(Integer rid) {
 		return roleMapper.zkDelRole(rid);
 	}
@@ -46,7 +42,6 @@ public class RoleServiceImpl implements RoleService {
 	}
 
 	@Override
-	@CachePut(key="'role'",value="zk")
 	public int zkUpdRole(Integer rid, String name) {
 		return roleMapper.zkUpdRole(rid, name);
 	}

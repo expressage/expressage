@@ -18,13 +18,11 @@ public class EmployeeServiceImpl implements EmployeeService{
 	EmployeeMapper employeeMapper;
 	
 	@Override
-	@Cacheable(key="'emplMe'",value="zk")
 	public Employee zkSelByUsername(String username) {
 		return employeeMapper.zkSelByUsername(username);
 	}
 
 	@Override
-	@Cacheable(key="'empl'",value="zk")
 	public List<Employee> zkSelAll(Integer eid, String name, String enable,Integer tid, Integer num, Integer size) {
 		return employeeMapper.zkSelAll(eid, name, enable, tid, num,size);
 	}
@@ -35,7 +33,6 @@ public class EmployeeServiceImpl implements EmployeeService{
 	}
 
 	@Override
-	@Cacheable(key="'empl'",value="zk")
 	public int zkInsert(Employee employee) {
 		return employeeMapper.zkInsert(employee);
 	}
@@ -46,7 +43,6 @@ public class EmployeeServiceImpl implements EmployeeService{
 	}
 
 	@Override
-	@CachePut(key="'empl'",value="zk")
 	public int zkUpdByKey(Employee employee) {
 		return employeeMapper.zkUpdByKey(employee);
 	}
@@ -57,7 +53,6 @@ public class EmployeeServiceImpl implements EmployeeService{
 	}
 
 	@Override
-	@CachePut@Cacheable(key="'empl'",value="zk")
 	public int zkProhibitEmpl(Integer eid) {
 		return employeeMapper.zkProhibitEmpl(eid);
 	}
